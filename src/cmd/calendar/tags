@@ -1,0 +1,2 @@
+Mcalendar	calendar.c	/^main()$/
+tprint	calendar.c	/^tprint(t)$/

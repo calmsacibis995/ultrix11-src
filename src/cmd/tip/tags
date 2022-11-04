@@ -1,0 +1,88 @@
+ASSERT	uucplock.c	/^#define ASSERT(e, f, v) if (!(e)) {\\$/
+Mtip	tip.c	/^main(argc, argv)$/
+acuabort	acu.c	/^acuabort(s)$/
+acutype	acu.c	/^acutype(s)$/
+any	tip.c	/^any(c, p)$/
+anyof	cmds.c	/^anyof(s1, s2)$/
+args	cmds.c	/^args(buf, a)$/
+chdirectory	cmds.c	/^chdirectory()$/
+cleanup	tip.c	/^cleanup()$/
+connect	acu.c	/^connect()$/
+consh	cmds.c	/^consh(c)$/
+ctrl	tip.c	/^ctrl(c)$/
+cu_put	cmds.c	/^cu_put(cc)$/
+cu_take	cmds.c	/^cu_take(cc)$/
+cumain	cu.c	/^cumain(argc, argv)$/
+dead	hunt.c	/^dead()$/
+delock	uucplock.c	/^delock(s)$/
+disconnect	acu.c	/^disconnect()$/
+escape	tip.c	/^escape()$/
+execute	cmds.c	/^execute(s)$/
+expand	cmds.c	/^expand(name)$/
+finish	cmds.c	/^finish()$/
+genbrk	cmds.c	/^genbrk()$/
+getent	remcap.c	/^getent(bp, name, cp)$/
+getfl	cmds.c	/^getfl(c)$/
+getremcap	remote.c	/^getremcap(host)$/
+getremote	remote.c	/^getremote(host)$/
+help	tip.c	/^help(c)$/
+hunt	hunt.c	/^hunt(name)$/
+intEMT	tipout.c	/^intEMT()$/
+intIOT	tipout.c	/^intIOT()$/
+intSYS	tipout.c	/^intSYS()$/
+intTERM	tipout.c	/^intTERM()$/
+intcopy	cmds.c	/^intcopy(sig)$/
+interp	tip.c	/^interp(s)$/
+intprompt	tip.c	/^intprompt()$/
+isalock	uucplock.c	/^isalock(name)$/
+logent	log.c	/^logent(group, num, acu, message)$/
+loginit	log.c	/^loginit()$/
+mlock	uucplock.c	/^mlock(sys)$/
+onelock	uucplock.c	/^onelock(pid, tempfile, name)$/
+pipefile	cmds.c	/^pipefile()$/
+prompt	tip.c	/^prompt(s, p)$/
+prtime	cmds.c	/^prtime(s, a)$/
+pwrite	tip.c	/^pwrite(fd, buf, n)$/
+raw	tip.c	/^raw()$/
+rmlock	uucplock.c	/^rmlock(name)$/
+send	cmds.c	/^send(c)$/
+sendfile	cmds.c	/^sendfile(cc)$/
+setparity	tip.c	/^setparity(defparity)$/
+setscript	cmds.c	/^setscript()$/
+shell	cmds.c	/^shell()$/
+sig_mark	tipout.c	/^sig_mark(sig)$/
+sigblock	tipout.c	/^sigblock(sigs)$/
+sigsetmask	tipout.c	/^sigsetmask(nmask)$/
+size	tip.c	/^size(s)$/
+sname	tip.c	/^sname(s)$/
+speed	tip.c	/^speed(n)$/
+stlock	uucplock.c	/^stlock(name)$/
+stopsnd	cmds.c	/^stopsnd()$/
+suspend	cmds.c	/^suspend()$/
+tandem	cmds.c	/^tandem(option)$/
+tdecode	remcap.c	/^tdecode(str, area)$/
+tgetent	remcap.c	/^tgetent(bp, name)$/
+tgetflag	remcap.c	/^tgetflag(id)$/
+tgetnum	remcap.c	/^tgetnum(id)$/
+tgetstr	remcap.c	/^tgetstr(id, area)$/
+timeout	cmds.c	/^timeout()$/
+tipin	tip.c	/^tipin()$/
+tipout	tipout.c	/^tipout()$/
+tnamatch	remcap.c	/^tnamatch(np)$/
+tnchktc	remcap.c	/^tnchktc()$/
+transfer	cmds.c	/^transfer(buf, fd, eofchars)$/
+transmit	cmds.c	/^transmit(fd, eofchars, command)$/
+tskip	remcap.c	/^tskip(bp)$/
+ttysetup	tip.c	/^ttysetup(speed)$/
+ulockf	uucplock.c	/^ulockf(file, atime)$/
+unraw	tip.c	/^unraw()$/
+vaccess	value.c	/^vaccess(mode, rw)$/
+variable	cmds.c	/^variable()$/
+vassign	value.c	/^vassign(p, v)$/
+vinit	value.c	/^vinit()$/
+vinterp	value.c	/^vinterp(s, stop)$/
+vlex	value.c	/^vlex(s)$/
+vlookup	value.c	/^vlookup(s)$/
+vprint	value.c	/^vprint(p)$/
+vstring	value.c	/^vstring(s,v)$/
+vtoken	value.c	/^vtoken(s)$/

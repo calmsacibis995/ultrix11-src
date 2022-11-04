@@ -1,0 +1,368 @@
+# SCCSID: @(#)makefile.mis	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+#
+OWNER=uucp
+GROUP=daemon
+#
+########################################################################
+#
+#
+# Targets defined are:
+#	save		save old executables and install new version
+#	restore		reinstall old executables
+#			directories
+#	tar		Make exportable 'tar' archive of all
+#			necessary sources
+#	cpall		install all executables
+########################################################################
+METOO=	[mM]akefile *INSTALL* *CHANGE* *README* *TODO*
+TFILES= $(METOO) $(HEADRS) $(SOURCES)
+
+FRC=
+INSDIR=${DESTDIR}/usr/lib/uucp
+BIN=${DESTDIR}/usr/bin
+PUBDIR=${DESTDIR}/usr/spool/uucppublic
+SPOOL=${DESTDIR}/usr/spool/uucp
+XQTDIR=${DESTDIR}/usr/spool/uucp/.XQTDIR
+OLDLOG=${DESTDIR}/usr/lib/uucp/.OLD
+
+
+
+
+save:   
+	chown $(OWNER) $(INSDIR)
+	chmod 755 $(INSDIR)
+	-mv $(BIN)/uucp $(BIN)/OLDuucp
+	-strip $(BIN)/uucp 
+	cp uucp $(BIN)
+	-strip $(BIN)/uucp 
+	chown $(OWNER) $(BIN)/uucp
+	chmod 4111 $(BIN)/uucp
+	-mv $(BIN)/uux $(BIN)/OLDuux
+	cp uux $(BIN)
+	-strip $(BIN)/uux 
+	chown $(OWNER) $(BIN)/uux
+	chmod 4111 $(BIN)/uux
+	-mv $(INSDIR)/uuxqt $(INSDIR)/OLDuuxqt
+	cp uuxqt $(INSDIR)
+	-strip  $(INSDIR)/uuxqt
+	chown $(OWNER) $(INSDIR)/uuxqt
+	chmod 4111 $(INSDIR)/uuxqt
+	-mv $(INSDIR)/uucico40 $(INSDIR)/OLDuucico40
+	cp uucico40 $(INSDIR)
+	-strip  $(INSDIR)/uucico40
+	chown $(OWNER) $(INSDIR)/uucico40
+	chmod 4111 $(INSDIR)/uucico40
+	-mv $(INSDIR)/uucico70 $(INSDIR)/OLDuucico70
+	cp uucico70 $(INSDIR)
+	-strip  $(INSDIR)/uucico70
+	chown $(OWNER) $(INSDIR)/uucico70
+	chmod 4111 $(INSDIR)/uucico70
+	-mv $(INSDIR)/uucico $(INSDIR)/OLDuucico
+	cp $(INSDIR)/uucico70 $(INSDIR)/uucico
+	chown $(OWNER) $(INSDIR)/uucico
+	chmod 4111 $(INSDIR)/uucico
+	-mv $(BIN)/uulog $(BIN)/OLDuulog
+	cp uulog $(BIN)
+	-strip $(BIN)/uulog
+	chown $(OWNER) $(BIN)/uulog
+	chmod 4111 $(BIN)/uulog
+	-mv $(INSDIR)/uuclean $(INSDIR)/OLDuuclean
+	cp uuclean $(INSDIR)
+	-strip $(INSDIR)/uuclean
+	chown $(OWNER) $(INSDIR)/uuclean
+	chmod 4111 $(INSDIR)/uuclean
+	-mv $(BIN)/uuname $(BIN)/OLDuuname
+	cp uuname $(BIN)
+	-strip $(BIN)/uuname
+	chown $(OWNER) $(BIN)/uuname
+	chmod 4111 $(BIN)/uuname
+	-mv $(BIN)/uupoll $(BIN)/OLDuupoll
+	cp uupoll $(BIN)
+	-strip $(BIN)/uupoll
+	chown $(OWNER) $(BIN)/uupoll
+	chmod 4111 $(BIN)/uupoll
+	-mv $(BIN)/uustat $(BIN)/OLDuustat
+	cp uustat $(BIN)
+	-strip $(BIN)/uustat
+	chown $(OWNER) $(BIN)/uustat
+	chmod 4111 $(BIN)/uustat
+	-mv $(INSDIR)/uumonitor $(INSDIR)/OLDuumonitor
+	cp uumonitor $(INSDIR)
+	-strip $(INSDIR)/uumonitor
+	chmod 04111 $(INSDIR)/uumonitor
+	chown $(OWNER) $(INSDIR)/uumonitor
+	-mv $(INSDIR)/uumkspool $(INSDIR)/OLDuumkspool
+	cp uumkspool $(INSDIR)
+	-strip $(INSDIR)/uumkspool
+	chmod 04111 $(INSDIR)/uumkspool
+	chown $(OWNER) $(INSDIR)/uumkspool
+	-mv $(INSDIR)/uurespool $(INSDIR)/OLDuurespool
+	cp uurespool $(INSDIR)
+	-strip $(INSDIR)/uurespool
+	chmod 04111 $(INSDIR)/uurespool
+	chown $(OWNER) $(INSDIR)/uurespool
+	-mv $(INSDIR)/uucompact $(INSDIR)/OLDuucompact
+	cp uucompact $(INSDIR)
+	-strip $(INSDIR)/uucompact
+	chmod 04111 $(INSDIR)/uucompact
+	chown $(OWNER) $(INSDIR)/uucompact
+
+restore:
+	-chmod u+w $(BIN)/uucp
+	-mv $(BIN)/OLDuucp $(BIN)/uucp
+	chown $(OWNER) $(BIN)/uucp
+	chmod 4111 $(BIN)/uucp
+	-chmod u+w $(BIN)/uux
+	-mv $(BIN)/OLDuux $(BIN)/uux
+	chown $(OWNER) $(BIN)/uux
+	chmod 4111 $(BIN)/uux
+	-chmod u+w $(INSDIR)/uuxqt
+	-mv $(INSDIR)/OLDuuxqt $(INSDIR)/uuxqt
+	chown $(OWNER) $(INSDIR)/uuxqt
+	chmod 4111 $(INSDIR)/uuxqt
+	-chmod u+w $(INSDIR)/uucico40
+	-mv $(INSDIR)/OLDuucico40 $(INSDIR)/uucico40
+	chown $(OWNER) $(INSDIR)/uucico40
+	chmod 4111 $(INSDIR)/uucico40
+	-chmod u+w $(INSDIR)/uucico70
+	-mv $(INSDIR)/OLDuucico70 $(INSDIR)/uucico70
+	chown $(OWNER) $(INSDIR)/uucico70
+	chmod 4111 $(INSDIR)/uucico70
+	-chmod u+w $(INSDIR)/uucico
+	-mv $(INSDIR)/OLDuucico $(INSDIR)/uucico
+	chown $(OWNER) $(INSDIR)/uucico
+	chmod 4111 $(INSDIR)/uucico
+	-chmod u+w $(BIN)/uulog
+	-mv $(BIN)/OLDuulog $(BIN)/uulog
+	chown $(OWNER) $(BIN)/uulog
+	chmod 4111 $(BIN)/uulog
+	-chmod u+w $(INSDIR)/uuclean
+	-mv $(INSDIR)/OLDuuclean $(INSDIR)/uuclean
+	chown $(OWNER) $(INSDIR)/uuclean
+	chmod 4111 $(INSDIR)/uuclean
+	-chmod u+w $(BIN)/uuname
+	-mv $(BIN)/OLDuuname $(BIN)/uuname
+	chown $(OWNER) $(BIN)/uuname
+	chmod 4111 $(BIN)/uuname
+	-mv $(BIN)/OLDuupoll $(BIN)/uupoll
+	chown $(OWNER) $(BIN)/uupoll
+	chmod 4111 $(BIN)/uupoll
+	-chmod u+w $(BIN)/uustat
+	-mv $(BIN)/OLDuustat $(BIN)/uustat
+	chown $(OWNER) $(BIN)/uustat
+	chmod 4111 $(BIN)/uustat
+	-chmod u+w $(INSDIR)/uumonitor
+	-mv $(INSDIR)/OLDuumonitor $(INSDIR)/uumonitor
+	chmod 04111 $(INSDIR)/uumonitor
+	chown $(OWNER) $(INSDIR)/uumonitor
+	-chmod u+w $(INSDIR)/uumkspool
+	-mv $(INSDIR)/OLDuumkspool $(INSDIR)/uumkspool
+	chmod 04111 $(INSDIR)/uumkspool
+	chown $(OWNER) $(INSDIR)/uumkspool
+	-chmod u+w $(INSDIR)/uurespool
+	-mv $(INSDIR)/OLDuurespool $(INSDIR)/uurespool
+	chmod 04111 $(INSDIR)/uurespool
+	chown $(OWNER) $(INSDIR)/uurespool
+	-chmod u+w $(INSDIR)/uucompact
+	-mv $(INSDIR)/OLDuucompact $(INSDIR)/uucompact
+	chmod 04111 $(INSDIR)/uucompact
+	chown $(OWNER) $(INSDIR)/uucompact
+
+new:		mkdirs cpfiles
+
+cpfiles:
+	chmod 600 $(DESTDIR)$(INSDIR)/L* ${DESTDIR}$(INSDIR)/USERFILE
+	-chown $(OWNER) ${DESTDIR}$(INSDIR)/*
+	-chgrp $(GROUP) ${DESTDIR}$(INSDIR)/*
+
+cpall:	cpdirs cpuucp cpuux cpuuxqt cpuucico cpuulog cpuuclean cpuuname \
+	cpuustat cpuusub cpuupoll cpuumonitor cpuucomp cpuumkspool cpuurespool
+
+cpdirs:
+	chog $(OWNER) $(INSDIR)
+	chmod 755 $(INSDIR)
+
+cpuucp:
+	cp uucp $(BIN)
+	-strip $(BIN)/uucp
+	chog $(OWNER) $(BIN)/uucp
+	chmod 6111 $(BIN)/uucp
+
+cpuux:
+	cp uux $(BIN)
+	-strip $(BIN)/uux
+	chog $(OWNER) $(BIN)/uux
+	chmod 6111 $(BIN)/uux
+
+cpuuxqt:
+	cp uuxqt $(INSDIR)
+	-strip $(INSDIR)/uuxqt
+	chog $(OWNER) $(INSDIR)/uuxqt
+	chmod 6111 $(INSDIR)/uuxqt
+
+cpuucico:
+	cp uucico40 $(INSDIR)
+	-strip $(INSDIR)/uucico40
+	chog $(OWNER) $(INSDIR)/uucico40
+	chmod 6111 $(INSDIR)/uucico40
+	cp uucico70 $(INSDIR)
+	-strip $(INSDIR)/uucico70
+	chog $(OWNER) $(INSDIR)/uucico70
+	chmod 6111 $(INSDIR)/uucico70
+	cp $(INSDIR)/uucico70 $(INSDIR)/uucico
+	chog $(OWNER) $(INSDIR)/uucico
+	chmod 6111 $(INSDIR)/uucico
+
+cpuulog:
+	cp uulog $(BIN)
+	-strip $(BIN)/uulog
+	chog $(OWNER) $(BIN)/uulog
+	chmod 6111 $(BIN)/uulog
+
+cpuuclean:
+	cp uuclean $(INSDIR)
+	-strip $(INSDIR)/uuclean
+	chog $(OWNER) $(INSDIR)/uuclean
+	chmod 6110 $(INSDIR)/uuclean
+
+cpuuname:
+	cp uuname $(BIN)
+	-strip $(BIN)/uuname
+	chog $(OWNER) $(BIN)/uuname
+	chmod 6111 $(BIN)/uuname
+
+cpuustat:
+	cp uustat $(BIN)
+	-strip $(BIN)/uustat
+	chog $(OWNER) $(BIN)/uustat
+	chmod 6111 $(BIN)/uustat
+
+cpuusub:
+	cp uusub $(INSDIR)
+	-strip $(INSDIR)/uusub
+	chog $(OWNER) $(INSDIR)/uusub
+	chmod 100 $(INSDIR)/uusub
+
+cpuumonitor:
+	cp uumonitor $(INSDIR)
+	-strip $(INSDIR)/uumonitor
+	chog $(OWNER) $(INSDIR)/uumonitor
+	chmod 04111 $(INSDIR)/uumonitor
+
+cpuumkspool:
+	cp uumkspool $(INSDIR)
+	-strip $(INSDIR)/uumkspool
+	chog $(OWNER) $(INSDIR)/uumkspool
+	chmod 04111 $(INSDIR)/uumkspool
+
+cpuucomp:
+	cp uucompact $(INSDIR)
+	-strip $(INSDIR)/uucompact
+	chog $(OWNER) $(INSDIR)/uucompact
+	chmod 04111 $(INSDIR)/uucompact
+
+cpuurespool:
+	cp uurespool $(INSDIR)
+	-strip $(INSDIR)/uurespool
+	chog $(OWNER) $(INSDIR)/uurespool
+	chmod 04100 $(INSDIR)/uurespool
+
+cpuupoll:
+	cp uupoll $(BIN)
+	-strip $(BIN)/uupoll
+	chog $(OWNER) $(BIN)/uupoll
+	chmod 6111 $(BIN)/uupoll
+
+clean:
+	-rm -f *.o
+
+clobber:	clean
+	-rm -f save*/*
+	-rm -f $(COMMLIB) $(OVCOMMLIB)
+	-rm -f $(COMMANDS) uumonitor
+
+cmp:	all
+	cmp uucp $(BIN)/uucp
+	cmp uux $(BIN)/uux
+	cmp uuxqt $(INSDIR)/uuxqt
+	cmp uucico $(INSDIR)/uucico
+	cmp uucico70 $(INSDIR)/uucico70
+	cmp uulog $(BIN)/uulog
+	cmp uuclean $(INSDIR)/uuclean
+	cmp uuname $(BIN)/uuname
+	cmp uustat $(BIN)/uustat
+	cmp uupoll $(BIN)/uupoll
+	cmp uumon $(INSDIR)/uumonitor
+	cmp uumkspool $(INSDIR)/uumkspool
+	cmp uurespool $(INSDIR)/uurespool
+	cmp uucompact $(INSDIR)/uucompact
+
+
+mkdirs:
+	-mkdir $(INSDIR)
+	chmod 755 $(INSDIR)
+	-mkdir $(SPOOL)
+	chmod 755 $(SPOOL)
+	chown $(OWNER) $(SPOOL)
+	chgrp $(GROUP) $(SPOOL)
+	-mkdir $(SPOOL)/sys
+	-chmod 755 $(SPOOL)/sys
+	chown $(OWNER) $(SPOOL)/sys
+	-$(INSDIR)/uumkspool DEFAULT
+	-mkdir $(SPOOL)/TM.
+	chown $(OWNER) $(SPOOL)/TM.
+	chgrp $(GROUP) $(SPOOL)/TM.
+	-chmod 755 $(SPOOL)/TM.
+	-mkdir $(SPOOL)/STST.
+	chown $(OWNER) $(SPOOL)/STST.
+	chgrp $(GROUP) $(SPOOL)/STST.
+	-chmod 755 $(SPOOL)/STST.
+	-mkdir $(PUBDIR)
+	chmod 777 $(PUBDIR)
+	chown $(OWNER) $(PUBDIR)
+	chgrp $(GROUP) $(PUBDIR)
+	-mkdir $(XQTDIR)
+	chmod 777 $(XQTDIR)
+	chown $(OWNER) $(XQTDIR)
+	chgrp $(GROUP) $(XQTDIR)
+	-mkdir $(OLDLOG)
+	chmod 777 $(OLDLOG)
+	chown $(OWNER) $(OLDLOG)
+	chgrp $(GROUP) $(OLDLOG)
+
+
+lint:	lintuucp lintuucico lintuux lintuuxqt lintuulog lintuuclean\
+	lintuuname lintuustat lintuusub
+lintuucp:
+	lint $(LINTOP) $(LUUCP) $(LFILES)
+
+lintuucico:
+	lint $(LINTOP) $(LUUCICO) $(LFILES)
+
+lintuux:
+	lint $(LINTOP) $(LUUX) $(LFILES)
+
+lintuuxqt:
+	lint $(LINTOP) $(LUUXQT) $(LFILES)
+
+lintuulog:
+	lint $(LINTOP) $(LUULOG)
+
+lintuuclean:
+	lint $(LINTOP) $(LUUCLEAN)
+
+lintuuname:
+	lint $(LINTOP) $(LUUNAME)
+
+lintuustat:
+	lint $(LINTOP) $(LUUSTAT) $(LFILES)
+
+lintuusub:
+	lint $(LINTOP) $(LUUSUB) $(LFILES)

@@ -1,0 +1,8 @@
+/globl[ 	]*_intcon$/d
+s/data/text/
+/globl[ 	]*_realcon$/d
+s/data/text/
+/globl[ 	]*_constta$/d
+s/data/text/
+w
+q

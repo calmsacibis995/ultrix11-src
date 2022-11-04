@@ -1,0 +1,31 @@
+:
+# SCCSID: @(#)learntest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** learn test started - "
+date
+touch $T/lrn.$$.err
+
+if test -f "$learnpath"
+then
+	$M learn < $L/learn/learn.input > $T/lrn.$$.out
+	cmp -s $T/lrn.$$.out $L/learn/learn.sout
+	if test $? != 0
+	then
+		echo "learn:  Compare after learn failed" >> $T/lrn.$$.err
+		echo "Compare after learn failed"
+	fi
+else
+	echo "$learnpath: not installed" >> $T/lrn.$$.err
+	echo "$learnpath: not tested (command not installed)"
+fi
+echo -n "****** End of  learn test - "
+date
+cat $T/lrn.$$.err >> $T/log.$$.err
+rm -f $RT/lrn.$$.out
+rm -f $RT/lrn.$$.err

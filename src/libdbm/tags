@@ -1,0 +1,19 @@
+additem	dbm.c	/^additem(buf, item)$/
+calchash	dbm.c	/^calchash(item)$/
+chkblk	dbm.c	/^chkblk(buf)$/
+clrbuf	dbm.c	/^clrbuf(cp, n)$/
+cmpdatum	dbm.c	/^cmpdatum(d1, d2)$/
+dbm_access	dbm.c	/^dbm_access(hash)$/
+dbminit	dbm.c	/^dbminit(file)$/
+delete	dbm.c	/^delete(key)$/
+delitem	dbm.c	/^delitem(buf, n)$/
+fetch	dbm.c	/^fetch(key)$/
+firsthash	dbm.c	/^firsthash(hash)$/
+firstkey	dbm.c	/^firstkey()$/
+forder	dbm.c	/^forder(key)$/
+getbit	dbm.c	/^getbit()$/
+hashinc	dbm.c	/^hashinc(hash)$/
+makdatum	dbm.c	/^makdatum(buf, n)$/
+nextkey	dbm.c	/^nextkey(key)$/
+setbit	dbm.c	/^setbit()$/
+store	dbm.c	/^store(key, dat)$/

@@ -1,0 +1,52 @@
+PATH=/bin:/usr/bin
+echo "" >/dev/console
+echo "" >/dev/console
+echo "Restricted rights:" >/dev/console
+echo "" >/dev/console
+echo "	Use, duplication, or disclosure is subject
+	to restrictions stated in your contract with
+	Digital Equipment Corporation." >/dev/console
+echo "" >/dev/console
+echo "*UNIX is a trademark of AT&T Bell Laboratories." >/dev/console
+echo "" >/dev/console
+rm /etc/mtab
+cat /dev/null >/etc/utmp
+/etc/mount -a -v >/dev/console
+rm -f /etc/*loglock
+rm -f /usr/spool/uucp/LCK..*
+# To enable system accounting remove the # from in front of /etc/accton.
+# Enable accounting in the /opr/restart file as well.
+# /etc/accton /usr/adm/acct
+rm -f /usr/tmp/*
+(cd /tmp; /usr/lib/ex3.7preserve -a)
+rm -f /tmp/*
+hostname noname
+/etc/ifconfig lo0 localhost
+/etc/ifconfig de0 `/bin/hostname` broadcast 98.0.0.0 netmask 255.255.255.0
+if [ $? -eq 0 ]; then
+	echo -n "starting network: "			>/dev/console
+	if [ -f /usr/etc/syslog ]; then
+		/usr/etc/syslog && echo -n ' syslog'	>/dev/console
+	fi
+	if [ -f /usr/etc/routed ]; then
+		/usr/etc/routed && echo -n ' routed'	>/dev/console
+	fi
+	if [ -f /usr/etc/inetd ]; then
+		/usr/etc/inetd && echo -n ' inetd'	>/dev/console
+	fi
+	if [ -f /usr/etc/rwhod ]; then
+		/usr/etc/rwhod && echo -n ' rwhod'	>/dev/console
+	fi
+	if [ -f /usr/lib/sendmail ]; then
+		/usr/lib/sendmail -bd -q30m && echo -n ' sendmail' >/dev/console
+	fi
+	echo '.'					>/dev/console
+	/etc/rdate -s					>/dev/console
+fi
+/etc/update
+echo "" >/dev/console
+date >/dev/console
+/etc/cron
+/etc/eli -e >/dev/console
+/etc/eli -u >/dev/console
+/etc/lpdrestart

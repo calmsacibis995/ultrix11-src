@@ -1,0 +1,53 @@
+Mrlex	rlex.c	/^main(argc,argv) int argc; char **argv; {$/
+atoi	r1.c	/^#define	atoi(s)	(*s-'0')	\/* crude!!! *\/$/
+balpar	r1.c	/^balpar() {$/
+bexit	rlex.c	/^bexit(status) {$/
+breakcode	r1.c	/^breakcode() {$/
+cant	rlex.c	/^cant(s) char *s; {$/
+contcard	r2.c	/^contcard(){$/
+copy	rlook.c	/^char *copy(s)$/
+defstat	rlex.c	/^defstat() {$/
+docode	r1.c	/^docode() {$/
+dostat	r1.c	/^dostat(p1) int p1; {$/
+eatup	r1.c	/^eatup() {$/
+elsecode	r1.c	/^elsecode(p1) {$/
+endsw	r0.c	/^endsw(n, def) {$/
+errcode	r1.c	/^errcode() {$/
+error	r1.c	/^error(s1) char *s1; {$/
+flushcom	r2.c	/^flushcom() {$/
+forcode	r1.c	/^forcode(){$/
+forstat	r1.c	/^forstat(p1) int p1; {$/
+genlab	r1.c	/^genlab(n){$/
+getcase	r0.c	/^getcase() {$/
+getchr	rio.c	/^getchr() {$/
+getdefault	r0.c	/^getdefault() {$/
+getfname	rio.c	/^getfname() {$/
+gnbtok	rio.c	/^gnbtok(s) char *s; {$/
+gokcode	r1.c	/^gokcode(p1) {$/
+gtok	rio.c	/^gtok(s) char *s; {	\/* get token into s *\/$/
+ifcode	r1.c	/^ifcode() {$/
+inclstat	rlex.c	/^inclstat() {$/
+install	rlook.c	/^char *install(nam, val, tran)$/
+lookup	rlook.c	/^struct nlist *lookup(str)$/
+nextcode	r1.c	/^nextcode() {$/
+nonblank	r1.c	/^nonblank(s) char *s; {$/
+outcode	r2.c	/^outcode(xp) char *xp; {$/
+outcont	r2.c	/^outcont(n) int n; {$/
+outdon	r2.c	/^outdon() {$/
+outgoto	r2.c	/^outgoto(n) int n; {$/
+outnum	r2.c	/^outnum(n) int n; {$/
+outtab	r2.c	/^outtab(){$/
+pbstr	rio.c	/^pbstr(str)$/
+peek	rio.c	/^peek(p, c1) char *p, c1; {$/
+ptc	r2.c	/^ptc(c) char c; {$/
+pts	r2.c	/^pts(s) char *s; {$/
+putbak	r.h	/^#define	putbak(c)	*ip++ = c$/
+putcom	r2.c	/^putcom(s) char *s; {$/
+repcode	r1.c	/^repcode() {$/
+retcode	r1.c	/^retcode() {$/
+swcode	r0.c	/^swcode() {$/
+untils	r1.c	/^untils(p1,un) int p1,un; {$/
+whilecode	r1.c	/^whilecode() {$/
+whilestat	r1.c	/^whilestat(p1) int p1; {$/
+yyerror	rlex.c	/^yyerror(p) char *p; {;}$/
+yylex	rlex.c	/^yylex() {$/

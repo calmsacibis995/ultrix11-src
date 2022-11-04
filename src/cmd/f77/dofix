@@ -1,0 +1,16 @@
+:
+# SCCSID: @(#)dofix	3.0	4/21/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+if test -f _$1.fix
+then
+	echo dofix $1
+	ex $1.s < _$1.fix >/dev/null
+else
+	true
+fi

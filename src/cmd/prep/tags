@@ -1,0 +1,20 @@
+Mprep0	prep0.c	/^main(argc,argv)$/
+bslash	prep1.c	/^bslash()$/
+bsp	prep1.c	/^bsp()$/
+bsp1	prep1.c	/^bsp1()$/
+coll	prep1.c	/^coll()$/
+compile	prep0.c	/^compile(fio)$/
+conf	prep1.c	/^conf(n,width,buf) $/
+ctout	prep1.c	/^ctout()$/
+driver	prep0.c	/^driver(arg)$/
+flags	prep0.c	/^flags(argv)$/
+flsh	prep2.c	/^flsh()$/
+gobble2	prep1.c	/^gobble2()$/
+hyp1	prep1.c	/^hyp1()$/
+hyp2	prep1.c	/^hyp2()$/
+hyphen	prep1.c	/^hyphen()$/
+init	prep0.c	/^init()$/
+punc	prep1.c	/^punc()$/
+put	prep2.c	/^put(string,n)$/
+save	prep1.c	/^save()$/
+search	prep1.c	/^search(symbol,length,params,install)$/

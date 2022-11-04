@@ -1,0 +1,70 @@
+Calloc	errorsubr.c	/^char *Calloc(nelements, size)$/
+ECITERATE	errortouch.c	/^#define	ECITERATE(ei, p, lb)	for (ei = lb; p = err/
+EITERATE	errortouch.c	/^#define EITERATE(p, fv, i)	for (p = fv[i]; p < fv[/
+FILEITERATE	errortouch.c	/^#define	FILEITERATE(fi, lb)	for (fi = lb; fi <= nf/
+Merrormain	errormain.c	/^main(argc, argv)$/
+alldigits	errorpi.c	/^boolean alldigits(string)$/
+arrayify	errorsubr.c	/^arrayify(e_length, e_array, header)$/
+catchall	errorinput.c	/^Errorclass catchall()$/
+clob_last	errorsubr.c	/^clob_last(string, newstuff)$/
+countfiles	errortouch.c	/^int countfiles(errors)$/
+cpp	errorinput.c	/^Errorclass	cpp()$/
+discardit	errorfilter.c	/^Errorclass discardit(errorp)$/
+diverterrors	errortouch.c	/^diverterrors(name, dest, files, ix, seen, nterrors/
+eaterrors	errorinput.c	/^eaterrors(r_errorc, r_errorv)$/
+edit	errortouch.c	/^boolean edit(name)$/
+error	errorsubr.c	/^error(msg, a1, a2, a3)$/
+erroradd	errorinput.c	/^erroradd(errorlength, errorv, errorclass, errorsub/
+errorprint	errortouch.c	/^errorprint(place, errorp, print_all)$/
+errorsort	errormain.c	/^int errorsort(epp1, epp2)$/
+execvarg	errortouch.c	/^execvarg(n_pissed_on, r_argc, r_argv)$/
+f77	errorinput.c	/^f77()$/
+filenames	errortouch.c	/^filenames(nfiles, files)$/
+findfiles	errortouch.c	/^findfiles(nerrors, errors, r_nfiles, r_files)$/
+firstchar	errorsubr.c	/^char firstchar(string)$/
+forkvi	errormain.c	/^forkvi(argc, argv)$/
+getignored	errorfilter.c	/^getignored(auxname)$/
+hackfile	errortouch.c	/^hackfile(name, files, ix, nerrors)$/
+inquire	errortouch.c	/^int inquire(fmt, a1, a2)$/
+insert	errortouch.c	/^insert(place)$/
+instringset	errorpi.c	/^boolean instringset(member, set)$/
+isdateformat	errorpi.c	/^boolean isdateformat(wordc, wordv)$/
+lastchar	errorsubr.c	/^char lastchar(string)$/
+lexsort	errorfilter.c	/^int lexsort(cpp1, cpp2)$/
+lint0	errorinput.c	/^Errorclass lint0()$/
+lint1	errorinput.c	/^Errorclass lint1()$/
+lint2	errorinput.c	/^Errorclass lint2()$/
+lint3	errorinput.c	/^Errorclass lint3()$/
+make	errorinput.c	/^Errorclass make()$/
+mustoverwrite	errortouch.c	/^int mustoverwrite(preciousfile, tmpfile)$/
+mustwrite	errortouch.c	/^mustwrite(base, n, preciousfile)$/
+next_lastchar	errorsubr.c	/^char	next_lastchar(string)$/
+nopertain	errortouch.c	/^int nopertain(files)$/
+oktotouch	errortouch.c	/^int oktotouch(filename)$/
+onelong	errorinput.c	/^Errorclass onelong()$/
+onintr	errortouch.c	/^onintr()$/
+pccccom	errorinput.c	/^Errorclass pccccom()$/
+persperdexplode	errorsubr.c	/^boolean persperdexplode(string, r_perd, r_pers)$/
+pi	errorpi.c	/^Errorclass pi()$/
+piptr	errorpi.c	/^boolean piptr(string)$/
+plural	errorsubr.c	/^char *plural(n)$/
+position	errorsubr.c	/^int position(string, ch)$/
+preview	errortouch.c	/^boolean preview(name, nerrors, files, ix)$/
+printerrors	errorsubr.c	/^printerrors(look_at_subclass, errorc, errorv)$/
+probethisfile	errortouch.c	/^int probethisfile(name)$/
+qpersperdexplode	errorsubr.c	/^boolean qpersperdexplode(string, r_perd, r_pers)$/
+ri	errorinput.c	/^Errorclass ri()$/
+richieccom	errorinput.c	/^Errorclass richieccom()$/
+search_ignore	errorfilter.c	/^int search_ignore(key)$/
+settotouch	errortouch.c	/^int settotouch(name)$/
+strsave	errorsubr.c	/^char *strsave(instring)$/
+substitute	errorsubr.c	/^char *substitute(string, chold, chnew)$/
+text	errortouch.c	/^text(p, use_all)$/
+touchfiles	errortouch.c	/^boolean touchfiles(nfiles, files, r_edargc, r_edar/
+try	errormain.c	/^try(name, argc, argv)$/
+verbform	errorsubr.c	/^char *verbform(n)$/
+wordvbuild	errorsubr.c	/^wordvbuild(string, r_wordc, r_wordv)$/
+wordvcmp	errorsubr.c	/^int wordvcmp(wordv1, wordc, wordv2)$/
+wordvprint	errorsubr.c	/^wordvprint(fyle, wordc, wordv)$/
+wordvsplice	errorsubr.c	/^char	**wordvsplice(emptyhead, wordc, wordv)$/
+writetouched	errortouch.c	/^writetouched(overwrite)$/

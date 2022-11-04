@@ -1,0 +1,29 @@
+3c3
+< Bananas
+---
+> Boysenberries
+5c5
+< Grapes
+---
+> Kiwi
+6,7c6
+< Grapefruits
+< Kiwi
+---
+> Nectarines
+8a8
+> Peaches
+9,11c9,11
+< Nectarines
+< Oranges
+< Pears
+---
+> Raspberries
+> Raspberries
+> Raspberries
+12,13c12,13
+< Peaches
+< Raspberries
+---
+> Strawberries
+> Strawberries

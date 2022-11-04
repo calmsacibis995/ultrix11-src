@@ -1,0 +1,162 @@
+ERR	lread.c	/^#define ERR(x) if(n=(x)) return(n)$/
+GETC	lread.c	/^#define GETC(x) (x=t_getc())$/
+Mftest	ftest.c	/^main(argc,argv) char **argv;$/
+STR	err.c	/^#define STR(x) (x==NULL?"":x)$/
+ap_end	fmt.c	/^char *ap_end(s) char *s;$/
+b_char	util.c	/^b_char(a,b,blen) char *a,*b; ftnlen blen;$/
+c_dfe	dfe.c	/^c_dfe(a,flag) cilist *a;$/
+c_due	due.c	/^c_due(a,flag) cilist *a;$/
+c_le	lread.c	/^c_le(a,flag) cilist *a;$/
+c_nle	nio.c	/^c_nle(pcl)$/
+c_sfe	sfe.c	/^c_sfe(a,flag) cilist *a; \/* check *\/$/
+c_si	iio.c	/^c_si(a) icilist *a;$/
+c_sue	sue.c	/^c_sue(a,flag) cilist *a;$/
+canseek	err.c	/^canseek(f) FILE *f; \/*SYSDEP*\/$/
+close_	ioprim.c	/^close_(f)$/
+create_	ioprim.c	/^FILEID create_(name, mode, ln, lm)$/
+curdir	util.c	/^char *curdir()$/
+dcat	util.c	/^dcat(a,b) char *a,*b;$/
+do_fio	fmt.c	/^do_fio(number,ptr,len) ftnint *number; ftnlen len;/
+do_lio	lread.c	/^do_lio(type,number,ptr,len) ftnint *number,*type; /
+do_ud	uio.c	/^do_ud(number,ptr,len) ftnint *number; ftnlen len; /
+do_uio	uio.c	/^do_uio(number,ptr,len) ftnint *number; ftnlen len;/
+do_us	uio.c	/^do_us(number,ptr,len) ftnint *number; ftnlen len; /
+e_d	fmt.c	/^e_d(s,p) char *s,**p;$/
+e_rdfe	dfe.c	/^e_rdfe()$/
+e_rdue	due.c	/^e_rdue()$/
+e_rsfe	sfe.c	/^e_rsfe()$/
+e_rsfi	iio.c	/^e_rsfi()$/
+e_rsle	lread.c	/^e_rsle()$/
+e_rsue	sue.c	/^e_rsue()$/
+e_wdfe	dfe.c	/^e_wdfe()$/
+e_wdue	due.c	/^e_wdue()$/
+e_wsfe	sfe.c	/^e_wsfe()$/
+e_wsfi	iio.c	/^e_wsfi()$/
+e_wsle	lio.c	/^e_wsle()$/
+e_wsue	sue.c	/^e_wsue()$/
+en_fio	fmt.c	/^en_fio()$/
+f_back	backspace.c	/^f_back(a) alist *a;$/
+f_clos	close.c	/^f_clos(a) cllist *a;$/
+f_end	endfile.c	/^f_end(a) alist *a;$/
+f_exit	close.c	/^f_exit()$/
+f_init	err.c	/^f_init()$/
+f_inqu	inquire.c	/^f_inqu(a) inlist *a;$/
+f_list	fmt.c	/^char *f_list(s) char *s;$/
+f_open	open.c	/^f_open(a) olist *a;$/
+f_rew	rewind.c	/^f_rew(a) alist *a;$/
+f_s	fmt.c	/^char *f_s(s,curloc) char *s;$/
+fatal	err.c	/^fatal(n,s) char *s;$/
+findit	nio.c	/^Nlentry *findit(key, list)$/
+fk_open	open.c	/^fk_open(rd,seq,fmt,n) ftnint n;$/
+flush	ioprim.c	/^flush(f)$/
+flush_	close.c	/^flush_()$/
+fmt_bg	fmt.c	/^fmt_bg()$/
+fullpath	util.c	/^fullpath(a,b,errflag) char *a,*b;$/
+g_char	util.c	/^g_char(a,alen,b) char *a,*b; ftnlen alen;$/
+getc_	ioprim.c	/^getc_(result, lr, c, lc)$/
+getch_	ioprim.c	/^getch_(result, lr, c, f, lc)$/
+getfile	ioprim.c	/^FILE *getfile(fid)$/
+getvar	nio.c	/^getvar(pnlent)$/
+getword	nio.c	/^char *getword(s, n)$/
+gt_num	fmt.c	/^char *gt_num(s,n) char *s; int *n;$/
+i_tem	fmt.c	/^char *i_tem(s) char *s;$/
+icvt	fmtlib.c	/^char *icvt(value,ndigit,sign, base) long value; in/
+inode	util.c	/^inode(a) char *a;$/
+ioinit	ioinit.f	30
+isapos	lread.c	/^#define isapos(x) (ltab[x+1]&AX)$/
+isblnk	lread.c	/^#define isblnk(x) (ltab[x+1]&B)$/
+isdev	open.c	/^isdev(s) char *s;$/
+isexp	lread.c	/^#define isexp(x) (ltab[x+1]&EX)$/
+issep	lread.c	/^#define issep(x) (ltab[x+1]&SX)$/
+issign	lread.c	/^#define issign(x) (ltab[x+1]&SG)$/
+l_C	lread.c	/^l_C()$/
+l_CHAR	lread.c	/^l_CHAR()$/
+l_L	lread.c	/^l_L()$/
+l_R	lread.c	/^l_R()$/
+l_read	lread.c	/^l_read(number,ptr,len,type) ftnint *number,type; f/
+l_write	lio.c	/^l_write(number,ptr,len,type) ftnint *number,type; /
+ltostr	ltostr.c	/^ltostr(value, ptr)$/
+lwrt_A	lio.c	/^lwrt_A(p,len) char *p; ftnlen len;$/
+lwrt_C	lio.c	/^lwrt_C(a,b) double a,b;$/
+lwrt_F	lio.c	/^lwrt_F(n) double n;$/
+lwrt_I	lio.c	/^lwrt_I(n) ftnint n;$/
+lwrt_L	lio.c	/^lwrt_L(n) ftnint n;$/
+mv_cur	wrtfmt.c	/^mv_cur()$/
+mvgbt	util.c	/^mvgbt(n,len,a,b) char *a,*b;$/
+ne_d	fmt.c	/^ne_d(s,p) char *s,**p;$/
+nowreading	err.c	/^nowreading(x) unit *x;$/
+nowwriting	err.c	/^nowwriting(x) unit *x;$/
+op_gen	fmt.c	/^op_gen(a,b,c,d)$/
+open_	ioprim.c	/^FILEID open_(name, mode, ln, lm)$/
+pars_f	fmt.c	/^pars_f(s) char *s;$/
+pr_put	wsfe.c	/^pr_put(c)$/
+putbak_	ioprim.c	/^putbak_(result, lr, c, f, lc)$/
+putc_	ioprim.c	/^putc_(c, lc)$/
+putch_	ioprim.c	/^putch_(c, f, lc)$/
+rd_A	rdfmt.c	/^rd_A(p,len) char *p; ftnlen len;$/
+rd_AW	rdfmt.c	/^rd_AW(p,w,len) char *p; ftnlen len;$/
+rd_F	rdfmt.c	/^rd_F(p,w,d,len) ftnlen len; ufloat *p;$/
+rd_H	rdfmt.c	/^rd_H(n,s) char *s;$/
+rd_I	rdfmt.c	/^rd_I(n,w,len, base) ftnlen len; uint *n; register /
+rd_L	rdfmt.c	/^rd_L(n,w) ftnint *n;$/
+rd_POS	rdfmt.c	/^rd_POS(s) char *s;$/
+rd_ed	rdfmt.c	/^rd_ed(p,ptr,len) char *ptr; struct syl *p; ftnlen /
+rd_int	lread.c	/^rd_int(x) double *x;$/
+rd_ned	rdfmt.c	/^rd_ned(p,ptr) char *ptr; struct syl *p;$/
+readb_	ioprim.c	/^FORTINT readb_(ptr, size, nitems, f)$/
+s_rdfe	dfe.c	/^s_rdfe(a) cilist *a;$/
+s_rdue	due.c	/^s_rdue(a) cilist *a;$/
+s_rsfe	rsfe.c	/^s_rsfe(a) cilist *a; \/* start *\/$/
+s_rsfi	iio.c	/^s_rsfi(a) icilist *a;$/
+s_rsle	lread.c	/^s_rsle(a) cilist *a;$/
+s_rsne	nio.c	/^s_rsne(pnlarg)$/
+s_rsue	sue.c	/^s_rsue(a) cilist *a;$/
+s_wdfe	dfe.c	/^s_wdfe(a) cilist *a;$/
+s_wdue	due.c	/^s_wdue(a) cilist *a;$/
+s_wsfe	wsfe.c	/^s_wsfe(a) cilist *a;	\/*start*\/$/
+s_wsfi	iio.c	/^s_wsfi(a) icilist *a;$/
+s_wsle	lio.c	/^s_wsle(a) cilist *a;$/
+s_wsne	nio.c	/^s_wsne(pnlarg)$/
+s_wsue	sue.c	/^s_wsue(a) cilist *a;$/
+seek_	ioprim.c	/^seek_(f, offset, whence)$/
+setalist	lib.c	/^setalist(x,xunit,aerr) alist *x;$/
+setcilist	lib.c	/^setcilist(x,u,fmt,rec,xerr,end) cilist *x;$/
+setolist	lib.c	/^setolist(x,xunit,fname,sta,fm,rl,blnk,oerr) olist /
+skip	fmt.c	/^#define skip(s) while(*s==' ') s++$/
+stcllist	lib.c	/^stcllist(x,xunit,stat,cerr) cllist *x; char *stat;/
+t_getc	lread.c	/^t_getc()$/
+t_putc	lio.c	/^t_putc(c)$/
+t_runc	endfile.c	/^t_runc(b) unit *b;$/
+tell_	ioprim.c	/^OFFSET tell_(f)$/
+type_f	fmt.c	/^type_f(n)$/
+w_ed	wrtfmt.c	/^w_ed(p,ptr,len) char *ptr; struct syl *p; ftnlen l/
+w_ned	wrtfmt.c	/^w_ned(p,ptr) char *ptr; struct syl *p;$/
+writeb_	ioprim.c	/^FORTINT writeb_(ptr, size, nitems, f)$/
+wrt_A	wrtfmt.c	/^wrt_A(p,len) char *p; ftnlen len;$/
+wrt_AP	wrtfmt.c	/^wrt_AP(n)$/
+wrt_AW	wrtfmt.c	/^wrt_AW(p,w,len) char * p; ftnlen len;$/
+wrt_E	wrtfmt.c	/^wrt_E(p,w,d,e,len) ufloat *p; ftnlen len;$/
+wrt_F	wrtfmt.c	/^wrt_F(p,w,d,len) ufloat *p; ftnlen len;$/
+wrt_G	wrtfmt.c	/^wrt_G(p,w,d,e,len) ufloat *p; ftnlen len;$/
+wrt_H	wrtfmt.c	/^wrt_H(a,b)$/
+wrt_I	wrtfmt.c	/^wrt_I(n,w,len, base) uint *n; ftnlen len; register/
+wrt_IM	wrtfmt.c	/^wrt_IM(n,w,m,len) uint *n; ftnlen len;$/
+wrt_L	wrtfmt.c	/^wrt_L(n,len) ftnint *n;$/
+x_endp	rsfe.c	/^x_endp()$/
+x_getc	rsfe.c	/^x_getc()$/
+x_putc	wsfe.c	/^x_putc(c)$/
+x_rev	rsfe.c	/^x_rev()$/
+x_wSL	wsfe.c	/^x_wSL()$/
+xrd_SL	rsfe.c	/^xrd_SL()$/
+xw_end	wsfe.c	/^xw_end()$/
+xw_rev	wsfe.c	/^xw_rev()$/
+y_err	dfe.c	/^y_err()$/
+y_getc	dfe.c	/^y_getc()$/
+y_ierr	iio.c	/^y_ierr()$/
+y_putc	dfe.c	/^y_putc(c)$/
+y_rev	dfe.c	/^y_rev()$/
+y_rsk	dfe.c	/^y_rsk()$/
+z_getc	iio.c	/^z_getc()$/
+z_putc	iio.c	/^z_putc(c)$/
+z_rnew	iio.c	/^z_rnew()$/
+z_wnew	iio.c	/^z_wnew()$/

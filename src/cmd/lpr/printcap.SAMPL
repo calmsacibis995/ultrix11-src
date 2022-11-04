@@ -1,0 +1,62 @@
+# SCCSID: @(#)printcap.SAMPL	3.0	4/21/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# This is a sample of printcap entries used by various printers.
+# These sample entries must be adapted to the specific line
+# printer being connected.  They will almost certainly not work
+# if they are simply un-commented out and used as shown.
+#
+# The lp0 entry below is for a parallel type (LP-11) line printer
+# interface.  This entry uses the /dev/lp device; since lp0 is usually
+# the "main" line printer, it uses by default the printcap entry "lp".
+# The command "lpr files..." will print files on this printer.
+# The command "lpr -P0 files..." will also work, but the -P0 is not needed.
+#
+lp0|lp|0|parallel port line printer:\
+	:lp=/dev/lp:du#1:sd=/usr/spool/lpd:mx#5000:\
+	:lf=/usr/adm/lp.err:
+#
+# The next entry is intended for an LA100 type printer.
+# Files to be printed here use the command "lpr -P1 files..."
+# since the entry given here starts with "lp1|1|..." .
+# The spooling directory "/usr/spool/lpd1" is where the files
+# are spooled for this particular printer.  The printer is connected
+# to /dev/tty00.  A baud rate of 4800 is specified, and the
+# appropriate flag bits are set according to "fs".  An output filter,
+# "/usr/lib/lp1", is invoked.  The naming convention used is consistent
+# for this particular printer entry, "lp1".  When the output
+# filter program is invoked, it looks to see by what name it was
+# called, here "/usr/lib/lp1".  It can then find the corresponding
+# printcap entry in /etc/printcap and set the appropriate flag
+# bits, speed etc. for this printer.  There is really only one
+# filter program called "/usr/lib/ulf".  Other filters are linked to
+# this filter, using the name of the printer number (lp2, lp4 etc).
+#
+#lp1|1|LA100:\
+#	:dn=/usr/lib/lpd:lp=/dev/tty00:sd=/usr/spool/lpd1:\
+#	:sh:br#4800:fc#077777:fs#06020:of=/usr/lib/lp1:
+#
+# An LA50 printer entry is next.  The command "lpr -P2 files..."
+# prints to this printer.  The spool directory "/usr/spool/lpd2" is 
+# used here; the printer itself is connected to tty port /dev/tty05.
+# An output filter, "/usr/lib/lp2", is used before the file is actually
+# printed.  Again, the same naming convention is used for the filter: it
+# has the same name as the printcap entry found here.  The actual number
+# (lp1, lp2 etc.) of the printer does not matter as long as it matches
+# the name of the output filter selected.
+#
+#lp2|2|LA50:\
+#	:dn=/usr/lib/lpd:lp=/dev/tty05:sd=/usr/spool/lpd2:\
+#	:br#4800:fc#077777:fs#016620:lf=/dev/console:of=/usr/lib/lp2:
+#
+# An entry for the LA180 is next.  It's format is the same as the others.
+#
+#lp3|3|LA180 - DecWriter III:\
+#	:lp=/dev/ttyh0:br#1200:fs#06320:tr=\f:of=/usr/lib/ulf:\
+#	:lf=/usr/adm/lpd-errs:
+#

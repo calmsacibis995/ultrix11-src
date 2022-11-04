@@ -1,0 +1,985 @@
+
+/**********************************************************************
+ *   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    *
+ *   All Rights Reserved. 					      *
+ *   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      *
+ **********************************************************************/
+
+/*
+ *  Sets up:
+ *	/etc/hosts
+ *	/etc/networks
+ *	/etc/hosts.equiv
+ *	/etc/dgateway
+ *	/usr/spool/rwho directory
+ *	/usr/hosts directory(s)
+ *
+ *  Modifies:
+ *	/etc/rc
+ *	/opr/restart
+ *
+ *  Does NOT handle:
+ *	/usr/lib/sendmail.cf
+ */
+static char *Sccsid = "@(#)netsetup.c	3.0	(ULTRIX-11)	4/22/86";
+#include <stdio.h>
+#include <sys/types.h>
+#include <ctype.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <sys/stat.h>
+#include <sys/socket.h>
+#ifdef	pdp11
+struct in_addr inet_mkaddr();
+#endif	pdp11
+
+/* #define	DEBUG */
+
+#ifndef	DEBUG
+#define	HOSTS		"/etc/hosts"
+#define	RC		"/etc/rc"
+#define	RESTART		"/opr/restart"
+#define	HOSTS_EQUIV	"/etc/hosts.equiv"
+#define	NETWORKS	"/etc/networks"
+#define	DGATEWAY	"/etc/dgateway"
+#define RWHODIR		"/usr/spool/rwho"
+#define	UHOSTS		"/usr/hosts"
+#else	DEBUG
+#define	HOSTS		"./hosts"
+#define	RC		"./rc"
+#define	RESTART		"./restart"
+#define	HOSTS_EQUIV	"./hosts.equiv"
+#define	NETWORKS	"./networks"
+#define	DGATEWAY	"./dgateway"
+#define RWHODIR		"./rwho"
+#define	UHOSTS		"./usr.hosts"
+#endif	DEBUG
+
+#define	NO	0
+#define	YES	1
+#define	YESNO	2
+
+int subbits;
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	char hostname[32];
+	char gateway[32];
+	char gateacct[32];
+	char machabbrev[128];
+	char machname[128];
+	char netname[128];
+	char netaliases[128];
+	char trustname[128];
+	char buf[512];
+	char buf2[512];
+	char *cp, *xp;
+	long netnum, machnum;
+	struct in_addr addr, broadaddr, netmask, taddr1, taddr2;
+	FILE *fp;
+	struct stat statb;
+	struct hostent *hp;
+	struct netent *np;
+	long getnet(), getmach();
+	int i,j;
+
+	for (i = 3; i < 20; i++)
+		close(i);
+	dup2(1, 3);
+	if (getuid()) {
+		fprintf(stderr, "\nYou must be root to set up the network.\n");
+		leave(1);
+	}
+
+	printf("\nWhenever a default selection is given for a question\n");
+	printf("[shown in square brackets] you only need to press\n");
+	printf("the <RETURN> key to select the default choice.\n\n");
+
+	hostname[0] = '\0';
+	if (gethostname(hostname, 32) < 0 || !hostname[0]) {
+		/*
+		 * Grab a line like
+		 *	hostname myname
+		 * or
+		 *	/bin/hostname myname
+		 * out of the /etc/rc file, to find the name.
+		 */
+		fp = fopen(RC, "r");
+		if (fp != NULL) {
+			cp = NULL;
+			while (fgets(buf, 512, fp) != NULL) {
+				if (strncmp(buf, "hostname", 8) == 0)
+					cp = &buf[8];
+				else if (strncmp(buf, "/bin/hostname", 13) == 0)
+					cp = &buf[13];
+				else
+					continue;
+				break;
+			}
+			if (cp != NULL) {
+				while (*cp == ' ' || *cp == '\t')
+					cp++;
+				if (*cp) {
+					xp = hostname;
+					while (*cp && *cp != ' ' &&
+						*cp != '\t' && *cp != '\n')
+						*xp++ = *cp++;
+					*xp = '\0';
+				}
+			}
+			fclose(fp);
+		}
+	}
+	if (hostname[0]) {
+		while (!yesno(YES,"Verify: Your hostname is \"%s\"", hostname)){
+			if (prompt(buf, 512, "What is your hostname? ")!=NULL) {
+				cp = buf;
+				while (*cp == ' ' || *cp == '\t')
+					cp++;
+				xp = hostname;
+				while (*cp && *cp != ' ' &&
+					*cp != '\t' && *cp != '\n')
+					*xp++ = *cp++;
+				*xp = '\0';
+			}
+		}
+	}
+	if (!hostname[0]) {
+		fprintf(stderr, "\nYour system does not have a name!\n");
+		fprintf(stderr, "You must use the hostname command to name\n");
+		fprintf(stderr, "your system.\n\n");
+		leave(1);
+	}
+
+	i = ((argc > 1 && (strcmp(argv[1], "install") == 0)) ||
+	    (stat(NETWORKS, &statb) < 0 || statb.st_size == 0));
+	if (yesno(i, "\nDo initial network setup")) {
+		printf("\nYour system may have abbreviations for ease of ");
+		printf("use. Typing\nonly a <RETURN> implies no ");
+		printf("abbreviations.\n\n");
+		do {
+			if (prompt(machabbrev, 128,
+			    "Enter any abbreviations for \"%s\"%s", hostname,
+			    " (for example the 1st letter): ") == NULL)
+			{
+			    i = yesno(YES,
+			        "Verify: No abbreviations for \"%s\"",
+								hostname);
+			} else {
+			    i = yesno(YES,
+				"Verify: abbreviations for \"%s\" are \"%s\"",
+						hostname, machabbrev);
+			}
+		} while (i == NO);
+
+		if (!yesno(NO,"\nAre you configuring your system on a network")) {
+			/*
+			 * Not on network - setup /etc/hosts with
+			 * localhost (should already be there) &
+			 * /etc/networks with loopback.
+			 */
+			printf("\n***** UPDATING %s WITH %s and localhost *****\n", HOSTS, hostname);
+			fp = edit(HOSTS);
+			if (fp == NULL) {
+				fprintf(stderr, "%s not set up\n", HOSTS);
+			} else {
+				/* remove localhost entry, if there */
+			fprintf(fp, "g/^.*[ 	]localhost.*$/d\n");
+
+				/* remove old hostname entry, if there */
+			fprintf(fp, "g/^.*[ 	]%s.*$/d\n", hostname);
+
+				fprintf(fp, "0a\n");
+				fprintf(fp, "127.0.0.1 %s %s %s\n", hostname,
+					"localhost", machabbrev);
+				fprintf(fp, ".\n");
+				fprintf(fp, "w\n");
+				fprintf(fp, "q\n");
+				fflush(fp);
+				pclose(fp);
+			}
+
+			/*
+			 * Add "loop 127 loopback" to /etc/networks
+			 */
+			printf("\n***** UPDATING %s WITH local loopback entry *****\n", NETWORKS);
+			fp = fopen(NETWORKS, "a");
+			if (fp == NULL) {
+				fprintf(stderr, "%s not set up.\n", NETWORKS);
+			} else {
+				/* add loop only if not there */
+				if (np = getnetbyname("loop") == NULL) {
+					fprintf(fp, "loop 127 loopback\n");
+					fflush(fp);
+				}
+				fclose(fp);
+			}
+
+			/*
+			 * Update the /etc/rc file, no networking.
+			 */
+			printf("\n***** UPDATING %s AND %s WITHOUT network configuration information *****\n", RC, RESTART);
+			fp = edit(RC);
+			if (fp == NULL) {
+				fprintf(stderr, "%s not set up for networking.\n", RC);
+			} else {
+		fprintf(fp, "/^\\/etc\\/ifconfig.*`\\/bin\\/hostname`/c\n");
+		fprintf(fp, "/etc/ifconfig XXX `/bin/hostname`\n");
+				fprintf(fp, ".\n");
+				fprintf(fp, "w\n");
+				fprintf(fp, "q\n");
+				fflush(fp);
+				pclose(fp);
+			}
+
+			/*
+			 * Update the /opr/restart file, no networking.
+			 */
+			fp = edit(RESTART);
+			if (fp == NULL) {
+				fprintf(stderr, "%s not set up for networking.\n", RESTART);
+			} else {
+		fprintf(fp, "/^\\/etc\\/ifconfig [^ ]*$/c\n");
+				fprintf(fp, "/etc/ifconfig XXX\n");
+				fprintf(fp, ".\n");
+				fprintf(fp, "w\n");
+				fprintf(fp, "q\n");
+				fflush(fp);
+				pclose(fp);
+			}
+			leave(0);
+		}  /* DONE configuring a system which is NOT on a network */
+
+	       /*
+		* otherwise... YES we are configuring our system on a network
+		*/
+		printf("\nA DECnet/ULTRIX-32 site can be used to act as ");
+		printf("a gateway to\ngain access to DECnet.\n\n");
+		do {
+		   i=yesno(NO,"Do you have a site to act as a DECnet gateway");
+		   if (i)
+			j = yesno(YES, "Verify: There is a gateway site");
+		   else
+			j = yesno(YES, "Verify: No site to act as a gateway");
+		} while (j == NO);
+		if (i) {
+			printf("\nInformation about the site name and the acc");
+			printf("ount name to\nuse is kept in %s.\n", DGATEWAY);
+			do {
+				if (NULL == prompt(gateway, 32,
+				   "What is the name of the gateway machine? "))
+					continue;
+				i = yesno(YES, "Verify: gateway is \"%s\"",
+								gateway);
+			} while (i == NO);
+			do {
+				if (prompt(gateacct, 32,
+		    "What account name on \"%s\" should be used? [guest] ",
+							gateway) == NULL)
+					strcpy(gateacct, "guest");
+				i = yesno(YES, "Verify: account is \"%s\"",
+								gateacct);
+			} while (i == NO);
+			printf("\n***** Putting gateway information into ");
+			printf("%s *****\n", DGATEWAY);
+			if (!gateacct[0])
+				strcpy(gateacct, "guest");
+			fp = fopen(DGATEWAY, "w");
+			if (fp == NULL) {
+				perror(DGATEWAY);
+				fprintf(stderr, "Cannot create %s\n", DGATEWAY);
+			} else {
+				fprintf(fp, "%s %s /etc/dgated\n", gateway,
+						gateacct);
+				fflush(fp);
+				fclose(fp);
+			}
+			printf("\nIn order for the DECnet gateway software ");
+			printf("to work, the \"%s\" ", gateacct);
+			printf("account\nmust be set up on \"%s\"", gateway);
+			printf(" so that \"%s\" on \"%s\" ",gateacct,hostname);
+			printf("can\nrlogin as a trusted user.  In a little ");
+			printf("bit you will be asked to add\nother hosts ");
+			printf("to your %s file. Do not forget to ", HOSTS);
+			printf("add \"%s\"\nat that time.\n", gateway);
+		}
+
+		/* Get the network number for the network. */
+
+		printf("\n");
+		netnum = getnet(hostname);
+
+		printf("\nSubnet routing is used when all the machines of ");
+		printf("a given network\nnumber are not all located on the ");
+		printf("same physical Ethernet wire.\nIf your existing local ");
+		printf("network is using subnets, you should find\nout how ");
+		printf("many bits of your host number are being used to ");
+		printf("specify \nsubnets.\n\n");
+		subbits = 0;
+		do {
+			subbits = yesno(NO, "Will you be using subnet routing");
+			if (subbits)
+			    i = yesno(YES,
+				"Verify: you WILL be using subnet routing");
+			else
+			    i = yesno(YES,
+				"Verify: you will NOT be using subnet routing");
+		} while (!i);
+			
+		printf("\n");
+		machnum = getmach(hostname, netnum);
+		addr = inet_mkaddr(netnum, machnum);
+		hp = gethostbyname(hostname);
+
+		fp = edit(HOSTS);
+		if (fp == NULL) {
+			fprintf(stderr, "%s not set up\n", HOSTS);
+		} else {
+			printf("\n***** UPDATING %s WITH %s AND localhost *****\n",HOSTS,hostname);
+			fprintf(fp, "g/^.*[ 	]localhost.*$/d\n");
+			fprintf(fp, "0a\n");
+			fprintf(fp, "127.0.0.1 localhost\n");
+			fprintf(fp, ".\n");
+			fprintf(fp, "w\n");
+			if (hp) {
+				fprintf(fp, "g/^.*[ 	]%s.*$/d\n", hostname);
+				fprintf(fp, "w\n");
+			}
+			fprintf(fp, "a\n");
+			fprintf(fp, "%s %s %s\n", inet_ntoa(addr),hostname,
+					machabbrev);
+			fprintf(fp, ".\n");
+			fprintf(fp, "w\n");
+			fprintf(fp, "q\n");
+			fflush(fp);
+			pclose(fp);
+		}
+
+		if (subbits) {
+			int max;
+			if (IN_CLASSA(ntohl(addr.s_addr)))
+				max = 21;
+			else if (IN_CLASSB(ntohl(addr.s_addr)))
+				max = 13;
+			else
+				max = 5;
+			printf("\n");
+			for (;;) {
+				buf[0] = '\0';
+				prompt(buf,512,"How many bits of the host number will be used for subnets? ");
+				subbits = atoi(buf);
+				if (subbits < 1 || subbits >= max) {
+					printf("It must be a number between 1 & %d\n",max);
+					continue;
+				}
+				if (yesno(YES,"Verify: %d bits of the host number will be used for subnets", subbits))
+					break;
+			}
+			netmask.s_addr = 0xffffffffL;
+			netmask.s_addr <<= ((long)max + 3L - subbits);
+		} else {
+			subbits = 0;
+			if (IN_CLASSA(ntohl(addr.s_addr)))
+				netmask.s_addr = 0xff000000L;
+			else if (IN_CLASSB(ntohl(addr.s_addr)))
+				netmask.s_addr = 0xffff0000L;
+			else
+				netmask.s_addr = 0xffffff00L;
+		}
+		netmask.s_addr = htonl(netmask.s_addr);
+
+
+		taddr1 = inet_mkaddr(netnum, ~ntohl(netmask.s_addr));
+		taddr2 = inet_mkaddr(netnum, 0L);
+
+		printf("\nAn IP broadcast address is an address in which ");
+		printf("the bits of the\nhost number are either all zeros ");
+		printf("or ones.  You need to find out \nwhat the other ");
+		printf("machines on your existing local network are using\n");
+		printf("as their broadcast address.  If you are setting up ");
+		printf("your own \nnetwork, just use the default.\n");
+
+		printf("\nWARNING! You must use the same broadcast address ");
+		printf("as all of the \nother hosts on your network.  This ");
+		printf("next step is very important!\n\n");
+
+		sprintf(buf, "%s", inet_ntoa(taddr1));
+		sprintf(buf2, "%s", inet_ntoa(taddr2));
+		do {
+			printf("Is your broadcast address %s?\n", buf);
+			if (yesno(YES,"(Yes: %s, No: %s)", buf, buf2))
+				broadaddr = taddr1;
+			else
+				broadaddr = taddr2;
+		} while (!yesno(YES,"Verify: Your broadcast address is \"%s\"", inet_ntoa(broadaddr)));
+
+		printf("\nThe device name and unit number of your Ethernet ");
+		printf("Interface must\nbe specified.  This information is ");
+		printf("put into the %s file so\nthat the correct ", RC);
+		printf("device will be initialized when going multi-user.\n");
+		printf("It is usually a two character mnemonic, and a single ");
+		printf("digit.  For example,\nif you have a DEUNA, enter ");
+		printf("\"de0\", if you have a DEQNA, enter \"qe0\".\n\n");
+		for(;;) {
+			while (NULL == prompt(buf, 512,
+		    "What is the device name of your Ethernet Interface? "))
+				;
+			cp = buf;
+			while (*cp == ' ' || *cp == '\t')
+				cp++;
+			xp = cp;
+			while (*cp && *cp != ' ' && *cp != '\t' && *cp != '\n')
+				cp++;
+			*cp = '\0';
+			if (yesno(YES, "Verify: Your Ethernet interface is \"%s\"", xp))
+				break;
+		}
+		printf("\n***** UPDATING %s AND %s WITH network configuration information *****\n", RC, RESTART);
+
+		/*
+		 * Update the /etc/rc file, WITH networking info.
+		 */
+		fp = edit(RC);
+		if (fp == NULL) {
+			fprintf(stderr, "%s not set up for networking.\n", RC);
+		} else {
+
+	fprintf(fp, "/^\\/etc\\/ifconfig.*`\\/bin\\/hostname`.*$/c\n");
+			fprintf(fp, "/etc/ifconfig %s `/bin/hostname` ", xp);
+			fprintf(fp, "broadcast %s ", inet_ntoa(broadaddr));
+			fprintf(fp, "netmask %s\n", inet_ntoa(netmask));
+			fprintf(fp, ".\n");
+			fprintf(fp, "w\n");
+			fprintf(fp, "q\n");
+			fflush(fp);
+			pclose(fp);
+		}
+
+		/*
+		 * Update the /opr/restart file, WITH networking info.
+		 */
+		fp = edit(RESTART);
+		if (fp == NULL) {
+			fprintf(stderr, "%s not set up for networking.\n", RESTART);
+		} else {
+	fprintf(fp, "/^\\/etc\\/ifconfig .*$/c\n");
+			fprintf(fp, "/etc/ifconfig %s\n", xp);
+			fprintf(fp, ".\n");
+			fprintf(fp, "w\n");
+			fprintf(fp, "q\n");
+			fflush(fp);
+			pclose(fp);
+		}
+
+		/*
+		 * Set up /etc/networks here.  Supply a default network
+		 * name and alias. If user enters a zero length string
+		 * (<RETURN> only) use default.
+		 */
+
+		cp = &addr.s_addr;
+		if (IN_CLASSA(ntohl(addr.s_addr)))
+			sprintf(buf, "%d", cp[0]&0xff);
+		else if (IN_CLASSB(ntohl(addr.s_addr)))
+			sprintf(buf, "%d.%d", cp[0]&0xff, cp[1]&0xff);
+		else
+			sprintf(buf, "%d.%d.%d", cp[0]&0xff, cp[1]&0xff,
+								cp[2]&0xff);
+		printf("\nNetwork numbers are given names for ease of ");
+		printf("use.  If you are adding\nyour machine to an ");
+		printf("existing network, you should use the same names\n");
+		printf("as they use for the various network numbers.  ");
+		printf("If not, you can\nname it whatever you ");
+		printf("wish.  You also have the option to assign\nalias ");
+		printf("names for the network number.\n\n");
+		do {
+			if (NULL == prompt(netname, 128,
+			"What is the name of network %s [ethernet]: ", buf))
+				strcpy(netname, "ethernet");
+			i = yesno(YES, "Verify: network name is \"%s\"",
+							netname);
+		} while ( i == NO);
+		if (!netname[0])
+			strcpy(netname, "ethernet");
+		printf("\n");
+		do {
+			if (prompt(netalias, 128,
+			    "Enter any aliases for \"%s\": ", netname))
+			{
+				i = yesno(YES,
+				    "Verify: aliases for \"%s\" are \"%s\"",
+							netname, netalias);
+			} else {
+				i = yesno(YES,
+				    "Verify: No aliases for \"%s\"", netname);
+			}
+		} while (i == NO);
+		printf("\n***** UPDATING %s WITH ", NETWORKS);
+		printf("%s *****\n", netname);
+
+		/* check for duplicate entry in /etc/networks and remove it */
+		if (np = getnetbyname(netname) != NULL) {
+			/* remove duplicate entry before adding same */
+		       fprintf(stderr,"Removing duplicate entry, %s\n",netname);
+			fp = edit(NETWORKS);
+			if (fp == NULL) {
+fprintf(stderr, "cannot remove duplicate entry (%s) \nfrom %s file.\n", netname, NETWORKS);
+			} else {
+				fprintf(fp, "/^%s/d\n",netname);
+				fprintf(fp, "w\n");
+				fprintf(fp, "q\n");
+				fflush(fp);
+				pclose(fp);
+			}
+		}
+		/* add the netname to /etc/networks */
+		fp = fopen(NETWORKS, "a");
+		if (fp == NULL) {
+			fprintf(stderr, "%s not set up.\n", NETWORKS);
+		} else {
+			fprintf(fp, "%s %s%s%s\n", netname,
+					inet_ntoa(inet_mkaddr(netnum, 0L)),
+					netalias[0]? " " : "", netalias);
+			/* add "loop" only if not there */
+			if (np = getnetbyname("loop") == NULL)
+				fprintf(fp, "loop 127 loopback\n");
+			fflush(fp);
+			fclose(fp);
+		}
+	}
+
+	/*
+	 * If user is just adding host names to the network, or at
+	 * install time user selected to put the host on a network,
+	 * (didn't exit above) then add host names to network.
+	 * common to: first time setup and adding host names later.
+	 */
+	printf("\n***** ADD/CHANGE SYSTEMS IN %s *****\n", HOSTS);
+	printf("\nEnter the host name, abbreviations, network number, ");
+	printf("and host number\nfor each computer on the network.  ");
+	printf("Enter these on separate lines\nwhen prompted.  This ");
+	printf("information is put into the %s file.\nWhen ", HOSTS);
+	printf("finished, type just a <RETURN> at the hostname prompt.\n");
+
+	fp = edit(HOSTS);
+	if (fp == NULL) {
+		fprintf(stderr, "%s not set up.\n", HOSTS);
+	} else for (;;) {
+		printf("\n");
+		if (prompt(machname, 128,
+		    "Name of host to add to %s? ", HOSTS) == NULL) {
+			if (yesno(YES,"Verify: Done adding hosts"))
+				break;
+			else
+				continue;
+		}
+		if (!yesno(YES, "Verify: adding host \"%s\"", machname))
+			continue;
+		hp = gethostbyname(machname);
+		if (hp != NULL) {
+			printf("%s already exists with address %s\n",
+			      machname, inet_ntoa(*(long *)hp->h_addr));
+			if (!yesno(NO, "Do you wish to replace it"))
+				continue;
+			fprintf(fp, "g/%s[ 	]%s/d\n",
+				inet_ntoa(*(long *)hp->h_addr), machname);
+			fprintf(fp, "w\n");
+			fflush(fp);
+		}
+		do {
+			if (NULL == prompt(machabbrev, 128,
+			    "Enter any abbreviations for \"%s\": ", machname))
+			{
+				i = yesno(YES,
+					"Verify: No abbreviations for \"%s\"",
+								machname);
+			} else {
+				i = yesno(YES,
+				  "Verify: Abbreviations for \"%s\" are \"%s\"",
+							machname, machabbrev);
+			}
+		} while (i == NO);
+		netnum = getnet(machname);
+		machnum = getmach(machname, netnum);
+		addr = inet_mkaddr(netnum, machnum);
+		hp = gethostbyaddr(&addr, sizeof(addr), AF_INET);
+		if (hp != NULL) {
+			printf("%s is already assigned to %s\n",
+				inet_ntoa(addr), hp->h_name);
+			if (!yesno(NO, "Remove %s from %s", hp->h_name, HOSTS))
+				continue;
+			fprintf(fp, "g/%s[ 	]%s/d\n",
+				inet_ntoa(addr), hp->h_name);
+			fprintf(fp, "w\n");
+			fflush(fp);
+		}
+		fprintf(fp, "$a\n");
+		fprintf(fp, "%s %s %s\n", inet_ntoa(addr),
+					machname, machabbrev);
+		fprintf(fp, ".\n");
+		fprintf(fp, "w\n");
+		fflush(fp);
+	}
+	if (fp) {
+		fprintf(fp, "w\n");
+		fprintf(fp, "q\n");
+		fflush(fp);
+		pclose(fp);
+	}
+
+	/*
+	 * Set up /etc/hosts.equiv with trusted hosts here.
+	 */
+	if ((fp = edit(HOSTS_EQUIV)) == NULL) {
+		fprintf(stderr, "%s not set up\n", HOSTS_EQUIV);
+	} else {
+		printf("\nEnter the names of trusted hosts.  Trusted ");
+		printf("hosts are machines\nconsidered to be secure.  ");
+		printf("Users on any trusted host can log in to\nyour ");
+		printf("system without password verification on your ");
+		printf("system.  Such\nusers must have a valid account ");
+		printf("on the trusted host.  This\ninformation is put ");
+		printf("in the %s file.  When you are\n", HOSTS_EQUIV);
+		printf("through, just type a <RETURN> by itself.\n");
+
+		for (;;) {
+			if (prompt(trustname, 128,
+				   "\nName of a trusted host: ") == NULL)
+			{
+				if (yesno(YES,
+				    "Verify: Done entering trusted hosts"))
+					break;
+				else
+					continue;
+			}
+			if (hp = gethostbyname(trustname) == NULL) {
+			    printf("'%s' is not in %s.\n", trustname, HOSTS);
+			    printf("'%s' not added to %s\n", trustname,
+								HOSTS_EQUIV);
+			} else {
+				if (!yesno(YES,
+				    "Verify: \"%s\" is a trusted host",
+								trustname))
+					continue;
+				fprintf(fp, "g/^%s$/d\n", trustname);
+				fprintf(fp, "a\n%s\n", trustname);
+				fprintf(fp, ".\n");
+				fprintf(fp, "w\n");
+				fflush(fp);
+			}
+		}
+		fprintf(fp, "w\n");
+		fprintf(fp, "q\n");
+		fflush(fp);
+		pclose(fp);
+	}
+
+	/*
+	 * Set up /usr/hosts/*
+	 */
+	printf("\n***** SETTING UP %s DIRECTORY *****\n", UHOSTS);
+	if (access(UHOSTS, 0) < 0) {
+		mkdir(UHOSTS, 0755);
+		chown(UHOSTS, 3, 3);
+	}
+	sethostent(1);
+	while ((hp = gethostent()) != NULL) {
+		if (strcmp(hp->h_name, "localhost") == 0)
+			continue;
+		sprintf(buf, "%s/%s", UHOSTS, hp->h_name);
+		symlink("/usr/ucb/rsh", buf);
+	}
+	endhostent();
+
+	/* Setup /usr/spool/rwho directory, OK if fails */
+	mkdir(RWHODIR, 0755);
+	chown(RWHODIR, 3, 3);
+	leave(0);
+}
+
+/*
+ * exit the program with status
+ */
+leave(status)
+int status;
+{
+	if (status == 0)
+		printf("\n***** NETWORK SETUP IS FINISHED *****\n\n");
+	exit(status);
+}
+
+prompt(buf, len, str, a1, a2, a3, a4, a5)
+char *str, *buf;
+int len;
+int a1, a2, a3, a4, a5;
+{
+	char mybuf[512];
+
+	printf(str, a1, a2, a3, a4, a5);
+	fflush(stdout);
+	if (gets(mybuf) == NULL)
+		return(NULL);
+	strncpy(buf, mybuf, len);
+	buf[len-1] = '\0';
+	if (buf[0] == '\0')
+		return(NULL);
+	return(buf);
+}
+
+yesno(t, s, a1, a2, a3, a4, a5)
+char *s;
+int t;
+int a1, a2, a3, a4, a5;
+{
+	char buf[512];
+
+	for (;;) {
+		printf(s, a1, a2, a3, a4, a5);
+		switch(t) {
+		case 0:
+			printf(" [no]? ");
+			break;
+		case 1:
+			printf(" [yes]? ");
+			break;
+		default:
+			printf(" (yes or no)? ");
+			break;
+		}
+		fflush(stdout);
+		buf[0] = '\0';
+		if (gets(buf) == NULL)
+			return(t);
+		if (buf[0] == 'y' || buf[0] == 'Y')
+			return(1);
+		if (buf[0] == 'n' || buf[0] == 'N')
+			return(0);
+		if ((t != 2) && (buf[0] == '\0' || buf[0] == '\n'))
+			return(t);
+	}
+	return(0);
+}
+
+#define	MIN_A	0
+#define	MAX_A	127
+#define	MIN_B	(128L*256L)
+#define	MAX_B	(191L*256L+255L)
+#define	MIN_C	(192L*256L*256L)
+#define	MAX_C	(223L*256L*256L+255L*256L+255L)
+long
+getnet(host)
+char *host;
+{
+	struct in_addr addr, inet_num();
+	long net, inet_lnaof(), inet_netof();
+	char buf[512];
+	static int msg = 0;
+	char *cp;
+
+	for(;;) {
+	    if (msg) {
+		printf ("Enter the network number for \"%s\": ", host);
+		fflush(stdout);
+		if (gets(buf) == NULL) {
+			printf("\n");
+			continue;
+		}
+
+		addr = inet_num(buf, 0);
+		net = inet_netof(addr);
+		cp = &addr.s_addr;
+		if (addr.s_addr == 0L || inet_lnaof(addr) != 0L)
+			addr.s_addr = -1L;
+		else if (net > MIN_A && net < MAX_A)
+			sprintf(buf, "%d", cp[0]&0xff);
+		else if (net > MIN_B && net < MAX_B)
+			sprintf(buf, "%d.%d", cp[0]&0xff, cp[1]&0xff);
+		else if (net > MIN_C && net < MAX_C)
+			sprintf(buf, "%d.%d.%d", cp[0]&0xff,
+					cp[1]&0xff, cp[2]&0xff);
+		else
+			addr.s_addr = -1L;
+		if (addr.s_addr != -1L) {
+			if (!yesno(YES,"Verify: Network number is %s", buf))
+				continue;
+			return(net);
+		}
+	    }
+		msg = 1;
+		printf("Valid Network Numbers:\n");
+		printf("   Class A:  1       - 126\n");
+		printf("   Class B:  128.1   - 191.254\n");
+		printf("   Class C:  192.0.1 - 223.255.254\n");
+	}
+}
+
+struct in_addr
+inet_num(cp, lhost)
+	register char *cp;
+	int lhost;
+{
+	long val, base;
+	register int i, n;
+	register char c;
+	long parts[4], *pp = parts;
+
+again:
+	/*
+	 * Collect number up to ``.''.
+	 * Values are specified as for C:
+	 * 0x=hex, 0=octal, other=decimal.
+	 */
+	val = 0; base = 10;
+	if (*cp == '0')
+		base = 8, cp++;
+	if (*cp == 'x' || *cp == 'X')
+		base = 16, cp++;
+	while (c = *cp) {
+		if (isdigit(c)) {
+			val = (val * base) + (c - '0');
+			cp++;
+			continue;
+		}
+		if (base == 16 && isxdigit(c)) {
+			val = (val << 4L) + (c + 10 - (islower(c) ? 'a' : 'A'));
+			cp++;
+			continue;
+		}
+		break;
+	}
+	if (*cp == '.') {
+		/*
+		 * Internet format:
+		 *	a.b.c.d
+		 *	a.b.c	(with c treated as 16-bits)
+		 *	a.b	(with b treated as 24 bits)
+		 */
+		if (pp >= parts + 4) {
+			val = -1;
+			return (*(struct in_addr *)&val);
+		}
+		*pp++ = val, cp++;
+		goto again;
+	}
+	/*
+	 * Check for trailing characters.
+	 */
+	if (*cp && !isspace(*cp)) {
+		val = -1;
+		return (*(struct in_addr *)&val);
+	}
+	*pp++ = val;
+	n = pp - parts;
+	if (n > 4) {
+		val = -1;
+		return(*(struct in_addr *)&val);
+	}
+	val = 0;
+	if (n == 1 && lhost)
+		val = htonl(parts[0]);
+	else {
+		for (i = 0; i < n; i++) {
+			if (parts[i] > 255 || parts[i] < 0) {
+				val = -1;
+				return(*(struct in_addr *)&val);
+			}
+			val = (val << 8L) + parts[i];
+		}
+		if (lhost == 0)
+			for (; i < 4; i++)
+				val <<= 8L;
+		val = htonl(val);
+	}
+	return (*(struct in_addr *)&val);
+}
+
+long
+getmach(n, net)
+char *n;
+long net;
+{
+	struct in_addr addr, addr2, inet_num();
+	long lna, inet_lnaof();
+	char buf[512];
+	static msg = 0;
+	char *cp;
+
+	addr2 = inet_mkaddr(net, 0L);
+	for(;;) {
+	    if (msg) {
+		printf("Enter the host number for %s: ", n);
+		fflush(stdout);
+		if (gets(buf) == NULL) {
+			printf("\n");
+			continue;
+		}
+
+		addr = inet_num(buf, 1);
+		if (addr.s_addr != -1L && addr.s_addr != 0L) {
+			lna = inet_lnaof(addr);
+
+/*@			cp = &addr.s_addr;	JSD */
+/*@			printf("addr = %d.%d.%d.%d\n", cp[0]&0xff, cp[1]&0xff, cp[2]&0xff, cp[3]&0xff);		JSD */
+
+			if (lna && ((IN_CLASSA(ntohl(addr2.s_addr)) &&
+						(lna < 256L*256L*256L - 1)) ||
+				    (IN_CLASSB(ntohl(addr2.s_addr)) &&
+						(lna < 256L*256L - 1)) ||
+				    (lna < 256 - 1)) )
+			{
+				cp = &addr.s_addr;
+				if (IN_CLASSA(ntohl(addr2.s_addr)))
+					sprintf(buf, "%d.%d.%d", cp[1]&0xff,
+							cp[2]&0xff, cp[3]&0xff);
+				else if (IN_CLASSB(ntohl(addr2.s_addr)))
+					sprintf(buf, "%d.%d", cp[2]&0xff,
+								cp[3]&0xff);
+				else
+					sprintf(buf, "%d", cp[3]&0xff);
+				if (!yesno(YES,"Verify: Host number is %s",buf))
+					continue;
+				return(lna);
+			}
+		}
+	    }
+		msg = 1;
+		if (net < 128) {
+			printf("Valid Class A host numbers:\n");
+			if (subbits)
+				printf("(including the subnet number)\n");
+			printf("   0.0.0 to 255.255.255 (exclusive)\n");
+			printf("   1 to 16777214 (inclusive)\n");
+		} else if (net < 65536L) {
+			printf("Valid Class B host numbers:\n");
+			if (subbits)
+				printf("(including the subnet number)\n");
+			printf("   0.0 to 255.255 (exclusive)\n");
+			printf("   1 to 65534 (inclusive)\n");
+		} else {
+			printf("Valid Class C host numbers:\n");
+			printf("   1 to 254 (inclusive)\n");
+		}
+	}
+}
+
+FILE*
+edit(file)
+char *file;
+{
+	FILE	*fp;
+	char	buf[64];
+
+	/*
+	 * close stdout, popen the file for editing, restore
+	 * stdout, and return the stream pointer.
+	 */
+	close(1);
+	sprintf(buf, "/bin/ed - %s", file);
+	fp = popen(buf, "w");
+	dup2(3, 1);
+	if (fp == NULL)
+		fprintf(stderr, "Cannot open %s for editing\n", file);
+	return(fp);
+}

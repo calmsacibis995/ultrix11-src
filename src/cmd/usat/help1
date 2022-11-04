@@ -1,0 +1,22 @@
+echo "		Welcome to $U - ULTRIX-11 System Acceptance Test" 
+echo "		--------------------------------------------------"
+echo "The following options are available: (type '$u h' for help)
+
+		a )  $a $t
+		b )  $b $t
+		c )  $c $t
+		d )  $d $t
+		f )  $f $t
+		l )  $l $t
+		m )  $m $t
+		p )  $p $t
+		r )  $r $t
+		s )  $s $t
+		x )  $x $t
+		y )  $y $t
+		z )  $z
+
+	      all )  all of above
+		h )  $h
+Example:  
+	'$u a x l'  runs $a $t, $x $t, $l $t."

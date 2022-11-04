@@ -1,0 +1,59 @@
+Copyright	alloca.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+__advance	regex.c	/^__advance(alp, aep)$/
+__cclass	regex.c	/^__cclass(aset, ac, af)$/
+__execute	regex.c	/^__execute(addrc,addrl)$/
+__getrnge	regex.c	/^__getrnge(i,j,k) int *i,*j; char *k;$/
+__rpop	regcmp.c	/^__rpop() {$/
+__rpush	regcmp.c	/^__rpush(ptr) char *ptr;$/
+__size	regcmp.c	/^__size(strg) char *strg;$/
+__xpop	regex.c	/^__xpop(i) int i;$/
+__xpush	regex.c	/^__xpush(i,p) int i; char *p;$/
+any	any.c	/^any(c,s)$/
+anystr	anystr.c	/^anystr(s1, s2)$/
+cat	cat.c	/^char *cat(dest,source)$/
+clean_up	clean.c	/^clean_up()$/
+curdir	curdir.c	/^curdir(str)$/
+dname	dname.c	/^char *dname(p)$/
+fdfopen	fdfopen.c	/^fdfopen(fd, mode)$/
+findir	curdir.c	/^findir(flag)$/
+giveup	giveup.c	/^giveup(dump)$/
+imatch	imatch.c	/^imatch(prefix,string)$/
+index	index.c	/^index(as1,as2)$/
+lockit	lockit.c	/^lockit(lockfile,count,pid)$/
+logname	logname.c	/^logname()$/
+mov	alloca.s	/^	mov	(sp)+,r1	\/ return$/
+move	move.c	/^char *move(a,b,n)$/
+mylock	lockit.c	/^mylock(lockfile,pid)$/
+onelock	lockit.c	/^onelock(pid,tempfile,lockfile)$/
+pointer	fatal.c	41
+regcmp	regcmp.c	/^regcmp(cs1,cs2,cs3,cs4,cs5,cs6,cs7,cs8,cs9,cs10) $/
+regex	regex.c	/^regex(addrc,addrl,a1,a2,a3,a4,a5) char *addrc, *ad/
+rename	rename.c	/^rename(oldname,newname)$/
+repeat	repeat.c	/^char *repeat(result,str,repfac)$/
+repl	repl.c	/^repl(str,old,new)$/
+satoi	satoi.c	/^char *satoi(p,ip)$/
+setsig	setsig.c	/^setsig()$/
+setsig1	setsig.c	/^setsig1(sig)$/
+sname	sname.c	/^char	*sname(s)$/
+strend	strend.c	/^char *strend(p)$/
+substr	substr.c	/^char *substr(as, aresult, origin, len)$/
+to	bal.c	11
+trnslat	trnslat.c	/^char *trnslat(str,old,new,result)$/
+tst	alloca.s	/^tst	(r0)+		\/ returned value; will generate$/
+unlockit	lockit.c	/^unlockit(lockfile,pid)$/
+userdir	userdir.c	/^userdir(uid)$/
+userexit	userexit.c	/^userexit(code)$/
+username	username.c	/^username(uid)$/
+verify	verify.c	/^verify(astr1,str2)$/
+xalloc	xalloc.c	/^xalloc(asize)$/
+xcreat	xcreat.c	/^xcreat(name,mode)$/
+xfree	xalloc.c	/^xfree(aptr)$/
+xfreeall	xalloc.c	/^xfreeall()$/
+xlink	xlink.c	/^xlink(f1,f2)$/
+xmsg	xmsg.c	/^xmsg(file,func)$/
+xopen	xopen.c	/^xopen(name,mode)$/
+xpipe	xpipe.c	/^xpipe(t)$/
+xunlink	xunlink.c	/^xunlink(f)$/
+xwrite	xwrite.c	/^xwrite(fildes,buffer,nbytes)$/
+zero	zero.c	/^char	*zero(p,n)$/
+zeropad	zeropad.c	/^char *zeropad(str)$/

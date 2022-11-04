@@ -1,0 +1,1090 @@
+#if 0
+			---------------
+			R E A D M E . 1
+			---------------
+
+/-------\
+| NOTES |
+\-------/
+
+  The term  "LTF"  (Labeled Tape Facility)  will be used to refer
+to  the  suite  of  programs  directly or indirectly indicated as
+being required to  fulfill  the  features/functionality  outlined
+herein.
+
+  References for the substance of this document are based on:
+
+        1)  The publication:
+
+                American National Standard
+                 magnetic tape labels and file structure
+                 for information interchange
+                 ANSI  X3.27-1978
+
+        published by:   American National Standards Institute
+                        1430 Broadway, New York, New York  10018
+
+
+        2)  The document/working paper:
+
+                Draft Propsed Revision to ANSI X3.27-1978
+                 Public Review Comment on ANSI X3L5/83-28T 15-Oct-84
+                 (describes the proposed version 4 ANSI standard)
+
+
+        received from:  Howard Kaikow
+                        ZK01-3/C23
+                        Digital Equipment Co.
+
+
+        3)  The publication:
+
+                The Small Buffer Supplement
+                VAX/VMS  ANSI Labeled Magnetic Tapes Supported by
+                the VAX/VMS  MTAACP.
+
+
+        Published by:   Software Services  COG/TSG
+                        April 81
+                        Digital Equipment Co.
+                         for INTERNAL USE ONLY
+
+/**/
+/-------------------------------\
+|                               |
+|     ARCHITECTUAL  STATEMENT   |
+|                               |
+\-------------------------------/
+
+  This proposed implementation of the  LTF  does not claim to  be
+100% ANSI standard in all cases. That is, the Ultrix LTF does not
+support the entirety of the functionality and/or format capabili-
+ties outlined in the documents/publications cited as references.
+
+  It should be understood that the functionality and formats  for
+Ultrix  labeled  tapes  is/are  simply based on the standards and
+formats referred to, and described in, the publications/documents
+listed above.
+
+  The  LTF  will attempt to follow  these  documents  as  working
+precepts  as  accurately  as  it  can  while meeting the needs of
+Ultrix systems.
+
+  It should be further understood that where the cited  documents
+specifiy procedures and/or operational constricts that would con-
+flict with those  features/functionality  normally  found  in  an
+Ultrix system, that said procedures and/or operational constricts
+will, by necessity, have been omitted from  the  LTF  implementa-
+tion.
+
+/**/
+/--------------\
+| GOALS of LTF |
+\--------------/
+
+  The primary goal of the  LTF  is the  exchange  of  information
+between   an   Ultrix  system  and  a  non-Ultrix  system  as  an
+import/export facility by providing a means to  read/write  tapes
+in  format  generally acceptable (ie. compatable) to most systems
+providing support of ANSI labeled tapes.
+
+  The  LTF,  as an import/export utility,  should  be  compatable
+with  the  ANSI specifications (cited above) regarding a Magnetic
+Tape Volume in the following  respects  (exceptions  noted  under
+NON-GOALS):
+
+  The  LTF, is an import/export program for which DEC Ultrix cus-
+tomers  may purchase a source licence and modify it at their dis-
+cretion.  This specification is not intended to imply  an  imple-
+mentation  of ANSI standards for magnetic tape interchange within
+an Ultrix operating system  (ie.  not  subject  to  installation
+modification).
+
+/**/
+/------------------\
+| NON-GOALS of LTF |
+\------------------/
+
+  It is not a goal of the  LTF  to provide the entirety  of  ser-
+vices and features outlined in the various documents/publications
+cited previously. Items specifically omitted  (see  LTF(5))  from
+further processing:
+
+        1. Multi-volume File sets
+        2. Label Fields not proccessed:
+
+                a. VOL1
+                        Accessibility
+                b. VOL2 thru VOL9
+                c. User Volume Labels (UVL1 thru UVL9)
+                d. HDR1, EOV1, EOF1
+                        File-Set Identifier
+                        Expiration Date
+                        Accessibility
+                        Block Count
+                e. HDR2
+                        Buffer Offset Content
+                f. HDR8, HDR9
+                g. User Header Labels (UHL1 thru UHL9)
+                h. End of Volume Labels (EOV3 thru EOV9)
+                i. End of File Labels (EOF3 thru EOF9)
+                j. User Trailer Labels (ULT1 thru UTL9)
+
+
+/**/
+/----------------------\
+| IMPLEMENTATION NOTES |
+\----------------------/
+
+  This implementation provides for a user level interface to  the
+system  for the purpose of exchanging information with non-Ultrix
+systems via ANSI compatable  labeled  volumes.  "User  level"  is
+intended  to imply a person interfacing to the system at the ter-
+minal level.
+
+
+/--------------------------------------\
+| MAJOR FUNCTIONALITY of LTF (summary) |
+\--------------------------------------/
+
+  This version of the  LTF  will provide  for  the  creation  and
+interpretation  of  "ANSI  Version  3 and 4 (Level 4)" compatable
+volumes.  The ANSI version 4 specification is not  yet  finalized
+but  is expected to not differ substantially from the preliminary
+copy I have received.
+
+  When transfer  of  information  to  another  Ultrix  system  is
+desired, the LTF will provide the mechansim necessary to preserve
+Ultrix file names, modes, directories, links, etc..
+
+
+/-----------------------------\
+| LTF  USER  INTERFACE  NOTES |
+\-----------------------------/
+
+See the document -->  ltf.mp
+
+
+/------------------\
+| FUTURE  FEATURES |
+\------------------/
+
+  Provide support/implementation for market demand items not pro-
+vided in this version of the LTF.
+
+
+#endif  0
+
+/**/
+*		-----------------------------------------
+*		GENERAL  ANSI  VOLUME  and  LABEL FORMATS 
+*
+* 			PROCESSED BY THE  LTF
+*		-----------------------------------------
+*
+*	/=======================================================\
+*	|	ANSI Compatible  volume labels ...		|
+*	|	Each label consists of 80 bytes of ASCII data	|
+*	|	as specified below.				|
+*	\=======================================================/
+*
+*			*-*  NOTE  *-*
+*			     ----
+*		Items enclosed in () indicate OPTIONAL
+*		fields that may be present according to
+*		to the ANSI standard. 
+*
+*	The Ultrix  LTF  only supports SINGLE-VOLUME file sets.
+*
+*			TERMS
+*			------
+*	"a"characters - Refers to the set of characters consisting of:
+*
+*		Uppercase  A-Z,  numerals  0-9, & the following 
+*		special characters:
+*
+*			space  !  "  %  &  '  (  )  *  +  ,  - _
+*			. /  :  ;  <  =  >  ?
+*
+*
+*		BLOCK -	A group of consecutive bytes of data treated as
+*			unit by the storage medium.
+*			Blocks are separated by an interblock gap. 
+*			A Block may contain part of a record, all of the
+*			record, all many records.
+*
+*		BLOCK-LENGTH -	ANSI standard for version 3 says that
+*				the maximum size is 2048 bytes. Item
+*				D4.5 in appendix "D". Page 26 refers
+*				the reader to further standards.
+*				Page 6 of the ANSI standard for version
+*				4 refers you to "relevant" (but unamed)
+*				standards for recorded magnetic tape.
+*				The small buffer supplement on page 2-2
+*				indicates that the minimum block size is
+*				18 bytes and the maximum is 2048.
+*
+*		RECORD - A set of related data treated as a unit 
+*			 of information.
+*
+*		TAPE MARK - The DC3 character (crtl/s) =>  ?? octal
+*/
+/**/
+/*
+/*
+* Type 1 -> ANSI VERSION 3/4  -  SINGLE FILE / SINGLE VOLUME
+* ------
+*
+*	+-------+
+*	|  bot	| <- Beginning of tape marker
+*	+-------+
+*	| VOL1	| <- Volume Label (only 1 permitted for ANSI version 3, ANSI
+*	|	|    version 4 OPTIONALLY permits Volume Labels 2 thru 9)
+*	+-------+
+*	|(UVLn) | <- OPTIONAL User Volume labels ('n' varies from 1 - 9)
+*	+-------+
+*	| HDR1	| <- First File Header Label
+*	+-------+
+*	| HDR2	| <- Second File Header Label
+*	+-------+
+*	|(HDRn)	| <- OPTIONAL File Header Labels ('n' varies 3-9)
+*	+-------+
+*	|(UHLa) | <- OPTIONAL User File Header Labels (unspecified number of)
+*	+-------+
+*	|  tm	| <- Tape Mark
+*	+-------+
+*	|	|
+*	| DATA  | <- 'n' Data blocks...
+*	|	|
+*	+-------+
+*	|  tm	| <- Tape Mark
+*	+-------+
+*	| EOF1	| <- First End of File Label
+*	+-------+
+*	| EOF2	| <- Second End of File Label
+*	+-------+
+*	|(EOFn) | <- OPTIONAL End of File Labels (n ~ 3 thru 9)
+*	+-------+
+*	|(UTLn) | <- OPTIONAL User Trailer Labels
+*	+-------+
+*	|  tm   | <- Tape Mark
+*	+-------+
+*	|  tm   | <- Tape Mark (double tape marks == end of all data)
+*	+-------+
+*	| eot	| <- End of TAPE marker
+*	+-------+
+*/
+/**/
+/*
+* Type 2 -> ANSI VERSION 3/4  -  MULTI-FILE / SINGLE VOLUME
+* ------
+*
+*	+-------+
+*	|  bot	| <- Beginning of tape marker
+*	+-------+
+*	| VOL1	| <- Volume Label (only 1 permitted for ANSI version 3, ANSI
+*	|	|    version 4 OPTIONALLY permits Volume Labels 2 thru 9)
+*	+-------+
+*	|(UVLn)	| <- OPTIONAL User Volume labels ('n' varies from 1 - 9)
+*	+-------+
+*	| HDR1	| <- First File Header Label
+*	+-------+
+*	| HDR2	| <- Second File Header Label
+*	+-------+
+*	|(HDRn)	| <- OPTIONAL File Header Labels ('n' varies 3-9)
+*	+-------+
+*	|(UHLa)	| <- OPTIONAL User File Header Labels (quantity unspecified)
+*	+-------+
+*	|  tm	| <- Tape Mark
+*	+-------+
+*	|	|
+*	| DATA  | <- 'n' Data blocks... of first file
+*	|	|
+*	+-------+
+*	|  tm	| <- Tape Mark
+*	+-------+
+*	| EOF1	| <- First End of File Label
+*	+-------+
+*	| EOF2	| <- Second End of File Label
+*	+-------+
+*	|(EOFn)	| <- OPTIONAL End of File Labels (n ~ 3 thru 9)
+*	+-------+
+*	|(UTLn)	| <- OPTIONAL User Trailer Labels
+*	+-------+
+*	|  tm   | <- Tape Mark
+*	+-------+
+*	| HDR1	| <- First File Header Label
+*	+-------+
+*	| HDR2	| <- Second File Header Label
+*	+-------+
+*	|(HDRn)	| <- OPTIONAL File Header Labels ('n' varies 3-9)
+*	+-------+
+*	|(UHLa)	| <- OPTIONAL User File Header Labels (number undefined)
+*	+-------+
+*	|  tm   | <- Tape Mark
+*	+-------+
+*	|	|
+*	| DATA  | <- 'n' Data blocks... of next file
+*	|	|
+*	+-------+
+*	\   t 	\+------+------+--------+--------+----+------+-- - - +----+----+
+*	 \   m   | EOF1 | EOF2 | (EOFn) | (UTLn) | tm | HDR1 | .etc. | tm | tm |
+*	  +------+------+------+--------+--------+----+------+ -- -- +----+----+
+*/
+/**/
+*
+*
+*+--> VOL1 - LABEL FORMAT - ANSI VERSION 3		(1st 37 of 80 bytes)
+*     ----
+*	     Identifies the volume & supplies volume security information
+*
+*		    1		        2		    3		  3
+* 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 
+*+-----+-+-----------+-+---------------------------------------------------+
+*|     | |           | |                                                   |
+*| VOL |1| vol id    | | 	reserved by ANSI  (spaces)		   |
+*|     | |           | |                                                   |
+*+-----+-+-----------+-+---------------------------------------------------+
+*   ^   ^    ^        ^
+*   !   !    !        !
+*   !   !    !        \-> Accessibility / Volume security
+*   !   !    !		  Space on output, field ignored on input.
+*   !   !    !
+*   !   !    \-> Volume Identifier - user specifiable "a"characters
+*   !   !	 Output default = Ultrix, input content displayed on request
+*   !   !
+*   !   \-> Label Number - the constant 1	(verified on volume read)
+*   !
+*   \-> Label Identifier - the constant VOL	(verified on volume read)
+*
+*
+*+--> VOL1 - LABEL FORMAT (cont)			(LAST 43 of 80 bytes)
+*     ----
+*
+* 3   4			  5   5				7 8
+* 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 ........................9 0
+*+---------------------------+---------------------------+-+
+*|                           |				 | |
+*|  Owner  ID                | reserved by ANSI (spaces) |3|
+*|                           |				 | |
+*+---------------------------+---------------------------+-+
+*	^						  ^
+*	!						  !
+*	!			   Label Standard Version /
+*	!			   The constant 3 for ANSI version 3 volumes
+*	!
+*	\--> User defined "a"characters on output  (default = spaces)
+*	     Input content displayed if requested
+*
+*	If present, User Volume Labels (UVL1 thru UVL9) are
+*	ignored by the LTF.
+*
+*			*-*  NOTE  *-*
+*			     ----
+*	Some systems use bytes 38-40 to contain implementation
+*	specific information. If not an Ultrix volume, this field
+*	is not utilized.
+*/
+/**/
+/*+--> VOL1 - LABEL FORMAT - ANSI VERSION 4		(1st 37 of 80 bytes)
+*      ----
+*
+*	Identifies the volume & supplies volume security information
+*
+*		    1		        2		    3		  3
+* 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 
+*+-----+-+-----------+-+-------------------------+-------------------------+
+*|     | |           | |                         |                         |
+*| VOL |1| vol id    | | reserved by ANSI(spaces)| Implementation ID       |	
+*|     | |           | |                         |                         |
+*+-----+-+-----------+-+---------------------------------------------------+
+*   ^   ^    ^        ^				    ^
+*   !   !    !        !				    !
+*   !   !    !        !				    \--> Output = DECULTRIXnnnn
+*   !   !    !        !			"a"characters - nnnn <- digits 0000 thru
+*   !	!    !	      !			9999 which serve to identify the version
+*   !   !    !        !			of the LTF which created this volume.
+*   !   !    !        !			(on input, content displayed on request)
+*   !   !    !	      !
+*   !   !    !        \-> Accessibility / Volume security
+*   !   !    !	  	  Space on output, ignored on input.
+*   !   !    !
+*   !   !    \-> Volume Identifier - user specifiable "a"characters
+*   !   !	 Output default = Ultrix, input content displayed on request
+*   !   !
+*   !   \-> Label Number - the constant 1	(verified on volume read)
+*   !
+*   \-> Label Identifier - the constant VOL	(verified on volume read)
+*
+*
+*+--> VOL1 - LABEL FORMAT	(cont)			(LAST 43 of 80 bytes)
+*     ----
+*
+* 3   4			  5   5				7 8
+* 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 ........................9 0
+*+---------------------------+---------------------------+-+
+*|                           |				 | |
+*|  Owner  ID                | reserved by ANSI (spaces) |4|
+*|                           |				 | |
+*+---------------------------+---------------------------+-+
+*	^						  ^
+*	!						  !
+*	!			   Label Standard Version /
+*	!			   The constant 4 for ANSI version 4 volumes
+*	!
+*	\--> User defined "a"characters on output. (default = spaces)
+*	     Input content displayed if requested
+*
+*			*-*  NOTE  *-*
+*			     ----
+*	If present, VOL2 thru VOL9 labels are ignored by the LTF.
+*	If present, User Volume labels (UVL1 thru UVL9) are
+*	also ignored by the LTF.
+*/
+/**/
+/*+--> HDR1 - LABEL FORMAT - ANSI VERSION 3/4	(1st 39 of 80 bytes)
+*      ----
+*
+*	File header label  HDR1  Identifies and describes the file
+*
+*			*-*  NOTE  *-*
+*			     ----
+*	Information in this label is limited to "a"characters only.
+*
+*		    1		        2		    3		3     3
+* 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9
+*+-----+-+---------------------------------+-----------+-------+-------+-------+
+*|     | |				   | file      | file  | file  | gen   |
+*| HDR |1|	file id			   |  set      |  sec  |  seq  | num   |
+*|     | |				   |   id      |   num |   num |       |
+*+-----+-+---------------------------------+-----------+-------+-------+-------+
+*   ^   ^    ^					^	  ^	  ^	  ^
+*   !   !    !					!	  !	  !	  !
+*   !   !    !					!	  !	  !	  /
+*   !   !    !					!	  !	  !	0001 on
+*   !   !    !					!	  !	  !	output
+*   !   !    !					!	  !	  !	ignored 
+*   !   !    !					!	  !	  !	on input
+*   !   !    !					!	  !	  !
+*   !   !    !					!	  !	  \-> Starts at
+*   !   !    !					!	  !	        0001 
+*   !   !    !					!	  !	   incremented
+*   !   !    !					!	  !	   once for each
+*   !   !    !					!	  !	   file on the 
+*   !   !    !					!	  !	   volume 
+*   !   !    !					!	  !
+*   !   !    !					!	  \-> The constant 1
+*   !   !    !					!	      on output
+*   !   !    !					!	      ignored on input
+*   !   !    !					!
+*   !   !    !					\-> Matches VOL1 label of the
+*   !   !    !					    first volume (in a set)
+*   !   !    !
+*   !   !    \-> Interchange ("a"character) file name
+*   !   !
+*   !   \->  The constant 1
+*   !
+*   \-> The constant  HDR
+*/
+/**/
+/*+--> HDR1 - LABEL FORMAT (cont)  ANSI VERSION 3/4  (LAST 41 of 80 bytes)
+*      ----
+*
+*	File header label  HDR1	Identifies and describes the file
+*
+*
+* 4		      5			  6		      7	      7       8
+* 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 ..... 0
+*+---+-----------+-----------+-+-----------+-------------------------+---------+
+*|gen| creation  |expiration | | block	   |  implementation	     | ANSI    |
+*|ver|  date	 | date      | |  count    |  identifier     	     |reserved |
+*|num|		 |	     | |	   |        		     |(spaces) |
+*+---+-----------+-----------+-+-----------+-------------------------+---------+
+*  ^     ^		^     ^     ^		^
+*  !	 !		!     !	    !		!
+*  !	 !		!     !	    !		\-> "a"characters. DECULTRIXnnnn
+*  !	 !		!     !	    !	on output. nnnn <- digits 0000 thru 9999
+*  !	 !		!     !	    !	which serve to identify the version of
+*  !	 !		!     !	    !	the LTF which created this file.
+*  !	 !		!     !	    !	(input content displayed on request)
+*  !	 !		!     !	    !
+*  !	 !		!     !	    \-> Always 000000 for  HDR1
+*  !	 !		!     !
+*  !	 !		!     \-> File security. Space on output,
+*  !	 !		!    	  ignored on input
+*  !	 !		! 
+*  !	 !		\-> Julian date at which time the file may be
+*  !	 !		    overwritten. (differs for ANSI version 3/4 -
+*  !	 !		    see appropriate ANSI standard)
+*  !	 !
+*  !	 \-> Julian date of file creation (differs for ANSI version 3/4
+*  !	     see appropriate ANSI standard)
+*  !
+*  \-> The constant 00 on output, ignored on input
+*/
+/**/
+/*+--> HDR2 - LABEL FORMAT - ANSI VERSION 3/4	(80 bytes)
+*      ----
+*
+*	File header label  HDR2	 describes the record format,
+*	maximum record size, and maximum block length of the file.
+*
+*			*-*  NOTE  *-*
+*			     ----
+*	Information in this label is limited to "a"characters, except
+*	for the content of bytes 16 thru 50 if volume is ANSI version 4.
+*
+*		    1	 	1		            5     5	      8
+* 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 ......................... 0 1 2 3 ......... 0
+*+-----+-+-+---------+---------+-----------------------------+---+-------------+
+*|     | | | block   | record  |    SYSTEM		     |buf|    ANSI     |
+*| HDR |2| | length  | length  |	DEPENDANT USE	     |off|  reserved   |
+*|     | | |	     |	       | (see below for Ultrix use)  |set|  (spaces)   |
+*+-----+-+-+---------+---------+-----------------------------+---+-------------+
+*   ^   ^ ^    ^	^				       ^
+*   !   ! !    !	!				       !
+*   !   ! !    !	!			 Buffer Offset /
+*   !   ! !    !	!		  Specifies the number of bytes of any
+*   !   ! !    !	!		  additional field inserted before the
+*   !   ! !    !        !		  first record in a data block by the
+*   !   ! !    !        !		  implementation. Content of any field
+*   !   ! !    !	!		  defined is ignored on input.
+*   !   ! !    !        !		  Reserved for future use by the LTF.
+*   !   ! !    !        !
+*   !	! !    !	!_ Record length (5 digit decimal number) definition
+*   !   ! !    !	!  for the supported record types:
+*   !   ! !    !        !
+*   !   ! !    !        \-> 'F' format - Specifies length of each data record
+*   !   ! !    !            'D' format - Specifies maximum length of a data
+*   !   ! !    !            		 record length including the count field
+*   !   ! !    !	    'S' format - Specifies maximum length of a data
+*   !   ! !    !	   		 record NOT including the segment 
+*   !	! !    !			 control bytes. A value of 00000 implies
+*   !   ! !    !	    		 the maximum record length may exceed
+*   !   ! !    !	     		 99999 bytes.
+*   !   ! !    !
+*   !   ! !    \-> Block length specifies the maximum allowed length of a data
+*   !   ! !	   block in the file. (default = 2048 bytes)
+*   !   ! !
+*   !   ! \-> Record Format. Specifies the record structure as follows:
+*   !   !	F = Fixed-length records 
+*   !   !	D = Variable-length records
+*   !   !	S = Segmented/Spanned records
+*   !   !
+*   !   \-> The constant 2
+*   !
+*   \-> The constant  HDR
+*/
+/**/
+/*+--> HDR2 (cont)	Label Format for Ultrix use of bytes 16-50
+*      ----		    (system dependant information)
+*
+*			*-*  NOTE  *-*
+*			     ----
+*  Content of this field (16-50) is ignored if not an Ultrix volume.
+*
+* 1	  2		      3		    3	  4		      5
+* 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+*+-----------+-------+-------+-------+-----+-+-------------------+-+-+-+
+*| file      | file  | owner | link  | true| | file size	 | | | |
+*|  status   | owner | group | id    |file | | in bytes on	 | | | |
+*| (st_mode) |  id   | numbr | seq # | type| | output		 | | | |
+*+-----------+-------+-------+-------+-----+-+-------------------+-+-+-+
+*	^ 	^	^	^        ^  ^   ^		  ^ ^  \->Ultrix
+*	!	!	!	!        !  !   !		  ! !      rsrvd
+*	!	!	!	!        !  !   !	    HDR <-/ \-> EOF
+*	!	!	!	!        !  !   !  Bytes 48 and 49 define the
+*	!	!	!	!        !  !   !  last HDR and/or EOF label
+*	!	!	!	!        !  !   !  containing Ultrix path name
+*	!	!	!	!        !  !   !  characters for this file.
+*	!	!	!	!        !  !   !  Byte 48 = digit 3 thru 9
+*	!	!	!	!        !  !   !  Byte 49 = 0 = no path name
+*	!	!	!	!        !  !   !  component in EOF labels,
+*	!	!	!	!        !  !   !  else digit 3 thru 9
+*	!	!	!	!        !  !   !
+*	!	!	!	!        !  !	\-> If known, else spaces
+*	!	!	!	!        !  !
+*	!	!	!	!        !  \-> Carriage control to be applied
+*	!	!	!	!        !  	to the records of the file.
+*	!	!	!	!        !  	A = 1st byte of record contains
+*	!	!	!	!        !  	    FORTRAN carriage cntrl chctr
+*	!	!	!	!        !  	M = Record contains all required
+*	!	!	!	!        !  	    forms control
+*	!	!	!	!        !     | |= Space = Insert  crlf
+*	!	!	!	!        !  	    between records (Intention
+*	!	!	!	!        !  	    is to be compatible with
+*	!	!	!	!        !  	    other systems that use this
+*	!	!	!	!        !  	    convention)
+*	!	!	!	!        !
+*	!	!	!	!        \-> Three character representation of
+*	!	!	!	!	     the Ultrix disk file type.
+*	!	!	!	!	     (see below)
+*	!	!	!	!
+*	!	!	!	\-> Zeroes if file is not a hard link to another
+*	!	!	!	    file on this volume, else contains the file
+*	!	!	!	    sequence number of the file this file is
+*	!	!	!	    linked to.
+*	!	!	!
+*	!	!	\-> Group number (gid) of file owner
+*	!	!
+*	!	\-> File owner ID (uid)
+*	!
+*	\-> Ultrix file status returned by a "stat" call [st_mode p/o STAT(2)]
+*/
+/**/
+*	-------------------------------------------------
+*	Ultrix disk file type described by HDR2  bp 34-36
+*	-------------------------------------------------
+*
+*	adf	- ASCII data file
+*	asc	- ASCII text
+*	arc	- Archive
+*	arl	- Archive Random Library
+*	asm	- Assembly language text
+*	bin	- Binary data
+*	bsp	- Block special file
+*	cc 	- 'C' program text
+*	cmp	- Compressed text file
+*	com	- Command text file
+*	cpi	- CPIO file
+*	csp	- Character special file
+*	dir	- Directory
+*	eng	- English text
+*	exe	- Executable binary
+*	for	- Fortran program source
+*	fuf	- Fortran Unformatted File
+*	nul	- Null/empty file
+*	oar	- Old Archive
+*	pip	- Named pipe
+*	rof	- roff, nroff, troff, or eqn input text
+*	soc	- Socket
+*	sym	- Symbolic Link
+*	???	- Content of file not determined
+*
+*
+*	-------------------------------------------------	
+*	Record formats defined and described by HDR2 bp 4
+*	-------------------------------------------------	
+*
+*	'F' -	Fixed length records. All records in the file have the
+*		same length. Minimum length is at least one byte,
+*		maximum length shall not exceed the assigned block length
+*		(less the length of any Buffer Offset Field). At least 1 byte
+*		of the record must NOT be the circumflex padding character.
+*
+*
+*	 |--  max block length --|
+*	 |-   max record length -|
+*	 | actual  record length |
+*	 v			 v
+*	+-------------------------+-------------------------+
+*	| fixed length record 1	  | fixed length record  n  |
+*	+-------------------------+-------------------------+
+*
+*			*-*  NOTE  *-*
+*			     ----
+*		Records smaller than the block length
+*		will be padded by addition of the
+*		circumflex character.
+*/
+/**/
+*
+*	--------------------------------------------	
+*	Record formats defined and described by HDR2  (continued)
+*	--------------------------------------------	
+*
+*	'D' -	Variable length records. ie. The records in a file may be of
+*		different lengths.
+*
+*	A variable length record consists of a Record Control Word (RCW)
+*	of 4 "digit" characters which expresses the sum of the lengths of
+*	the record AND the RCW as a decimal number.
+*
+*
+*  |------------------------ max block length --------------------------|
+*  |									|
+*  |---    record length one ---|---  second record length -------------|
+*  v     		 	v 					|
+* +----+-------------------------+----+---------------------------------+
+* |1234| variable length record 1|4321|  variable length record  n	|
+* +----+-------------------------+----+---------------------------------+
+*   ^		^		    ^		^
+*   !		!		    !		!
+*   !		!		    !		\-> Data for record 'n'
+*   !		!		    !
+*   !		!		    \-> Record control word for record 'n'
+*   !	        !
+*   !	        \-> Data for first variable length record
+*   !
+*   \-> First record control word
+*
+*	A variable length record may not exceed the assigned block length,
+*	minus the length of the Buffer Offset Field and minus the length
+*	of the record control word. Additionally, a maximum record length
+*	shall be assigned to the file. The length of any record in the
+*	file shall not exceed this value.
+*
+*	The minimum length of a variable length record may be zero.
+*/
+**/
+*
+*	--------------------------------------------	
+*	Record formats defined and described by HDR2  (concluded)
+*	--------------------------------------------	
+*
+*	'S' -	Segmented/Spanned records.
+*
+*		(ANSI version 4 refers to records of the following type
+*		as "segmented" while ANSI version 3 refers to the same
+*		records structure as "spanned").
+*
+*	The LTF will use this format for TEXT files containing character 
+*	string sequences of greater than 512 bytes without an imbedded
+*	cr/lf or newline character.
+*
+*	A segmented record consists of a Segment Control Word (SCW) of 5
+*	characters. The first character of the SCW is the Segment Indicator.
+*	This value has one of the following values and associated meaning.
+*
+*		Character		DEFINITION
+*		--------	-----------------------------------------------
+*		  0		Record begins and ends in this segment
+*		  1		Record begins but does not end in this segment
+*		  2		Record nether begins nor ends in this segment
+*		  3		Record ends but does not begin in this segment
+*
+*	The last four characters of the SCW express, in decimal, the length
+*	of the current record segment NOT including the length of the SCW.
+*
+*  |----- max block length -------|
+*  |				  |
+*  |     |-- max record length  --|
+*  v     v		 	  v
+* +-----+--------------------------+-----+------------------------------+
+* |11234| Sart spanned record	   |34321|  End segment of the		|
+* |	|			   |	 |  spanned record		|	
+* +-----+--------------------------+-----+------------------------------+
+*   ^		^		    ^		^
+*   !		!		    !		!
+*   !		!		    !		\-> LAST 4321 Bytes of record
+*   !		!		    !
+*   !		!		    \-> Segment control word
+*   !	        !
+*   !	        \-> First 1234 Bytes of data for segmented record
+*   !
+*   \-> Segment control word
+*
+*	A segmented record may not exceed the assigned block length,
+*	minus the length of the Buffer Offset Field and minus the length
+*	of the segment control word. Additionally, a maximum record length
+*	shall be assigned to the file. The length of any record in the
+*	file shall not exceed this value.
+*
+*	The minimum length of a segmented record may be zero.
+*/
+/**/
+/*+--> HDR3 -	OPTIONAL file header label.		(1st 44 bytes of 80)
+*      ----
+*
+*  Presence & content ignored if the volume was not created by an Ultrix system.
+*  Content limited to "a"chatacters if VOL1 bp 80 = 3.
+*
+*		    1	                2		    3		     4
+* 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 .............. 4
+*+-----+-+-------------------+-------------------+----------------------------+
+*|     | | time of last      | file  owner	 |			      |
+*| HDR |3|  change to file   |   name		 |	hostname	      |
+*|     | |		     |			 |			      |
+*+-----+-+-------------------+-------------------+----------------------------+
+*   ^   ^	^		  ^			^
+*   !   !	!		  !			!
+*   !   !	!		  !			\-> If this file was
+*   !   !	!		  !	written by an Ultrix system, this field
+*   !   !	!		  !	will contain the name of that system.
+*   !   !	!		  !	(truncated to 20 of possible 23 chctrs)
+*   !   !	!		  !     Displayed on user request, ignored if
+*   !   !	!		  !	not an Ultrix created volume.
+*   !   !	!		  !
+*   !   !	!		  \-> Printable ASCII characters indentifying
+*   !   !	!		      the owner of this file.
+*   !	!	!
+*   !   !	\-> Ultrix standard time format defining the time of the last
+*   !   !	    change made to this file.
+*   !   !
+*   !   \-> The constant 3
+*   !
+*   \-> The constant HDR
+*/
+/**/
+/*+--> HDR3 - LABEL FORMAT (cont)  ANSI VERSION 3/4  (LAST 36 of 80 bytes)
+*      ----
+*
+*
+* 4	    5			6		    7			8 
+* 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+*+-----------------------------------------------------------------------+
+*|									 |
+*|	First 36 characters of Ultrix File Path Name			 |
+*|									 |
+*+-----------------------------------------------------------------------+
+*	^
+*	!
+*	\-> This field, and if required, the fields in HDR4 thru HDR7
+*	    contain the complete Ultrix Path Name of this file. If further
+*	    characters are required to define the path name, OPTIONAL EOF
+*	    labels EOF3 thru EOF9 will contain the remainder of the path
+*	    name. A space character terminates the path name. 
+*	    Only as many HDRx, and EOFx, labels are used to complete the
+*	    path name as are required. See also HDR2 bytes 48 & 49.
+*	    (a path name may be MAXPATHLEN number of characters)
+*
+*				*-*  NOTE  *-*
+*			     	     ----
+*		Imbedded spaces in the path name are not permitted.
+*/
+/**/
+/*+--> HDR4 thru HDR9	 LABEL FORMATS - ANSI VERSION 3/4	(80 bytes)
+*      ----      ---	
+*
+*	OPTIONAL  ANSI  file header labels used by the LTF to express some
+*	fractional component of the file's complete path name.
+*
+*				*-*  NOTE  *-*
+*				     ----
+*		The presence and content of these labels will be ignored
+*		if the volume was not created by an Ultrix system.
+*
+*							           8
+* 1 2 3 4 5 ...................................................... 0
+*+-----+-+----------------------------------------------------------+
+*|     | |	nth  76 character component of an Ultrix path name  |
+*| HDR |n|	Limited to "a" characters if VOL1 bp 80 = 3.	    |
+*|     | |							    |
+*+-----+-+----------------------------------------------------------+
+*   ^   ^	^
+*   !   !       !
+*   !   !       \-> Left-justified, unused character positions in the final
+*   !   !	    label used are space filled.
+*   !   !
+*   !   !                 	  *-*  NOTE  *-*
+*   !   !			       ----
+*   !   !                 The above convention implies that an Ultrix
+*   !   !                 path name may not contain IMBEDDED spaces.
+*   !   !
+*   !   \-> The character identifying the label. ie. 4 thru 9.
+*   !
+*   \-> The constant  HDR
+*/
+/**/
+/*+--> UHLa -	OPTIONAL  ANSI VERSION 3/4			(80 bytes)
+*      ----		User File Header Labels		
+*
+*		Not supported by the LTF. They are not output & if present
+*		on an input volume, their presence & content is ignored.
+*
+*							       8
+* 1 2 3 4 5 .................................................. 0
+*+-----+-+------------------------------------------------------+
+*|     | |							|
+*| UHL |a|		application dependant			|
+*|     | |							|
+*+-----+-+------------------------------------------------------+
+*   ^   ^
+*   !   !
+*   !   \-> Any valid "a"character identifying this label
+*   !
+*   \-> The constant  UHL
+*/
+/**/
+/*+--> EOV1 - LABEL FORMAT - ANSI VERSION 3/4	(80 bytes)
+*      ----
+*
+*	First End-Of-Volume label.
+*
+*	If read before the first  End-Of-File label  (EOF1) this
+*	label indicates that the file is continued on the next volume.
+*
+*			*-*  NOTE  *-*
+*			     ----
+*	For valid hardware and software technical limitations,
+*	the Ultrix LTF does not support multi-volume file sets
+*	and therefore does not output these labels.
+*
+*	If present on an input volume, they shall be interpreted
+*	as indicating an error condition due to the fact that
+*	some portion of the file will not be processed.
+*
+*	The fields of this label shall be identical to the contents of
+*	the corresponding fields in the First File Header Label (HDR1)
+*	with the exceptions noted below.
+*
+*
+* The following diagrams of  EOV  labels is intended for
+* reference purposes only.
+*
+*		    1			   5           6		8
+* 1 2 3 4 5 6 7 8 9 0 .....................4 5 6 7 8 9 0 1 ............ 0
+*+-----+-+----------------------------------+-----------+----------------+
+*|     | |                                  | block     | same as the	 |
+*| EOV |1| same as the corresponding fields | count     | corresponding	 |	
+*|     | | 	in HDR1			    |	        | fields in HDR1 |
+*+-----+-+----------------------------------+-----------+----------------+
+*   ^   ^					^
+*   !   !					!
+*   !   !					\-> Six-digit decimal number
+*   !   !					    specifying the number of
+*   !   !					    blocks in which the file
+*   !   !					    was recorded.
+*   !   !
+*   !   \-> The constant  1
+*   !
+*   \-> The constant  EOV
+*/
+/**/
+/*+--> EOV2 - LABEL FORMAT - ANSI VERSION 3/4			(80 bytes)
+*      ----
+*
+*	Second End-Of-Volume label.
+*
+*	The fields of this label shall be identical to the contents of
+*	the corresponding fields in the Second File Header Label (HDR2)
+*	with the exceptions noted below.
+*
+*			*-*  NOTE  *-*
+*			     ----
+*		The LTF does not support the use of EOV
+*		labels. See NOTES above for  EOV1.
+*
+*		    1							  8
+* 1 2 3 4 5 6 7 8 9 0 ................................................... 0
+*+-----+-+-----------------------------------------------------------------+
+*|     | |								   |
+*| EOV |2| same as the corresponding fields in HDR2			   |
+*|     | |								   |
+*+-----+-+-----------------------------------------------------------------+
+*   ^   ^
+*   !   !
+*   !   \-> The constant 2
+*   !
+*   \-> The constant EOV
+*
+*			*-*  NOTE  *-*
+*			     ----
+*	OPTIONAL End-Of-Volume labels 3 thru 9  (EOV3 - EOV9) are not
+*	used by the LTF. If present on an input volume, their presence
+*	and content is ignored by the LTf. See NOTES above for EOV1.
+*/
+/**/
+/*+--> EOF1 - LABEL FORMAT - ANSI VERSION 3/4			(80 bytes)
+*      ----
+*
+*	First End-Of-File label.
+*
+*	The fields of this label shall be identical to the contents of
+*	the corresponding fields in the First File Header Label (HDR1)
+*	with the exceptions noted below.
+*
+*
+*		    1			   5 5         6		  8
+* 1 2 3 4 5 6 7 8 9 0 .....................4 5 6 7 8 9 0 1 .............. 0
+*+-----+-+----------------------------------+-----------+------------------+
+*|     | |                                  | block     | same as the	   |
+*| EOF |1| same as the corresponding fields | count	| corresponding	   |	
+*|     | | 	in HDR1			    |		| fields in HDR1   |
+*+-----+-+----------------------------------+-----------+------------------+
+*   ^   ^					^
+*   !   !					!
+*   !   !					\-> Six-digit decimal number
+*   !   !			specifying the number of blocks in which the
+*   !   !			file was recorded. Value is used to verify
+*   !	!			that the correct amount of data was read for
+*   !	!			this file.
+*   !   !
+*   !   \-> The constant  1
+*   !
+*   \-> The constant  EOF
+*/
+/*/*
+/*+--> EOF2 - LABEL FORMAT - ANSI VERSION 3/4			(80 bytes)
+*      ----
+*
+*	Second End-Of-File label.
+*
+*	The fields of this label shall be identical to the contents of
+*	the corresponding fields in the Second File Header Label (HDR2)
+*	with the exceptions noted below.
+*
+*
+*		    1							  8
+* 1 2 3 4 5 6 7 8 9 0 ................................................... 0
+*+-----+-+-----------------------------------------------------------------+
+*|     | |								   |
+*| EOF |2| same as the corresponding fields in HDR2			   |
+*|     | |								   |
+*+-----+-+-----------------------------------------------------------------+
+*   ^   ^
+*   !   !
+*   !   \-> The constant 2
+*   !
+*   \-> The constant EOF
+*
+*/
+/*/*
+/*+--> EOF3 - EOF9  OPTIONAL END OF FILE LABELS - ANSI VERSION 3/4  (80 bytes)
+*      ----   ---
+*
+*	OPTIONAL  ANSI  end of file labels used by the LTF to express some
+*	fractional component of the file's complete path name.
+*
+*				*-*  NOTE  *-*
+*				     ----
+*		The presence and content of these labels will be ignored
+*		if the volume was not created by an Ultrix system.
+*
+*							           8
+* 1 2 3 4 5 ...................................................... 0
+*+-----+-+----------------------------------------------------------+
+*|     | |	nth  76 character component of an Ultrix path name  |
+*| EOF |n|	Limited to "a" characters if VOL1 bp 80 = 3.	    |
+*|     | |							    |
+*+-----+-+----------------------------------------------------------+
+*   ^   ^	^
+*   !   !       !
+*   !   !       \-> Left-justified, unused character positions in the final
+*   !   !	    label used are space filled.
+*   !   !
+*   !   !                 	  *-*  NOTE  *-*
+*   !   !			       ----
+*   !   !                 The above convention implies that an Ultrix
+*   !   !                 path name may not contain IMBEDDED spaces.
+*   !   !
+*   !   \-> The character identifying the label. ie. 4 thru 9.
+*   !
+*   \-> The constant  EOF
+*/
+/**/
+/*+-->	UTLa - UTLa   OPTIONAL User File Trailer Labels		(80 bytes)
+*	---    ----		ANSI VERSION 3/4
+*
+*	A user File Trailer Label Set is optional. If present on an
+*	input volume, their presence and content is ignored by the LTF.
+*	User File Trailer Labels are not output by the LTF.
+*
+*	If present, they take the form described below. Their use is
+*	application dependant but not supported by the LTF.
+*
+*
+*		    1						  8
+* 1 2 3 4 5 6 7 8 9 0 ........................................... 0
+*+-----+-+---------------------------------------------------------+
+*|     | |							   |
+*| UTL |a| reserved for application use  - Not specified	   | 
+*|     | |							   |
+*+-----+-+---------------------------------------------------------+
+*   ^   ^
+*   !   !
+*   !   \-> Any valid "a"character
+*   !
+*   \-> The constant  UTL
+*/
+

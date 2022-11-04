@@ -1,0 +1,29 @@
+# SCCSID: @(#)makefile.ov	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+CFLAGS=	-V -O -DCM_N -DCM_GT -DCM_B -DCM_D
+OBJECTS = ov/termcap.o ov/tgoto.o ov/tputs.o
+
+overlay: termlibov.a
+
+termlibov.a: ov ${OBJECTS}
+	rm -f termlibov.a
+	(cd ov;ar cr ../termlibov.a termcap.o tgoto.o tputs.o)
+	ranlib termlibov.a
+
+ov:
+	mkdir ov
+
+ov/termcap.o: termcap.c
+	cd ov; ${CC} ${CFLAGS} -c ../termcap.c
+
+ov/tgoto.o: tgoto.c
+	cd ov; ${CC} ${CFLAGS} -c ../tgoto.c
+
+ov/tputs.o: tputs.c
+	cd ov; ${CC} ${CFLAGS} -c ../tputs.c

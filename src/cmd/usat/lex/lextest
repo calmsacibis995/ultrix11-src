@@ -1,0 +1,45 @@
+:
+# SCCSID: @(#)lextest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** lex test started - "
+date
+touch $T/lex.$$.err
+
+if test -f "$lexpath"
+then
+	$M lex -t $L/lex/lex.cmds > $T/lx1.$$.out
+	cmp $T/lx1.$$.out $L/lex/lex.pgm.c
+
+	if test $? != 0
+	then
+		echo "lex:  Compare after lex generation failed" >> $T/lex.$$.err
+		echo "Compare after lex generation failed"
+	fi
+	mv $T/lx1.$$.out $T/lx.$$.yy.c
+	$M cc $T/lx.$$.yy.c -ll -o $T/lx2.$$.out	
+
+	cat $L/lex/lex.input | $M $T/lx2.$$.out  > $T/lx3.$$.out
+	cmp $L/lex/lex.sout $T/lx3.$$.out
+
+	if test $? != 0
+	then
+		echo "lex:  Compare after lex execute failed" >> $T/lex.$$.err
+		echo "Compare after lex execute failed"
+	fi
+else
+	echo "$lexpath: not installed" >> $T/lex.$$.err
+	echo "$lexpath: not tested (command not installed)"
+fi
+echo -n "****** End of  lex test - "
+date
+cat $T/lex.$$.err >> $T/log.$$.err
+rm -f $RT/lex.$$.err
+rm -f $RT/lx?.$$.out
+rm -f $RT/lx.$$.yy.c
+rm -f lx.$$.yy.o

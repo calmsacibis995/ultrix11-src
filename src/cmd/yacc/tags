@@ -1,0 +1,48 @@
+My1a	y1a.c	/^main(argc,argv) int argc; char *argv[]; {$/
+aoutput	y4.c	/^aoutput(){ \/* this version is for C *\/$/
+apack	y3.c	/^apack(p, n ) int *p;{ \/* pack state i from temp1 i/
+arout	y4.c	/^arout( s, v, n ) char *s; int *v, n; {$/
+aryfil	y1a.c	/^aryfil( v, n, c ) int *v,n,c; { \/* set elements 0 /
+callopt	y4.c	/^callopt(){$/
+cempty	y1a.c	/^cempty(){ \/* mark nonterminals which derive the em/
+chcopy	y1a.c	/^char *chcopy( p, q )  char *p, *q; {$/
+chfind	y2.c	/^chfind( t, s ) register char *s; {$/
+closure	y1b.c	/^closure(i){ \/* generate the closure of state i *\/$/
+cpfir	y1a.c	/^cpfir() {$/
+cpres	y1a.c	/^cpres(){ \/* compute an array with the beginnings o/
+cpyact	y2.c	/^cpyact(offset){ \/* copy C action to the next ; or /
+cpycode	y2.c	/^cpycode(){ \/* copies code between \\{ and \\} *\/$/
+cpyunion	y2.c	/^cpyunion(){$/
+cstash	y2.c	/^cstash( s ) register char *s; {$/
+defin	y2.c	/^defin( t, s ) register char  *s; {$/
+defout	y2.c	/^defout(){ \/* write out the defines (at the end of /
+error	y1a.c	/^error(s,a1) char *s; { \/* write out error comment /
+fdtype	y2.c	/^fdtype( t ){ \/* determine the type of a symbol *\/$/
+finact	y2.c	/^finact(){$/
+flset	y1b.c	/^struct looksets *flset( p )   struct looksets *p; /
+gettok	y2.c	/^gettok() {$/
+gin	y4.c	/^gin(i){$/
+go2gen	y3.c	/^go2gen(c){ \/* output the gotos for nonterminal c */
+go2out	y3.c	/^go2out(){ \/* output the gotos for the nontermninal/
+gtnm	y4.c	/^gtnm(){$/
+hideprod	y3.c	/^hideprod(){$/
+nxti	y4.c	/^nxti(){ \/* finds the next i *\/$/
+osummary	y4.c	/^osummary(){$/
+others	y1a.c	/^others(){ \/* put out other arrays, copy the parser/
+output	y3.c	/^output(){ \/* print the output for the states *\/$/
+precftn	y3.c	/^precftn(r,t,s){ \/* decide a shift\/reduce conflict /
+prlook	y1a.c	/^prlook( p ) struct looksets *p;{$/
+putitem	y1a.c	/^putitem( ptr, lptr )  int *ptr;  struct looksets */
+setunion	y1a.c	/^setunion( a, b ) register *a, *b; {$/
+setup	y2.c	/^setup(argc,argv) int argc; char *argv[];$/
+skipcom	y2.c	/^skipcom(){ \/* skip over comments *\/$/
+stagen	y1a.c	/^stagen(){ \/* generate the states *\/$/
+state	y1a.c	/^state(c){ \/* sorts last state,and sees if it equal/
+stin	y4.c	/^stin(i){$/
+summary	y1a.c	/^summary(){ \/* output the summary on the tty *\/$/
+symnam	y1a.c	/^char *symnam(i){ \/* return a pointer to the name o/
+warray	y3.c	/^warray( s, v, n ) char *s; int *v, n; {$/
+wdef	y3.c	/^wdef( s, n ) char *s; { \/* output a definition of /
+wract	y3.c	/^wract(i){ \/* output state i *\/$/
+writem	y1a.c	/^char *writem(pp) int *pp; { \/* creates output stri/
+wrstate	y3.c	/^wrstate(i){ \/* writes state i *\/$/

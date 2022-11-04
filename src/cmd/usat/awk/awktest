@@ -1,0 +1,42 @@
+:
+# SCCSID: @(#)awktest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** awk test started - "
+date
+touch $T/awk.$$.err
+
+if test -f "$awkpath"
+then
+	$M awk -f $L/awk/awk.input  /dev/null  > $T/awk.$$.out
+
+	cmp $T/awk.$$.out $L/awk/awk.sout
+	if test $? != 0
+	then
+		echo "awk:   Compare after awk failed" >> $T/awk.$$.err
+		echo "Compare after awk failed"
+	else
+		$M awk -f $L/awk/awk.input  /dev/null  > $T/awk.$$.out
+
+		cmp $T/awk.$$.out $L/awk/awk.sout
+		if test $? != 0
+		then
+			echo "awk:   Compare after awk failed" >> $T/awk.$$.err
+			echo "Compare after awk failed"
+		fi
+	fi
+
+else
+	echo "$awkpath: not installed" >> $T/awk.$$.err
+	echo "$awkpath: not tested (command not installed)"
+fi
+echo -n "****** End of  awk test - "
+date
+cat $T/awk.$$.err >> $T/log.$$.err
+rm -f $RT/awk.$$.out
+rm -f $RT/awk.$$.err

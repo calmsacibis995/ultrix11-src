@@ -1,0 +1,23 @@
+Mmain	main.c	/^main(argc, argv)$/
+Mmbp	mbp.c	/^main(argc, argv)$/
+Mmpb2	mpb2.c	/^main(argc, argv)$/
+hostpr	host.c	/^hostpr(hostsaddr)$/
+icmp_stats	inet.c	/^icmp_stats(off, name)$/
+inetname	inet.c	/^inetname(in)$/
+inetprint	inet.c	/^inetprint(in, port, proto)$/
+intpr	if.c	/^intpr(interval, ifnetaddr)$/
+ip_stats	inet.c	/^ip_stats(off, name)$/
+klseek	main.c	/^klseek(fd, base, off)$/
+mbpr	mbuf.c	/^mbpr(mbaddr)$/
+netname	route.c	/^netname(in, mask)$/
+ns_phost	route.c	/^ns_phost(sns)$/
+ns_print	route.c	/^ns_print(sns)$/
+plural	main.c	/^plural(n)$/
+protopr	inet.c	/^protopr(off, name)$/
+routename	route.c	/^routename(in)$/
+routepr	route.c	/^routepr(hostaddr, netaddr, hashsizeaddr)$/
+rt_stats	route.c	/^rt_stats(off)$/
+sidewaysintpr	if.c	/^sidewaysintpr(interval, off)$/
+sizeof	mbuf.c	/^int nmbtypes = sizeof(mbstat.m_mtypes) \/ sizeof(sh/
+tcp_stats	inet.c	/^tcp_stats(off, name)$/
+udp_stats	inet.c	/^udp_stats(off, name)$/

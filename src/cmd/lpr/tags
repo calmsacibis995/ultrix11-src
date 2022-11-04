@@ -1,0 +1,73 @@
+Mln01of	ln01of.c	/^main(argc, argv) $/
+Mln03of	ln03of.c	/^main(argc, argv) $/
+Mlpd	lpd.c	/^main(argc, argv)$/
+Mlpdrestart	lpdrestart.c	/^main(argc, argv)$/
+Mlpq	lpq.c	/^main(argc, argv)$/
+Mlpr	lpr.c	/^main(argc, argv)$/
+Mlprm	lprm.c	/^main(argc, argv)$/
+Mlqf	lqf.c	/^main(argc, argv) $/
+Mulf	ulf.c	/^main(argc,argv)$/
+TR	lpd.c	/^#define TR(q)	(((q)-' ')&0177)$/
+banner	lpd.c	/^banner (name1, name2)$/
+bill	globals.h	/^bill(account)$/
+blankfill	lpq.c	/^blankfill(n)$/
+card	lpr.c	/^card(c, p2)$/
+chk	lprm.c	/^chk(file, pid)$/
+chkprinter	lpr.c	/^chkprinter(s)$/
+collect	lprm.c	/^collect()$/
+copy	lpr.c	/^copy(f, n)$/
+dcomp	lpd.c	/^dcomp(d1, d2)$/
+display	lpq.c	/^display()$/
+dofork	lpd.c	/^dofork(action)$/
+doit	lpd.c	/^doit(file)$/
+dqcleanup	lpd.c	/^dqcleanup()$/
+dropit	lpd.c	/^dropit(c)$/
+dump	lpd.c	/^dump(prflag)$/
+dumplines	ulf.c	/^dumplines(p)		\/* dump the top-level line_structure/
+endpr	lpdrestart.c	/^endpr()$/
+escend	ln01of.c	/^#define escend(x)	((x!='\\120')&&(x!='\\133')&&(x>='/
+eschdl	ln01of.c	/^eschdl(o,c)$/
+fatal	lpq.c	/^fatal(s, a)$/
+for	lpd.c	/^	for (p = pdir; nitems > 0; p++, nitems--) {$/
+getline	lpd.c	/^getline()$/
+getpr	lpdrestart.c	/^getpr(bp)$/
+header	lpq.c	/^header()$/
+ident	lpr.c	/^ident()$/
+if	lpd.c	/^	if (filter)$/
+inform	lpq.c	/^inform(df, garb)$/
+init	lpd.c	/^init()$/
+itoa	lpr.c	/^itoa(i)$/
+ldump	lpq.c	/^ldump(file, ufile, copies)$/
+lockchk	lprm.c	/^lockchk(s)$/
+log	lpd.c	/^log(message, a1, a2, a3)$/
+makeline	ulf.c	/^makeline()	\/* malloc up some memory for a line_str/
+mktmp	lpr.c	/^mktmp(id, pid, n)$/
+nfile	lpr.c	/^nfile(n)$/
+out	lpr.c	/^out()$/
+outofmemory	ulf.c	/^outofmemory()$/
+pgetnum	lpdrestart.c	/^pgetnum(id)$/
+place	ulf.c	/^place(c, location, p)	\/* add a new character to a /
+pr	lpd.c	/^pr(fi, fo)$/
+prank	lpq.c	/^prank(n)$/
+process	lprm.c	/^process(p)$/
+qprint	ulf.c	/^qprint(line)		\/* print a line efficiently *\/$/
+rdumpl	ulf.c	/^rdumpl(p)		\/* recursively dump the overprints *\/$/
+scan_out	lpd.c	/^scan_out(scfd, scsp, dlm)$/
+scnline	lpd.c	/^scnline(key, p, c)$/
+sendmail	lpd.c	/^sendmail()$/
+setpr	lpdrestart.c	/^setpr()$/
+setsiz	ln01of.c	/^setsiz(o,len,wid)$/
+show	lpq.c	/^show(file, ufile, copies)$/
+spaceto	ulf.c	/^spaceto( where, dir)$/
+tdecode	lpdrestart.c	/^tdecode(str, area)$/
+test	lpr.c	/^test(file)$/
+tgetent	printcap.c	/^tgetent(bp, name)$/
+tgetflag	printcap.c	/^tgetflag(id)$/
+tgetnum	printcap.c	/^tgetnum(id)$/
+tgetstr	lpdrestart.c	/^tgetstr(id, area)$/
+throwpage	ulf.c	/^throwpage()		\/* toss a page *\/$/
+tnamatch	printcap.c	/^tnamatch(np)$/
+tnchktc	printcap.c	/^tnchktc()$/
+tossout	ulf.c	/^tossout()$/
+tskip	lpdrestart.c	/^tskip(bp)$/
+usage	lpq.c	/^usage()$/

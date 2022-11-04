@@ -1,0 +1,37 @@
+:
+# SCCSID: @(#)f77test	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** f77 test started - "
+date
+touch $T/f77.$$.err
+
+if test -f "$f77path"
+then
+	cp $L/f77/f77.in.f $T/f77.$$.f
+	$M f77 $T/f77.$$.f -o $T/fp1.$$.out
+	$M $T/fp1.$$.out  > $T/fp2.$$.out
+
+	cmp $L/f77/f77.sout $T/fp2.$$.out
+	if test $? != 0
+	then
+	     echo "f77: Compare after execute failed" >> $T/f77.$$.err
+	     echo "Compare after execute failed"
+	fi
+else
+	echo "$f77path: not installed" >> $T/f77.$$.err
+	echo "$f77path: not tested (command not installed)"
+fi
+	
+echo -n "****** End  of f77 test - "
+date
+cat $T/f77.$$.err >> $T/log.$$.err
+rm -f $RT/fp?.$$.out
+rm -f $RT/f77.$$.err
+rm -f $RT/f77.$$.f
+rm -f f77.$$.o

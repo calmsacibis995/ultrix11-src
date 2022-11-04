@@ -1,0 +1,13 @@
+BEGIN { printf("\nCelsius\t\tFahrenheit\tKelvin");
+	CTOK=273.16; MAXF=500;
+	MINF=0; INC=5;	}
+
+END { for(k=(MINF); k<=MAXF; k=k+INC) {
+	printf("\n")
+	c=k-CTOK
+	printf("%6.2f		",c)
+	f=((9.0/5.0)*(c+32.0))
+	printf("%6.2f		",f)
+	printf("%6.2f		",k)
+	}
+printf("\n")	}

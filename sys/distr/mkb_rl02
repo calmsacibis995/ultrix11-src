@@ -1,0 +1,132 @@
+SCCSID="@(#)mkb_rl02	3.1	7/11/87"
+# Shell procedure to build ULTRIX-11 RL02 kits
+# Called from mkb: mkb_rl02 qjn users
+#	qnj	= QJ number, i.e., QJ087-HH
+#	users	= number of users, i.e., 8, 16, 32
+# Fred Canter 5/18/85
+#
+# WARNING: OPTSW pack not the same for all RL02 kits!
+#	   UMAX in machdep.o and LIB1_id in sysgen!
+
+PRTC="Press <RETURN> to continue:"
+HOMEDIR=/usr/sys/distr
+ROOT=hp10
+USR=hp11
+OPTSW=hp14
+SCRATCH=hp15
+PROTO=hp16
+SAPROG=rl00
+RLROOT=rl00
+RLUSR=rl07
+RLOPTSW=rl17
+case $2 in
+8)	UMAX=023041 ;;
+16)	UMAX=035056 ;;
+32)	UMAX=022045 ;;
+*)	echo ""; echo "mkb_rl02: bad # of users"; exit 1 ;;
+esac
+echo ""
+echo "Mount $1 ROOT and /USR master pack in RL02 unit zero (WRITE ENABLED)."
+echo ""
+echo "Mount $1 OPTIONAL SOFTWARE master pack in RL02 unit one (WRITE ENABLED)."
+echo ""
+echo -n $PRTC
+read YN
+echo ""
+echo "$1: ULTRIX-11 V3.1 up to $2 user binary RL02"
+echo ""
+set -x
+/etc/mount /dev/$ROOT /bvroot
+/etc/mount /dev/$USR /bvusr
+/etc/mount /dev/$PROTO /bvproto
+cp /bvproto/boot$2 /bvroot/boot; cp /bvproto/boot$2 /bvroot/boot.bu
+chmod 644 /bvroot/boot /bvroot/boot.bu
+cp /bvproto/machdep/md$2_id.o machdep.o
+ar rv /bvusr/sys/sys/LIB1_id machdep.o; rm -f machdep.o
+cp /bvproto/machdep/md$2_ov.o /bvusr/sys/ovsys/machdep.o
+cp /bvproto/unix$2 /bvroot/unix
+chmod 644 /bvroot/unix
+chown sys /bvusr/sys/conf/*
+/etc/umount /dev/$USR
+/etc/mkfs /dev/r$SAPROG 500 rl02 23 boot distr
+dd if=/bvroot/mdec/rluboot of=/dev/r$SAPROG count=1
+/etc/mount /dev/$SAPROG /bvsas
+cp /bvproto/boot$2 /bvsas/boot
+# Link boot to unix (disables auto-boot, see boot.c)
+ln /bvsas/boot /bvsas/unix
+cp /bvproto/boot$2 /bvsas/boot.bu
+cp /bvproto/sdload/rlload /bvsas/sdload
+cd /bvproto/sas
+cp bads copy dskinit icheck mkfs rabads restor scat syscall /bvsas
+chmod 644 /bvsas/*
+# Need links because installation guide says load SA progs from /sas
+cd /bvsas; mkdir sas; chmod 755 sas
+ln bads sas/bads
+ln copy sas/copy
+ln dskinit sas/dskinit
+ln icheck sas/icheck
+ln mkfs sas/mkfs
+ln rabads sas/rabads
+ln restor sas/restor
+ln scat sas/scat
+ln syscall sas/syscall
+cd $HOMEDIR
+/etc/umount /dev/$PROTO
+/etc/umount /dev/$SAPROG
+fsck /dev/r$SAPROG
+/etc/umount /dev/$ROOT
+dump 0yf /dev/r$SCRATCH /dev/r$ROOT
+# Copy 8000 blocks, root can't be larger than that.
+dd if=/dev/r$SCRATCH of=/dev/r$RLROOT bs=20b seek=50 count=400
+dump 0yf /dev/r$SCRATCH /dev/r$USR
+# Moved usr dump to just after root dump, rl01 not big enough!
+dd if=/dev/r$SCRATCH of=/dev/r$RLUSR bs=20b seek=450 count=574
+set -
+
+# Make OPTIONAL SOFTWARE master
+
+echo ""
+echo "$1: ULTRIX-11 V3.1 up to $2 user OPTIONAL SOFTWARE RL02"
+echo ""
+set -x
+/etc/mkfs /dev/r$RLOPTSW rl_optsw.proto rl02 23 optsw distr
+/etc/mount /dev/$RLOPTSW /bvmnt
+/etc/mount /dev/$PROTO /bvproto
+cd /bvmnt
+mkdir rcmds ucmds sysgen
+chmod 755 *
+# root optional software and alternate commands (recovery only)
+/etc/mount /dev/$ROOT /bvroot
+cd /bvroot
+tar cf - ./sas |(cd /bvmnt/rcmds; tar xpf -)
+cd $HOMEDIR
+# usr optional software
+/etc/mount /dev/$OPTSW /bvos
+cd /bvos
+tar cf - . | (cd /bvmnt/ucmds; tar xpf -)
+# Blow off unpacked man page files (get packed ones from bvproto).
+cd /bvmnt/ucmds/man
+rm -rf *
+cd /bvproto/man; tar cf - . |(cd /bvmnt/ucmds/man; tar xpf -)
+cd /bvroot
+# ONLY sas in rcmds
+#tar cf - ./bin/nsid ./bin/sid ./lib/c2* ./sas |(cd /bvmnt/rcmds; tar xpf -)
+tar cf - ./sas |(cd /bvmnt/rcmds; tar xpf -)
+cd $HOMEDIR
+/etc/umount /dev/$ROOT
+/etc/umount /dev/$OPTSW
+# sysgen (for setup_osl)
+# WARNING: machdep.o & LIB1_id contain UMAX variable!
+/etc/mount /dev/$USR /bvusr
+cp /bvproto/machdep/md$2_id.o machdep.o
+ar rv /bvusr/sys/sys/LIB1_id machdep.o; rm -f machdep.o
+cp /bvproto/machdep/md$2_ov.o /bvusr/sys/ovsys/machdep.o
+/etc/umount /dev/$PROTO
+cd /bvusr
+tar cf - ./sys | (cd /bvmnt/sysgen; tar xpf -)
+cd $HOMEDIR
+/etc/umount /dev/$USR
+/etc/umount /dev/$RLOPTSW
+fsck -t /tmp/fred.fsck432 /dev/r$RLOPTSW
+exit
+fi

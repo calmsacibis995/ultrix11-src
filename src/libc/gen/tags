@@ -1,0 +1,84 @@
+ASSERT	malloc.c	/^#define ASSERT(p) if(!(p))botch("p");else$/
+Copyright	cuexit.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+GETWDERR	getwd.c	/^#define GETWDERR(s)	strcpy(pathname, (s));$/
+abs	abs.c	/^abs(arg)$/
+advance	regex.c	/^advance(lp, ep)$/
+allock	malloc.c	/^allock(q)$/
+asctime	ctime.c	/^asctime(t)$/
+atof	atof.c	/^atof(p)$/
+atoi	atoi.c	/^atoi(p)$/
+atol	atol.c	/^atol(p)$/
+backref	regex.c	/^backref(i, lp)$/
+botch	malloc.c	/^botch(s)$/
+calloc	calloc.c	/^calloc(num, size)$/
+cclass	regex.c	/^cclass(set, c, af)$/
+cfree	calloc.c	/^cfree(p, num, size)$/
+clearbusy	malloc.c	/^#define clearbusy(p) (union store *)((INT)(p)&~BUS/
+crypt	crypt.c	/^crypt(pw,salt)$/
+ct_numb	ctime.c	/^ct_numb(cp, n)$/
+ctime	ctime.c	/^ctime(t)$/
+cvt	ecvt.c	/^cvt(arg, ndigits, decpt, sign, eflag)$/
+dysize	ctime.c	/^dysize(y)$/
+ecvt	ecvt.c	/^ecvt(arg, ndigits, decpt, sign)$/
+encrypt	crypt.c	/^encrypt(block)$/
+execat	execvp.c	/^execat(s1, s2, si)$/
+execlp	execvp.c	/^execlp(name, argv)$/
+execvp	execvp.c	/^execvp(name, argv)$/
+exit	cuexit.s	/^\/ exit(code)$/
+fcvt	ecvt.c	/^fcvt(arg, ndigits, decpt, sign)$/
+free	malloc.c	/^free(ap)$/
+frexp	frexp11.s	/^\/  double frexp(x, ip)$/
+getenv	getenv.c	/^getenv(name)$/
+getlogin	getlogin.c	/^getlogin()$/
+getttys	ttyslot.c	/^getttys(f)$/
+getwd	getwd.c	/^getwd(pathname)$/
+gmtime	ctime.c	/^gmtime(tim)$/
+gtty	stty.c	/^gtty(fd, ap)$/
+ialloc	malloc.c	/^ialloc(qq, nbytes)$/
+index	index.c	/^index(sp, c)$/
+isatty	isatty.c	/^isatty(f)$/
+l3tol	l3.c	/^l3tol(lp, cp, n)$/
+ldexp	ldexp11.s	/^\/ double ldexp(number, exp)$/
+localtime	ctime.c	/^localtime(tim)$/
+longjmp	setjmp.s	/^\/	longjmp(a,v)$/
+ltol3	l3.c	/^ltol3(cp, lp, n)$/
+malloc	malloc.c	/^malloc(nbytes)$/
+mktemp	mktemp.c	/^mktemp(as)$/
+modf	modf11.s	/^\/ double modf(x, *fp)$/
+monitor	mon.c	/^monitor(lowpc, highpc, buf, bufsiz, cntsiz)$/
+mov	fakfp.s	/^	mov	(sp)+,r0$/
+nlist	nlist.c	/^nlist(name, list)$/
+nvmatch	getenv.c	/^nvmatch(s1, s2)$/
+part	modf11.s	/^\/ stash integer part (as double)$/
+perror	perror.c	/^perror(s)$/
+prepend	getwd.c	/^prepend(dirname, pathname)$/
+qs1	qsort.c	/^static qs1(a, l)$/
+qsexc	qsort.c	/^static qsexc(i, j)$/
+qsort	qsort.c	/^qsort(a, n, es, fc)$/
+qstexc	qsort.c	/^static qstexc(i, j, k)$/
+rand	rand.c	/^rand()$/
+re_comp	regex.c	/^re_comp(sp)$/
+re_exec	regex.c	/^re_exec(p1)$/
+realloc	malloc.c	/^realloc(pp, nbytes)$/
+rindex	rindex.c	/^rindex(sp, c)$/
+setbusy	malloc.c	/^#define setbusy(p) (union store *)((INT)(p)|BUSY)$/
+setjmp	setjmp.s	/^\/	setjmp(a)$/
+setkey	crypt.c	/^setkey(key)$/
+sleep	sleep.c	/^sleep(n)$/
+sleepx	sleep.c	/^sleepx()$/
+srand	rand.c	/^srand(x)$/
+strcat	strcat.c	/^strcat(s1, s2)$/
+strcmp	strcmp.c	/^strcmp(s1, s2)$/
+strcpy	strcpy.c	/^strcpy(s1, s2)$/
+strlen	strlen.c	/^strlen(s)$/
+strncat	strncat.c	/^strncat(s1, s2, n)$/
+strncmp	strncmp.c	/^strncmp(s1, s2, n)$/
+strncpy	strncpy.c	/^strncpy(s1, s2, n)$/
+stty	stty.c	/^stty(fd, ap)$/
+sunday	ctime.c	/^sunday(t, d)$/
+swab	swab.c	/^swab(pf, pt, n)$/
+tell	tell.c	/^long tell(f)$/
+testbusy	malloc.c	/^#define testbusy(p) ((INT)(p)&BUSY)$/
+timezone	timezone.c	/^char *timezone(zone, dst)$/
+ttyname	ttyname.c	/^ttyname(f)$/
+ttyslot	ttyslot.c	/^ttyslot()$/

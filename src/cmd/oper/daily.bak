@@ -1,0 +1,107 @@
+SCCSID="@(#)daily.bak	3.0	4/22/86"
+: ULTRIX-11 DAILY file system backup command file
+: 1600 BPI dumps to TE16 unit 1 or TS11 unit 0
+: Retries dump on error
+:
+: Fred Canter 10/9/83
+
+echo ""
+echo "ULTRIX-11 DAILY File System Backup"
+while true
+do
+	echo ""
+	echo -n "Tape Drive <te16 or ts11> ? "
+	read TN
+	if test $TN = te16
+	then	T=ht1
+		break
+	fi
+	if test $TN = ts11
+	then	T=ht0
+		break
+	fi
+done
+while true
+do
+	echo ""
+	echo -n "Mount ROOT (hp00) level 0 dump tape for - "
+	date
+	echo ""
+	YN=n
+	while test $YN != y
+	do
+		echo -n "Ready <y or n> ? "
+		read YN
+		if test $YN
+		then	echo ""
+		else	YN=n
+			echo ""
+		fi
+	done
+	dump 0uf /dev/r$T /dev/rhp00
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		fi
+	fi
+done
+while true
+do
+	echo ""
+	echo -n "Mount USR (hp03) level 9 dump tape for - "
+	date
+	echo ""
+	YN=n
+	while test $YN != y
+	do
+		echo -n "Ready <y or n> ? "
+		read YN
+		if test $YN
+		then	echo ""
+		else	YN=n
+			echo ""
+		fi
+	done
+	dump 9uf /dev/r$T /dev/rhp03
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		fi
+	fi
+done
+while true
+do
+	echo ""
+	echo -n "Mount STAFF (hp05) level 9 dump tape for - "
+	date
+	echo ""
+	YN=n
+	while test $YN != y
+	do
+		echo -n "Ready <y or n> ? "
+		read YN
+		if test $YN
+		then	echo ""
+		else	YN=n
+			echo ""
+		fi
+	done
+	dump 9uf /dev/r$T /dev/rhp05
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		fi
+	fi
+done

@@ -1,0 +1,65 @@
+CTRL	cr_ex.h	/^# define	CTRL(c)	('c' & 037)$/
+MAX_COL	overlay.c	/^#define		MAX_COL(win)	(win->_maxx + win->_begx)$/
+MAX_LINE	overlay.c	/^#define		MAX_LINE(win)	(win->_maxy + win->_begy)$/
+Mcurtest	curtest.c	/^main( ac, av )$/
+Mshow	show.c	/^main(argc, argv)$/
+_putchar	cr_put.c	/^_putchar(c)$/
+_sprintw	printw.c	/^_sprintw(win, fmt, args)$/
+_sscans	scanw.c	/^_sscans(win, fmt, args)$/
+box	box.c	/^box(win, vert, hor)$/
+delwin	delwin.c	/^delwin(win)$/
+do_touch	touchwin.c	/^do_touch(win)$/
+domvcur	refresh.c	/^domvcur(oy, ox, ny, nx)$/
+done	show.c	/^done()$/
+draw_pattern	curtest.c	/^draw_pattern( )$/
+endwin	endwin.c	/^endwin()$/
+fgoto	cr_put.c	/^fgoto()$/
+getcap	cr_tty.c	/^getcap(name)$/
+gettmode	cr_tty.c	/^gettmode() {$/
+initscr	initscr.c	/^initscr() {$/
+longname	longname.c	/^longname(bp, def)$/
+makech	refresh.c	/^makech(win, wy)$/
+makenew	newwin.c	/^makenew(num_lines, num_cols, begy, begx)$/
+max	overlay.c	/^# define	max(a,b)	(a > b ? a : b)$/
+min	overlay.c	/^# define	min(a,b)	(a < b ? a : b)$/
+mvcur	cr_put.c	/^mvcur(ly, lx, y, x)$/
+mvprintw	mvprintw.c	/^mvprintw(y, x, fmt, args)$/
+mvscanw	mvscanw.c	/^mvscanw(y, x, fmt, args)$/
+mvwin	mvwin.c	/^mvwin(win, by, bx)$/
+mvwprintw	mvprintw.c	/^mvwprintw(win, y, x, fmt, args)$/
+mvwscanw	mvscanw.c	/^mvwscanw(win, y, x, fmt, args)$/
+newwin	newwin.c	/^newwin(num_lines, num_cols, begy, begx)$/
+normal_pattern	curtest.c	/^normal_pattern( base_y_begin, base_x_begin )$/
+overlay	overlay.c	/^overlay(win1, win2)$/
+overwrite	overwrite.c	/^overwrite(win1, win2)$/
+plod	cr_put.c	/^plod(cnt)$/
+plodput	cr_put.c	/^plodput(c)$/
+printw	printw.c	/^printw(fmt, args)$/
+scanw	scanw.c	/^scanw(fmt, args)$/
+scroll	scroll.c	/^scroll(win)$/
+set_ch	addch.c	/^set_ch(win, y, x, ch, orig)$/
+setterm	cr_tty.c	/^setterm(type)$/
+subwin	newwin.c	/^subwin(orig, num_lines, num_cols, begy, begx)$/
+tabcol	cr_put.c	/^tabcol(col, ts)$/
+touchwin	touchwin.c	/^touchwin(win)$/
+tstp	tstp.c	/^tstp() {$/
+unctrl	unctrl.h	/^#define	unctrl(ch)	(_unctrl[ch & 0177])$/
+waddch	addch.c	/^waddch(win, c)$/
+waddstr	addstr.c	/^waddstr(win,str)$/
+wclear	clear.c	/^wclear(win)$/
+wclrtobot	clrtobot.c	/^wclrtobot(win)$/
+wclrtoeol	clrtoeol.c	/^wclrtoeol(win)$/
+wdelch	delch.c	/^wdelch(win)$/
+wdeleteln	deleteln.c	/^wdeleteln(win)$/
+werase	erase.c	/^werase(win)$/
+wgetch	getch.c	/^wgetch(win)$/
+wgetstr	getstr.c	/^wgetstr(win,str)$/
+winsch	insch.c	/^winsch(win, c)$/
+winsertln	insertln.c	/^winsertln(win)$/
+wmove	move.c	/^wmove(win, y, x)$/
+wprintw	printw.c	/^wprintw(win, fmt, args)$/
+wrefresh	refresh.c	/^wrefresh(win)$/
+wscanw	scanw.c	/^wscanw(win, fmt, args)$/
+wstandend	standout.c	/^wstandend(win)$/
+wstandout	standout.c	/^wstandout(win)$/
+zap	cr_tty.c	/^zap() {$/

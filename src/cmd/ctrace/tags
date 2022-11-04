@@ -1,0 +1,40 @@
+I_CT_	runtime.c	/^#define I_CT_(x)	((x + LM_CT_) % LM_CT_)$/
+Mmain	main.c	/^main(argc, argv)$/
+add_fcn	trace.c	/^add_fcn(sym, exp_start, exp_end, type)$/
+add_symbol	lookup.c	/^add_symbol(ident, type)$/
+add_type	lookup.c	/^add_type(ident)$/
+append	main.c	/^append(s1, s2)$/
+because	scanner.l	93
+ctroff	runtime.c	/^ctroff()$/
+ctron	runtime.c	/^ctron()$/
+dump_code	trace.c	/^dump_code(j)$/
+error	main.c	/^error(text)$/
+expand_fcn	trace.c	/^expand_fcn(sym, new_start, new_end)$/
+f_ct_	runtime.c	/^f_ct_()$/
+fatal	main.c	/^fatal(text)$/
+hash	lookup.c	/^hash(s)	\/* form hash value for string *\/$/
+hashlink	lookup.c	/^hashlink(p)$/
+init_symtab	lookup.c	/^init_symtab()$/
+lookup	lookup.c	/^lookup(ident)$/
+max	trace.c	/^#define max(X, Y)	(((int) X > (int) Y) ? X : Y)$/
+msg_header	main.c	/^msg_header()$/
+putpp	trace.c	/^putpp()$/
+puttext	trace.c	/^puttext(end)$/
+putvar	trace.c	/^putvar(var)$/
+quit	main.c	/^quit()$/
+reset	trace.c	/^reset()$/
+rm_all_trace	trace.c	/^rm_all_trace(sym)$/
+rm_trace	trace.c	/^rm_trace(sym)$/
+runtime	main.c	/^runtime()$/
+s_ct_	runtime.c	/^s_ct_(name, value)$/
+simple_trace	trace.c	/^simple_trace(j)$/
+strsave	lookup.c	/^strsave(s)$/
+t_ct_	runtime.c	/^t_ct_(text)$/
+tr_fcn	main.c	/^tr_fcn(identifier)$/
+tr_stmt	trace.c	/^tr_stmt(lineno, stmt, putsemicolon)$/
+tr_vars	trace.c	/^tr_vars(start, end)$/
+transchar	trace.c	/^transchar(c)$/
+transvar	trace.c	/^transvar(var)$/
+u_ct_	runtime.c	/^u_ct_(name, _size, value)	\/* size is a macro in <m/
+warning	main.c	/^warning(text)$/
+yyerror	parser.y	/^yyerror(s)$/

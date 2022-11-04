@@ -1,0 +1,71 @@
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# This is a skeleton makefile.  It is to be used as a guide for
+# what sort of things you need to put into makefiles.  This file
+# contains the bare minimum of what things are needed.
+#
+
+# Sccsid: This line is needed for SCCS to record version numbers
+SCCSID="%W%	%G%"
+
+# SOURCES: This line contains all the source code modules that are
+# under SCCS control.
+SOURCES = a.c b.c c.c h.h
+
+# all: this should always be the first action in the makefile,
+# and it should have all the things that need to be made as it's
+# dependencies.
+all: cmd1 cmd2
+
+# sources: This line should have as dependencies all of the
+# source files, so that saying 'make sources' will cause
+# sccs gets of all the needed files.
+sources: ${SOURCES}
+
+# The next line is what causes the 'sccs get' for files
+# that are under sccs control. Any files in addition to
+# those listed in SOURCES that are under sccs control
+# should be listed here. Note that we only have targets,
+# and no dependencies.
+${SOURCES} xfile1 xfile2:
+	sccs get $@
+
+# install: This should do everything that is needed to 
+# install everything.  This means putting it in place,
+# stripping it, setting the mode, owner and group.
+# once it is done, it should clean up after itself,
+# removing everything it created, except sources.
+# (i.e., it should NOT do an sccs clean!)
+install: cmd1 cmd2
+	cp cmd1 ${DESTDIR}/bin/cmd1
+	strip ${DESTDIR}/bin/cmd1
+	chmod 755 ${DESTDIR}/bin/cmd1
+	chog bin ${DESTDIR}/bin/cmd1
+	cp cmd2 ${DESTDIR}/usr/lib/cmd2
+# if there are subdirectories, go there and pass on DESTDIR.
+	cd subdir; make install -DDESTDIR=${DESTDIR}
+# clean up after ourselves.
+	make clean
+
+# clean: remove unneccessary stuff, like logfile, a.out, corefiles,
+# .o files, etc.  It should do everything except an 'sccs clean'.
+clean:
+	rm -f log a.out core *.o
+
+# clobber: like clean, but in addition also do an 'sccs clean'.
+clobber:
+	rm -f log a.out core *.o
+	sccs clean
+
+# tags: create a tags file for use with ex/vi editors
+tags: ${SOURCES}
+	ctags ${SOURCES}
+
+# sccsinfo: see which files, if any, are checked out for editing
+sccsinfo:
+	sccs info

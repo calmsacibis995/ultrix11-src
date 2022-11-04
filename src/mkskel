@@ -1,0 +1,134 @@
+# SCCSID: @(#)mkskel	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# Bourne shell script to create the required target installation
+# directories, if they do not already exist.
+#
+PATH=/bin:/usr/bin
+if [ ! -d ${DESTDIR}/ ]
+then
+	echo ${DESTDIR}/ does not exist!
+	exit 1
+fi
+#
+# ROOT 755
+# --------
+for i in /bin /usr /etc /lib /dev \
+	 /usr/adm /mdec /sas \
+	 /usr/orphan /usr/orphan/bin /usr/orphan/usr \
+	 /usr/orphan/lib /usr/orphan/usr/lib /usr/orphan/usr/bin
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog root ${DESTDIR}$i; chog root ${DESTDIR}$i
+		echo chmod 755 ${DESTDIR}$i; chmod 755 ${DESTDIR}$i
+	fi
+done
+#
+# ROOT 775
+# --------
+for i in /usr/spool
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog root ${DESTDIR}$i; chog root ${DESTDIR}$i
+		echo chmod 775 ${DESTDIR}$i; chmod 775 ${DESTDIR}$i
+	fi
+done
+#
+# ROOT 777
+# --------
+for i in /tmp /usr/tmp /usr/spool/mail \
+	 /usr/spool/at /usr/spool/at/past
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog root ${DESTDIR}$i; chog root ${DESTDIR}$i
+		echo chmod 777 ${DESTDIR}$i; chmod 777 ${DESTDIR}$i
+	fi
+done
+#
+# BIN 755
+# -------
+for i in /usr/bin	/usr/dict	/usr/etc 	/usr/ucb	\
+	 /usr/lib	/usr/lib/refer	/usr/lib/struct	/usr/lib/term	\
+	 /bin/sid	/bin/nsid	/usr/c		/usr/orphan/usr/lib \
+	 /usr/orphan/usr/lib/term	/usr/orphan/usr/lib/tmac	\
+	 /usr/orphan/usr/pub
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog bin ${DESTDIR}$i; chog bin ${DESTDIR}$i
+		echo chmod 755 ${DESTDIR}$i; chmod 755 ${DESTDIR}$i
+	fi
+done
+#
+# BIN 775
+# -------
+for i in /usr/lib/font /usr/orphan/usr/lib/font
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog bin ${DESTDIR}$i; chog bin ${DESTDIR}$i
+		echo chmod 775 ${DESTDIR}$i; chmod 775 ${DESTDIR}$i
+	fi
+done
+#
+# BIN 777
+# -------
+for i in /usr/lib/learn /usr/lib/lex
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog bin ${DESTDIR}$i; chog bin ${DESTDIR}$i
+		echo chmod 777 ${DESTDIR}$i; chmod 777 ${DESTDIR}$i
+	fi
+done
+if [ ! -d ${DESTDIR}/usr/crash ]
+then
+	echo mkdir ${DESTDIR}/usr/crash; mkdir ${DESTDIR}/usr/crash
+	echo chog sys ${DESTDIR}/usr/crash; chog sys ${DESTDIR}/usr/crash
+	echo chmod 755 ${DESTDIR}/usr/crash; chmod 755 ${DESTDIR}/usr/crash
+fi
+if [ ! -d ${DESTDIR}/usr/spool/lpd ]
+then
+	echo mkdir ${DESTDIR}/usr/spool/lpd; mkdir ${DESTDIR}/usr/spool/lpd
+	echo chog daemon ${DESTDIR}/usr/spool/lpd;
+	chog daemon ${DESTDIR}/usr/spool/lpd
+	echo chmod 755 ${DESTDIR}/usr/spool/lpd;
+	chmod 755 ${DESTDIR}/usr/spool/lpd
+fi
+if [ ! -d ${DESTDIR}/usr/lib/uucp ]
+then
+	echo mkdir ${DESTDIR}/usr/lib/uucp; mkdir ${DESTDIR}/usr/lib/uucp
+	echo chog uucp ${DESTDIR}/usr/lib/uucp
+	chog uucp ${DESTDIR}/usr/lib/uucp
+	echo chmod 755 ${DESTDIR}/usr/lib/uucp
+	chmod 755 ${DESTDIR}/usr/lib/uucp
+fi
+if [ ! -d ${DESTDIR}/usr/usep ]
+then
+	echo mkdir ${DESTDIR}/usr/usep; mkdir ${DESTDIR}/usr/usep
+	echo chog usep ${DESTDIR}/usr/usep; chog usep ${DESTDIR}/usr/usep
+	echo chmod 755 ${DESTDIR}/usr/usep; chmod 755 ${DESTDIR}/usr/usep
+fi
+for i in /opr /mnt
+do
+	if [ ! -d ${DESTDIR}$i ]
+	then
+		echo mkdir ${DESTDIR}$i; mkdir ${DESTDIR}$i
+		echo chog root ${DESTDIR}$i; chog root ${DESTDIR}$i
+		echo chmod 700 ${DESTDIR}$i; chmod 700 ${DESTDIR}$i
+	fi
+done

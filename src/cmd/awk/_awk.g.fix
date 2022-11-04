@@ -1,0 +1,12 @@
+g/Sccsid = @(#)_awk.g.fix	3.0/
+/globl[ 	]*_yyact/d
+/^_yyact:$/i
+.text
+.
+ka
+/.globl[ 	][ 	]*/i
+.data
+.
+'a,.-1g/globl/d
+w
+q

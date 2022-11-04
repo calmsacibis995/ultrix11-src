@@ -1,0 +1,46 @@
+:
+# SCCSID: @(#)custat_v7m	3.0	5/9/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# V7M-11 custat command
+# Shows status of CU auto call units and direct lines.
+
+F=0
+for i in 0 1 2 3 4 5 6 7
+do
+	if test -f /dev/cul$i
+	then	if test $F = 0
+		then	echo ""
+			echo "CU direct line status"
+			echo ""
+			F=1
+		fi
+		echo -n "cul$i    "
+		if test -f /usr/spool/uucp/LCK..cul$i
+		then	echo "Locked"
+		else	echo "Available"
+		fi
+	fi
+done
+F=0
+for i in 0 1 2 3 4 5 6 7
+do
+	if test -f /dev/cua$i
+	then	if test $F = 0
+		then	echo ""
+			echo "CU auto call unit status"
+			echo ""
+			F=1
+		fi
+		echo -n "cua$i    "
+		if test -f /usr/spool/uucp/LCK..cua$i
+		then	echo "Locked"
+		else	echo "Available"
+		fi
+	fi
+done

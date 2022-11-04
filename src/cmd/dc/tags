@@ -1,0 +1,70 @@
+EMPTYR	dc.h	/^#define EMPTYR(x) if(stkerr!=0){pushp(x);printf("s/
+EMPTYSR	dc.h	/^#define EMPTYSR(x) if(stkerr !=0){printf("stack em/
+Mdc	dc.c	/^main(argc,argv)$/
+OUTC	dc.h	/^#define OUTC(x) {printf("%c",x); if(--count == 0){/
+add	dc.c	/^add(a1,a2)$/
+add0	dc.c	/^add0(p,ct)$/
+bigot	dc.c	/^bigot(p,flg)$/
+binop	dc.c	/^binop(c)$/
+chsign	dc.c	/^chsign(p)$/
+command	dc.c	/^command(){$/
+commnds	dc.c	/^commnds(){$/
+cond	dc.c	/^cond(c)$/
+copy	dc.c	/^copy(hptr,size)$/
+create	dc.h	/^#define create(p)	(p)->rd = (p)->wt = (p)->beg$/
+div	dc.c	/^div(ddivd,ddivr)$/
+dscale	dc.c	/^dscale(){$/
+eqk	dc.c	/^eqk(){$/
+error	dc.h	/^#define error(p)	{printf(p); continue; }$/
+errorrt	dc.h	/^#define errorrt(p)	{printf(p); return(1); }$/
+exp	dc.c	/^exp(base,ex)$/
+fsfile	dc.h	/^#define fsfile(p)	(p)->rd = (p)->wt$/
+garbage	dc.c	/^garbage(s)$/
+getdec	dc.c	/^getdec(p,sc)$/
+getwd	dc.c	/^getwd(p)$/
+hexot	dc.c	/^hexot(p,flg)$/
+init	dc.c	/^init(argc,argv)$/
+length	dc.h	/^#define length(p) ((p)->wt-(p)->beg)$/
+load	dc.c	/^load(){$/
+log2	dc.c	/^log2(n)$/
+lookwd	dc.c	/^lookwd(p)$/
+more	dc.c	/^more(hptr)$/
+morehd	dc.c	/^morehd(){$/
+mult	dc.c	/^mult(p,q)$/
+nalloc	dc.c	/^nalloc(p,nbytes)$/
+oneot	dc.c	/^oneot(p,sc,ch)$/
+onintr	dc.c	/^onintr(){$/
+ospace	dc.c	/^ospace(s)$/
+pop	dc.c	/^pop(){$/
+print	dc.c	/^print(hptr)$/
+pushp	dc.c	/^pushp(p)$/
+putwd	dc.c	/^putwd(p, c)$/
+readc	dc.c	/^readc(){$/
+readin	dc.c	/^readin(){$/
+redef	dc.c	/^redef(p)$/
+release	dc.c	/^release(p)$/
+removc	dc.c	/^removc(p,n)$/
+removr	dc.c	/^removr(p,n)$/
+rewind	dc.h	/^#define rewind(p) (p)->rd=(p)->beg$/
+salloc	dc.c	/^salloc(size)$/
+salterc	dc.h	/^#define salterc(p,c)	{if((p)->rd==(p)->last)more(p/
+salterwd	dc.c	/^salterwd(hptr,n)$/
+sbackc	dc.h	/^#define sbackc(p)	( ((p)->rd==(p)->beg) ? EOF :( (/
+scale	dc.c	/^scale(p,n)$/
+scalint	dc.c	/^scalint(p)$/
+sdump	dc.c	/^sdump(s1,hptr)$/
+seekc	dc.c	/^seekc(hptr,n)$/
+sfbeg	dc.h	/^#define sfbeg(p)	(((p)->rd==(p)->beg)?1:0)$/
+sfeof	dc.h	/^#define sfeof(p)	(((p)->rd==(p)->wt)?1:0)$/
+sgetc	dc.h	/^#define sgetc(p)	( ((p)->rd==(p)->wt) ? EOF :( ((*/
+signal	dc.h	/^int	(*signal())();$/
+slookc	dc.h	/^#define slookc(p)	( ((p)->rd==(p)->wt) ? EOF :( ((/
+sputc	dc.h	/^#define sputc(p,c)	{if((p)->wt==(p)->last)more(p);/
+sqrt	dc.c	/^sqrt(p)$/
+subt	dc.c	/^subt(){$/
+sungetc	dc.h	/^#define sungetc(p,c)	*(--(p)->rd)=c$/
+sunputc	dc.h	/^#define sunputc(p)	(*( (p)->rd = --(p)->wt))$/
+tenot	dc.c	/^tenot(p,sc)$/
+truncate	dc.h	/^#define truncate(p)	(p)->wt = (p)->rd$/
+unreadc	dc.c	/^unreadc(c)$/
+zero	dc.h	/^#define zero(p)	for(pp=(p)->beg;pp<(p)->last;)*pp+/

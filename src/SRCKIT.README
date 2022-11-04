@@ -1,0 +1,520 @@
+
+
+
+
+
+
+
+
+
+
+
+
+                                          ULTRIX-11 Version 3.1 Source Kit
+
+
+
+
+
+
+
+       The ULTRIX-11 Version 3.1 source kit contains the directories and
+       files from which the ULTRIX-11 Version 3.1 binary system was built.
+       These source directories and files are intended for reference only.
+
+       To build an ULTRIX-11 Version 3.1 system from these sources, you
+       already must be running an ULTRIX-11 Version 3.1 binary system.
+       Then, you can install this source kit on top of your ULTRIX-11
+       Version 3.1 binary system.
+
+       The next four subsections discuss:
+
+       o   Source kit contents
+
+       o   Extracting sources
+
+       o   Building commands
+
+       o   Building an ULTRIX-11 kernel
+
+
+
+       _1._1  _S_o_u_r_c_e _K_i_t _C_o_n_t_e_n_t_s
+
+       The ULTRIX-11 Version 3.1 source kit consists of a single, 1600 bpi
+       magnetic tape in _t_a_r format.  This source kit tape contains:
+
+       o   System administrative (data) files
+
+       o   Local Header files
+
+       o   Local commands
+
+       o   Command and library sources
+
+       o   Kernel and stand-alone program sources
+
+
+       For further information, read _t_a_r(1) and _t_a_r(5) in the _U_L_T_R_I_X-_1_1
+       _P_r_o_g_r_a_m_m_e_r'_s _M_a_n_u_a_l.
+9
+
+
+
+
+
+
+
+
+
+
+
+
+       _1._1._1  _S_y_s_t_e_m _A_d_m_i_n_i_s_t_r_a_t_i_v_e _F_i_l_e_s
+
+       The following system administrative (data) files are included on
+       the source kit tape:
+
+       o   /etc/group.KIT
+
+       o   /etc/motd.KIT
+
+       o   /etc/passwd.KIT
+
+       o   /etc/rc.KIT
+
+       o   /etc/remote.KIT
+
+       o   /usr/games/lib/fortunes.KIT
+
+       o   /usr/lib/aliases.KIT
+
+       o   /usr/lib/crontab.KIT
+
+       o   /usr/lib/sendmail.cfKIT
+
+       o   /usr/lib/uucp/USERFILE.KIT
+
+
+       These .KIT files are the default system data files distributed with
+       the ULTRIX-11 Version 3.1 binary system.  For example, the
+       /_e_t_c/_p_a_s_s_w_d._K_I_T file is a duplicate of the /_e_t_c/_p_a_s_s_w_d file that is
+       distributed with the ULTRIX-11 Version 3.1 binary system.  Because
+       most of these .KIT files are tailored to the needs of each system,
+       they are included with the source tape distribution for reference
+       only.  To ensure that each .KIT file is extracted and placed in its
+       appropriate directory, each is archived, using its full path name,
+       in the directory where it normally would be found.
+
+
+       _1._1._2  _L_o_c_a_l _H_e_a_d_e_r _F_i_l_e_s
+
+       The following header files are included on the source kit tape:
+
+       o   /usr/include/local/uparm.h
+
+       o   /usr/include/protocols/rwhod.h
+
+       o   /usr/include/sys/eflg.h
+
+
+       These are the additional header files required to build the
+       ULTRIX-11 Version 3.1 binary system.  The remaining header files
+       required to build the ULTRIX-11 Version 3.1 system already are
+       distributed with the binary system.  To ensure that each header
+       file is extracted and placed in its appropriate directory, each is
+
+
+9       2 Version 3.1 Source Kit
+
+
+
+
+
+
+
+
+
+       archived, using its full path name, in the directory where it
+       normally would be found.
+
+
+       _1._1._3  _L_o_c_a_l _C_o_m_m_a_n_d_s
+
+       The following local commands are included on the source kit tape:
+
+       o   /usr/local/calcov
+
+       o   /usr/local/install
+
+
+       To ensure that each local command is extracted and placed in its
+       appropriate directory, each is archived, using its full path name,
+       in the directory where it normally would be found. For example,
+       because the location of the _c_a_l_c_o_v command is hardwired into
+       several makefiles, it is archived and extracted using its full path
+       name, /_u_s_r/_l_o_c_a_l/_c_a_l_c_o_v.
+
+                                     _W_a_r_n_i_n_g
+
+            If your system contains any files with the same name as
+            those mentioned in the System Administrative Files, Local
+            Header Files, or Local Commands subsections, then
+            extracting these files from the source kit tape will
+            overwrite your local version.  The ULTRIX-11 Version 3.1
+            binary system, however, does not contain files with these
+            names.  Therefore, you will overwrite data only if you
+            have added files with any of these names.  Therefore,
+            first check this list carefully, then, if necessary,
+            preserve on your system those files which potentially
+            conflict.
+
+
+
+       _1._1._4  _C_o_m_m_a_n_d _a_n_d _L_i_b_r_a_r_y _S_o_u_r_c_e_s
+
+       The ./src directory, containing all sources for the ULTRIX-11
+       Version 3.1 commands and libraries, is included on the source kit
+       tape.
+
+
+       _1._1._5  _K_e_r_n_e_l _a_n_d _S_t_a_n_d-_a_l_o_n_e _P_r_o_g_r_a_m _S_o_u_r_c_e_s
+
+       The ./sys directory, containing all sources for the ULTRIX-11
+       Version 3.1 kernel, is included on the source kit tape.
+
+
+       _1._2  _E_x_t_r_a_c_t_i_n_g _S_o_u_r_c_e_s
+
+       Before you begin extracting sources, you should check the amount of
+       disk free space on your /_u_s_r file system. To check the amount of
+
+
+9                                                  Version 3.1 Source Kit 3
+
+
+
+
+
+
+
+
+
+       free space available, use the _d_f command.  For further information,
+       read _d_f(8) in the _U_L_T_R_I_X-_1_1 _P_r_o_g_r_a_m_m_e_r'_s _M_a_n_u_a_l.
+
+       The entire source kit tape requires, for sources only,
+       approximately 17,500 K-bytes of free disk space on the /_u_s_r file
+       system. If you have insufficient space on your /_u_s_r file system but
+       have space available on another file system, you can use symbolic
+       links to link the ./src and ./sys directories to the larger file
+       system.
+
+       For example, if you have a /_u_s_e_r_1 file system with sufficient free
+       space, you can symbolically link the /_u_s_r/_s_r_c directory to
+       /_u_s_e_r_1/_s_r_c. To do so, type:
+
+            mv /usr/src /usr/src.old
+            mkdir /user1/src
+            ln -s /user1/src /usr/src
+
+       Once these directories are symbolically linked, any files extracted
+       and placed in /_u_s_r/_s_r_c actually reside in the /_u_s_e_r_1/_s_r_c directory
+       on the larger file system.
+
+       Each source directory requires:
+
+            ./src   15,000 K-bytes
+            ./sys    2,500 K-bytes
+            -----------------------
+            Total   17,500 K-bytes
+
+       In addition, you need sufficient disk space to build the commands
+       or libraries in each of the respective source directories. Building
+       the entire ULTRIX-11 Version 3.1 binary system requires an
+       additional:
+
+            ./src   21,700 K-bytes
+            ./sys    1,300 K-bytes
+            -----------------------
+            Total   23,000 K-bytes
+
+       Therefore, if you intend to build the entire system at once, you
+       will need about 40,000 Kbytes of free disk space on your /_u_s_r file
+       system.
+
+       To extract the contents of the source kit tape, you use the _t_a_r
+       command with the x, p, and f keys specified.
+
+       x   Extracts each file from the tape.
+
+       p   Preserves the original owner IDs, permissions, and modification
+           times.
+
+       f   Uses the next argument as the name of the special file on which
+           the source kit tape is mounted.
+
+
+9       4 Version 3.1 Source Kit
+
+
+
+
+
+
+
+
+
+       To extract the contents of entire source kit tape, log in to the
+       _r_o_o_t account and type:
+
+            cd /usr
+            tar xpf /dev/rht0
+
+       The /_d_e_v/_r_h_t_0 is the special file name of the tape drive on which
+       the source tape is mounted.
+
+       If you only want to extract the command sources in the /_u_s_r/_s_r_c
+       directory, type:
+
+            cd /usr
+            tar xpf /dev/rht0 ./src
+
+       The /_d_e_v/_r_h_t_0 is the special file name of the tape drive on which
+       the source tape is mounted.
+
+       If you only want to extract the kernel sources in the /_u_s_r/_s_y_s
+       directory, type:
+
+            cd /usr
+            tar xpf /dev/rht0 ./sys
+
+       The /_d_e_v/_r_h_t_0 is the special file name of the tape drive on which
+       the source tape is mounted.
+
+
+       _1._3  _B_u_i_l_d_i_n_g _U_L_T_R_I_X-_1_1 _C_o_m_m_a_n_d_s _f_r_o_m _S_o_u_r_c_e
+
+       To build an ULTRIX-11 command from source, you first are to change
+       directory to where the sources for that command reside.  Therefore,
+       read the listing provided and use the _c_d command to change to the
+       appropriate directory.
+
+       Essentially, the sources for the ULTRIX-11 commands reside in
+       either two types of directories.  One type contains the sources for
+       a number of different commands (for example, /_u_s_r/_s_r_c/_c_m_d,
+       /_u_s_r/_s_r_c/_u_c_b, and /_u_s_r/_s_r_c/_e_t_c).  The other type contains only the
+       source files required to build a single command or library.  For
+       example, the /_u_s_r/_s_r_c/_c_m_d/_a_d_b directory contains the source files
+       needed to build the _a_d_b command, and the /_u_s_r/_s_r_c/_u_c_b/_M_a_i_l
+       directory contains the source files needed to build the Berkeley
+       _m_a_i_l command.
+
+       Once in the appropriate directory, use the supplied makefile to
+       build an ULTRIX-11 command from source.  To build all commands in
+       that directory, type:
+
+
+
+
+9
+
+
+                                                  Version 3.1 Source Kit 5
+
+
+
+
+
+
+
+
+
+            make all
+
+       To build a specific command in that directory, however, type:
+
+            make _c_m_d
+
+
+       _c_m_d   Specifies the command that is to be built.  If no command
+             name is specified, builds all commands in that directory as
+             well as those in all subdirectories.
+
+       For example, to build the _w_h_o command from source, type:
+
+            cd /usr/src/cmd
+            make who
+
+       Once a command is built, use the _i_n_s_t_a_l_l script to install the new
+       version in its appropriate directory.  For example, to install the
+       new version of the _w_h_o command, type:
+
+            cd /usr/src/cmd
+            install who
+
+       If the -n option is specified, _i_n_s_t_a_l_l displays all actions but
+       does not install the new version of the command.  For example, to
+       display all actions but not install the new version of the _w_h_o
+       command, type:
+
+            install -n who
+
+       From a command subdirectory (for example, /_u_s_r/_s_r_c/_c_m_d/_a_d_b),
+       however, the _i_n_s_t_a_l_l script cannot be used.  To build and install
+       from a command subdirectory (for example, /_u_s_r/_s_r_c/_c_m_d/_a_d_b), type:
+
+            cd /usr/src/cmd/adb
+            make install
+
+       For further information about _m_a_k_e and _i_n_s_t_a_l_l procedures, see
+       /_u_s_r/_s_r_c/_m_a_k_e._s_k_e_l (prototype makefile).
+
+
+       _1._4  _B_u_i_l_d_i_n_g _a_n _U_L_T_R_I_X-_1_1 _K_e_r_n_e_l _f_r_o_m _S_o_u_r_c_e
+
+       To build an ULTRIX-11 kernel from source, you need to build the
+       appropriate libraries or object files for your processor. There are
+       two types of directories for kernel object files.  One is for
+       processors having separate instruction and data space (split I &
+       D), and the other is for processors having nonseparate instruction
+       and data space (nonsplit I & D).  The _d_e_v, _n_e_t, and _s_y_s
+       subdirectories in /_u_s_r/_s_y_s contain the kernel object libraries for
+       split I & D processors.  The _o_v_d_e_v, _o_v_n_e_t, and _o_v_s_y_s subdirectories
+       in /_u_s_r/_s_l_y_s contain the object files for nonsplit I & D
+       Processors.  Each set of objects and libraries, whether split I & D
+
+
+9       6 Version 3.1 Source Kit
+
+
+
+
+
+
+
+
+
+       or nonsplit I & D, depends on a common set of source files. The
+       kernel source files reside in /_u_s_r/_s_y_s in the directories _d_e_v, _s_y_s,
+       and _n_e_t.
+
+       To build an ULTRIX-11 kernel for your processor, change directory
+       to where the objects for your processor type reside and type:
+
+            make
+
+       This rebuilds the kernel object files from the source files and
+       then, for split I & D processors, automatically rearchives the new
+       objects into the appropriate library. If the archive library does
+       not exist, however, _m_a_k_e displays the following error message:
+
+            make: cannot open LIB?_id.  Stop.
+
+       If you receive this message, you can force the archive to be built
+       by typing:
+
+            make archive
+
+       For example, to rebuild the split I & D version of the device
+       driver library, /_u_s_r/_s_y_s/_d_e_v/_L_I_B_2__i_d, change directory to
+       /_u_s_r/_s_y_s/_d_e_v and type:
+
+            make archive
+
+       In another example, to rebuild the nonsplit I & D networking object
+       files, change directory to /_u_s_r/_s_y_s/_o_v_n_e_t, and type:
+
+            make
+
+       This rebuilds the networking object files from the networking
+       source files residing in /_u_s_r/_s_y_s/_n_e_t. Finally, use the _s_y_s_g_e_n
+       program to build a new kernel using the libraries or object files
+       that were just built. For further information, see the _U_L_T_R_I_X-_1_1
+       _S_y_s_t_e_m _M_a_n_a_g_e_m_e_n_t _G_u_i_d_e.
+
+
+       _1._4._1  _B_o_o_t_i_n_g _Y_o_u_r _N_e_w _K_e_r_n_e_l
+
+       To boot an ULTRIX-11 kernel that has been built from sources, you
+       need to install a new copy of the /_b_o_o_t program. If you do not
+       install a new version of _b_o_o_t, the new kernel will not boot. The
+       boot program sources are located in the /_u_s_r/_s_y_s/_s_a_s directory. To
+       build and install a new version of the _b_o_o_t program, type:
+
+            cp /boot /boot.save
+            cd /usr/sys/sas
+            make boot
+
+                                                  (continued on next page)
+9
+
+
+                                                  Version 3.1 Source Kit 7
+
+
+
+
+
+
+
+
+
+            cp boot /boot
+            chmod 644 /boot
+
+       You only need to build a new version of _b_o_o_t once. The new version
+       of the _b_o_o_t program knows how to boot all different types of
+       ULTRIX-11 kernels.
+
+       After having verified that the new version of _b_o_o_t works, create a
+       backup copy named /_b_o_o_t._b_u:
+
+            cp /boot /boot.bu
+
+       Then, in the event that /_b_o_o_t fails or cannot be accessed, the
+       system will automatically try /_b_o_o_t._b_u and attempt to boot the
+       system from this backup file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9
+
+
+       8 Version 3.1 Source Kit
+
+

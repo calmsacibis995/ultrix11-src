@@ -1,0 +1,15 @@
+Mdcat	dcat.c	/^main(argc, argv)$/
+Mdcp	dcp.c	/^main(ac, av)$/
+Mdlogin	dlogin.c	/^main(argc, argv, envp)$/
+Mdls	dls.c	/^main(argc, argv)$/
+Mdrm	drm.c	/^main(argc, argv)$/
+cleanup	dlogin.c	/^cleanup(how)$/
+copy	dcp.c	/^copy(from, to, flags)$/
+findflags	dls.c	/^findflags(args, flags)$/
+getgateway	subr.c	/^getgateway(mach, user)$/
+quote	subr.c	/^char *quote(s)$/
+remotename	dcp.c	/^remotename(cp)$/
+resetterm	dlogin.c	/^resetterm () {$/
+rshfork	dcp.c	/^rshfork(ifd, ofd, arglist)$/
+setmyuid	subr.c	/^setmyuid()$/
+setterm	dlogin.c	/^setterm() {$/

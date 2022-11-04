@@ -1,0 +1,51 @@
+
+# no sccs create yet
+SCCSID="%Z%%M%	%I%	%G%"
+# Shell procedure to copy the intermediate magtape to a TK50.
+# Second step of two part TK50 kit build.
+# First step done on bedrock, second on pebbles.
+# Fred Canter 9/14/85
+
+echo ""
+echo "Mount the magtape on TS11 unit zero."
+echo ""
+echo "Mount the TK50 cartridge in TK50 unit zero.",
+echo ""
+echo -n "Press <RETURN> to continue:"
+read YN
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=4b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+dd if=/dev/nrht0 of=/dev/nrtk0 bs=20b
+mt -f /dev/rtk0 rewind
+mt -t /dev/rht0 rewind

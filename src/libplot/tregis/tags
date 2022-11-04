@@ -1,0 +1,24 @@
+abs	arc.c	/^abs(a){$/
+arc	arc.c	/^arc(x,y,x0,y0,x1,y1){$/
+box	box.c	/^box(x0,y0,x1,y1)$/
+circle	circle.c	/^circle(xi,yi,radius)$/
+closepl	close.c	/^closepl(){$/
+color	color.c	/^color(s)			 \/* set screen background color *\/$/
+cont	cont.c	/^cont(x0,y0){$/
+dot	dot.c	/^dot(xi,yi,dx,n,pat)$/
+erase	erase.c	/^erase() 	\/* erase screen *\/$/
+gsqrt	circle.c	/^gsqrt(i,radius)$/
+label	label.c	/^label(s)$/
+line	line.c	/^line(x0,y0,x1,y1)$/
+linemod	linemod.c	/^linemod(s)$/
+map	map.c	/^map(color)$/
+move	move.c	/^move(xi,yi)$/
+openpl	open.c	/^openpl()$/
+point	point.c	/^point(xi,yi)$/
+quad	arc.c	/^quad(x,y,xp,yp){$/
+shade	wrtng.c	/^shade(s)$/
+space	space.c	/^space(x0,y0,x1,y1){$/
+step	arc.c	/^step(d){$/
+wrtng	wrtng.c	/^wrtng(argp)$/
+xsc	subr.c	/^xsc(xi){$/
+ysc	subr.c	/^ysc(yi){$/

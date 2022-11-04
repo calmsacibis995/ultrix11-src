@@ -1,0 +1,78 @@
+SCCSID="@(#)m11_week.bak	3.0	4/22/86"
+: ULTRIX-11 Micro/pdp-11 WEEKLY file system backup command file
+: Level 0 dump of ROOT and /USR file system from RD51/RD52 unit 0
+: to the specified RX50 unit.
+: Retries dump on error.
+
+echo ""
+echo "ULTRIX-11 WEEKLY File System Backup"
+while true
+do
+	echo ""
+	echo -n "RX50 Unit Number <1, 2, or 3> ? "
+	read TN
+	case $TN in
+	1)	T=rx1; break ;;
+	2)	T=rx2; break ;;
+	3)	T=rx3; break ;;
+	*)	echo ""; echo "Bad unit number" ;;
+	esac
+done
+while true
+do
+	echo ""
+	echo -n "Mount first ROOT level 0 dump diskette for - "
+	date
+	echo ""
+	YN=n
+	while test $YN != y
+	do
+		echo -n "Ready <y or n> ? "
+		read YN
+		if test $YN
+		then	echo ""
+		else	YN=n
+			echo ""
+		fi
+	done
+	sync
+	dump 0umf /dev/r$T /dev/rrd00
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		fi
+	fi
+done
+while true
+do
+	echo ""
+	echo -n "Mount first /USR level 0 dump diskette for - "
+	date
+	echo ""
+	YN=n
+	while test $YN != y
+	do
+		echo -n "Ready <y or n> ? "
+		read YN
+		if test $YN
+		then	echo ""
+		else	YN=n
+			echo ""
+		fi
+	done
+	sync
+	dump 0umf /dev/r$T /dev/rrd01
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		fi
+	fi
+done

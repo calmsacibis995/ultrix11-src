@@ -1,0 +1,9 @@
+
+DESCRIPTION	The arcv command converts each previously archived V6 file 
+		to Version 7 format.
+
+SYNTAX		arcv file...
+
+		  file   Name of each file to be converted.
+
+DOCUMENTATION	arcv(8) in the ULTRIX-11 Programmer's Manual

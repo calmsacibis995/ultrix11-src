@@ -1,0 +1,34 @@
+dummy	util.c	/^dummy(){}$/
+fatal	util.c	/^fatal(s) char *s;$/
+fmin	mout.c	/^fmin(a,f) MINT *a; FILE *f;$/
+fmout	mout.c	/^fmout(a,f) MINT *a; FILE *f;$/
+gcd	gcd.c	/^gcd(a,b,c) MINT *a,*b,*c;$/
+invert	gcd.c	/^invert(a, b, c) MINT *a, *b, *c;$/
+itom	util.c	/^MINT *itom(n)$/
+m_add	madd.c	/^m_add(a,b,c) struct mint *a,*b,*c;$/
+m_div	mdiv.c	/^m_div(a,b,q,r) MINT *a,*b,*q,*r;$/
+m_dsb	mdiv.c	/^m_dsb(q,n,a,b) short *a,*b;$/
+m_in	mout.c	/^m_in(a,b,f) MINT *a; FILE *f;$/
+m_mult	mult.c	/^m_mult(a,b,c) struct mint *a,*b,*c;$/
+m_out	mout.c	/^m_out(a,b,f) MINT *a; FILE *f;$/
+m_sub	madd.c	/^m_sub(a,b,c) struct mint *a,*b,*c;$/
+m_trq	mdiv.c	/^m_trq(v1,v2,u1,u2,u3)$/
+madd	madd.c	/^madd(a,b,c) struct mint *a,*b,*c;$/
+mcan	util.c	/^mcan(a) MINT *a;$/
+mcmp	util.c	/^mcmp(a,b) MINT *a,*b;$/
+mdiv	mdiv.c	/^mdiv(a,b,q,r) MINT *a,*b,*q,*r;$/
+min	mout.c	/^min(a) MINT *a;$/
+mout	mout.c	/^mout(a) MINT *a;$/
+move	util.c	/^move(a,b) MINT *a,*b;$/
+msqrt	msqrt.c	/^msqrt(a,b,r) MINT *a,*b,*r;$/
+msub	madd.c	/^msub(a,b,c) struct mint *a,*b,*c;$/
+mult	mult.c	/^mult(a,b,c) struct mint *a,*b,*c;$/
+omin	mout.c	/^omin(a) MINT *a;$/
+omout	mout.c	/^omout(a) MINT *a;$/
+pow	pow.c	/^pow(a,b,c,d) MINT *a,*b,*c,*d;$/
+rpow	pow.c	/^rpow(a,n,b) MINT *a,*b;$/
+s_div	mout.c	/^s_div(a,n,q,r) MINT *a,*q; short *r;$/
+sdiv	mout.c	/^sdiv(a,n,q,r) MINT *a,*q; short *r;$/
+tradd	mult.c	/^tradd(a,b,c) long c; int *a; union g {long xx; str/
+xalloc	util.c	/^short *xalloc(nint,s) char *s;$/
+xfree	util.c	/^xfree(c) MINT *c;$/

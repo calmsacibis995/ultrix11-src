@@ -1,0 +1,15 @@
+*	Sccsid: @(#)prs	3.0	4/22/86
+*	Diagnostic messages for the 'prs' command
+*
+-1
+"nonexistent sid"
+You specified an SID, via the r keyletter, which is not
+an SID of the SCCS file.
+-2
+"curdir failed"
+Try the command again.  If the situation repeats, notify your
+System Administrator for further assistance.
+-3
+"cannot change directory"
+Try the command again.  If the situation repeats, notify your
+System Administrator for further assistance.

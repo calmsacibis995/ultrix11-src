@@ -1,0 +1,44 @@
+%{
+
+%}
+	/* declarations */
+
+%%	/* rules */
+
+A:	/* has no body */	;
+
+%%	/* start of pgm */
+
+main()
+{
+	return(yyparse());
+}
+
+yylex() {	/* lex routine */
+		/* print table of temperatures */
+
+#define	CTOK	273.16
+#define	MINK	0
+#define	MAXK	500
+#define	INC	5
+
+float	c,f,k;
+
+	printf("\nCelsius\t\tFahrenheit\tKelvin");
+	for(k=(MINK); k<=MAXK; k=k+INC) {
+		printf("\n");
+		c = k - CTOK;
+		printf("%6.2f\t\t",c);
+		f = ((9.0/5.0) * (c + 32.0));
+		printf("%6.2f\t\t",f);
+		printf("%6.2f\t\t",k);
+	}
+	printf("\n");
+	exit(0);
+}
+
+yyerror()
+{
+	printf("\nERROR !\n");
+}
+

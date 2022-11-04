@@ -1,0 +1,4 @@
+/globl[ 	].*_blksize$/d
+s/data/text/
+w
+q

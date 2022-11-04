@@ -1,0 +1,19 @@
+Mint	int.c	/^main(ac, av)$/
+Perror	int.c	/^Perror(file, mesg)$/
+alloc	palloc.c	/^alloc(need)$/
+error	perror.c	/^error(perrno)$/
+exit	exit.c	/^exit(c)$/
+ferror	int.c	/^ferror(cp)$/
+free	palloc.c	/^free(cptr)$/
+onintr	int.c	/^onintr()$/
+pcttot	pcttot.c	/^pcttot(uprbp, lwrb, n, av)$/
+pdattim	pdattim.c	/^pdattim(op, alfap)$/
+psexit	perror.c	/^psexit()$/
+puts	int.c	/^puts(str)$/
+pwrite	pwrite.c	/^pwrite(opc, subopc, av)$/
+setmem	palloc.c	/^setmem()$/
+stklim	palloc.c	/^stklim()$/
+stmts	perror.c	/^stmts()$/
+stmttime	perror.c	/^stmttime()$/
+wrhex	pwrite.c	/^wrhex(l, w)$/
+wro	pwrite.c	/^wro(l, w)$/

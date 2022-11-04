@@ -1,0 +1,4 @@
+
+# SCCSID: @(#)profile	3.0	5/9/86
+TZ="`/etc/tzname`"
+export TZ

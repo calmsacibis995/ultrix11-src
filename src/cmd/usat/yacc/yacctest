@@ -1,0 +1,43 @@
+:
+# SCCSID: @(#)yacctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** yacc test started - "
+date
+touch $T/yac.$$.err
+
+if test -f "$yaccpath"
+then
+	cp $L/yacc/yacc.input $T/yin.$$.out
+	$M yacc $T/yin.$$.out
+
+	mv y.tab.c $T/ytb.$$.c
+
+	$M cc $T/ytb.$$.c -o $T/yyx.$$.out
+	$M $T/yyx.$$.out > $T/yac.$$.out
+
+	cmp $T/yac.$$.out $L/yacc/yacc.sout
+
+	if test $? != 0
+	then
+		echo "yacc:  Compare after yacc execute failed" >> $T/yac.$$.err
+		echo "Compare after yacc execute failed"
+	fi
+else
+	echo "$yaccpath: not installed" >> $T/yac.$$.err
+	echo "$yaccpath: not tested (command not installed)"
+fi
+	
+echo -n "****** End of  yacc test - "
+date
+cat $T/yac.$$.err >> $T/log.$$.err
+rm -f $RT/yac.$$.err
+rm -f $RT/yac.$$.out
+rm -f $RT/yin.$$.out
+rm -f $RT/ytb.$$.c
+rm -f $RT/yyx.$$.out

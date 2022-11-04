@@ -1,0 +1,20 @@
+echo "			$U - explanation of tests 
+
+a) $a $t	- Runs awk and compares output with known, correct results.
+b) $b $t	- Runs both the bc and dc desk calculators and compares 
+		  output with known, correct results.
+c) $c $t	- Compiles a C program using cc (and pcc) and then executes
+		  it and compares output with known, correct results.
+d) $d $t	- A test of: copy, ed, diff, spell, nroff, grep, and ex. 
+f) $f $t	- Compiles a Fortran program using F77 and then executes
+		  it and compares output with known, correct results.
+l) $l $t	- Runs lint and compares output with known, correct results.
+m) $m $t	- Tests over 125 general user commands (ie. cat, finger, ls).
+p) $p $t	- Tests Pascal compiler, including: pi, pix, px, and pxp.
+r) $r $t	- Simulates a learn session to verify that learn is functional.
+s) $s $t	- Runs sed and compares output with known, correct results.
+x) $x $t	- Runs lex and compares output with known, correct results.
+y) $y $t	- Runs yacc and compares output with known, correct results. 
+z) $z - Do stats: who, ps, pstat, memstat, bufstat, iostat, df, ipcs.
+all)		- Runs each of the above tests once in the order shown.
+		  The $m $t is always run just prior to $z."

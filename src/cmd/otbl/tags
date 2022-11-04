@@ -1,0 +1,84 @@
+Mt1	t1.c	/^main(argc,argv)$/
+allh	tt.c	/^allh(i)$/
+alocv	tb.c	/^alocv(n)$/
+backrest	t3.c	/^backrest(cp)$/
+badsig	t1.c	/^badsig()$/
+barent	tv.c	/^barent(s)$/
+checkuse	tb.c	/^checkuse()$/
+choochar	tc.c	/^choochar()$/
+chspace	tb.c	/^chspace()$/
+cleanfc	tf.c	/^cleanfc()$/
+ctspan	tt.c	/^ctspan(i,c)$/
+ctype	tt.c	/^ctype(il, ic)$/
+deftail	t7.c	/^deftail()$/
+digit	ts.c	/^digit(x)$/
+domore	t9.c	/^domore(dataln)$/
+drawline	tu.c	/^drawline(i, cl, cr, lintype, noheight, shortl)$/
+drawvert	tv.c	/^drawvert(start,end, c, lwid)$/
+endoff	tf.c	/^endoff()$/
+error	te.c	/^error(s)$/
+filler	t6.c	/^filler(s)$/
+fspan	tt.c	/^fspan(i,c)$/
+fullwide	tu.c	/^fullwide(i, lintype)$/
+funnies	t8.c	/^funnies( stl, lin)$/
+get1char	te.c	/^get1char()$/
+getcomm	t3.c	/^getcomm()$/
+gets1	te.c	/^gets1(s)$/
+getspec	t4.c	/^getspec()$/
+getstop	tu.c	/^getstop()$/
+gettbl	t5.c	/^gettbl()$/
+gettext	tg.c	/^gettext(sp, ilin,icol, fn, sz)$/
+ifdivert	tf.c	/^ifdivert()$/
+ifline	t7.c	/^ifline(s)$/
+ineqn	tm.c	/^ineqn (s, p)$/
+interh	ti.c	/^interh(i,c)$/
+interv	ti.c	/^interv(i,c)$/
+lefdata	tu.c	/^lefdata(i,c)$/
+left	tu.c	/^left(i,c, lwidp)$/
+letter	ts.c	/^letter (ch)$/
+lspan	tt.c	/^lspan(i,c)$/
+makeline	tu.c	/^makeline(i,c,lintype)$/
+maknew	tm.c	/^maknew(str)$/
+maktab	t6.c	/^maktab()$/
+match	ts.c	/^match (s1, s2)$/
+max	ts.c	/^max(a,b)$/
+midbar	tv.c	/^midbar(i,c)$/
+midbcol	tv.c	/^midbcol(i,c)$/
+min	tt.c	/^min(a,b)$/
+need	t7.c	/^need()$/
+next	tu.c	/^next(i)$/
+nodata	t5.c	/^nodata(il)$/
+numb	ts.c	/^numb(str)$/
+oneh	t5.c	/^oneh(lin)$/
+permute	t5.c	/^permute()$/
+point	tc.c	/^point(s)$/
+prefix	ts.c	/^prefix(small, big)$/
+prev	tu.c	/^prev(i)$/
+putfont	t8.c	/^putfont(fn)$/
+putline	t8.c	/^putline(i, nl)$/
+putsize	t8.c	/^putsize(s)$/
+puttext	t8.c	/^puttext(s,fn, size)$/
+readspec	t4.c	/^readspec()$/
+real	tb.c	/^real(s)$/
+release	tb.c	/^release()$/
+restline	tf.c	/^restline()$/
+rstofill	tf.c	/^rstofill()$/
+runout	t7.c	/^runout()$/
+runtabs	t7.c	/^runtabs(lform, ldata)$/
+savefill	tf.c	/^savefill()$/
+saveline	tf.c	/^saveline()$/
+setinp	t1.c	/^setinp(argc,argv)$/
+swapin	t1.c	/^swapin()$/
+tableput	t2.c	/^tableput()$/
+tbl	t1.c	/^tbl(argc,argv)$/
+tcopy	ts.c	/^tcopy (s,t)$/
+thish	tt.c	/^thish(i,c)$/
+tohcol	tt.c	/^tohcol(ic)$/
+tx	t6.c	/^# define tx(a) (a>0 && a<128)$/
+un1getc	te.c	/^un1getc(c)$/
+untext	tg.c	/^untext()$/
+up1	ti.c	/^up1(i)$/
+vspand	t5.c	/^vspand(ir,ij,ifform)$/
+vspen	t5.c	/^vspen(s)$/
+wide	t6.c	/^wide(s, fn, size)$/
+yetmore	t9.c	/^yetmore()$/

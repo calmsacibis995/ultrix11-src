@@ -1,0 +1,11 @@
+_doscan	doscan.c	/^_doscan(iop, fmt, argp)$/
+_getccl	doscan.c	/^_getccl(s)$/
+_innum	doscan.c	/^_innum(ptr, type, len, size, iop, eofptr)$/
+_instr	doscan.c	/^_instr(ptr, type, len, iop, eofptr)$/
+_strout	strout.c	/^_strout(string, count, adjust, file, fillch)$/
+fprintf	fprintf.c	/^fprintf(iop, fmt, args)$/
+fscanf	scanf.c	/^fscanf(iop, fmt, args)$/
+printf	printf.c	/^printf(fmt, args)$/
+scanf	scanf.c	/^scanf(fmt, args)$/
+sprintf	sprintf.c	/^char *sprintf(str, fmt, args)$/
+sscanf	scanf.c	/^sscanf(str, fmt, args)$/

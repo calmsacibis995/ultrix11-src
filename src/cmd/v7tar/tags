@@ -1,0 +1,34 @@
+Mtar	tar.c	/^main(argc, argv)$/
+backtape	tar.c	/^backtape()$/
+bsrch	tar.c	/^bsrch(s, n, l, h)$/
+checkdir	tar.c	/^checkdir(name)$/
+checksum	tar.c	/^checksum()$/
+checkupdate	tar.c	/^checkupdate(arg)$/
+checkw	tar.c	/^checkw(c, name)$/
+cmp	tar.c	/^cmp(b, s, n)$/
+copy	tar.c	/^copy(to, from)$/
+done	tar.c	/^done(n)$/
+dorep	tar.c	/^dorep(argv)$/
+dotable	tar.c	/^dotable()$/
+doxtract	tar.c	/^doxtract(argv)$/
+endtape	tar.c	/^endtape()$/
+flushtape	tar.c	/^flushtape()$/
+getdir	tar.c	/^getdir()$/
+getwdir	tar.c	/^getwdir(s)$/
+longt	tar.c	/^longt(st)$/
+lookup	tar.c	/^lookup(s)$/
+onhup	tar.c	/^onhup()$/
+onintr	tar.c	/^onintr()$/
+onquit	tar.c	/^onquit()$/
+onterm	tar.c	/^onterm()$/
+passtape	tar.c	/^passtape()$/
+pmode	tar.c	/^pmode(st)$/
+prefix	tar.c	/^prefix(s1, s2)$/
+putempty	tar.c	/^putempty()$/
+putfile	tar.c	/^putfile(longname, shortname, parent)$/
+readtape	tar.c	/^readtape(buffer)$/
+response	tar.c	/^response()$/
+select	tar.c	/^select(pairp, st)$/
+tomodes	tar.c	/^tomodes(sp)$/
+usage	tar.c	/^usage()$/
+writetape	tar.c	/^writetape(buffer)$/

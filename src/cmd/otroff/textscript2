@@ -1,0 +1,12 @@
+g/\.data/d
+0a
+.text
+.
+/.globl	_hxx/a
+.data
+.
+/.globl	_bxxh/a
+.text
+.
+w
+q

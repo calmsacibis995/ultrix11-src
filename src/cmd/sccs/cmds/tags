@@ -1,0 +1,87 @@
+BLANK	val.c	/^# define	BLANK(l)	while (!(*l == ' ' || *l == '\\t'/
+INCR	vc.c	/^# define INCR(int) if (++int==NSLOTS) { \\$/
+Mcomb	comb.c	/^main(argc,argv)$/
+Mdelta	delta.c	/^main(argc,argv)$/
+Mget	get.c	/^main(argc,argv)$/
+Mval	val.c	/^main(argc,argv)$/
+Mvc	vc.c	/^main(argc, argv)$/
+Mwhat	what.c	/^main(argc,argv)$/
+addq	val.c	/^addq(pkt,ser,keep,iord,user)$/
+after	delta.c	/^after(pkt,n)$/
+apply	val.c	/^# define apply(qp)	((qp->q_iord == INS && qp->q_ke/
+asgfunc	vc.c	/^asgfunc(aptr)$/
+before	delta.c	/^before(pkt,n)$/
+can	unget.c	15
+checkowner	delta.c	/^checkowner(pkt)$/
+chkix	val.c	/^chkix(new,head)$/
+chksid	get.c	/^chksid(p,sp)$/
+chksize	vc.c	/^chksize(s)$/
+clean_up	comb.c	/^clean_up(n)$/
+comb	comb.c	/^comb(file)$/
+dclfunc	vc.c	/^dclfunc(dptr)$/
+delete	delta.c	/^delete(pkt,linenum,n,ser)$/
+delta	delta.c	/^delta(file)$/
+do_delt	val.c	/^do_delt(pkt,goods,d_sid)$/
+doand	vc.c	/^doand()$/
+dodiff	delta.c	/^dodiff(newf,oldf,difflim)$/
+dodotwhy	get.c	/^dodotwhy()$/
+door	vc.c	/^door()$/
+dowhat	what.c	/^dowhat(iop)$/
+ecopy	vc.c	/^ecopy(s1,s2)$/
+endfunc	vc.c	/^endfunc()$/
+enter	comb.c	/^enter(pkt,ch,n,sidp)$/
+errfunc	vc.c	/^errfunc(eptr)$/
+escdodelt	comb.c	/^escdodelt()	\/* dummy for dodelt() *\/$/
+exp	vc.c	/^exp()$/
+fgetchk	delta.c	/^fgetchk(file,pkt)$/
+findch	vc.c	/^findch(astr,match)$/
+findstr	vc.c	/^findstr(astr,pat)$/
+gen_lfile	get.c	/^gen_lfile(pkt)$/
+get	get.c	/^get(file)$/
+get_line	val.c	/^char	*get_line(pkt)$/
+getdel	val.c	/^getdel(delp,lp)$/
+getdiff	delta.c	/^getdiff(type,plinenum)$/
+getid	vc.c	/^getid(gptr)$/
+getpred	comb.c	/^getpred(idp, vec, i)$/
+getser	get.c	/^getser(pkt)$/
+getstats	val.c	/^getstats(pkt)$/
+getval	val.c	/^char	*getval(sourcep,destp)$/
+idsetup	get.c	/^idsetup(pkt)$/
+idsubst	get.c	/^idsubst(pkt,line)$/
+iffunc	vc.c	/^iffunc(iptr)$/
+in_pfile	get.c	/^in_pfile(sp,pkt)$/
+insert	delta.c	/^insert(pkt,linenum,n,ser)$/
+invalid	val.c	/^invalid(i_sid)$/
+linerange	delta.c	/^linerange(cp,low,high)$/
+lookup	vc.c	/^lookup(lname)$/
+makgdate	get.c	/^makgdate(old,new)$/
+mk_qfile	get.c	/^mk_qfile(pkt)$/
+mkdelt	delta.c	/^mkdelt(pkt,sp,osp,diffloop,orig_nlines)$/
+mkixg	delta.c	/^mkixg(pkt,reason,ch)$/
+msgfunc	vc.c	/^msgfunc(mptr)$/
+newsid	get.c	/^newsid(pkt,branch)$/
+numck	vc.c	/^numck(nptr)$/
+numcomp	vc.c	/^numcomp(id1, id2)$/
+prfx	get.c	/^prfx(pkt)$/
+process	val.c	/^process(p_line)$/
+prtget	comb.c	/^prtget(idp, ser, iop, file)$/
+putin	vc.c	/^putin(pname, pvalue)$/
+putmrs	delta.c	/^putmrs(pkt)$/
+rddiff	delta.c	/^rddiff(s,n)$/
+rdpfile	delta.c	/^rdpfile(pkt,sp)$/
+read_mod	val.c	/^read_mod(pkt)$/
+read_to	val.c	/^read_to(ch,pkt)$/
+remq	val.c	/^remq(pkt,ser)$/
+repfunc	vc.c	/^repfunc(s)$/
+replace	vc.c	/^replace(ptr)$/
+report	val.c	/^report(code,inp_line,file)$/
+satoi	get.c	/^char *satoi(p,ip)$/
+setkeep	val.c	/^setkeep(pkt)$/
+sinit	val.c	/^sinit(pkt,file)$/
+skiplines	delta.c	/^skiplines(lp,num)$/
+to	admin.c	15
+trans	get.c	/^trans(tp,str)$/
+trypat	what.c	/^trypat(iop,pat)$/
+validate	val.c	/^validate(c_path,c_sid,c_type,c_name)$/
+will	bdiff.c	96
+wrtpfile	get.c	/^wrtpfile(pkt,inc,exc)$/

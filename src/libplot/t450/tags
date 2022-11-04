@@ -1,0 +1,30 @@
+abval	subr.c	/^abval(q)$/
+arc	arc.c	/^arc(){$/
+box	box.c	/^box(x0, y0, x1, y1)$/
+circle	circle.c	/^circle(){$/
+closepl	close.c	/^closepl(){$/
+closevt	close.c	/^closevt(){$/
+cont	line.c	/^cont(x0,y0){$/
+dist2	subr.c	/^dist2 (x1, y1, x2, y2)$/
+dot	dot.c	/^dot(){$/
+erase	erase.c	/^erase(){$/
+iline	line.c	/^iline(cx0,cy0,cx1,cy1){$/
+inplot	subr.c	/^inplot()$/
+label	label.c	/^label(s)$/
+line	line.c	/^line(x0,y0,x1,y1){$/
+linemod	linmod.c	/^linemod(){$/
+move	move.c	/^move(xi,yi){$/
+movep	subr.c	/^movep (xg,yg)$/
+openpl	open.c	/^openpl ()$/
+openvt	open.c	/^openvt(){$/
+outplot	subr.c	/^outplot()$/
+point	point.c	/^point(xi,yi){$/
+reset	subr.c	/^reset()$/
+space	space.c	/^space(x0,y0,x1,y1){$/
+spew	subr.c	/^spew(ch)$/
+swap	subr.c	/^swap (pa, pb)$/
+tobotleft	subr.c	/^tobotleft ()$/
+xconv	subr.c	/^xconv (xp)$/
+xsc	subr.c	/^xsc(xi){$/
+yconv	subr.c	/^yconv (yp)$/
+ysc	subr.c	/^ysc(yi){$/

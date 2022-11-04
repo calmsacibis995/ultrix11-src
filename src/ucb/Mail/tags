@@ -1,0 +1,274 @@
+Fdopen	fio.c	/^Fdopen(fildes, mode)$/
+Mfmt	fmt.c	/^main(argc, argv)$/
+Mmain	main.c	/^main(argc, argv)$/
+Respond	cmd3.c	/^Respond(msgvec)$/
+Type	cmd1.c	/^Type(msgvec)$/
+_error	aux.c	/^_error(str)$/
+addto	collect.c	/^addto(hf, news)$/
+alter	aux.c	/^alter(name)$/
+alternates	cmd3.c	/^alternates(namelist)$/
+announce	lex.c	/^announce(pr)$/
+any	head.c	/^any(ch, str)$/
+anyof	aux.c	/^anyof(s1, s2)$/
+append	fio.c	/^append(mp, f)$/
+argcount	aux.c	/^argcount(argv)$/
+arpafix	optim.c	/^arpafix(name, from)$/
+assign	vars.c	/^assign(name, value)$/
+bangexp	cmd3.c	/^bangexp(str)$/
+best	optim.c	/^best(src, dest)$/
+blankline	aux.c	/^blankline(linebuf)$/
+blockof	aux.c	/^blockof(off)$/
+brokpipe	cmd1.c	/^brokpipe()$/
+cat	names.c	/^cat(n1, n2)$/
+charcount	aux.c	/^charcount(str, c)$/
+check	list.c	/^check(mesg, f)$/
+checktoobig	cksize.c	/^checktoobig()$/
+clob1	cmd2.c	/^clob1(n)$/
+clobber	cmd2.c	/^clobber(argv)$/
+clrbuf	fio.c	/^clrbuf(buf)$/
+cmatch	head.c	/^cmatch(str, temp)$/
+cmpdomain	names.c	/^cmpdomain(name, dname)$/
+collcont	collect.c	/^collcont(s)$/
+collect	collect.c	/^collect(hp)$/
+collhupsig	collect.c	/^collhupsig()$/
+collintsig	collect.c	/^collintsig()$/
+collrub	collect.c	/^collrub(s)$/
+commands	lex.c	/^commands()$/
+contin	lex.c	/^contin(s)$/
+copy	head.c	/^copy(str1, str2)$/
+copycmd	cmd2.c	/^copycmd(str)$/
+copyin	head.c	/^copyin(src, space)$/
+copyname	aux.c	/^copyname(linebuf, nbuf)$/
+core	cmd2.c	/^core()$/
+count	names.c	/^count(np)$/
+delete	cmd2.c	/^delete(msgvec)$/
+delm	cmd2.c	/^delm(msgvec)$/
+delname	names.c	/^delname(np, name, cmpfun)$/
+deltype	cmd2.c	/^deltype(msgvec)$/
+demail	v7.local.c	/^demail()$/
+detract	names.c	/^detract(np, ntype)$/
+diction	cmd3.c	/^diction(a, b)$/
+dosh	cmd3.c	/^dosh(str)$/
+echo	cmd3.c	/^echo(argv)$/
+edit1	edit.c	/^edit1(msgvec, ed)$/
+editor	edit.c	/^editor(msgvec)$/
+edstop	fio.c	/^edstop()$/
+elide	names.c	/^elide(names)$/
+elsecmd	cmd3.c	/^elsecmd()$/
+endifcmd	cmd3.c	/^endifcmd()$/
+equal	def.h	/^#define	equal(a, b)	(strcmp(a,b)==0)\/* A nice func/
+evalcol	list.c	/^evalcol(col)$/
+execute	lex.c	/^execute(linebuf, contxt)$/
+expand	fio.c	/^expand(name)$/
+extract	names.c	/^extract(line, ntype)$/
+exwrite	collect.c	/^exwrite(name, ibuf, f)$/
+fail	head.c	/^fail(linebuf, reason)$/
+file	cmd3.c	/^file(argv)$/
+findgroup	vars.c	/^findgroup(name)$/
+findmail	v7.local.c	/^findmail()$/
+first	list.c	/^first(f, m)$/
+fixhead	send.c	/^fixhead(hp, tolist)$/
+flush	fio.c	/^flush()$/
+fmt	fmt.c	/^fmt(fi)$/
+folders	cmd1.c	/^folders()$/
+forward	collect.c	/^forward(ms, obuf, f)$/
+freadline	fio.c	/^freadline(ibuf, linebuf)$/
+from	cmd1.c	/^from(msgvec)$/
+fsize	fio.c	/^fsize(iob)$/
+getfilename	cmd3.c	/^getfilename(name, aedit)$/
+getfold	fio.c	/^getfold(name)$/
+gethfield	aux.c	/^gethfield(f, linebuf, rem)$/
+getmsglist	list.c	/^getmsglist(buf, vector, flags)$/
+getname	getname.c	/^getname(uid, namebuf)$/
+getpw	getname.c	/^getpw(uid, linebuf)$/
+getpwnam	getname.c	/^getpwnam(name, linebuf)$/
+getrawlist	list.c	/^getrawlist(line, argv)$/
+getuserid	getname.c	/^getuserid(name)$/
+gexpand	names.c	/^gexpand(nlist, gh, metoo, ntype)$/
+grabh	tty.c	/^grabh(hp, gflags)$/
+group	cmd3.c	/^group(argv)$/
+hangup	lex.c	/^hangup()$/
+hash	vars.c	/^hash(name)$/
+hcontents	aux.c	/^hcontents(hfield)$/
+hdrstop	main.c	/^hdrstop()$/
+headerp	send.c	/^headerp(line)$/
+headers	cmd1.c	/^headers(msgvec)$/
+help	cmd3.c	/^help()$/
+hfield	aux.c	/^hfield(field, mp)$/
+holdsigs	fio.c	/^holdsigs()$/
+icequal	aux.c	/^icequal(s1, s2)$/
+ifcmd	cmd3.c	/^ifcmd(argv)$/
+igcomp	cmd2.c	/^igcomp(l, r)$/
+igfield	cmd2.c	/^igfield(list)$/
+igshow	cmd2.c	/^igshow()$/
+index	aux.c	/^index(str, ch)$/
+infix	send.c	/^infix(hp, fi)$/
+inithost	optim.c	/^inithost()$/
+intack	collect.c	/^intack(s)$/
+isalpha	head.c	/^isalpha(c)$/
+isatty	aux.c	/^isatty(f)$/
+isdate	head.c	/^isdate(date)$/
+isdigit	head.c	/^isdigit(c)$/
+isdir	aux.c	/^isdir(name)$/
+isfileaddr	names.c	/^isfileaddr(name)$/
+ishead	head.c	/^ishead(linebuf)$/
+ishfield	aux.c	/^ishfield(linebuf, field)$/
+isign	aux.c	/^isign(field)$/
+ispref	fmt.c	/^ispref(s1, s2)$/
+isprefix	lex.c	/^isprefix(as1, as2)$/
+istrcpy	aux.c	/^istrcpy(dest, src)$/
+leadin	fmt.c	/^leadin()$/
+lengthof	names.c	/^lengthof(name)$/
+lex	lex.c	/^lex(word)$/
+little	optim.c	/^little(c)$/
+load	lex.c	/^load(name)$/
+local	cmd1.c	/^local(namelist)$/
+lock	lock.c	/^lock(file)$/
+lock1	lock.c	/^lock1(tempfile, name)$/
+lookup	vars.c	/^lookup(name)$/
+mail	send.c	/^mail(people)$/
+mail1	send.c	/^mail1(hp)$/
+makemessage	fio.c	/^makemessage(f)$/
+mapf	names.c	/^mapf(np, from)$/
+mark	list.c	/^mark(mesg)$/
+markall	list.c	/^markall(buf, f)$/
+matchsubj	list.c	/^matchsubj(str, mesg)$/
+mboxit	cmd1.c	/^mboxit(msgvec)$/
+mechk	names.c	/^mechk(names)$/
+mesedit	collect.c	/^mesedit(ibuf, obuf, c)$/
+mespipe	collect.c	/^mespipe(ibuf, obuf, cmd)$/
+messize	cmd3.c	/^messize(msgvec)$/
+metamess	list.c	/^metamess(meta, f)$/
+minit	optim.c	/^minit()$/
+mlook	optim.c	/^mlook(mid)$/
+mstash	optim.c	/^mstash(name, attnet)$/
+mtype	optim.c	/^mtype(mid)$/
+nalloc	names.c	/^nalloc(str)$/
+name	optim.c	/^name()$/
+name1	aux.c	/^name1(mp, reptype)$/
+nameof	aux.c	/^nameof(mp, reptype)$/
+netkind	optim.c	/^netkind(nt)$/
+netlook	optim.c	/^netlook(machine, attnet)$/
+netmap	optim.c	/^netmap(name, from)$/
+netname	optim.c	/^netname(mid)$/
+nettype	optim.c	/^nettype(mid)$/
+newfileinfo	lex.c	/^newfileinfo()$/
+next	cmd2.c	/^next(msgvec)$/
+nextword	head.c	/^nextword(wp, wbuf)$/
+nstrcmp	names.c	/^nstrcmp(s1, s2)$/
+ntype	optim.c	/^ntype(nc)$/
+null	cmd3.c	/^null(e)$/
+numeric	aux.c	/^numeric(str)$/
+offsetof	aux.c	/^offsetof(off)$/
+oflush	fmt.c	/^oflush()$/
+opentemp	fio.c	/^opentemp(file)$/
+optiboth	optim.c	/^optiboth(net)$/
+optim	optim.c	/^optim(net, name)$/
+optim1	optim.c	/^optim1(netstr, name)$/
+optimex	optim.c	/^optimex(net, name)$/
+optimimp	optim.c	/^optimimp(net, name)$/
+outof	names.c	/^outof(names, fo, hp)$/
+pack	fmt.c	/^pack(word)$/
+panic	aux.c	/^panic(str)$/
+parse	head.c	/^parse(line, hl, pbuf)$/
+pclose	popen.c	/^pclose(ptr)$/
+pcmdlist	cmd1.c	/^pcmdlist()$/
+pdot	cmd1.c	/^pdot()$/
+popen	popen.c	/^popen(cmd,mode)$/
+prefer	optim.c	/^prefer(name)$/
+prefix	fmt.c	/^prefix(line)$/
+preserve	cmd3.c	/^preserve(msgvec)$/
+prettyprint	names.c	/^prettyprint(name)$/
+print	cmd1.c	/^print(mp, obuf, doign)$/
+printgroup	vars.c	/^printgroup(name)$/
+printhead	cmd1.c	/^printhead(mesg)$/
+prs	aux.c	/^prs(str)$/
+psig	collect.c	/^psig(n)$/
+put	names.c	/^put(list, node)$/
+puthead	send.c	/^puthead(hp, fo, w)$/
+putline	fio.c	/^putline(obuf, linebuf)$/
+pversion	lex.c	/^pversion(e)$/
+pweval	getname.c	/^pweval(line)$/
+quit	quit.c	/^quit()$/
+raise	head.c	/^raise(c)$/
+readline	fio.c	/^readline(ibuf, linebuf)$/
+readtty	tty.c	/^readtty(pr, src)$/
+reedit	cmd3.c	/^reedit(subj)$/
+regret	list.c	/^regret(token)$/
+relsesigs	fio.c	/^relsesigs()$/
+remove	fio.c	/^remove(name)$/
+rename	optim.c	/^rename(str)$/
+reset	def.h	/^#define	reset(x)	longjmp(srbuf, x)$/
+respond	cmd3.c	/^respond(msgvec)$/
+revarpa	optim.c	/^revarpa(str)$/
+rexit	cmd3.c	/^rexit(e)$/
+rindex	aux.c	/^rindex(str, c)$/
+rpair	optim.c	/^rpair(str, mach)$/
+salloc	strings.c	/^salloc(size)$/
+save	cmd2.c	/^save(str)$/
+save1	cmd2.c	/^save1(str, mark)$/
+savemail	send.c	/^savemail(name, hp, fi)$/
+savestr	aux.c	/^savestr(str)$/
+scan	list.c	/^scan(sp)$/
+scaninit	list.c	/^scaninit()$/
+schdir	cmd3.c	/^schdir(str)$/
+screensize	cmd1.c	/^screensize()$/
+scroll	cmd1.c	/^scroll(arg)$/
+send	send.c	/^send(mailp, obuf, doign)$/
+sender	list.c	/^sender(str, mesg)$/
+sendmail	send.c	/^sendmail(str)$/
+set	cmd3.c	/^set(arglist)$/
+setexit	def.h	/^#define	setexit()	setjmp(srbuf)$/
+setfile	lex.c	/^setfile(name, isedit)$/
+setinput	fio.c	/^setinput(mp)$/
+setmsize	lex.c	/^setmsize(sz)$/
+setout	fmt.c	/^setout()$/
+setptr	fio.c	/^setptr(ibuf)$/
+shell	cmd3.c	/^shell(str)$/
+sigchild	popen.c	/^#define	sigchild()$/
+signull	tty.c	/^signull(s)$/
+sigset	def.h	/^int	(*sigset())();$/
+skin	aux.c	/^skin(name)$/
+snarf	cmd2.c	/^snarf(linebuf, flag)$/
+sort	cmd3.c	/^sort(list)$/
+source	aux.c	/^source(name)$/
+source1	aux.c	/^source1(name)$/
+split	fmt.c	/^split(line)$/
+sreset	strings.c	/^sreset()$/
+statusput	send.c	/^statusput(mp, obuf, doign)$/
+stop	lex.c	/^stop(s)$/
+stouch	cmd1.c	/^stouch(msgvec)$/
+strace	lex.c	/^strace() {}$/
+stradd	optim.c	/^stradd(str, c)$/
+strncmp	aux.c	/^strncmp(as1, as2, an)$/
+swrite	cmd2.c	/^swrite(str)$/
+tabulate	fmt.c	/^tabulate(line)$/
+tailof	names.c	/^tailof(name)$/
+tinit	temp.c	/^tinit()$/
+top	cmd1.c	/^top(msgvec)$/
+touch	aux.c	/^touch(mesg)$/
+transmit	collect.c	/^transmit(mailp, obuf)$/
+tst	popen.c	/^#define	tst(a,b)	(*mode == 'r'? (b) : (a))$/
+ttycont	tty.c	/^ttycont(s)$/
+type	cmd1.c	/^type(msgvec)$/
+type1	cmd1.c	/^type1(msgvec, doign)$/
+undelete	cmd2.c	/^undelete(msgvec)$/
+ungroup	cmd3.c	/^ungroup(argv)$/
+unlock	lock.c	/^unlock()$/
+unmark	list.c	/^unmark(mesg)$/
+unpack	names.c	/^unpack(np)$/
+unset	cmd3.c	/^unset(arglist)$/
+unstack	aux.c	/^unstack()$/
+usermap	names.c	/^usermap(names)$/
+username	v7.local.c	/^username(uid, namebuf)$/
+value	vars.c	/^value(name)$/
+vcopy	vars.c	/^vcopy(str)$/
+verify	names.c	/^verify(names)$/
+vfork	def.h	/^#define	vfork()	fork()$/
+vfree	vars.c	/^vfree(cp)$/
+visual	edit.c	/^visual(msgvec)$/
+writeback	quit.c	/^writeback(res)$/
+xlocate	optim.c	/^xlocate(name)$/
+yankword	names.c	/^yankword(ap, wbuf)$/
+yyinit	optim.c	/^yyinit(str)$/
+yylex	optim.c	/^yylex()$/

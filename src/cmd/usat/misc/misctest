@@ -1,0 +1,245 @@
+:
+# SCCSID: @(#)misctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# This is Part 1 of the usat "misc" test, named "misctest".
+# Parts 2 and 3 are found in "misc2test" and "misc3test".
+# This script just controls the testing order for the other two.
+#
+# This script takes two arguments:
+#	1. process ID of the parent  (main shell, /usr/bin/usat).
+#	2. name of tmp directory, $T (from main shell)
+#
+# NOTES:
+# ------
+# date+5.c should never need recompiling; (cc -O -o date+5 date+5.c)
+# if you do recompile, adb, nm, and strip tests will fail and have
+# to be re-educated, ie: cp adb.out /usr/lib/usat/misc/adb.sav, etc.
+#
+
+/bin/echo -n "****** Miscellaneous test started - "
+date
+
+# get pid from parent:
+pid=$1
+
+# get tmp directory from parent
+T=$2
+
+touch $T/misc.${pid}.err
+
+# U is this directory, /usr/lib/usat/misc
+U=/usr/lib/usat/misc
+
+# test for running misc in this directory
+if [ `pwd` = /usr/lib/usat/misc ]
+then
+    echo "misc: cannot run misc test in /usr/lib/usat/misc directory!"
+    echo "      Please change directory (cd) to your own area."
+else
+# do the test
+
+# test files for ar, cat, cpio, grep, egrep, more, sum, wc
+f="file1 file2 file3 file4"
+
+# file.sav's which are re-created each time the test is run:
+temp="ar at bfs binmail calendar cd cdc chmod chog chown chsh \
+	cmp cp cpio csh csplit date dd delta df du edit file4 find \
+	from get getopt expand factor hostname line ln look ls mount \
+	msf mv ncheck nl pack pcat prep primes printenv prof prs prt \
+	ratfor rev sccs sccsdiff size spline split strip tar tee \
+	time touch tss tty ucbmail unexpand unget unpack users \
+	what who whoami xstr"
+
+# SCCSFILES: set up which sccs commands to test
+if [ -s /usr/bin/sccs ]
+then
+    SCCSFILES="sccs bdiff admin edit delta get unget sccsdiff what prs prt cdc val"
+else
+    SCCSFILES="sccs";
+fi
+
+# clean up files from last time
+for i in $temp
+do
+    rm -f ${i}.sav
+done
+
+rm -f at.in binmail.send binmail.recv ucbmail.send ucbmail.recv
+
+#copy files to . that are needed:
+cp $U/file? .
+
+# initialize command number
+num=0
+
+for cmd in \
+	at ac adb ar as basename bfs binmail cal \
+	calendar cat catman cb cd \
+	chfn chmod chog chown chsh \
+	cmp comm cp cpio csh csplit ctags cut \
+	date dd df diff3 \
+	du echo egrep expand expr \
+	factor false fgrep file find finger \
+	from getopt grep \
+	help hostname ipc join \
+	ld line ln look ls \
+	make man mkdir \
+	more mount msf mv ncheck nl nm \
+	od pack paste pcat pr prep printenv \
+	prof ps pwd quot ranlib ratfor \
+	rev rm s5make $SCCSFILES sdiff sh \
+	size sleep sort spline split strings \
+	strip stty sum sync \
+	tail tar tee test \
+	time touch tr true tsort tss tty \
+	ucbmail uname unexpand uniq units unpack users \
+	wait wc who whoami \
+	xstr at2
+
+# BIG do loop
+do
+
+# initialize error message
+echo ": $cmd output did not match." > errfile
+
+# start out by always printing the output files.
+echo "yes" > printfiles
+
+# echo the test number
+num=`expr $num + 1`
+/bin/echo -n "${num}.  "
+
+# echo the test name
+echo "$cmd"
+
+# delete any previous output file
+rm -f ${cmd}.out
+
+# the real work, call Part 2 or Part 3:
+# have to special case the sccs commands
+# less than "n" since they are all under "sccs".
+case $cmd in
+    [n-z]*|admin|bdiff|cdc|delta|edit|get) $U/misc3test $cmd ;;
+    [a-m]*) $U/misc2test $cmd ;;
+esac
+
+# test for failure by checking exit status ($?) of the last command
+if [ $? != 0 ]
+then
+    /bin/echo -n "misc: ${cmd} failed" >> $T/misc.${pid}.err
+    cat errfile >> $T/misc.${pid}.err
+    echo "--------------------------------"
+    /bin/echo -n "$cmd FAILED"
+    cat errfile
+
+# check if "printfiles" file contains instructions
+    if [ -s printfiles ]
+    then
+
+# printfiles file exists, see if it contains "yes" or "diff".
+    if [ `cat printfiles` = yes ]
+    then
+	echo
+	echo "Output was:"
+	if [ -r ${cmd}.out ]
+	then
+	    cat ${cmd}.out
+	else
+	    echo
+	    echo "	(Output file ${cmd}.out is missing!)"
+	fi
+	echo
+	echo "Expected:"
+	if [ -r $U/${cmd}.sav ]
+	then
+	# save a copy of correct output
+	    cp $U/${cmd}.sav .
+	fi
+	if [ -r ${cmd}.sav ]
+	then
+	    cat ${cmd}.sav
+	else
+	    echo
+	    echo "	(Reference file ${cmd}.sav is missing!)"
+	fi
+    else
+
+# printfiles is not "yes", check if "diff"
+	if [ `cat printfiles` = diff ]
+	then
+	    echo
+	    echo "Difference of output vs. expected results:"
+	    if [ -r ${cmd}.out ]
+	    then
+	    # "file.out" exists...
+		if [ -r $U/${cmd}.sav ]
+		then
+		    # save a copy of correct output, if necessary
+		    cp $U/${cmd}.sav .
+		fi
+		if [ ! -r ${cmd}.sav ]
+		then
+		    echo
+		    echo "	(cannot diff files, ${cmd}.sav is missing!)"
+		else
+		    echo "      < ${cmd}.out"
+		    echo "      > ${cmd}.sav"
+		    diff ${cmd}.out ${cmd}.sav
+		fi
+	    else
+		echo
+		echo "	(cannot diff files, ${cmd}.out is missing!)"
+	    fi
+	else
+# printfiles is not "diff", check if "cat"
+	if [ `cat printfiles` = cat ]
+	then
+	    echo
+	    echo "Output generated was:"
+	    if [ -r ${cmd}.out ]
+	    then
+		cat ${cmd}.out
+	    else
+		echo
+		echo "	(output file ${cmd}.out is missing!)"
+	    fi
+	fi
+    fi
+
+    fi
+
+# ...else "printfiles" file does not exist, (this should never happen).
+    fi
+    echo "--------------------------------"
+
+else
+# else this test succeeded, clean up related tmp files
+    rm -f ${cmd}.out ${cmd}.sav
+fi
+
+rm -f tmp.out junk.out
+
+# end the BIG loop
+done
+
+# end the directory check test
+fi
+
+/bin/echo -n "****** End  of Miscellaneous test - "
+date
+cat $T/misc.${pid}.err | sort >> $T/log.${pid}.err
+rm -f $T/misc.${pid}.err
+
+# remove all miscellaneous files which are left
+rm -f SCCS/s.prog.c SCCS/p.prog.c $f ,prog.c adb.in at.in at.out at.sav \
+	csh.in units.in binmail.send binmail.recv ucbmail.send \
+	ucbmail.recv prog.c prog.c.why prog1.c prog2.c \
+	csplit00 csplit01 calendar pack.out pack.sav pcat.sav.z \
+	printfiles xstr.in strings errfile file4.sav file4.tmp
+rmdir SCCS

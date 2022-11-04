@@ -1,0 +1,40 @@
+abs	arc.c	/^abs(a)$/
+arc	arc.c	/^arc(x,y,x0,y0,x1,y1)$/
+box	box.c	/^box(x0, y0, x1, y1)$/
+ccurve	ccurve.c	/^ccurve(pnt, cnt)$/
+circle	circle.c	/^circle(xi,yi,radius)$/
+closegg	close.c	/^closegg(){$/
+closepl	close.c	/^closepl(){$/
+cont	line.c	/^cont(x0,y0){$/
+crevid	crevid.c	/^crevid()	\/* clear reverse video *\/$/
+curve	curve.c	/^curve(pnt, cnt)$/
+dot	dot.c	/^dot(xi,yi,dx,n,pat)$/
+erase	erase.c	/^erase() 	\/* erase screen *\/$/
+frame	frame.c	/^frame(n)$/
+gsqrt	circle.c	/^gsqrt(i,radius)$/
+hcopy	hcopy.c	/^hcopy(y, y1)	\/* hardcopy out from line y to line y/
+label	label.c	/^label(s)$/
+line	line.c	/^line(x0,y0,x1,y1){$/
+linemod	linemod.c	/^linemod(s)$/
+move	move.c	/^move(xi,yi)$/
+movscr	movscr.c	/^movscr(x, y)		\/* move screen origin location to x /
+ofcont	line.c	/^ofcont(dir, x)$/
+offsets	offsets.c	/^offsets(dir, x) 	\/* offset display in dir directio/
+ofmove	ofmove.c	/^ofmove(dir, x)	\/* move cursor in offset direction /
+opengg	open.c	/^opengg ()$/
+openpl	open.c	/^openpl()$/
+pen	pen.c	/^pen(color)$/
+point	point.c	/^point(xi,yi)$/
+quad	arc.c	/^quad(x,y,xp,yp)$/
+rescur	rescur.c	/^rescur()	\/* restore cursor position from gigi's st/
+savcur	savcur.c	/^savcur()	\/* save current cursor position on gigi's/
+scolor	color.c	/^scolor(s)			 \/* set screen background color *\/$/
+shade	wrtng.c	/^shade(s)$/
+slimit	slimit.c	/^slimit(x, y, x1, y1)	\/* set screen coordinates *\/$/
+space	space.c	/^space(x0,y0,x1,y1){$/
+srevid	srevid.c	/^srevid()	\/* set reverse video *\/$/
+step	arc.c	/^step(d)$/
+time	time.c	/^time(t) 	\/* cause gigi to delay reading next comma/
+wrtng	wrtng.c	/^wrtng(argp)$/
+xsc	subr.c	/^xsc(xi){$/
+ysc	subr.c	/^ysc(yi){$/

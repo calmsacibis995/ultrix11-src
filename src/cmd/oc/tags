@@ -1,0 +1,173 @@
+CHECK	c2.h	/^#define	CHECK(x)$/
+Mc00	c00.c	/^main(argc, argv)$/
+Mc10	c10.c	/^main(argc, argv)$/
+Mc20	c20.c	/^main(argc, argv)$/
+Mcvopt	cvopt.c	/^main(argc, argv)$/
+abs	c21.c	/^abs(x)$/
+acommute	c12.c	/^acommute(atree)$/
+addsob	c21.c	/^addsob()$/
+adrlen	c21.c	/^adrlen(s)$/
+align	c03.c	/^align(type, offset, aflen)$/
+alloc	c21.c	/^alloc(n)$/
+arlength	c11.c	/^arlength(t)$/
+backjmp	c20.c	/^backjmp(ap1, ap2)$/
+blkend	c02.c	/^blkend()$/
+block	c01.c	/^block(op, t, subs, str, p1,p2)$/
+blockhead	c02.c	/^blockhead()$/
+branch	c04.c	/^branch(lab)$/
+breq	c11.c	/^breq(v, l)$/
+build	c01.c	/^build(op)$/
+cblock	c01.c	/^cblock(v)$/
+cbranch	c04.c	/^cbranch(t, lbl, cond)$/
+cexpr	c10.c	/^cexpr(atree, table, areg)$/
+cfunc	c02.c	/^cfunc()$/
+chconbrk	c04.c	/^chconbrk(l)$/
+check	c21.c	/^check()$/
+chkfun	c01.c	/^chkfun(ap)$/
+chkleaf	c10.c	/^chkleaf(atree, table, reg)$/
+chklval	c01.c	/^chklval(ap)$/
+chkw	c01.c	/^chkw(p, okt)$/
+cinit	c02.c	/^cinit(anp, flex, sclass)$/
+clearreg	c21.c	/^clearreg()$/
+codemove	c20.c	/^codemove(p)$/
+collcon	c11.c	/^collcon(ap)$/
+comarg	c10.c	/^comarg(atree, flagp)$/
+comjump	c20.c	/^comjump()$/
+compare	c21.c	/^compare(oper, cp1, cp2)$/
+conexp	c01.c	/^conexp()$/
+const	c12.c	/^const(op, vp, av)$/
+convert	c01.c	/^convert(p, t, cvn, len)$/
+copnum	c00.c	/^copnum(len)$/
+copy	c20.c	/^copy(na, ap)$/
+cpysymb	c03.c	/^cpysymb(s1, s2)$/
+dbprint	c10.c	/^#define	dbprint(op)	\/* *\/$/
+dcalc	c11.c	/^dcalc(ap, nrleft)$/
+decl1	c03.c	/^decl1(askw, atptr, offset, absname)$/
+declare	c03.c	/^declare(askw, tptr, offset)$/
+declist	c03.c	/^declist(sclass)$/
+decref	c04.c	/^decref(at)$/
+decsyn	c03.c	/^decsyn(o)$/
+degree	c11.c	/^degree(at)$/
+delay	c10.c	/^delay(treep, table, reg)$/
+dest	c21.c	/^dest(as, flt)$/
+disarray	c01.c	/^disarray(ap)$/
+distrib	c12.c	/^distrib(list)$/
+dogoto	c04.c	/^dogoto()$/
+doinit	c10.c	/^doinit(atype, atree)$/
+doret	c04.c	/^doret()$/
+dualop	c21.c	/^dualop(ap)$/
+equop	c21.c	/^equop(ap1, p2)$/
+equstr	c21.c	/^equstr(ap1, ap2)$/
+errflush	c02.c	/^errflush(ao)$/
+error	c01.c	/^error(s, p1, p2, p3, p4, p5, p6)$/
+extdef	c02.c	/^extdef()$/
+fblock	c01.c	/^fblock(t, string)$/
+findcon	c21.c	/^findcon(i)$/
+findkw	c00.c	/^findkw()$/
+findrand	c21.c	/^findrand(as, flt)$/
+flag	cvopt.c	/^flag() {$/
+fold	c01.c	/^fold(op, ap1, ap2)$/
+forstmt	c02.c	/^forstmt()$/
+funchead	c02.c	/^funchead()$/
+gblock	c01.c	/^gblock(n)$/
+getblk	c12.c	/^getblk(size)$/
+getcc	c00.c	/^getcc()$/
+geti	c11.c	/^geti()$/
+getkeywords	c03.c	/^getkeywords(scptr, tptr)$/
+getline	c20.c	/^getline()$/
+getnum	c00.c	/^getnum()$/
+getree	c11.c	/^getree()$/
+getype	c03.c	/^getype(adimp, absname)$/
+goodreg	c03.c	/^goodreg(hp)$/
+hardlongs	c12.c	/^hardlongs(at)$/
+ilen	c21.c	/^ilen(p)$/
+incref	c04.c	/^incref(t)$/
+input	c20.c	/^input()$/
+insert	c12.c	/^insert(op, atree, alist)$/
+insertl	c20.c	/^insertl(oldp)$/
+isconstant	c12.c	/^isconstant(at)$/
+isfloat	c11.c	/^isfloat(at)$/
+islong	c12.c	/^islong(t)$/
+ispow2	c11.c	/^ispow2(atree)$/
+isreg	c21.c	/^isreg(as)$/
+iterate	c20.c	/^iterate()$/
+jumpsw	c21.c	/^jumpsw()$/
+label	c04.c	/^label(l)$/
+lconst	c12.c	/^lconst(op, lp, rp)$/
+length	c04.c	/^length(acs)$/
+lintyp	c01.c	/^lintyp(t)$/
+longrel	c11.c	/^longrel(atree, lbl, cond, reg)$/
+lookup	c00.c	/^lookup()$/
+lvfield	c12.c	/^lvfield(at)$/
+mapch	c00.c	/^mapch(ac)$/
+match	c10.c	/^match(atree, table, nrleft, nocvt)$/
+max	c11.c	/^max(a, b)$/
+movedat	c21.c	/^movedat()$/
+movreg	c10.c	/^movreg(r0, r1, tree)$/
+natural	c21.c	/^natural(ap)$/
+nblock	c01.c	/^nblock(ads)$/
+ncopy	c10.c	/^ncopy(ap)$/
+nextchar	c04.c	/^nextchar()$/
+nonlab	c21.c	/^nonlab(p)$/
+notcompat	c11.c	/^notcompat(ap, ast, op)$/
+oddreg	c11.c	/^oddreg(t, areg)$/
+oplook	c20.c	/^oplook()$/
+opsetup	c20.c	/^opsetup()$/
+optim	c12.c	/^optim(atree)$/
+outcode	c04.c	/^outcode(s, a)$/
+outname	c11.c	/^outname(s)$/
+output	c20.c	/^output()$/
+pbase	c11.c	/^pbase(ap)$/
+pexpr	c02.c	/^pexpr()$/
+plength	c04.c	/^plength(ap)$/
+pname	c11.c	/^pname(ap, flag)$/
+popstk	c11.c	/^popstk(a)$/
+pow2	c11.c	/^pow2(atree)$/
+prins	c11.c	/^prins(op, c, itable)$/
+prste	c02.c	/^prste(acs)$/
+psoct	c11.c	/^psoct(an)$/
+pswitch	c02.c	/^pswitch()$/
+pushdecl	c03.c	/^pushdecl(asp)$/
+put	cvopt.c	/^put(c)$/
+putstr	c00.c	/^putstr(lab, amax)$/
+rcexpr	c04.c	/^rcexpr(atp)$/
+redec	c03.c	/^redec()$/
+reducelit	c20.c	/^reducelit(at)$/
+redunbr	c21.c	/^redunbr(p)$/
+refcount	c20.c	/^refcount()$/
+regerr	c11.c	/^regerr()$/
+reorder	c10.c	/^reorder(treep, table, reg)$/
+repladdr	c21.c	/^repladdr(p, f, flt)$/
+rlength	c04.c	/^rlength(cs)$/
+rmove	c21.c	/^rmove()$/
+savereg	c21.c	/^savereg(ai, as)$/
+sdelay	c10.c	/^sdelay(ap)$/
+setcc	c21.c	/^setcc(ap)$/
+setcon	c21.c	/^setcon(ar1, ar2)$/
+setinit	c02.c	/^setinit(anp)$/
+setype	c01.c	/^setype(ap, at, anewp)$/
+simplegoto	c04.c	/^simplegoto()$/
+singop	c21.c	/^singop(ap)$/
+sort	c11.c	/^sort(afp, alp)$/
+source	c21.c	/^source(ap)$/
+spnextchar	c04.c	/^spnextchar()$/
+squash	c12.c	/^squash(p, maxp)$/
+sreorder	c10.c	/^sreorder(treep, table, reg, recurf)$/
+statement	c02.c	/^statement()$/
+strasg	c11.c	/^strasg(atp)$/
+strdec	c03.c	/^strdec(mosf, kind)$/
+strfunc	c10.c	/^strfunc(atp)$/
+strinit	c02.c	/^strinit(np, sclass)$/
+subseq	c00.c	/^subseq(c,a,b)$/
+symbol	c00.c	/^symbol() {$/
+tconst	c12.c	/^tconst(val, type)$/
+tnode	c12.c	/^tnode(op, type, tr1, tr2)$/
+toofar	c21.c	/^toofar(p)$/
+tree	c00.c	/^tree()$/
+treeout	c04.c	/^treeout(atp, isstruct)$/
+typov	c03.c	/^typov()$/
+unoptim	c12.c	/^unoptim(atree)$/
+xdcalc	c11.c	/^xdcalc(ap, nrleft)$/
+xjump	c20.c	/^xjump(p1)$/
+xlongrel	c11.c	/^xlongrel(f)$/
+xprtype	c00.c	/^xprtype(atyb)$/

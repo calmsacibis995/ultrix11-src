@@ -1,0 +1,43 @@
+# SCCSID: @(#)ovmakefile	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+
+SOURCES = ey0.c ey1.c ey2.c ey3.c ey4.c ey5.c
+OBJS = ey0.o ey1.o ey2.o ey3.o ey4.o ey5.o
+CFLAGS = -O -DSMALL
+
+all:	eyacc
+	-strip eyacc
+
+sources: ${SOURCES}
+
+${SOURCES}:
+	sccs get $@
+
+eyacc: ${OBJS}
+	ld -X -o eyacc /lib/crt0.o ey0.o -Z ey1.o ey3.o \
+	-Z ey2.o ey4.o -L ey5.o -lc
+
+install: all
+
+clean:
+	-rm -f *.o eyacc
+
+clobber: clean
+	sccs clean
+
+tags:	${SOURCES}
+	ctags ${SOURCES}
+
+sccsinfo:
+	sccs info
+
+ey1.o:	ey.h
+ey2.o:	ey.h
+ey3.o:	ey.h
+ey4.o:	ey.h

@@ -1,0 +1,38 @@
+Mtp1	tp1.c	/^main(argc,argv)$/
+bitmap	tp3.c	/^bitmap()	\/* place old files in the map *\/$/
+callout	tp2.c	/^callout()$/
+check	tp1.c	/^check()$/
+clrdir	tp2.c	/^clrdir()$/
+clrent	tp2.c	/^clrent(ptr)$/
+cmd	tp1.c	/^cmd()$/
+cmr	tp1.c	/^cmr()$/
+cmt	tp1.c	/^cmt()$/
+cmx	tp1.c	/^cmx()$/
+decode	tp1.c	/^decode(pname,dptr)	\/* dptr points to the dir entry/
+delete	tp3.c	/^delete(dd)$/
+done	tp1.c	/^done()$/
+encode	tp1.c	/^encode(pname,dptr)	\/* pname points to the pathname/
+expand	tp2.c	/^expand()$/
+extract	tp3.c	/^extract(d)$/
+fserr	tp2.c	/^fserr()$/
+getfiles	tp2.c	/^getfiles()$/
+gettape	tp3.c	/^gettape(how)$/
+maperr	tp3.c	/^maperr()$/
+optap	tp1.c	/^optap()$/
+phserr	tp3.c	/^phserr()$/
+rddir	tp2.c	/^rddir()$/
+rseek	tp2.c	/^rseek(blk)$/
+seekerr	tp2.c	/^seekerr()$/
+setcom	tp1.c	/^setcom(newcom)$/
+setmap	tp3.c	/^setmap(d)$/
+swabdir	tp2.c	/^swabdir(tp)$/
+taboc	tp3.c	/^taboc(dd)$/
+tread	tp2.c	/^tread()$/
+twrite	tp2.c	/^twrite()$/
+update	tp3.c	/^update()$/
+update1	tp3.c	/^update1()$/
+usage	tp3.c	/^usage()$/
+useerr	tp1.c	/^useerr()$/
+verify	tp2.c	/^verify(key)$/
+wrdir	tp2.c	/^wrdir()$/
+wseek	tp2.c	/^wseek(blk)$/

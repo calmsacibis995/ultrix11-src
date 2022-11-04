@@ -1,0 +1,57 @@
+BIC	restor.c	/^#define	BIC(i,w)	(MWORD(w,i) &= ~MBIT(i))$/
+BIS	restor.c	/^#define	BIS(i,w)	(MWORD(w,i) |=  MBIT(i))$/
+BIT	restor.c	/^#define	BIT(i,w)	(MWORD(w,i) & MBIT(i))$/
+MBIT	restor.c	/^#define	MBIT(i)	(1<<((unsigned)(i-1)%MLEN))$/
+MWORD	restor.c	/^#define	MWORD(m,i) (m[(unsigned)(i-1)\/MLEN])$/
+Mrestor	restor.c	/^main(argc, argv)$/
+alloc	restor.c	/^alloc()$/
+balloc	restor.c	/^balloc()$/
+bfree	restor.c	/^bfree(bn)$/
+bmap	restor.c	/^bmap(iaddr, bn)$/
+bread	restor.c	/^bread(bno, buf, cnt)$/
+bwrite	restor.c	/^bwrite(bno, buf)$/
+checksum	restor.c	/^checksum(b)$/
+checktype	restor.c	/^checktype(b, t)$/
+checkvol	restor.c	/^checkvol(b, t)$/
+chk	restor.c	/^chk(bno, s)$/
+clearbuf	restor.c	/^clearbuf(cp, part)$/
+clri	restor.c	/^clri(ip)$/
+copy	restor.c	/^copy(f, t, s)$/
+direq	restor.c	/^direq(s1, s2)$/
+doit	restor.c	/^doit(command, argc, argv)$/
+done	restor.c	/^done()$/
+dread	restor.c	/^dread(bno, buf, cnt)$/
+duped	restor.c	/^duped(bno)$/
+dwrite	restor.c	/^dwrite(bno, b)$/
+filcntl	restor.c	/^filcntl()$/
+flsh	restor.c	/^flsh()$/
+flsht	restor.c	/^flsht()$/
+getdino	restor.c	/^getdino(inum, b)$/
+getent	restor.c	/^getent(bf)$/
+getfile	restor.c	/^getfile(n, f1, f2, size)$/
+gethead	restor.c	/^gethead(buf)$/
+ichecks	restor.c	/^ichecks()$/
+ishead	restor.c	/^ishead(buf)$/
+itrunc	restor.c	/^itrunc(ip)$/
+makefree	restor.c	/^makefree()$/
+mseek	restor.c	/^mseek(pt)$/
+null	restor.c	/^null() {;}$/
+pass1	restor.c	/^pass1()$/
+pass2	restor.c	/^pass2(ip)$/
+psearch	restor.c	/^psearch(n)$/
+putdino	restor.c	/^putdino(inum, b)$/
+putdir	restor.c	/^putdir(b)$/
+putent	restor.c	/^putent(cp)$/
+readbits	restor.c	/^readbits(m)$/
+readc	restor.c	/^readc()$/
+readhdr	restor.c	/^readhdr(b)$/
+readtape	restor.c	/^readtape(b,part)$/
+rstexit	restor.c	/^rstexit(status)$/
+rstrfile	restor.c	/^rstrfile(b, s)$/
+rstrskip	restor.c	/^rstrskip(b, s)$/
+sabfree	restor.c	/^sabfree(bno)$/
+search	restor.c	/^search(inum, cp)$/
+skip	restor.c	/^skip()$/
+tloop	restor.c	/^tloop(bn, f1, f2)$/
+writec	restor.c	/^writec(c)$/
+xtrfile	restor.c	/^xtrfile(b, size)$/

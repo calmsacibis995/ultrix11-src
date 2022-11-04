@@ -1,0 +1,1060 @@
+-command
+
+TERM		command format
+
+EXPLANATION	Once you receive a command prompt from your login shell, you
+		can execute any ULTRIX-11 command.  The ULTRIX-11 commands
+		have one of the following formats:
+
+		     command [ -option... ] [ argument... ]
+
+		     command [ key... ] [ argument... ]
+
+		     command [ keyword... ] 
+	  
+		Options are always preceded by a minus (-).  Keys are not 
+		preceded by a minus.  Keywords are followed by an equals sign 
+		(=) and the appropriate argument.  Square brackets indicate 
+		optional information.  Where used, ellipsis (...) indicates 
+		that more than one can be specified.
+-directory
+
+TERMS		directory and file
+
+EXPLANATION	Your directories contain an entry for each subdirectory
+		or data file that you assign to them.  Each directory 
+		entry lists the name and file system inumber of an
+		assigned directory or file.  
+
+		Your files contain the data that you store within the 
+		ULTRIX-11 file system.  Each file can have one or more 
+		names, that is, one or more directory entries that point 
+		to the file system information for that file.
+
+		To access a subdirectory or file, you simply specify the 
+		correct name.  The system first searches for the directory 
+		entry that contains that name.  On finding the correct entry,
+		the system then translates the name to the listed inumber
+		and uses this number to access the appropriate file system 
+		information.
+
+RELATED		link 
+-groupID
+
+TERM		group ID
+
+EXPLANATION	When you log in, the system establishes your group ID number.
+		The system uses your group ID number to determine group access 
+		permissions to all directories and files in the file system. 
+		Your system administrator (superuser) normally assigns your 
+		group ID number.
+
+RELATED		userID and home (terms) 
+
+DOCUMENTATION	chgrp(1) and chog(1) in the ULTRIX-11 Programmer's Manual 
+-home
+
+TERM		home directory
+
+EXPLANATION	When you log in, the system automatically places you in your
+		home or login directory.  Your home directory generally is 
+		identified by your user login name.  Your system administrator 
+		(superuser) normally creates your home directory in the 
+		appropriate file system.
+		
+RELATED		groupID and shell
+-inode
+
+TERM		inode
+
+EXPLANATION	An inode is a data structure that defines a directory, data 
+		file, or special file in an ULTRIX-11 file system.  Each inode
+		lists the file type (directory, data, or special); mode (access
+		permissions); userID of owner; groupID of owner; size (bytes); 
+		either block addresses (directory or file), or major/minor
+		numbers (special); last time accessed; and last time modified.
+
+RELATED		inumber and mode
+-inumber
+
+TERM		inumber
+ 
+EXPLANATION	An inumber is the inode index number that is listed in a
+		directory entry.  The system uses this inumber in accessing
+		the appropriate file system information (inode) for the 
+		directory, data file, or special file.
+
+RELATED		link and inode
+-kernel
+
+TERM		ULTRIX-11 kernel
+
+EXPLANATION	The kernel is the memory-resident portion of the ULTRIX-11
+		system that schedules processes, services system calls,
+		maintains the file systems, and interacts directly with
+		your system hardware.
+-link
+
+TERM		link
+
+EXPLANATION	When you specify a file name as a command argument, the 
+		system searches for a directory entry with that assigned
+		name.  This directory entry essentially is a link to the
+		appropriate file system information for that file.
+
+		Within the ULTRIX-11 file system, a file can have more than
+		one directory entry, that is, more than one link to the 
+		appropriate file system information.
+
+RELATED		directory and inumber
+
+DOCUMENTATION	ln(1) and ls(1) in the ULTRIX-11 Programmer's Manual
+-mode
+
+TERM		mode settings
+
+EXPLANATION	Access to every file in the ULTRIX-11 file system is 
+		determined by the file's mode settings.  Each file
+		has three mode settings.  The first applies to the 
+		file's owner, the second to members of the owner's 
+		group, and the third to all others.  Each mode setting 
+		consists of three permission bits: read, write, and
+		execute.
+
+		For data files, the read bit determines read permission: 
+		allows you to open the file and read data.  The write bit 
+		determines write permission: allows you to open the file
+		and write data.  The execute bit determines execute 
+		permission: allows you to execute the program or shell
+		script. 
+
+		For directories, the read bit determines list permission:
+		allows you to list the contents of the directory.  The write 
+		bit determines create permission: allows you to create an 
+		entry in that directory.  The execute bit determines search 
+		permission: allows you to access an inumber from an entry in
+		the directory.
+
+RELATED		userID, groupID, and inode
+
+DOCUMENTATION	ls(1) in the ULTRIX-11 Programmer's Manual
+-multiuser
+
+TERM		multiuser mode
+
+EXPLANATION	Multiuser mode, as the terms imply, is when the system
+		allows more than one user to be active at any given time
+		(time sharing).  
+
+		During multiuser startup, the system automatically 
+		prepares for time sharing by executing the commands from
+		the /etc/rc file.
+
+RELATED		rc
+-password
+
+TERM		login password
+
+EXPLANATION	If your login name is password protected, you type your login
+		password in response to the password prompt.  If your login
+		name is not password protected, the system does not prompt
+		for password verification.  To change your login password, 
+		use the passwd command.
+
+RELATED		user and userID
+-pid
+
+TERM		pid
+
+EXPLANATION	When you execute a command, the system assigns your request 
+		a process identification number (pid).  Most of the time, 
+		you do not need to know the pids of your command requests.  
+		But, to send a process (command) a signal, you need to 
+		specify its correct pid.  You can determine the pids of your 
+		command request by executing the ps command.
+-shell
+
+TERM		login shell
+
+EXPLANATION	Your login shell normally is the command (process) that the
+		system automatically executes when you successfully log in.
+		Once executed, your login shell serves as your command 
+		language interpreter.  
+
+		As a command interpreter, your shell parses the command 
+		sequences that you enter from your terminal for:
+ 
+		   Command name
+		   Command arguments
+		   Shell special characters
+
+		Before it passes your command request to the ULTRIX-11 kernel,
+		the shell processes all special characters in the entered
+		sequence.  Your shell has a full set of special characters
+		that you can use to:
+
+		   Substitute values for shell variables
+		   Generate full names from partial strings
+
+		To generate full argument names from partially specified
+		strings, you can use these shell special characters:
+
+		   Match single character	?	 sh and csh shell
+		   Match character sequence	*	 sh and csh shell
+		   Match character from set	[set]    sh and csh shell
+		   Match from ordered set	{set}	 csh shell
+		   Match your home directory   	~	 csh shell
+		   Match user home directory	~user	 csh shell
+
+		In addition, if the csh is your login shell, you can use these
+		shell commands to control your job (command) requests:
+
+		   Display list of active jobs		jobs
+		   Put job in background		bg
+		   Put job in foreground		fg
+		   Restart stopped job			%job
+		   Suspend current job			<CTRL/Z>
+		    
+		Your login shell continues to serve as your command interpreter
+		until you type: 
+      
+		   <CTRL/D>				sh and csh shell 
+		   exit					csh shell only
+		   logout				csh shell only
+		
+		Your system administrator (superuser) normally assigns you a 
+		login shell (/bin/sh or /bin/csh).  To change your login shell 
+		for subsequent logins, use the chsh command.  
+		
+		For further information about your login shell, read either 
+		the sh or csh manual page.
+
+RELATED		home and stdin
+
+DOCUMENTATION	csh(1) and sh(1) in the ULTRIX-11 Programmer's Manual 
+		"An Introduction to the UNIX Shell" and "An introduction to
+		the C shell" in the ULTRIX-11 Supplementary Documents, 
+		Volume 1
+-singleuser
+
+TERM		single-user mode
+
+EXPLANATION	Single-user mode, as the terms imply, is when the system
+		allows only one user (superuser) to be active, running
+		/bin/sh at the console.  Also, during single-user mode,
+		only the root file system (/) is mounted.
+
+		Most often, single-user mode is used during system 
+		maintenance and administration.
+
+RELATED		multiuser
+-special
+
+TERM		special file
+
+EXPLANATION	A special file is an entry in the /dev directory that the 
+		system uses in accessing a configured I/O device.
+
+		When you access a special file, the system activates its
+		associated I/O device.
+
+RELATED		directory 
+-stdin
+
+TERMS		stdin, stdout, and stderr
+
+EXPLANATION	Upon initial execution, your login shell establishes three 
+		files for primary (default) I/O processing: 
+		
+	 	   Default input file				stdin  
+		   Default output file				stdout 
+		   Default error message file			stderr 
+
+		Each is set to your terminal.  Unless these are redirected, 
+		your shell reads input from and writes output and error 
+		messages to your terminal.
+ 
+		The basic shell redirection characters are:
+
+		   Redirect stdin from file	<file		sh and csh 
+		   Redirect stdout to file	>file		sh and csh 
+		   Append stdout to file	>>file		sh and csh 
+		   Redirect stdout and stderr	>file 2>&1	sh
+						>&file		csh 
+		   Pipe stdout to command	| cmd		sh and csh 
+		   Pipe stdout and stderr	2>&1 | cmd	sh 
+						|& cmd		csh
+		  
+ 
+		For further information about shell redirection, read the
+		sh or csh manual page.
+
+RELATED		shell
+
+DOCUMENTATION	csh(1) and sh(1) in the ULTRIX-11 Programmer's Manual 
+		"An Introduction to the UNIX Shell" and "An introduction to
+		the C shell" in the ULTRIX-11 Supplementary Documents,
+		Volume 1
+-ulimit
+
+TERM		ulimit
+
+EXPLANATION	The ulimit command is built in to each shell interpreter
+		and imposes a maximum limit (in Kbytes) on the size that
+	 	a newly created file may become.  The ulimit command is
+		recognized by the csh, sh, and sh5 shell interpreters.
+
+		The default ulimit size is 1024 Kbytes.  By using the 
+		ulimit command, an ordinary system user may decrease 
+		this size, but only the superuser may increase it.
+
+DOCUMENTATION	csh(1), sh(1), and sh5(1) in the ULTRIX-11 Programmer's
+		Manual
+
+-user
+
+TERM		user login name
+
+EXPLANATION	To log in to your system, you type your login name
+		in response to the login prompt.  Your user login
+		name can be your first name, last name, initials,
+		or nickname.  Your system administrator (superuser)
+		creates your system account which includes your user
+		login name.
+
+RELATED	 	password 
+-userID
+
+TERM		user ID 
+
+EXPLANATION	When you type your user name to log in, the system 
+		automatically translates your name to your system-unique
+		user ID number.  The system uses your user ID number to 
+		identify your processes (commands executed) and to determine
+		owner access permissions to your directories and files.
+		Your system administrator (superuser) normally assigns your
+		user ID number.
+
+RELATED		password and groupID
+
+DOCUMENTATION	chog(1) and chown(1) in the ULTRIX-11 Programmer's Manual
+-/etc/cshprofile
+
+DESCRIPTION	The /etc/cshprofile file is the default, system-level 
+		profile for all /bin/csh users on your system.
+
+DOCUMENTATION	environ(7) in the ULTRIX-11 Programmer's Manual
+-/etc/ddate
+
+DESCRIPTION	The /etc/ddate file is the dump date history file which
+		contains a record of all dump dates and dump levels.
+
+DOCUMENTATION	dump(8) in the ULTRIX-11 Programmer's Manual
+-/etc/dgateway
+
+DESCRIPTION	The /etc/dgateway file is the DECnet access database 
+		which defines the name of the ULTRIX-32 host that is to
+		serve as the connection between your ULTRIX-11 system
+		and DECnet.
+
+DOCUMENTATION	dgateway(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/fstab
+
+DESCRIPTION	The /etc/fstab file is the file system table which 
+		contains information about each configured file system 
+		on your ULTRIX-11 system.
+
+DOCUMENTATION	fstab(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/gettytab
+
+DESCRIPTION	The /etc/gettytab file is the terminal configuration 
+		table which defines your terminal lines for the getty 
+		program.
+
+DOCUMENTATION	gettytab(5) in the ULTRIX-11 Programmer's Manual
+-/etc/group
+
+DESCRIPTION	The /etc/group file is the group database which defines
+		for your system each group with its respective members.
+
+DOCUMENTATION	group(5) in the ULTRIX-11 Programmer's Manual
+-/etc/hosts
+
+DESCRIPTION	The /etc/hosts file is the hosts database which lists 
+		each host on your local area network.
+
+DOCUMENTATION	hosts(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/hosts.equiv
+
+DESCRIPTION	The /etc/hosts.equiv file is the host equivalents
+		database which defines the hosts from which users can 
+		log in to your ULTRIX-11 system without normal password
+		protection.
+
+DOCUMENTATION	ULTRIX-11 System Management Guide
+-/etc/inetd.conf
+
+DESCRIPTION	The /etc/inetd.conf file is the inetd configuration 
+		database which defines the Internet services available 
+		on your system.
+
+DOCUMENTATION	inetd.conf(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/motd
+
+DESCRIPTION	The /etc/motd file is the message-of-the-day file which 
+		contains information that is displayed each time a user 
+		logs in to your system.
+
+DOCUMENTATION	ULTRIX-11 System Management Guide
+-/etc/mtab
+
+DESCRIPTION	The /etc/mtab file is the mounted file system table 
+		which lists each file system that currently is mounted 
+		on your system.
+
+DOCUMENTATION	mtab(5) in the ULTRIX-11 Programmer's Manual
+-/etc/networks
+
+DESCRIPTION	The /etc/networks file is the networks database which 
+		contains an entry for each of the networks you have 
+		setup as part of your local area network.
+
+DOCUMENTATION	networks(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/passwd
+
+DESCRIPTION	The /etc/passwd file is system login database which 
+		contains an entry for each user that is allowed to 
+		log in to your ULTRIX-11 system.
+
+DOCUMENTATION	passwd(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/phones
+
+DESCRIPTION	The /etc/phones file is the remote hosts database which
+		lists the phone numbers that the tip command uses to 
+		establish a connection.
+
+DOCUMENTATION	phones(5) in the ULTRIX-11 Programmer's Manual
+-/etc/printcap
+
+DESCRIPTION	The /etc/printcap file is the printers capabilities 
+		database which defines the characteristics of each 
+		configured line printer on your system.
+
+DOCUMENTATION	printcap(5) in the ULTRIX-11 Programmer's Manual
+-/etc/profile
+
+DESCRIPTION	The /etc/profile file is the default, system-level 
+		profile for all /bin/sh users on your system.
+
+DOCUMENTATION	profile(5) in the ULTRIX-11 Programmer's Manual
+-/etc/protocols
+
+DESCRIPTION	The /etc/protocols file is the DARPA Internet protocols
+		database which lists each official protocol name, its 
+		corresponding number, and all its aliases.
+
+DOCUMENTATION	protocols(5) in the ULTRIX-11 Programmer's Manual
+-/etc/rc
+
+DESCRIPTION	The /etc/rc file is a shell script that lists those
+		commands that, when read during multiuser startup, 
+		prepares the system for time sharing.
+
+DOCUMENTATION	rc(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/remote
+
+DESCRIPTION	The /etc/remote file is the remote hosts database which
+		contains the information about each remote host that 
+		is used by the tip command.
+
+DOCUMENTATION	remote(5) in the ULTRIX-11 Programmer's Manual
+-/etc/services
+
+DESCRIPTION	The /etc/services file is the Internet services database
+		which defines the services available on your local area
+		 network.
+
+DOCUMENTATION	services(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/syslog.conf
+
+DESCRIPTION	The /etc/syslog.conf file is the configuration file,
+		which lists information for the syslog command.
+
+DOCUMENTATION	syslog(8) in the ULTRIX-11 Programmer's Manual
+-/etc/termcap
+
+DESCRIPTION	The /etc/termcap file is the terminal capabilities 
+		database which defines the characteristics of each 
+		configured terminal on your system.
+
+DOCUMENTATION	termcap(5) in the ULTRIX-11 Programmer's Manual
+-/etc/ttys
+
+DESCRIPTION	The /etc/ttys file is the terminal initialization 
+		database which the system uses during multiuser startup
+		to enable each specified terminal.
+
+DOCUMENTATION	ttys(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/ttytype
+
+DESCRIPTION	The /etc/ttytype file is the terminal types database 
+		which defines the type of each configured terminal on 
+		your system.
+
+DOCUMENTATION	ttytype(5) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-/etc/utmp
+
+DESCRIPTIONS	The /etc/utmp file is the login database which contains 
+		information about each user that is currently logged in
+		to your system.
+
+DOCUMENTATION	utmp(5) in the ULTRIX-11 Programmer's Manual
+-/usr/adm/wtmp
+
+DESCRIPTION	The /usr/adm/wtmp file is the login history database 
+		which contains information about every user login on 
+		your system.
+
+DOCUMENTATION	utmp(5) in the ULTRIX-11 Programmer's Manual
+-/usr/lib/aliases
+
+DESCRIPTION	The /usr/lib/aliases file is the mail aliases database
+		which defines the user aliases for the sendmail program.
+
+DOCUMENTATION	aliases(5) in the ULTRIX-11 Programmer's Manual
+-/usr/lib/crontab
+
+DESCRIPTION	The /usr/lib/crontab file is the command execution 
+		database which lists the commands and times that are to
+		be executed regularly by cron, the system clock daemon.
+
+DOCUMENTATION	cron(8) in the ULTRIX-11 Programmer's Manual
+-0 
+
+ERROR		Error 0
+
+EXPLANATION	This error number is unused.
+-1 
+
+ERROR		EPERM -- Not owner
+
+EXPLANATION	Typically, this error indicates an attempt to modify a 
+		file in some way that is forbidden, except to its owner
+		or superuser.  It also is returned when ordinary users 
+		attempt to do things permitted only to the superuser.
+-2 
+
+ERROR		ENOENT -- No such file or directory
+
+EXPLANATION	This error occurs either when a file which should exist 
+		but doesn't is specified, or when one of the directories
+		in the specified path does not exist.
+-3 
+
+ERROR		ESRCH -- No such process
+
+EXPLANATION	The process whose number was given to the signal and 
+		ptrace calls either does not exist or is already dead.
+-4 
+
+ERROR		EINTR -- Interrupted system call
+
+EXPLANATION	During a system call, an asynchronous signal which the 
+		user elected to catch occurred (for example, an 
+		interrupt or quit).  If, after processing the signal, 
+		execution is resumed, it will appear as if the 
+		interrupted system call returned this error condition.
+-5 
+
+ERROR		EIO -- I/O error
+
+EXPLANATION	During a read or write, a physical I/O error occurred.
+		In some cases, this error can occur on a subsequent call
+		than the one to which it actually applies.
+-6 
+
+ERROR		ENXIO -- No such device or address
+
+EXPLANATION	I/O on a special file refers either to a subdevice that
+		does not exist or is beyond the limits of the device.
+		This error can also occur when a tape drive is not 
+		dialed in or a disk pack is not loaded on a drive.
+-7 
+
+ERROR		E2BIG -- Arg list too long
+
+EXPLANATION	An argument list longer than 5120 bytes is presented to
+		the exec call.
+-8 
+
+ERROR		ENOEXEC -- Exec format error
+
+EXPLANATION	A request is made to execute a file which, although it 
+		has the appropriate permissions, does not start with a 
+		valid magic number.  For further information, see 
+		a.out(5) in the ULTRIX-11 Programmer's Manual.
+-9 
+
+ERROR		EBADF -- Bad file number
+
+EXPLANATION	Either a file descriptor refers to no open file, a read
+		request is made to a file that is open only for writing,
+		or a write request is made to a file that is open only 
+		for reading.
+-10 
+
+ERROR		ECHILD -- No children
+
+EXPLANATION	During a wait call, the process has no living or 
+		unwaited-for children.
+-11 
+
+ERROR		EAGAIN -- No more processes
+
+EXPLANATION	During a fork call, either the system's process table 
+		becomes full, or the user is not allowed to create any 
+		more processes.
+-12 
+
+ERROR		ENOMEM -- Not enough core
+
+EXPLANATION	During an exec or break call, a program asks for more 
+		core (memory) than the system is able to supply.  This 
+		is not a temporary condition. The maximum core size is 
+		a system parameter.  The error can also occur if the 
+		arrangement of text, data, and stack segments requires 
+		too many segmentation registers.
+-13 
+
+ERROR		EACCES -- Permission denied
+
+EXPLANATION	An attempt was made to access a file in a way forbidden
+		by the file's mode (permissions).
+-14 
+
+ERROR		EFAULT -- Bad address
+
+EXPLANATION	The system encountered a hardware fault while attempting
+		to access the arguments of a system call.
+-15 
+
+ERROR		ENOTBLK -- Block device required
+
+EXPLANATION	A data file was specified where a block device is 
+		required (for example, while attempting a mount call).
+-16 
+
+ERROR		EBUSY -- Mount device busy
+
+EXPLANATION	An attempt was made either to mount a device that was 
+		already mounted or to dismount a device on which there
+		is an active file (that is, an open file, current 
+		directory, mounted-on file, or active text segment).
+-17 
+
+ERROR		EEXIST -- File exists
+
+EXPLANATION	An existing file was mentioned in an inappropriate 
+		context, for example, while attempting a link call.
+-18 
+
+ERROR		EXDEV -- Cross-device link
+
+EXPLANATION	A link to a file on another device was attempted.
+-19 
+
+ERROR		ENODEV -- No such device
+
+EXPLANATION	An attempt was made to apply an inappropriate system 
+		call to a device (for example, read a write-only 
+		device).
+-20 
+
+ERROR		ENOTDIR -- Not a directory
+
+EXPLANATION	A non-directory was specified where a directory is 
+		required (for example, in a path name or as an argument
+		to the chdir call.
+-21 
+
+ERROR		EISDIR -- Is a directory
+
+EXPLANATION	An attempt was made to write on a directory. 
+-22 
+
+ERROR		EINVAL -- Invalid argument
+
+EXPLANATION	An invalid argument was specified (for example, 
+		dismounting a non-mounted device, mentioning an 
+		unknown signal during a signal call, reading or 
+		writing a file for which a seek call has generated
+		a negative pointer.  This error can also occur with 
+		math library subroutines.  For further information, 
+		see intro(3) and intro(3m) in the ULTRIX-11 Programmer's
+		Manual.
+-23 
+
+ERROR		ENFILE -- File table overflow
+
+EXPLANATION	The system's table of open files is full, and no open 
+		calls can be temporarily accepted.
+-24 
+
+ERROR		EMFILE -- Too many open files
+
+EXPLANATION	The configuration limit is 20 per process.
+-25 
+
+ERROR		ENOTTY -- Not a typewriter
+
+EXPLANATION	The file argument for a stty or gtty call either is 
+		not a terminal or is not one of the devices to which 
+		these calls apply.
+-26 
+
+ERROR		ETXTBSY -- Text file busy
+
+EXPLANATION	An attempt either to execute a pure procedure program 
+		currently open for writing/reading or to open for 
+		writing/reading a pure procedure program currently being
+		 executed.
+-27 
+
+ERROR		EFBIG -- File too large
+
+EXPLANATION	The size of a file exceeded the maximum (about 10 to 
+		the 9th power bytes).
+-28 
+
+ERROR		ENOSPC -- No space left on device
+
+EXPLANATION	During a write call to an ordinary file, there is no 
+		free space left on the device.
+-29 
+
+ERROR		ESPIPE -- Illegal seek
+
+EXPLANATION	An lseek call was issued to a pipe.  This error can also
+		be issued for other non-seekable devices.
+-30 
+
+ERROR		EROFS -- Read-only file system
+
+EXPLANATION	An attempt to modify a file or directory was made on 
+		a device mounted read-only.
+-31 
+
+ERROR		EMLINK -- Too many links
+
+EXPLANATION	An attempt to make more than 32767 links to a file.
+-32 
+
+ERROR		EPIPE -- Broken pipe
+
+EXPLANATION	A write on a pipe for which there is no process to read
+		the data.  This condition normally generates a signal.
+		If the signal is ignored, the error is returned.
+-33 
+
+ERROR		EDOM -- Math argument
+
+EXPLANATION	The argument to a math library subroutine (3m) is out 
+		of the domain of the function.
+-34 
+
+ERROR		ERANGE -- Result too large
+
+EXPLANATION	The value of the math library subroutine (3m) is not 
+		representable within machine precision.
+-35 
+
+ERROR		ETPL -- Fatal error - tape position lost
+
+EXPLANATION	A tape driver has encountered a tape error that has 
+		caused it to loose track of tape position.
+-36 
+
+ERROR		ETOL -- Tape unit off-line
+
+EXPLANATION	An attempt has been made to access a tape drive that 
+		is not available, that is, either no tape loaded or 
+		off-line.
+-37 
+
+ERROR		ETWL -- Tape unit write locked
+
+EXPLANATION	A write was attempted on a tape without a write enable 
+		ring installed.
+-38 
+
+ERROR		ETO -- Tape unit already open
+
+EXPLANATION	An attempt was made to access a tape drive that either 
+		is already in use or is hung for some reason.
+-39 
+
+ERROR		EDESTADDRREQ -- Destination address required
+
+EXPLANATION	A required address was omitted from an operation on 
+		a socket.
+-40 
+
+ERROR		EMSGSIZE -- Message too long
+
+EXPLANATION	A message sent on a socket was larger than the internal
+		message buffer.
+-41 
+
+ERROR		EPROTOTYPE -- Protocol wrong type for socket
+
+EXPLANATION	A protocol was specified which does not support the 
+		semantics of the socket type requested. For example, 
+		you cannot use the ARPA Internet UDP protocol with type 
+		SOCK_STREAM.
+-42 
+
+ERROR		ENOPROTOOPT -- Bad protocol option
+
+EXPLANATION	A bad option was specified to a getsockopt or setsockopt
+		call.
+-43 
+
+ERROR		EPROTONOSUPPORT -- Protocol not supported
+
+EXPLANATION	Either the protocol has not been configured into the 
+		system, or no implementation for it exists.
+-44 
+
+ERROR		ESOCKTNOSUPPORT -- Socket type not supported
+
+EXPLANATION	Either support for the socket type has not been 
+		configured into the system, or no implementation for 
+		it exists.
+-45 
+
+ERROR		EOPNOTSUPP -- Operation not supported on socket
+
+EXPLANATION	For example, attempting an accept call for a connection
+		on a datagram socket will cause this error.
+-46 
+
+ERROR		EPFNOSUPPORT -- Protocol family not supported
+
+EXPLANATION	Either the protocol family has not been configured into
+		the system, or no implementation for it exists.
+-47 
+
+ERROR		EAFNOSUPPORT -- Address family not supported by protocol family
+
+EXPLANATION	An address incompatible with the requested protocol was
+		used.  For example, you should not necessarily expect to
+		be able to use PUP Internet addresses with ARPA Internet
+		protocols.
+-48 
+
+ERROR		EADDRINUSE -- Address already in use
+
+EXPLANATION	Normally, only one usage of each address is permitted.
+-49 
+
+ERROR		EADDRNOTAVAIL -- Can't assign requested address
+
+EXPLANATION	Normally, this error results from an attempt to create
+		a socket with an address not on this machine.
+-50 
+
+ERROR		ENETDOWN  -- Network is down
+
+EXPLANATION	A socket operation encountered a dead network.
+-51 
+
+ERROR		ENETUNREACH -- Network is unreachable
+
+EXPLANATION	A socket operation was attempted to an unreachable network.
+-52
+
+ERROR		ENETRESET -- Network dropped connection on reset
+
+EXPLANATION	The host you were connected to crashed and rebooted.
+-53 
+
+ERROR		ECONNABORTED -- Software caused connection abort
+
+EXPLANATION	Something internal to your host machine caused a 
+		connection abort.
+-54 
+
+ERROR		ECONNRESET -- Connection reset by peer
+
+EXPLANATION	A connection was forcibly closed by a peer.  Normally, 
+		this results from the peer executing a shutdown call.
+-55
+
+ERROR		ENOBUFS -- No buffer space available
+
+EXPLANATION	The system lacked sufficient buffer space to perform an
+		operation on a socket or pipe.
+-56 
+
+ERROR		EISCONN -- Socket is already connected
+
+EXPLANATION	Either a connect call was made on an already connected
+		socket, or a sendto or sendmsg call was made on a 
+		connected socket which specified a destination other 
+		than the connected party.
+-57 
+
+ERROR		ENOTCONN -- Socket is not connected
+
+EXPLANATION	An request to send or receive data was not allowed 
+		because the socket is not connected.
+-58 
+
+ERROR		ESHUTDOWN -- Can't send after socket shutdown
+
+EXPLANATION	A request to send data was not allowed because the 
+		socket had already been shut down with a previous 
+		shutdown call.
+-59 
+
+ERROR		ETOOMANYREFS -- Too many references: can't splice
+-60 
+
+ERROR		ETIMEDOUT -- Connection timed out
+
+EXPLANATION	A connect call failed because the connected party did 
+		not properly respond after a period of time.  (The 
+		timeout period is dependent on the communication 
+		protocol.)
+-61 
+
+ERROR		ECONNREFUSED -- Connection refused
+
+EXPLANATION	No connection could be made because the target machine
+		actively refused it.  Usually, this results from trying
+		to connect to a service which is inactive on the foreign
+		host.
+-62 
+
+ERROR		ELOOP -- Too many levels of symbolic links
+
+EXPLANATION	A path name lookup involved more than 8 symbolic links.
+-63 
+
+ERROR		ENAMETOOLONG -- File name too long
+
+EXPLANATION	Either a component of the path name exceeded 255 
+		characters, or an entire path name exceeded 1023 
+		characters.
+-64 
+
+ERROR		EHOSTDOWN -- Host is down
+-65 
+
+ERROR		EHOSTUNREACH -- No route to host
+-66 
+
+ERROR		ENOTEMPTY -- Directory not empty
+
+EXPLANATION	A directory with entries other than . and .. was 
+		supplied to a remove directory or rename call.
+-67 
+
+ERROR		EPROCLIM -- Too many processes
+-68 
+
+ERROR		EUSERS -- Too many users
+-69 
+
+ERROR		EDQUOT -- Disc quota exceeded
+-70 
+
+ERROR		EWOULDBLOCK -- Operation would block
+
+EXPLANATION	An operation which would cause a process to block was 
+		attempted on a object in non-blocking mode.  For further
+		information, see ioctl(2) in the ULTRIX-11 Programmer's
+		Manual.
+-71 
+
+ERROR		EINPROGRESS -- Operation now in progress
+
+EXPLANATION	An operation which takes a long time to complete (for 
+		example, a connect call) was attempted on a non-blocking
+		object.  For further information, see ioctl(2) in the 
+		ULTRIX-11 Programmer's Manual.
+-72 
+
+ERROR		EALREADY -- Operation already in progress
+
+EXPLANATION	An operation was attempted on a non-blocking object 
+		which already had an operation in progress.
+-73 
+
+ERROR		ENOTSOCK -- Socket operation on non-socket
+-74 
+
+ERROR		ENOMSG -- No message of desired type
+
+EXPLANATION	The queue does not contain a message of the desired type
+		and ( msgtyp & IPC_NOWAIT) is true.
+-75 
+
+ERROR		EIDRM -- Identifier removed
+
+EXPLANATION	The error is returned to processes that resume execution
+		because an identifier from the file system's name space
+		was removed.
+-76 
+
+ERROR		ECHRNG -- Channel number out of range
+-77 
+
+ERROR		EL2NSYNC -- Level 2 not synchronized
+-78 
+
+ERROR		EL3HLT -- Level 3 halted
+-79 
+
+ERROR		EL3RST -- Level 3 reset
+-80 
+
+ERROR		ELNRNG -- Link number out of range
+-81 
+
+ERROR		EUNATCH -- Proto
+-82 
+
+ERROR		ENOCSI -- No CSI structure available
+-83 
+
+ERROR		EL2HLT -- Level 2 halted
+-84 
+
+ERROR		EDEADLK -- Deadlock condition avoided
+
+EXPLANATION	The request would have caused a deadlock, but the 
+		condition was detected and avoided.
+-85 
+
+ERROR		ENOLCK -- No locks available
+
+EXPLANATION	There are no more locks available: the system lock table
+		is full. 
+-86 
+
+ERROR		EBADFS -- Bad file system superblock
+
+EXPLANATION	Superblock consistency checks performed by the mount 
+		call failed.  A mount was attempted on a device with a 
+		corrupted superblock or no file system on the device.

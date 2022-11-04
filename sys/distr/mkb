@@ -1,0 +1,293 @@
+SCCSID="@(#)mkb	3.1	7/11/87"
+# Shell procedure to make ULTRIX-11 V3.1 distribution kit masters.
+# Fred Canter
+
+PRTC="Press <RETURN> to continue:"
+PRFM="Press <RETURN> for more:"
+
+echo ""
+echo "ULTRIX-11 V3.1 Master Distribution Kit Build Procedure"
+echo ""
+echo "For instructions type help, then press <RETURN>"
+echo ""
+while true
+do
+	echo ""
+	echo -n "Command <help exit qjn all[mt tk rl rc rx] proto rxproto qj08#-h?>: "
+	HELP=n
+	QJN=n
+	RXPROTO=n
+	PROTO=n
+	MTKIT=n
+	TKKIT=n
+	RLKIT=n
+	RCKIT=n
+	RXKIT=n
+	QJ088HH=n
+	QJ087HH=n
+	QJ086HH=n
+	QJ088H4=n
+	QJ087H4=n
+	QJ086H4=n
+	QJ088H3=n
+	QJ087H3=n
+	QJ086H3=n
+	QJ088HM=n
+	QJ087HM=n
+	QJ086HM=n
+	QJ088HD=n
+	QJ087HD=n
+	QJ086HD=n
+	QJ088H5=n
+	QJ087H5=n
+	QJ086H5=n
+	read CMD
+	if test $CMD
+	then	case $CMD in
+		exit)	echo ""; exit 0 ;;
+		e)	echo ""; exit 0 ;;
+		help)	HELP=y ;;
+		h)	HELP=y ;;
+		qjn)	QJN=y ;;
+		q)	QJN=y ;;
+		rxproto)	RXPROTO=y ;;
+		r)		RXPROTO=y ;;
+		proto)		PROTO=y ;;
+		p)		PROTO=y ;;
+		qj088-hh)	QJ088HH=y; RLKIT=y ;;
+		qj087-hh)	QJ087HH=y; RLKIT=y ;;
+		qj086-hh)	QJ086HH=y; RLKIT=y ;;
+		qj088-h4)	QJ088H4=y; RCKIT=y ;;
+		qj087-h4)	QJ087H4=y; RCKIT=y ;;
+		qj086-h4)	QJ086H4=y; RCKIT=y ;;
+		qj088-h3)	QJ088H3=y; RXKIT=y ;;
+		qj087-h3)	QJ087H3=y; RXKIT=y ;;
+		qj086-h3)	QJ086H3=y; RXKIT=y ;;
+		qj088-hm)	QJ088HM=y; MTKIT=y ;;
+		qj087-hm)	QJ087HM=y; MTKIT=y ;;
+		qj086-hm)	QJ086HM=y; MTKIT=y ;;
+		qj088-hd)	QJ088HD=y; MTKIT=y ;;
+		qj087-hd)	QJ087HD=y; MTKIT=y ;;
+		qj086-hd)	QJ086HD=y; MTKIT=y ;;
+		qj088-h5)	QJ088H5=y; TKKIT=y ;;
+		qj087-h5)	QJ087H5=y; TKKIT=y ;;
+		qj086-h5)	QJ086H5=y; TKKIT=y ;;
+		allmt)	MTKIT=y
+			QJ088HM=y; QJ087HM=y; QJ086HM=n
+			QJ088HD=y; QJ087HD=y; QJ086HD=n ;;
+		alltk)	TKKIT=y
+			QJ088H5=y; QJ087H5=y; QJ086H5=n ;;
+		allrl)	RLKIT=y
+			QJ088HH=n; QJ087HH=y; QJ086HH=n ;;
+		allrc)	RCKIT=y
+			QJ088H4=n; QJ087H4=y; QJ086H4=n ;;
+		allrx)	RXKIT=y
+			QJ088H3=n; QJ087H3=y; QJ086H3=n ;;
+		*)	echo ""
+			echo "\`$CMD' is not a valid command!"
+			continue ;;
+		esac
+	else	continue
+	fi
+	if test $HELP = y
+	then	echo ""
+		cat mkb.help1
+		echo -n $PRFM
+		read YN
+		cat mkb.help2
+		echo -n $PRFM
+		read YN
+		cat mkb.help3
+		continue
+	fi
+	if test $QJN = y
+	then	cat mkb.qjn
+		continue
+	fi
+	echo ""
+	echo "The system MUST be in single-user mode or multiuser mode"
+	echo "with all terminals and dialups, except the console, disabled."
+	echo ""
+	echo "If this is not the case, answer no to the following question,"
+	echo "then type help for instructions."
+	while true
+	do
+		echo ""
+		echo -n "Continue with the kit build procedure <y or n> ? "
+		read YN
+		if test $YN
+		then	break
+		else	continue
+		fi
+	done
+	if test $YN = n
+	then	continue
+	fi
+	if test $YN = no
+	then	continue
+	fi
+	echo ""
+	echo "Mount the RM03 binary master pack in RM03 unit one."
+	echo "Make sure the drive is on-line and WRITE ENABLED."
+	echo ""
+	echo -n $PRTC
+	read YN
+	if test $QJ088HM = y
+	then	mkb_tape QJ088-HM 1600 32
+	fi
+	if test $QJ088HD = y
+	then	mkb_tape QJ088-HD 800 32
+	fi
+	if test $QJ088H5 = y
+	then	mkb_tk50 QJ088-H5 6700 32
+	fi
+	if test $QJ087HM = y
+	then	mkb_tape QJ087-HM 1600 16
+	fi
+	if test $QJ087HD = y
+	then	mkb_tape QJ087-HD 800 16
+	fi
+	if test $QJ087H5 = y
+	then	mkb_tk50 QJ087-H5 6700 16
+	fi
+	if test $QJ086HM = y
+	then	mkb_tape QJ086-HM 1600 8
+	fi
+	if test $QJ086HD = y
+	then	mkb_tape QJ086-HD 800 8
+	fi
+	if test $QJ086H5 = y
+	then	mkb_tk50 QJ086-H5 6700 8
+	fi
+	if test $QJ086H4 = y
+	then	mkb_rc25 QJ086-H4 8
+	fi
+	if test $QJ087H4 = y
+	then	mkb_rc25 QJ087-H4 16
+	fi
+	if test $QJ088H4 = y
+	then	mkb_rc25 QJ088-H4 32
+	fi
+	if test $RXPROTO = y
+	then	echo ""
+		echo "Mount the following disks (WRITE ENABLED):"
+		echo ""
+		echo "	RL02 unit 0 - ROOT and /USR master RXPROTO pack"
+		echo ""
+		echo "	RL02 unit 1 - OPTIONAL SOFTWARE master RXPROTO pack"
+		echo ""
+		echo -n $PRTC
+		read YN
+		while true
+		do
+			echo ""
+			echo -n "Update RM03 binary master pack first "
+			echo -n "(i.e., mkb proto) <y or n> ? "
+			read YN
+			if test $YN
+			then	break
+			else	continue
+			fi
+		done
+		PROTO=y
+		if test $YN = n
+		then	PROTO=n
+		fi
+		if test $YN = no
+		then	PROTO=n
+		fi
+	fi
+	if test $PROTO = y
+	then	echo ""
+#		echo "RM03 binary master will be updated from RP06 master!"
+#		while true
+#		do
+#			echo ""
+#			echo -n "Continue with update of RM03 master <y or n> ? "
+#			read YN
+#			if test $YN
+#			then	break
+#			else	continue
+#			fi
+#		done
+#		if test $YN = n
+#		then	continue
+#		fi
+#		if test $YN = no
+#		then	continue
+#		fi
+		make proto
+	fi
+	if test $RXPROTO = y
+	then	echo ""
+		echo "****** MAKING RX50 PROTO FILE SYSTEMS ******"
+		echo ""
+		set -x
+		dd if=/dev/rhp10 of=/dev/rrl00 bs=20b count=480
+		dd if=/dev/rhp11 of=/dev/rrl01 bs=20b count=512
+		dd if=/dev/rhp11 of=/dev/rrl11 bs=20b count=512
+		/etc/mount /dev/rl00 /bvroot
+		/etc/mkfs /dev/rrl10 256 rx50 23 boot distr
+		dd if=/bvroot/mdec/rauboot of=/dev/rrl10 count=1
+		/etc/mount /dev/rl10 /bvsas
+		# Make RX50 boot diskette image, then blow away SAS.
+		/etc/mount /dev/hp16 /bvproto
+		cd /bvproto/sas
+		cp bads copy dskinit icheck mkfs restor /bvsas
+		cp rabads scat syscall /bvsas
+		chmod 644 /bvsas/*
+		cd /usr/sys/distr
+		/etc/umount /dev/rl10
+		/etc/umount /dev/hp16
+		cd /bvroot/sas; rm -f *
+		# Blow away SYSGEN, except dev/u1.c->u4.c.
+		/etc/mount /dev/rl01 /bvusr
+		cd /bvusr/sys
+		rm -f conf/* sys/* net/* ovsys/* ovdev/* ovnet/*
+		rm -f dev/LIB2_id
+#		# Blow away USAT!	(USAT now optional software on all kits)
+#		rm -f /bvusr/bin/usat; rm -r /bvusr/lib/usat
+		# Pack help data base (U11_help)
+		cd /bvusr/lib/help
+		pack U11_help
+		cd /usr/sys/distr
+		/etc/umount /dev/rl01
+		/etc/mount /dev/rl10 /bvsas
+		/etc/mount /dev/hp16 /bvproto
+		cp /bvproto/boot16 /bvroot/boot
+		cp /bvproto/boot16 /bvroot/boot.bu
+		chmod 644 /bvroot/boot /bvroot/boot.bu
+		cp /bvproto/boot16 /bvsas/boot; chmod 644 /bvsas/boot
+# Boot floppy overflowed, sorry no boot.bu!
+#		cp /bvproto/boot16 /bvsas/boot.bu; chmod 644 /bvsas/boot.bu
+		cp /bvproto/sdload/rxload /bvsas/sdload; chmod 644 /bvsas/sdload
+		/etc/umount /dev/rl10
+# NOTE: next 3 lines may go
+		cd /usr/sys/sas
+		cc -o ready ready.c
+		cd /usr/sys/distr
+		/etc/mount /dev/rl11 /bvos
+		# u1.c->u4.c now part of base system (not optsw).
+		rm -f /bvos/sys/dev/u?.c
+		cp /bvproto/machdep/md16_id.o machdep.o
+		ar rv /bvos/sys/sys/LIB1_id machdep.o; rm -f machdep.o
+		cp /bvproto/machdep/md16_ov.o /bvos/sys/ovsys/machdep.o
+		cp /bvproto/unix16 /bvroot/unix
+		chmod 644 /bvroot/unix
+		chown sys /bvos/sys/conf/*
+		/etc/umount /dev/hp16
+		/etc/umount /dev/rl00
+		/etc/umount /dev/rl11
+		set -
+		fsck /dev/rrl00 /dev/rrl01 /dev/rrl10 /dev/rrl11
+	fi
+	if test $QJ086HH = y
+	then	mkb_rl02 QJ086-HH 8
+	fi
+	if test $QJ087HH = y
+	then	mkb_rl02 QJ087-HH 16
+	fi
+	if test $QJ088HH = y
+	then	mkb_rl02 QJ088-HH 32
+	fi
+done

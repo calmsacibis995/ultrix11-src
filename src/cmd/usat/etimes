@@ -1,0 +1,4 @@
+Elapsed time is printed following
+the completion of the USAT script if
+this file "/usr/lib/usat/etimes" exists
+and has size greater than zero.

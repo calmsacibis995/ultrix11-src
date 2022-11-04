@@ -1,0 +1,27 @@
+:
+# SCCSID: @(#)dctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** dc test started - "
+date
+touch $T/dc.$$.err
+
+cp $L/dc/dc.input $T/dc1.$$.out
+$M dc $T/dc1.$$.out > $T/dc2.$$.out
+
+cmp $L/dc/dc.sout $T/dc2.$$.out
+if test $? != 0
+then
+	echo "dc: Compare after test failed" >> $T/dc.$$.err
+	echo "dc: Compare after test failed"
+fi
+echo -n "****** End  of dc test - "
+date
+cat $T/dc.$$.err >> $T/log.$$.err
+rm -f $RT/dc?.$$.out
+rm -f $RT/dc.$$.err

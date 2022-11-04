@@ -1,0 +1,485 @@
+:
+# SCCSID: @(#)misc3test	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# This is Part 3 of usat "misc" test, called only from
+# Part 1;  One argument is passed, the name of the
+# command to be tested.
+# Returns the status of the comparison, or an 
+# approriate error code in the "errfile" file.
+
+# command name
+cmd=$1
+
+# U is this directory, /usr/lib/usat/misc
+U=/usr/lib/usat/misc
+
+# arbitrary string
+s="Hello, world"
+
+# test files for ranlib, rm, sum, tar, wc
+f="file1 file2 file3 file4"
+
+# BIG case table:
+case $cmd in
+
+ncheck) if [ -s /etc/fstab ]
+    then
+	set `cat /etc/fstab`
+# just get first entry of /etc/fstab
+	echo $1 > tmp.out
+	junk=`cut -d:  -f1 tmp.out`
+	ncheck -s $junk | egrep "/bin/pwd|/bin/quot" > tmp.out
+	cut -f2 tmp.out | sort > ncheck.out
+    echo "/bin/pwd
+/bin/quot" > ncheck.sav
+    else
+	touch ncheck.out
+    fi
+    cmp -s ncheck.out ncheck.sav ;;
+
+nl) nl file1 > nl.out
+    cat -n file1 > nl.sav
+    cmp nl.out nl.sav ;;
+
+nm) echo "diff" > printfiles
+    nm $U/date+5 > tmp.out
+    egrep "\~" tmp.out > nm.out
+    cmp -s nm.out $U/nm.sav ;;
+
+od) echo "diff" > printfiles
+    od -c file3 > od.out
+    cmp -s od.out $U/od.sav ;;
+
+pack|unpack) cp file1 pack.out
+    cp file1 pack.sav
+    pack -f pack.out > /dev/null
+    unpack pack.out 2> /dev/null
+    cmp pack.out pack.sav ;;
+
+paste) echo "diff" > printfiles
+    paste file1 file2 > paste.out
+    cmp -s paste.out $U/paste.sav ;;
+
+pcat) cp file1 pcat.sav
+    pack -f pcat.sav > /dev/null 2>&1
+    pcat pcat.sav > pcat.out 2> /dev/null
+    cp file1 pcat.sav
+    cmp pcat.out pcat.sav ;;
+
+pr) echo "diff" > printfiles
+    pr file3 > tmp.out
+# eliminate the header and date line
+    grep -v "file3" tmp.out > pr.out
+    cmp -s pr.out $U/pr.sav ;;
+
+prep) prep file4 > prep.out
+    cmp -s prep.out $U/prep.sav ;;
+
+primes) primes 100000000000000000 > primes.out 2>&1
+    echo "Ouch." > primes.sav
+    cmp -s primes.out primes.sav ;;
+
+printenv) printenv > printenv.out
+    egrep "HOME|PATH|SHELL" printenv.out > tmp.out
+    cut -f1 -d= tmp.out > printenv.out
+    echo "HOME
+PATH
+SHELL" > printenv.sav
+    cmp -s printenv.out printenv.sav ;;
+
+prof)  prof $U/date+5 > prof.out 2>&1
+    echo "No mon.out" > prof.sav
+    cmp -s prof.out prof.sav ;;
+
+ps) true ;;
+
+pwd) echo "no" > printfiles
+    here=`pwd`
+    cd $here
+    now=`pwd`
+    if [ $here = $now ]
+    then true
+    else false
+    fi ;;
+
+quot) echo "cat" > printfiles
+    quot -f > quot.out
+    egrep -s "cannot|error" quot.out
+    if [ $? != 0 ]
+    then true
+    else false
+    fi ;;
+
+ranlib) echo "no" > printfiles
+    ar cr tmp.out $f
+    ranlib tmp.out ;;
+
+ratfor) echo "diff" > printfiles
+    if [ -f /usr/bin/f77 ]
+    then
+	echo "      /* comment */
+      if(.not.(3 .gt. 2))goto 23000
+      then end
+23000 continue" > ratfor.sav
+	echo "/* comment */" > tmp.out
+	echo "if (3 > 2) then end" >> tmp.out
+	ratfor tmp.out > ratfor.out
+	cmp -s ratfor.out ratfor.sav
+    else
+# if /usr/bin/f77 is not installed then ratfor isn't either.
+	echo ": /usr/bin/f77 not installed" > errfile
+    echo "no" > printfiles
+    false
+    fi ;;
+
+rev) echo "help" > tmp.out
+    rev tmp.out > rev.out
+    echo "pleh" > rev.sav
+    cmp -s rev.out rev.sav ;;
+
+rm) cat $f > rm.out
+    rm rm.out
+    echo "no" > printfiles
+    if [ ! -s rm.out ]
+    then true
+    else false
+    fi ;;
+
+s5make) if [ ! -s /usr/bin/s5make ]
+    then
+	echo ": /usr/bin/s5make not found" > errfile
+	echo "no" > printfiles
+	false
+    else
+    	s5make -f $U/make.mk > s5make.out 2>&1
+    	cmp -s s5make.out $U/s5make.sav
+    fi ;;
+
+# ---------------  START of SCCS -----------------
+# bdiff admin cdc(rmchg, rmdel) comb delta get prs
+# sccsdiff sccshelp unget(sact) val vc what
+
+sccs) if [ ! -s /usr/bin/sccs ]
+    then
+	echo ": /usr/bin/sccs not installed" > errfile
+	echo "no" > printfiles
+	false
+    else
+    # sccs installed;
+    # use the create command, built-in to sccs
+	cp file4 prog.c
+    # clean-up
+	rm -f SCCS/s.prog.c SCCS/p.prog.c
+	rm -f ,prog.c
+    # create
+	sccs create prog.c > sccs.out 2>&1
+	echo "No id keywords (cm7)
+1.0
+5 lines
+No id keywords (cm7)" > sccs.sav
+	cmp -s sccs.out sccs.sav
+    fi ;;
+
+bdiff) echo "diff" > printfiles
+    bdiff file1 file2 3 -s > bdiff.out
+    cmp -s bdiff.out $U/bdiff.sav ;;
+
+admin) echo "no" > printfiles
+    sccs admin -h prog.c ;;
+
+comb) echo "diff" > printfiles
+    sccs comb prog.c > comb.out
+    cmp -s comb.out $U/comb.sav ;;
+
+edit) echo "nothing" > tmp.out
+echo "1.0
+new delta 1.1
+5 lines" > edit.sav
+# SCSWHY=off?, don't add why prompt
+    printenv | grep "SCCSWHY=off" > junk.out
+    if [ ! -s junk.out ]
+    then
+	echo "Comments for 'prog.c.why' ? (CTRL/D when complete):" >> edit.sav
+    fi
+    sccs edit prog.c < tmp.out > edit.out 2>&1
+    cmp -s edit.out edit.sav ;;
+
+delta) echo "One more line at the end." >> prog.c
+    echo "nothing" > tmp.out
+    sccs delta prog.c < tmp.out > delta.out 2>&1
+    echo "
+No id keywords (cm7)
+1.1
+1 inserted
+0 deleted
+5 unchanged" > delta.sav
+    cmp -s delta.out delta.sav ;;
+
+get) sccs get -r1.0 prog.c > get.out 2>&1
+    echo "1.0
+5 lines
+No id keywords (cm7)" > get.sav
+    cmp -s get.out get.sav ;;
+
+unget) echo "nothing" > tmp.out
+# check the file out
+    sccs edit prog.c < tmp.out > /dev/null 2>&1
+    unget SCCS/s.prog.c > unget.out 2>&1
+# when unget is redirected, it prints the SID twice
+    echo "1.2
+1.2" > unget.sav
+    cmp -s unget.out unget.sav ;;
+
+sccsdiff) sccs sccsdiff -r1.0 -r1.1 prog.c > sccsdiff.out 2>&1
+    echo "5a6,6
+> One more line at the end." > sccsdiff.sav
+    cmp -s sccsdiff.out sccsdiff.sav ;;
+
+what) sccs get -r1.0 prog.c > /dev/null 2>&1
+# set up so prog.c has an SID#
+    echo "@(#)prog.c	1.0	10/25/85" >> prog.c
+    echo "prog.c:" > what.sav
+    echo "	prog.c	1.0	10/25/85" >> what.sav
+    what prog.c > what.out 2>&1
+    cmp -s what.out what.sav ;;
+
+prs) sccs prs prog.c > junk.out 2>&1
+    egrep "MR|COMMENT" junk.out > prs.out
+    echo "MRs:
+COMMENTS:
+MRs:
+COMMENTS:" > prs.sav
+    cmp -s prs.out prs.sav ;;
+
+prt) sccs prt prog.c > junk.out 2>&1
+    egrep "nothing" junk.out > prt.out
+    echo "nothing" > prt.sav
+    cmp -s prt.out prt.sav ;;
+
+cdc) echo "New comments" > cdc.sav
+    cdc -r1.0 SCCS/s.prog.c < cdc.sav > /dev/null
+    sccs prt prog.c | egrep "New" > cdc.out
+    cmp -s cdc.out cdc.sav ;;
+
+val) echo "no" > printfiles
+    sccs val -mprog.c prog.c ;;
+
+sccshelp) echo "diff" > printfiles
+    sccshelp ad1  > sccshelp.out
+    sccshelp bd1  >> sccshelp.out
+    sccshelp ut1  >> sccshelp.out
+    cmp -s sccshelp.out $U/sccshelp.sav ;;
+# ---------------  END of SCCS -----------------
+
+sdiff) echo "diff" > printfiles
+    sdiff -w 80 file1 file2 > sdiff.out
+    cmp sdiff.out $U/sdiff.sav ;;
+
+sh) sh /bin/true ;;
+
+size) size $U/date+5 > size.out
+    echo "4686+414+1262 = 6362b = 014332b" > size.sav
+    cmp -s size.out size.sav ;;
+
+sleep) sleep 1 > sleep.out
+    echo "no" > printfiles
+    if [ ! -s sleep.out ]
+    then true
+    else false
+    fi ;;
+
+sort) echo "diff" > printfiles
+    sort -f file1 > sort.out
+    cmp -s sort.out $U/sort.sav ;;
+
+spline) echo "1 2
+4 5" > tmp.out
+    cat tmp.out | spline > spline.out
+    echo "1.000000 2.000000" > spline.sav
+    echo "4.000000 5.000000" >> spline.sav
+    cmp -s spline.out spline.sav ;;
+
+split) split -3 file3
+# result is always placed in "xaa"
+    mv xaa split.out
+# get rid of other files
+    rm -f xa*
+    echo "Apples
+Bananas
+Boysenberries" > split.sav
+    cmp -s split.out split.sav ;;
+
+strings) strings $U/date+5 > strings.out
+    cmp -s strings.out $U/strings.sav ;;
+
+strip) cp $U/date+5 stripf.out
+    ls -l stripf.out | cut -c25-28 > strip.out
+    strip stripf.out >> strip.out
+    ls -l stripf.out | cut -c25-28 >> strip.out
+    strip stripf.out >> strip.out
+    rm -f stripf.out
+    echo "8044
+5116
+stripf.out already stripped" > strip.sav
+    cmp -s strip.out strip.sav ;;
+
+stty) echo "diff" > printfiles
+    stty > stty.out 2>&1
+    stty all >> stty.out 2>&1
+    stty everything >> stty.out 2>&1
+    cmp -s stty.out $U/stty.sav ;;
+
+
+sum) sum $f > sum.out
+    cmp -s sum.out $U/sum.sav ;;
+
+sync) echo "no" > printfiles
+    sync > sync.out 2>&1
+    if [ -s sync.out ]
+    then
+	cat sync.out
+	false
+    else true
+    fi ;;
+
+tar) tar cf tar.out $f
+    tar tf tar.out > junk.out  2> /dev/null
+    egrep file junk.out > tar.out
+    ls $f > tar.sav
+    cmp -s tar.out tar.sav ;;
+
+tail) tail -7 file1 > tail.out
+    cmp -s tail.out $U/tail.sav ;;
+
+tee) echo $s | tee tee1 > tee2
+    cat tee1 tee2 > tee.out
+    rm -f tee1 tee2
+    echo "Hello, world
+Hello, world" > tee.sav
+    cmp -s tee.out tee.sav ;;
+
+test) echo "no" > printfiles
+    tmpstring="HELLO"
+    if test $tmpstring = "HELLO"
+    then true
+    else false
+    fi ;;
+
+time) /bin/time ls -l > /dev/null  2> time.out
+    egrep -v "again|ls:" time.out > time.sav
+    cmp -s time.out time.sav ;;
+
+touch) rm -f touch.out
+    touch touch.out
+    ls -l touch.out | cut -c28- > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+	echo "$1 $2 $3 $5" > touch.out
+    fi
+    set `date`
+    echo "0 $2 $3 touch.out" > touch.sav
+    cmp -s touch.out touch.sav ;;
+
+tr) echo "diff" > printfiles
+    paste file1 file2 > junk.out
+    tr -cs A-Za-z '\012' < junk.out > tr.out
+    cmp -s tr.out $U/tr.sav ;;
+
+true) echo "no" > printfiles
+    /bin/true ;;
+
+tsort) echo "diff" > printfiles
+    tsort file4 > tsort.out
+    cmp -s tsort.out $U/tsort.sav ;;
+
+tss) /etc/tss | grep console > tss.out
+    echo "KL	 0		 0	/dev/console" > tss.sav
+    cmp -s tss.out tss.sav ;;
+
+tty) who am i > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `who am i`
+    fi
+    tty > tty.out 2>&1
+    echo "/dev/$2" > tty.sav
+    cmp -s tty.out tty.sav ;;
+
+ucbmail) echo "1
+d
+q" > ucbmail.recv
+# mail should already be there from earlier test of "from".
+    /usr/ucb/mail -f /usr/spool/mail/usat < ucbmail.recv > tmp.out 2>&1
+    grep "USAT" tmp.out > ucbmail.out
+    echo "USAT test for 'ucbmail'." > ucbmail.sav
+    cmp -s ucbmail.out ucbmail.sav ;;
+
+uname) echo "no" > printfiles
+    uname > /dev/null ;;
+
+unexpand) echo "	Hello		     there." > unexpand.sav
+    echo "        Hello                there." > tmp.out
+    unexpand -a < tmp.out > unexpand.out
+    cmp -s unexpand.sav unexpand.out ;;
+
+uniq) echo "diff" > printfiles
+    uniq file2 > uniq.out
+    cmp -s uniq.out $U/uniq.sav ;;
+
+units) echo "day
+year
+oz
+ton
+mile
+feet" > units.in
+units < units.in > units.out
+    cmp -s units.out $U/units.sav ;;
+
+users) users > tmp.out
+    rm -f users.out
+    for i in `cat tmp.out`
+    do
+	echo $i >> users.out
+    done
+    who > tmp.out
+    cut -d\  -f1 tmp.out | sort > users.sav
+    cmp -s users.out users.sav ;;
+
+wait) ps > tmp.out 2>&1; rm -f tmp.out 2>&1 &
+    wait
+    [ ! -s tmp.out ]
+    ;;
+
+wc) wc $f > wc.out
+    cmp -s wc.out $U/wc.sav ;;
+
+who) echo "no" > printfiles
+    who > tmp.out ;;
+
+whoami) who am i now > whoami.sav
+    whoami > whoami.out
+    cmp -s whoami.out whoami.sav ;;
+
+xstr) /bin/echo "main()
+{ char s1[]=\"This is string one.\n\";
+char s2[]=\"one.\n\"; }" > xstr.in
+    xstr -c xstr.in
+    mv x.c xstr.out
+    echo "char	xstr[];
+main()
+{ char s1[]=(&xstr[0]);
+char s2[]=(&xstr[15]); }" > xstr.sav
+    cmp -s xstr.out xstr.sav ;;
+
+*)  echo
+    echo "misc3test: '$cmd' not in the case list!" ;;
+esac
+
+#end of BIG case table

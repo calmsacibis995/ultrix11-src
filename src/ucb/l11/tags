@@ -1,0 +1,81 @@
+Mlink	link.c	/^main(argc, argv)$/
+Mobint	obint.c	/^main(argc, argv)$/
+Putw	pass2.c	/^Putw(x, p)$/
+abswrite	pass2.c	/^abswrite(value, rbits)	\/* write value in the out f/
+asgn_rcs	link.c	/^asgn_rcs(p)	\/* assign relocation constants to$/
+attr	link.c	/^attr(x, s, t)$/
+bail_out	pass2.c	/^bail_out()	\/* unlink any opened output file then e/
+brag	link.c	/^brag(s, start, size, tag)$/
+bytewrite	pass2.c	/^bytewrite(value)	\/* write the byte in the out file/
+ch_input	in.c	/^ch_input(newfile, newmod)	\/* change input checksum/
+code	obint.c	/^code(fname)$/
+dc_symbol	sup.c	/^dc_symbol(s)	\/* decode rad50 symbol in input strea/
+derad50	sup.c	/^derad50(x,s)		\/* decode a word in which 3 characte/
+do040	pass2.c	/^do040(obj)	\/* do 040 code directive *\/$/
+dump_locals	pass2.c	/^dump_locals(obj)	\/* dump local symbols *\/$/
+dump_symlist	link.c	/^dump_symlist(sym)	\/* write to the map file the sym/
+dump_tree	pass2.c	/^dump_tree(sym)		\/* dump the sub-tree of symbols po/
+dump_undefs	link.c	/^dump_undefs(sym, n)	\/* dump into map file all unde/
+get_bits	pass2.c	/^get_bits(attributes)	\/* get the out file symbol ta/
+get_rc	pass2.c	/^get_rc(wbuff, obj, psname)	\/* place in wbuff the r/
+get_sym	pass2.c	/^get_sym(wbuff)		\/* get the value of the symbol in /
+get_type	pass2.c	/^get_type(attr)		\/* decode the psect type into out /
+getb	in.c	/^getb()		\/* get a byte from input file, add to "sum/
+getbyte	in.c	/^getbyte()	\/* return next byte of current checksum /
+getreg	obint.c	/^char	getreg()	\/* reads a byte to determine registe/
+getword	in.c	/^WORD getword()	\/* return next word *\/$/
+gsd	obint.c	/^gsd(fname)$/
+gsstring	obint.c	/^char 	*gsstring(attr)	\/* decodes attr (which speci/
+inerror	in.c	/^inerror(mess)	\/* print error message and filename /
+isabs	link.h	/^# define	isabs(x)	(((x)->type & REL) == 0)$/
+isbss	link.h	/^# define	isbss(x)	(((x)->type & BSS) != 0)$/
+iscon	link.h	/^# define	iscon(x)	(((x)->type & OVR) == 0)$/
+isdef	link.h	/^# define	isdef(x)	(((x)->type & DEF) != 0)$/
+isgbl	link.h	/^# define	isgbl(x)	(((x)->type & GBL) != 0)$/
+isins	link.h	/^# define	isins(x)	(((x)->type & INS) != 0)$/
+islcl	link.h	/^# define	islcl(x)	(((x)->type & GBL) == 0)$/
+isovr	link.h	/^# define	isovr(x)	(((x)->type & OVR) != 0)$/
+isprv	link.h	/^# define	isprv(x)	(((x)->type & SHR) == 0)$/
+isrel	link.h	/^# define	isrel(x)	(((x)->type & REL) != 0)$/
+isshr	link.h	/^# define	isshr(x)	(((x)->type & SHR) != 0)$/
+isudf	link.h	/^# define	isudf(x)	(((x)->type & DEF) == 0)$/
+lalloc	sup.c	/^char	*lalloc(amount)		\/* storage allocator, calls /
+lerror	sup.c	/^lerror(mess)	\/* linker program error, print messag/
+linkseek	pass2.c	/^linkseek(nlc, nrbits)$/
+loose_ends	pass2.c	/^loose_ends()$/
+lsstring	obint.c	/^char 	*lsstring(attr)	\/* decodes attr (which speci/
+lst	obint.c	/^lst(fname)	\/* local symbol table dump *\/$/
+morebytes	in.c	/^morebytes()	\/* returns 1 if there are unread bytes/
+new_gsect	link.c	/^struct g_sect	*new_gsect()$/
+newfile	link.c	/^struct objfile	*newfile()	\/* allocate and initiali/
+newpsect	link.c	/^struct psect	*newpsect()	\/* allocate and initializ/
+newsymbol	link.c	/^struct symbol	*newsymbol()	\/* allocate and initial/
+outnames	link.c	/^outnames()	\/* determine names of output files *\/$/
+p_limit	pass2.c	/^p_limit(obj, drctv)	\/* find the low or high limit /
+pass1	link.c	/^pass1()$/
+pass2	pass2.c	/^pass2()		\/* translate code and write local symbols/
+place_global	link.c	/^place_global(ps)		\/* try to place the given progra/
+place_local	link.c	/^place_local(ps)			\/* place psect at end of its UNI/
+post_bail	link.c	/^post_bail()	\/* set interrupt routine to bail_out */
+prattr	link.c	/^prattr(x)$/
+printmap	link.c	/^printmap()$/
+pstring	obint.c	/^char	*pstring(attr)	\/* decodes attr (which specifi/
+read_mod	in.c	/^read_mod()	\/* read a checksum module and return ty/
+regcheck	obint.c	/^regcheck(s)	\/* checks to see if the string is supp/
+relocate	link.c	/^relocate()	\/* assign relocation constants for all /
+relsyms	link.c	/^relsyms(sym)		\/* relocate global symbols *\/$/
+relwrite	pass2.c	/^relwrite(value, rbits)	\/* write value in out file /
+returnchar	sup.c	/^returnchar(k)   	\/* return a character according t/
+scanargs	link.c	/^scanargs(argc, argv)$/
+sigx	link.c	/^sigx(n)$/
+strip	sup.c	/^strip(s, t)	\/* strip t off the end of s if it is t/
+strsub	link.c	/^char	*strsub(s, t)	\/* if t is the initial part of /
+table	link.c	/^table(root, new)	\/* place new symbol structure in /
+tack	sup.c	/^char	*tack(s, t)	\/* catenate s with t if s does no/
+transcode	pass2.c	/^transcode(obj)		\/* translate code *\/$/
+uerror	pass2.c	/^uerror(mess)	\/* print user error message and incre/
+vrdirect	obint.c	/^vrdirect(s, drctv)		\/* print virtual register dire/
+vreg_oper	pass2.c	/^vreg_oper(drctv, wbuff)		\/* preform an operation o/
+warmup	pass2.c	/^warmup()	\/* get ready for pass 2: open out file an/
+werror	pass2.c	/^werror(fname)		\/* write error handler *\/$/
+write_sym	pass2.c	/^write_sym(sname, flag)	\/* write the given symbol a/

@@ -1,0 +1,4 @@
+g/\.data/s//\.text/g
+g/.globl	_xstr/d
+w
+q

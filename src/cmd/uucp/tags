@@ -1,0 +1,270 @@
+APPCMD	uux.c	/^#define APPCMD(d) {\\$/
+ASSERT	uucp.h	/^#define ASSERT(e, s1, s2, i1) if (!(e)) {\\$/
+ASSERT2	uucp.h	/^#define ASSERT2(e, s1, s2, i1) if (!(e)) {\\$/
+ASSERT_NOFAIL	uucp.h	/^#define ASSERT_NOFAIL(e, s1, s2, i1) if (!(e)) {\\$/
+Acuopn	condevs.c	/^Acuopn(flds)$/
+DEBUG	uucp.h	/^#define DEBUG(l, f, s) if (Debug >= l) fprintf(std/
+DELAY	condevs.c	/^#define	DELAY(n)	{ register long N = (n); while (-/
+DTOM	pk.p	/^#define DTOM(a)		1;$/
+ERR	getopt.c	/^#define ERR(s, c)	if(opterr){\\$/
+FREEPACK	pk.p	/^#define FREEPACK(a,b)	freepack(a, b)$/
+GENRCV	uux.c	/^#define GENRCV(f, a, b, c) {\\$/
+GENSEND	uux.c	/^#define GENSEND(f, a, b, c, d, e) {\\$/
+IOMOVE	pk.p	/^#define IOMOVE(p, c, f) iomove(p, c, f)$/
+ISCNTL	pk.h	/^#define	ISCNTL(a)	((a & 0300)==0)$/
+MIN	pk.h	/^#define	MIN(a,b)	((a<b)? a:b)$/
+Mcico	cico.c	/^main(argc, argv)$/
+Mmkspool	mkspool.c	/^main(argc,argv)$/
+Muuclean	uuclean.c	/^main(argc, argv)$/
+Muucompact	uucompact.c	/^main(argc, argv)$/
+Muucp	uucp.c	/^main(argc, argv)$/
+Muulog	uulog.c	/^main(argc, argv)$/
+Muumon	uumon.c	/^main()$/
+Muuname	uuname.c	/^main(argc,argv)$/
+Muupoll	uupoll.c	/^main(argc, argv)$/
+Muurespool	uurespool.c	/^main(argc, argv)$/
+Muustat	uustat.c	/^main(argc, argv)$/
+Muusub	uusub.c	/^main(argc, argv)$/
+Muux	uux.c	/^main(argc, argv)$/
+Muuxqt	uuxqt.c	/^main(argc, argv)$/
+NITEMS	anlwrk.c	/^#define NITEMS(X)	(sizeof (X) \/ sizeof ((X)[0]))$/
+PKASSERT	pk.p	/^#define	PKASSERT(e, s1, s2, i1) if (!(e)) {\\$/
+PKDEBUG	pk.p	/^#define	PKDEBUG(l, f, s) { extern Pkdebug; if (Pkd/
+PKGETPKT	pk.p	/^#define PKGETPKT(p)$/
+RAMESG	cntrl.c	/^#define RAMESG(s, n) if (rmesg('\\0', s, n) != 0) {/
+RMESG	cntrl.c	/^#define RMESG(m, s, n) if (rmesg(m, s, n) != 0) {(/
+SLEEP	pk.p	/^#define SLEEP(a, b)	sleep(a, b)$/
+STATNAME	systat.c	/^#define STATNAME(f, n) sprintf(f, "%s\/STST.\/%s.%.7/
+SubChDir	subdir.c	/^SubChDir(s)$/
+SubDir	subdir.c	/^SubDir(d, pre)$/
+SubFile	subdir.c	/^SubFile(as)$/
+UB_SST	uusub.h	/^#define UB_SST(a)	ub_sst(a)$/
+USRF	uust.h	/^#define	USRF(flag)	Usrf |= flag$/
+US_CRS	uust.h	/^#define US_CRS(a)	us_crs(a)$/
+US_RRS	uust.h	/^#define US_RRS(a,b)	us_rrs(a,b)$/
+US_SST	uust.h	/^#define US_SST(a)	us_sst(a)$/
+WAKEUP	pk.p	/^#define WAKEUP(a)	wakeup(a)$/
+WMESG	cntrl.c	/^#define WMESG(m, s) if(wmesg(m, s) != 0) {(*Turnof/
+alarmtr	conn.c	/^alarmtr()$/
+anlwrk	anlwrk.c	/^anlwrk(file, wvec)$/
+anyread	anyread.c	/^anyread(file)$/
+argok	uuxqt.c	/^argok(xc, cmd)$/
+arrived	cntrl.c	/^arrived(opt, file, nuser, rmtsys, rmtuser)$/
+assert	assert.c	/^assert(s1, s2, i1)$/
+bld_partab	conn.c	/^bld_partab(type)$/
+bldflst	anlwrk.c	/^bldflst (reqst, dir, pre)$/
+blptcl	cntrl.c	/^blptcl(str)$/
+build_DIRLIST	uucpname.c	/^build_DIRLIST()$/
+busyloop	condevs.c	/^busyloop(n)$/
+callcheck	chkpth.c	/^callcheck(log_name, mch_name)$/
+callok	systat.c	/^callok(name)$/
+cgalarm	pk1.c	/^cgalarm() { longjmp(Getjbuf, 1); }$/
+chkdebug	chkpth.c	/^chkdebug(uid)$/
+chkperm	chkpth.c	/^chkperm(file, mopt)$/
+chkpre	uuclean.c	/^chkpre(file)$/
+chkpth	chkpth.c	/^chkpth(logname, mchname, path)$/
+chksum	pk0.c	/^chksum (s, n)$/
+chsys	uucp.c	/^chsys(s1)$/
+ckexpf	expfile.c	/^ckexpf(file)$/
+cleansubs	uuclean.c	/^cleansubs(sptr)$/
+cleansys	uuclean.c	/^cleansys(system)$/
+cleanup	cico.c	/^cleanup(code)$/
+clear	us_crs.c	/^clear(p, c)$/
+clsacu	conn.c	/^clsacu()$/
+clscfile	uucp.c	/^clscfile()$/
+clspool	uuclean.c	/^clspool(spool)$/
+cmtseq	gnxseq.c	/^cmtseq()$/
+cntrl	cntrl.c	/^cntrl(role, wkpre)$/
+compact	uucompact.c	/^compact(directory)$/
+conn	conn.c	/^conn(system)$/
+copy	uucp.c	/^copy(s1, f1, s2, f2)$/
+delock	ulockf.c	/^delock(s)$/
+df0cls	condevs.c	/^df0cls(fd)$/
+df0opn	condevs.c	/^df0opn(ph, flds, dev)$/
+df1cls	condevs.c	/^df1cls(fd)$/
+df1opn	condevs.c	/^df1opn(telno, flds, dev)$/
+dialend	dialout.c	/^dialend()$/
+dialout	dialout.c	/^dialout(telno, flds)$/
+dircls	condevs.c	/^dircls(fd)$/
+diropn	condevs.c	/^diropn(flds)$/
+dkopn	condevs.c	/^dkopn(flds)$/
+dncls	condevs.c	/^dncls(fd)$/
+dnopn	condevs.c	/^dnopn(ph, flds, dev)$/
+edit	uusub.c	/^edit(flag,arg)	\/* edit "L_sub" file *\/$/
+entflst	anlwrk.c	/^entflst(file)$/
+expect	conn.c	/^expect(str, fn)$/
+expfile	expfile.c	/^expfile(file)$/
+exphone	conn.c	/^exphone(in, out)$/
+fdig	conn.c	/^fdig(cp)$/
+finds	conn.c	/^finds(fsys, sysnam, info, flds)$/
+fioclex	logent.c	/^fioclex(fd)$/
+fixline	conn.c	/^fixline(tty, spwant)$/
+fixmode	cico.c	/^fixmode(tty)$/
+for	condevs.c	/^	for(i = 0; i < 5; ++i) {	\/* make up to 5 tries *\//
+fptcl	cntrl.c	/^fptcl(str)$/
+ftimedelay	condevs.c	/^ftimedelay(n)$/
+genbrk	conn.c	/^genbrk(fn, bnulls)$/
+generror	pk1.c	/^generror(p, s)$/
+getargs	getargs.c	/^getargs(s, arps)$/
+getnextfd	conn.c	/^getnextfd()$/
+getopt	getopt.c	/^getopt (argc, argv, opts)$/
+getprm	getprm.c	/^getprm(s, prm)$/
+getpw	getpw.c	/^getpw(uid, buf)$/
+getsubdirs	subdir.c	/^getsubdirs()$/
+getto	conn.c	/^getto(flds)$/
+getxeqlevel	chkpth.c	/^getxeqlevel(mch_name)$/
+gnamef	gnamef.c	/^gnamef(dirp, filename)$/
+gninfo	getpwinfo.c	/^gninfo(name, uid, path)$/
+gnsys	gnsys.c	/^gnsys(sname, pre)$/
+gnxseq	gnxseq.c	/^gnxseq(rmtname)$/
+gotfiles	uuxqt.c	/^gotfiles(file)$/
+grdblk	gio.c	/^grdblk(blk, len,  fn)$/
+grddata	gio.c	/^grddata(fn, fp2)$/
+grdmsg	gio.c	/^grdmsg(str, fn)$/
+gtcfile	uucp.c	/^gtcfile(sys)$/
+gturnoff	gio.c	/^gturnoff()$/
+gturnon	gio.c	/^gturnon()$/
+gtwrkf	anlwrk.c	/^gtwrkf(dir, file)$/
+gtwvec	anlwrk.c	/^gtwvec(file, dir, wkpre, wrkvec)$/
+gtxfile	uuxqt.c	/^gtxfile(file)$/
+guinfo	getpwinfo.c	/^guinfo(uid, name, path)$/
+gwd	gwd.c	/^gwd(wkdir)$/
+gwrblk	gio.c	/^gwrblk(blk, len, fn)$/
+gwrdata	gio.c	/^gwrdata(fp1, fn)$/
+gwrmsg	gio.c	/^gwrmsg(type, str, fn)$/
+hyscls	condevs.c	/^hyscls(fd)$/
+hysopn	condevs.c	/^hysopn(telno, flds, dev)$/
+hysqopn	condevs.c	/^hysqopn(telno, flds, dev)$/
+if	condevs.c	/^	if (setjmp(Sjbuf) == 0) {$/
+ifadate	conn.c	/^ifadate(s)$/
+ifdate	conn.c	/^ifdate(s)$/
+imsg	imsg.c	/^imsg(msg, fn)$/
+index	index.c	/^index(str, c)$/
+intrEXIT	cico.c	/^intrEXIT(signo)$/
+isalock	ulockf.c	/^isalock(name) char *name;$/
+isdir	expfile.c	/^isdir(name)$/
+iswrk	anlwrk.c	/^iswrk(file, reqst, dir, pre)$/
+jout	uustat.c	/^jout(u)		\/* print one line of job status in "u" *\//
+lastc	conn.c	/^lastc(s)$/
+lastpart	lastpart.c	/^lastpart(file)$/
+lnotify	cntrl.c	/^lnotify(user, file, mesg)$/
+lock	ulockf.c	/^lock(pid,tempfile,names) char *tempfile,**names;$/
+logcls	logent.c	/^logcls()$/
+logent	logent.c	/^logent(text, status)$/
+login	conn.c	/^login(nf, flds, fn)$/
+machine	uumon.c	/^struct m *machine(name)$/
+mailst	mailst.c	/^mailst(user, str, file, ferr)$/
+mer	cfgets.c	13
+miccls	condevs.c	/^miccls(fd)$/
+micopn	condevs.c	/^micopn(flds)$/
+mkdirs	expfile.c	/^mkdirs(name)$/
+mkonedir	subdir.c	/^mkonedir(name)$/
+mkspname	subdir.c	/^mkspname(dir)$/
+mkspooldirs	subdir.c	/^mkspooldirs(sysname)$/
+mlock	ulockf.c	/^mlock(sys)$/
+mlogent	logent.c	/^mlogent(fp, status, text)$/
+moveDfile	uurespool.c	/^moveDfile(dfile, stype, nspool)$/
+moveXfiles	uurespool.c	/^moveXfiles(type)$/
+movefile	uurespool.c	/^movefile(cfile, type)$/
+mvxfiles	uuxqt.c	/^mvxfiles(xfile)$/
+nap	condevs.c	/^nap (time)$/
+newdir	uucompact.c	/^newdir(ndir, tempdir)$/
+newspool	anlwrk.c	/^newspool(limit)$/
+nodev	condevs.c	/^int nodev()$/
+notfyuser	uuclean.c	/^notfyuser(file)$/
+notify	cntrl.c	/^notify(mailopt, user, file, sys, msgcode)$/
+notin	conn.c	/^notin(sh, lg)$/
+nulldev	condevs.c	/^int nulldev()$/
+older	uustat.c	/^older(rt,t)$/
+omsg	imsg.c	/^omsg(type, msg, fn)$/
+onelock	ulockf.c	/^onelock(pid,tempfile,name) char *tempfile,*name;$/
+onintr	cico.c	/^onintr(inter)$/
+p_chwrite	conn.c	/^p_chwrite(fd, c)$/
+pcompar	anlwrk.c	/^pcompar(ap1, ap2)$/
+pkaccept	pk0.c	/^pkaccept(pk)$/
+pkcget	pk1.c	/^pkcget(fn, b, n)$/
+pkclose	pk0.c	/^pkclose(S)$/
+pkcntl	pk0.c	/^pkcntl(c, pk)$/
+pkdata	pk1.c	/^pkdata(c, sum, pk, bp)$/
+pkfail	gio.c	/^pkfail()$/
+pkgetpack	pk1.c	/^pkgetpack(ipk)$/
+pkline	pk0.c	/^pkline(pk)$/
+pkmove	pk1.c	/^pkmove(p1, p2, count, flag)$/
+pkoff	pkon.c	/^pkoff() { }$/
+pkon	pkon.c	/^pkon() { }$/
+pkopen	pk1.c	/^pkopen(ifn, ofn)$/
+pkoutput	pk0.c	/^pkoutput(pk)$/
+pkread	pk0.c	/^pkread(S)$/
+pkreset	pk0.c	/^pkreset(pk)$/
+pkrstart	pk1.c	/^pkrstart(pk)$/
+pksack	pk0.c	/^pksack(pk)$/
+pksize	pk0.c	/^pksize(n)$/
+pkwrite	pk0.c	/^pkwrite(S)$/
+pkxstart	pk1.c	/^pkxstart(pk, cntl, x)$/
+pkzero	pk0.c	/^pkzero(s,n)$/
+pnetopn	condevs.c	/^pnetopn(flds)$/
+prefix	prefix.c	/^prefix(s1, s2)$/
+prhelp	uurespool.c	/^prhelp()$/
+printit	uumon.c	/^printit(m)$/
+process	uucompact.c	/^process(name, command)$/
+pskip	cico.c	/^pskip(p)$/
+putinpub	cntrl.c	/^putinpub(file, tmp, user)$/
+rddev	conn.c	/^rddev(fp, dev)$/
+rdpth	chkpth.c	/^rdpth()$/
+retosndr	uuxqt.c	/^retosndr(user, rmt, file, ferr, raddr)$/
+rmesg	cntrl.c	/^rmesg(c, msg, n)$/
+rmlock	ulockf.c	/^rmlock(name)$/
+rmstat	systat.c	/^rmstat(name)$/
+rmxfiles	uuxqt.c	/^rmxfiles(xfile)$/
+rvmacscls	condevs.c	/^rvmacscls(fd)$/
+rvmacsopn	condevs.c	/^rvmacsopn(ph, flds, dev)$/
+sdmail	sdmail.c	/^sdmail(file, uid)$/
+sendthem	conn.c	/^sendthem(str, fn)$/
+setline	setline.c	/^setline(type)$/
+shio	shio.c	/^shio(cmd, fi, fo, user, fe)$/
+sigalrm	dialout.c	/^sigalrm()$/
+slowrite	condevs.c	/^slowrite(fd, str)$/
+snccmp	conn.c	/^snccmp(s1, s2)$/
+sout	uustat.c	/^sout(sfd, name)		\/* print a record of us_ssf in L_/
+split	getprm.c	/^split(name, sys, rest)$/
+spoolname	subdir.c	/^spoolname(sysname)$/
+srchst	gnsys.c	/^srchst(name, list, n)$/
+startup	cntrl.c	/^startup(role)$/
+stlock	ulockf.c	/^stlock(name)$/
+stpre	uuclean.c	/^stpre(p)$/
+stptcl	cntrl.c	/^stptcl(c)$/
+subchdir	uucp.h	/^#define	subchdir(d)	SubChDir(d)$/
+subdir	uucp.h	/^#define	subdir(d, p)	SubDir(d, p)$/
+subfile	uucp.h	/^#define	subfile(s)	SubFile(s)$/
+sysacct	sysacct.c	/^sysacct(bytes, time)$/
+syslog	logent.c	/^syslog(text)$/
+systat	systat.c	/^systat(name, type, text)$/
+timeout	cico.c	/^timeout()$/
+touch_alarm	shio.c	/^touch_alarm()$/
+ub_sst	ub_sst.c	/^ub_sst(flag)$/
+ufopen	uux.c	/^FILE *ufopen(file, mode)$/
+ulkseq	gnxseq.c	/^ulkseq()$/
+ulockf	ulockf.c	/^ulockf(file, atime)$/
+ultouch	ulockf.c	/^ultouch()$/
+unetcls	condevs.c	/^unetcls(fd)$/
+unetopn	condevs.c	/^unetopn(flds)$/
+unlinkdf	cntrl.c	/^unlinkdf(file)$/
+unlock	ulockf.c	/^unlock(name) char *name;$/
+us_crs	us_crs.c	/^us_crs(cfile)$/
+us_open	us_open.c	/^us_open(file, mode, lock, atime, stime)$/
+us_rrs	us_rrs.c	/^us_rrs(cfilel,stat)$/
+us_sst	us_sst.c	/^us_sst(flag)$/
+uucpdelay	condevs.c	/^#define uucpdelay(num,denom) intervaldelay(1000000/
+uucpname	uucpname.c	/^uucpname(name)$/
+vadcls	condevs.c	/^vadcls(fd) {$/
+vadopn	condevs.c	/^vadopn(telno, flds, dev)$/
+ventcls	condevs.c	/^ventcls(fd)$/
+versys	versys.c	/^versys(name)$/
+wmesg	cntrl.c	/^wmesg(m, s)$/
+wprefix	prefix.c	/^wprefix(s1, s2)$/
+xcp	cpmv.c	/^xcp(f1, f2)$/
+xmv	cpmv.c	/^xmv(f1, f2)$/
+xuucico	xqt.c	/^xuucico(rmtname)$/
+xuucp	xqt.c	/^xuucp(str)$/
+xuux	uucp.c	/^xuux(ename, s1, f1, s2, f2, opts)$/
+xuuxqt	xqt.c	/^xuuxqt()$/

@@ -1,0 +1,21 @@
+Msed0	sed0.c	/^main(argc, argv)$/
+address	sed0.c	/^char	*address(expbuf)$/
+advance	sed1.c	/^advance(alp, aep)$/
+arout	sed1.c	/^arout()$/
+cmp	sed0.c	/^cmp(a, b)$/
+command	sed1.c	/^command(ipc)$/
+compile	sed0.c	/^char *compile(expbuf)$/
+compsub	sed0.c	/^char	*compsub(rhsbuf)$/
+dechain	sed0.c	/^dechain()$/
+dosub	sed1.c	/^dosub(rhsbuf)$/
+ecmp	sed1.c	/^ecmp(a, b, count)$/
+execute	sed1.c	/^execute(file)$/
+fcomp	sed0.c	/^fcomp()$/
+gline	sed1.c	/^gline(addr)$/
+match	sed1.c	/^match(expbuf, gf)$/
+place	sed1.c	/^char	*place(asp, al1, al2)$/
+rline	sed0.c	/^rline(lbuf)$/
+search	sed0.c	/^struct label	*search(ptr)$/
+substitute	sed1.c	/^substitute(ipc)$/
+text	sed0.c	/^char	*text(textbuf)$/
+ycomp	sed0.c	/^char *ycomp(expbuf)$/

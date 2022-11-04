@@ -1,0 +1,72 @@
+32c32
+< describe all process slots rather than just active ones.
+---
+> describe all newprocess slots rather than just active ones.
+53c53
+< wanted by another process (L flag is on)
+---
+> wanted by another newprocess (L flag is on)
+108c108
+< Number of processes using this text segment.
+---
+> Number of newprocesses using this text segment.
+110c110
+< Number of processes in core using this text segment.
+---
+> Number of newprocesses in core using this text segment.
+114c114
+< Print process table for active processes with these headings:
+---
+> Print newprocess table for active newprocesses with these headings:
+122c122
+< no process
+---
+> no newprocess
+140c140
+< the scheduler process
+---
+> the scheduler newprocess
+169c169
+< Process number of root of process group
+---
+> Process number of root of newprocess group
+172c172
+< The process ID number.
+---
+> The newprocess ID number.
+174c174
+< The process ID of parent process.
+---
+> The newprocess ID of parent newprocess.
+177c177
+< the process measured in multiples of 64 bytes.
+---
+> the newprocess measured in multiples of 64 bytes.
+181c181
+< Size of process image in multiples of 64 bytes.
+---
+> Size of newprocess image in multiples of 64 bytes.
+183c183
+< Wait channel number of a waiting process.
+---
+> Wait channel number of a waiting newprocess.
+185c185
+< Link pointer in list of runnable processes.
+---
+> Link pointer in list of runnable newprocesses.
+227c227
+< process is awaiting output
+---
+> newprocess is awaiting output
+256c256
+< print information about a user process;
+---
+> print information about a user newprocess;
+260c260
+< The process must be in main memory, or the file used can
+---
+> The newprocess must be in main memory, or the file used can
+279c279
+< Number of processes that know this open file.
+---
+> Number of newprocesses that know this open file.

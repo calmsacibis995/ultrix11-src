@@ -1,0 +1,1252 @@
+-archive
+
+			      Archive Files
+
+		     TASK			      COMMAND
+		  
+	     Archive files to/from tape			v7tar
+	     Archive files to/from tape			tp
+	     Create ANSI-compatible tape volumes	ltf
+	     Create archive libraries			ar
+	     Create multiple archives			mdtar
+	     Create multiple tape archives		tar
+	     Copy archive files				cpio
+	     Create Table of Contents for archive	ranlib
+	     Determine archive ordering			lorder
+
+	  For further help, select the appropriate COMMAND and type:
+
+	     help COMMAND    
+-commands
+
+	  You can access additional menus for user-level commands to:
+
+		       TASK			    	  KEY
+		       
+	     Change or determine your environment       environment
+	     Change or determine process execution      process
+	     Communicate with other users		communication
+	     Create or maintain your directories	directories
+	     Create or maintain archive libraries       archive
+	     Create or maintain your files		files
+	     Display user and system information	inform
+	     Edit your files				editor
+	     Format text for printing			format
+	     Manipulate file data			data
+	     Source Code Control System			SCCS
+	     Submit jobs to the line printer		printer
+	     Use computer network			network
+	     Use math or logic				math
+
+	  To display a specific menu, select the appropriate KEY and type:
+
+	       help KEY 
+-communication
+
+		      	    Communicate with other users
+
+		      TASK				       COMMAND
+		  
+	     Disallow messages at your terminal			mesg
+	     Display interprocess communication status		ipcs
+	     Determine whom your mail is from			from
+	     Permit messages at your terminal			mesg
+	     Read mail messages					binmail
+	     Read mail messages					mail
+	     Rebuild mail aliases file				newaliases
+	     Remove interprocess communication identifier	ipcrm
+	     Send mail to other users				mail
+	     Send mail messages					binmail
+	     Send a message to another user			write
+	     Send a message to all users			wall
+	     Talk with another user				talk
+
+	  For further help, select the appropriate COMMAND and type:
+
+		help COMMAND
+-data
+
+			    Manipulate File Data
+
+		    TASK			       COMMAND
+		  
+	     Create data dump				od
+	     Create topological sort			tsort
+	     Compact file data				pack
+	     Compare data				cmp
+	     Compare sorted data			comm
+	     Concatenate compressed file data		pcat
+	     Concatenate data				cat
+	     Convert tabs to spaces			expand
+	     Convert spaces to tabs			unexpand
+	     Convert underscoring			ul
+	     Copy data					cp
+	     Copy and convert data			dd
+	     Count characters, words, and lines		wc
+	     Cut data from files			cut
+	     Determine differences			diff
+	     Determine differences (3 files)		diff3
+	     Determine differences (big files)		bdiff
+	     Determine differences (side-by-side)	sdiff
+	     Display data, one screen at a time		more
+	     Display data, page screen down		page
+	     Display data with line numbers		nl
+	     Display portion of data			tail
+	     Display wordlist from data			prep
+	     Extended character set filter		greek
+	     Join data			 		join
+	     Merge data					paste
+	     Process reverse line feed			col
+	     Remove repetitive lines from data		uniq
+	     Reverse character line positions		rev
+	     Scan and execute commands			awk
+	     Scan data for extended pattern		egrep
+	     Scan data for fixed pattern		fgrep
+	     Scan data for regular pattern		grep
+	     Scan large text files			bfs
+	     Scan sorted data				look
+	     Split data into smaller files		split
+	     Split up text files			csplit
+	     Sort data					sort
+	     Translate characters			tr
+	     Uncompact file data			unpack
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND    
+-directories
+
+		      Create or Maintain Directories
+
+		      TASK			     COMMAND
+		     
+	     Determine directory/file  statistics	ls
+	     List directory's contents			ls
+	     Make new directory				mkdir
+	     Move files to directory			mv
+	     Remove directory				rmdir
+	     Rename directory				mv
+
+	  For further help, select the appropriate COMMAND and type:
+
+	     help COMMAND   
+-editor
+
+			       Edit Files
+
+		     TASK			      COMMAND
+		  
+	     Use display text editor			ex
+	     Use line-oriented text editor		ed
+	     Use restricted line-oriented editor	red
+	     Use stream text editor			sed
+	     Use screen-oriented text editor		vi
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND
+-errors
+
+    When unsuccessful, most system calls return an error number in the 
+    global variable errno to indicate the error condition encountered.
+    There is a table of messages associated with each error number and
+    a routine for printing the appropriate message.  For further 
+    information, see perror(3) in the ULTRIX-11 Programmer's Manual.
+
+    The following lists each error name, its corresponding number
+    and a brief description.
+
+	NAME		NUMBER		DESCRIPTION
+
+	EPERM		  1		Not owner
+	ENOENT		  2		No such file or directory 
+	ESRCH		  3		No such process 
+	EINTR		  4		Interrupted system call 
+	EIO		  5		I/O error 
+	ENXIO		  6		No such device or address 
+	E2BIG		  7		Arg list too long 
+	ENOEXEC		  8		Exec format error 
+	EBADF		  9		Bad file number 
+	ECHILD		  10		No children 
+	EAGAIN		  11		No more processes 
+	ENOMEM		  12		Not enough core 
+	EACCES		  13		Permission denied 
+	EFAULT		  14		Bad address 
+	ENOTBLK		  15		Block device required 
+	EBUSY		  16		Mount device busy 
+	EEXIST		  17		File exists 
+	EXDEV		  18		Cross-device link 
+	ENODEV		  19		No such device 
+	ENOTDIR		  20		Not a directory
+	EISDIR		  21		Is a directory 
+	EINVAL		  22		Invalid argument 
+	ENFILE		  23		File table overflow 
+	EMFILE		  24		Too many open files 
+	ENOTTY		  25		Not a typewriter 
+	ETXTBSY		  26		Text file busy 
+	EFBIG		  27		File too large 
+	ENOSPC		  28		No space left on device 
+	ESPIPE		  29		Illegal seek 
+	EROFS		  30		Read-only file system 
+	EMLINK		  31		Too many links 
+	EPIPE		  32		Broken pipe 
+	EDOM		  33		Argument too large 
+	ERANGE		  34		Result too large 
+	ETPL		  35		Tape position lost 
+	ETOL		  36		Tape off-line 
+	ETWL		  37		Tape write locked 
+	ETO		  38		Tape already open 
+	EDESTADDRREQ	  39		Destination address required 
+	EMSGSIZE	  40		Message too long 
+	EPROTOTYPE	  41		Protocol wrong type for socket 
+	ENOPROTOOPT	  42		Protocol not available 
+	EPROTONOSUPPORT	  43		Protocol not supported 
+	ESOCKTNOSUPPORT	  44		Socket type not supported 
+	EOPNOTSUPP	  45		Operation not supported
+	EPFNOSUPPORT	  46		Protocol family not supported 
+	EAFNOSUPPORT	  47		Address family not supported 
+	EADDRINUSE	  48		Address already in use 
+	EADDRNOTAVAIL	  49		Can't assign requested address 
+	ENETDOWN	  50		Network is down 
+	ENETUNREACH	  51		Network is unreachable 
+	ENETRESET	  52		Network dropped connection reset
+	ECONNABORTED	  53		Software caused connection abort
+	ECONNRESET	  54		Connection reset by peer 
+	ENOBUFS		  55		No buffer space available 
+	EISCONN		  56		Socket is already connected 
+	ENOTCONN	  57		Socket is not connected 
+	ESHUTDOWN	  58		Can't send after socket shutdown
+	ETOOMANYREFS	  59		Too many references
+	ETIMEDOUT	  60		Connection timed out 
+	ECONNREFUSED	  61		Connection refused 
+	ELOOP		  62		Too many levels--symbolic links 
+	ENAMETOOLONG	  63		File name too long 
+	EHOSTDOWN	  64		Host is down 
+	EHOSTUNREACH	  65		No route to host 
+	ENOTEMPTY	  66		Directory not empty 
+	EPROCLIM	  67		Too many processes 
+	EUSERS		  68		Too many users 
+	EDQUOT		  69		Disc quota exceeded 
+	EWOULDBLOCK	  70		Operation would block 
+	EINPROGRESS	  71		Operation now in progress 
+	EALREADY	  72		Operation already in progress 
+	ENOTSOCK	  73		Socket operation on non-socket 
+	ENOMSG		  74		No message of desired type 
+	EIDRM		  75		Identifier removed 
+	ECHRNG		  76		Channel number out of range 
+	EL2NSYNC	  77		Level 2 not synchronized 
+	EL3HLT		  78		Level 3 halted 
+	EL3RST		  79		Level 3 reset 
+	ELNRNG		  80		Link number out of range 
+	EUNATCH		  81		Protocol driver not attached 
+	ENOCSI		  82		No CSI structure available 
+	EL2HLT		  83		Level 2 halted 
+	EDEADLK		  84		Deadlock condition avoided 
+	ENOLCK		  85		No locks available 
+	EBADFS		  86		Bad file system superblock 
+	
+For further help, select the appropriate NUMBER and type:
+
+	help NUMBER
+-environment
+	     
+		Change or Determine Your Execution Environment
+
+		    TASK			       COMMAND
+	     SYSTEM V command interpreter		sh5
+	     Bourne shell command interpreter		sh
+	     C shell command interpreter		csh
+	     Change current directory			cd
+	     Change finger information			chfn
+	     Change current group ID			newgrp
+	     Change login shell				chsh
+	     Change login password			passwd
+	     Change root directory			chroot
+	     Clear your terminal screen			clear
+	     Clear your terminal screen			clr
+	     Determine current directory		pwd
+	     Determine current host system		hostname
+	     Determine current terminal			tty
+	     Determine current user ID name		whoami
+	     Determine shell environment		printenv
+	     Log in to system				login
+	     Reset terminal I/O mode			reset
+	     Restricted SYSTEM V command interpreter	rsh5
+	     Set terminal I/O characteristics		stty
+	     Set terminal mode				tset
+	     Set tabs for terminal			tabs
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND    
+-files
+
+			 Create or Maintain Files
+
+		     TASK			       COMMAND
+		    
+	     Change access permissions (mode)		chmod
+	     Change assigned group (groupID)		chgrp
+	     Change assigned owner (userID)		chown
+	     Change assigned owner and group		chog
+	     Create new link				ln
+	     Determine file's type			file
+	     Limit maximum file size			ulimit
+	     List file statistics			ls
+	     Locate file				find
+	     Move file to directory			mv
+	     Remove file				rm
+	     Rename file				mv
+	     Update modification time			touch
+
+	  For further help, select the appropriate COMMAND and type:
+
+	     help COMMAND    
+-format
+
+			      Format Text
+
+		   TASK			 		   COMMAND
+		  
+	     Check eqn codes		 	  	   checkeq
+	     Check mm macro codes			   checkmm
+	     Check text for spelling errors	  	   spell
+	     Draw graph				  	   graph
+	     Draw smooth curve			  	   spline
+	     Format bibliographic references	  	   refer
+	     Format equations			  	   eqn
+	     Format equations and display at terminal	   neqn
+	     Format text (simplest formatter)	  	   roff
+	     Format text			  	   nroff
+	     Format text for phototypesetter	  	   troff
+	     Format text into single-column paragraphs	   fmt
+	     Format text using nroff and mm macros	   mm
+	     Format text using nroff and osdd macros 	   osdd
+	     Format text using troff and mm macros	   mmt
+	     Format text using troff and mv macros	   mvt
+	     Generate permuted index		  	   ptx
+	     Generate plotting instructions		   plot
+	     Generate tables				   tbl
+	     Look up bibliographic references		   lookbib
+	     Paginate output for Tektronix 4014		   tk
+	     Remove eqn, nroff, tbl, or troff coding       deroff
+	     Simulate phototypesetter output		   tc
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND 
+-inform
+		     Display User and System Information
+
+		     TASK			      COMMAND
+		  
+	     Display calendar				cal
+	     Display current host name			uname
+	     Display current user information		w
+	     Display command title references		apropos
+	     Display command information		whatis
+	     Display date and time			date
+	     Display disk usage				du
+	     Display information about users		f
+	     Display last log in times			last
+	     Display login names and terminals		who
+	     Display manual page			man
+	     Display name of host system		hostid
+	     Display names of users logged in		users
+	     Display names of users logged in		u
+	     Display on-line help			help
+	     Display process statistics			ps
+	     Display system performance status		uptime
+	     Display user-created calendar reminders	calendar
+	     Display user finger information		finger
+	     Display which programs would be executed	which
+	     Execute CAI modules			learn
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND   
+-maint
+
+	  DIGITAL recommends that you read the ULTRIX-11 System
+	  Management Guide for a detailed explanation of all recom-
+	  mended maintenance procedures.
+
+	  You can access a summary for each of these maintenance 
+	  commands.  The commands marked with an asterisk (*) have
+	  been replaced by the fsck command.
+
+		      TASK				  COMMAND
+	  Administer network address protocol tables	    arp
+	  Administer network routing tables		    route
+	  Analyze system crash dump			    cda
+	  Add newly configured terminals		    ted
+	  Check and repair file systems			    fsck
+	  Check directory consistency		  	   *dcheck
+	  Check inode consistency			   *icheck
+	  Clear inodes				  	   *clri
+	  Concatenate formatted manual pages		    catman
+	  Configure network interface parameters	    ifconfig
+	  Construct a new file system			    newfs
+	  Convert V6 archives to V7 format		    arcv
+	  Copy system crash dumps			    ccd
+	  Copy system messages			  	    dmesg
+	  Create file system copy (disk copy)	  	    dcopy
+	  Create file system dump			    dump
+	  Create file system image copy		  	    volcopy
+	  Create file system labels			    labelit
+	  Create file system structure		  	    mkfs
+	  Create system configuration tables		    mkconf
+	  Debug file system				    fsdb
+	  Determine MSCP disk partitions		    rasize
+	  Determine file names from inodes		    ncheck
+	  Disable logins				    nologins
+	  Disable terminals				    ted
+	  Display I/O statistics			    iostat
+	  Display I/O buffer usage			    bufstat
+	  Display assigned tty structures		    tss
+	  Display contents of mailq directory	  	    mailq
+	  Display dumptape directories		  	    dumpdir
+	  Display login accounting statistics	  	    ac
+	  Display memory usage			  	    memstat
+	  Display number of free blocks available	    df
+	  Display pre-version 3.0 dumptape directories 	    512dumpdir
+	  Display process accounting statistics	  	    sa
+	  Display system status information		    pstat
+	  Display user block usage			    quot
+	  Edit locked password file			    vipw
+	  Enable logins				  	    logins
+	  Enable terminals				    ted
+	  Error logger copy program			    elc
+	  Error logger initialization program		    eli
+	  Error logger print program			    elp
+	  Execute command without controlling terminal	    zaptty
+	  Extract files from pre-version 3.0 file systems   rawfs
+	  Format RX02 floppy diskettes		  	    rx2fmt
+	  Generate new encryption key			    makekey
+	  Generate a system kernel			    sysgen
+	  Initialize terminal mode			    getty
+	  Load optional software			    osload
+	  Log datagram socket statistics		    syslog 
+	  Mail system routing program		  	    sendmail
+	  Make special file				    msf
+	  Make special file				    mknod
+	  Mount file systems				    mount
+	  Patch inodes				  	    ipatch
+	  Interactive system maintenance program	    opser
+	  Rebuild mail aliases database			    newaliases
+	  Restart line printer daemon			    lpdrestart
+	  Restore files from dumptape		  	    restor
+	  Restore files from pre-version 3.0 dumptape       512restor
+	  Set line printer parameters		  	    lpset
+	  Set date and time to network date and time	    rdate
+	  Set up line printer			  	    lprsetup
+	  Set up network files			  	    netsetup
+	  Set up new user accounts			    nu
+	  Set up uucp files				    uucpsetup
+	  System TELNET daemon			  	    telnetd
+	  System Internet services daemon		    inetd
+	  System boot procedures			    boot
+	  System crash procedures 			    crash
+	  System clock daemon			  	    cron
+	  System file transfer protocol daemon	  	    tfpd
+	  System file system update daemon		    update
+	  System initialization program		  	    init
+	  System line printer daemon			    lpd
+	  System lpd character filter		  	    ulf
+	  System miscellaneous services daemon 	  	    miscd
+	  System network routing daemon		  	    routed
+	  System rexec daemon			  	    rexecd
+	  System rlogin daemon			  	    rlogind
+	  System rsh daemon				    rshd
+	  System rwho daemon				    rwhod
+	  System shutdown procedures			    shutdown
+	  System talk daemon				    talkd
+	  System tftp daemon				    tftpd
+	  Turn on/off floating point simulator	  	    fpsim
+	  Turn on/off process accounting		    accton
+	  ULTRIX-11 system acceptance test program	    usat
+	  ULTRIX-11 system exerciser package		    usep
+	  Unmount file systems			  	    umount
+	  Update file systems			  	    sync
+
+	  For further help, select the appropriate COMMAND and type:
+	  
+		help COMMAND      
+-math
+
+			     Math or Logic 
+
+		    TASK				COMMAND
+		  
+	     Convert units of measure			units
+	     Evaluate expressions			expr
+	     Factor numbers				factor
+	     Generate prime numbers			primes
+	     Use arbitrary precision calculator	 	bc
+	     Use desk-top calculator			dc
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND
+-menu
+
+			      General Menu
+
+	  You can access additional introductory menus for:
+
+		 CATEGORY				KEY
+	  
+	     Defined terms				terms
+	     Kernel error messages			errors
+	     Programming commands			program
+	     System administration files		system
+	     System maintenance commands		maint
+	     Table of contents				table
+	     User-level commands			commands
+
+	  To display a specific menu, select the appropriate KEY and type:
+
+	       help KEY  
+-network
+
+			       Networking 
+
+		    TASK			       COMMAND
+	     ARPANET file transfer program		ftp
+	     ARPANET trivial file transfer program	tftp
+	     TELNET protocol program			telnet
+	     UUCP job control program			uustat
+	     Call another system			cu
+	     Concatenate DECnet files			dcat
+	     Connect to another system			tip
+	     Copy DECnet files				dcp
+	     Copy files between remote systems		rcp
+	     Copy files from another system		uucp
+	     Determine uucp and uux transactions	uulog
+	     Display network status			netstat
+	     Display status of remote hosts		ruptime
+	     Display who is logged in network		rwho
+	     Execute commands on another system	 	uux
+	     Execute commands on remote system		rsh
+	     List DECnet file statistics		dls
+	     Log in to DECnet host			dlogin
+	     Log in to remote system			rlogin
+	     Remove DECnet files			drm
+	     Route mail to user on remote systems	rmail
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND   
+-printer 
+
+		       Submit Jobs to the Line Printer
+
+			TASK				COMMAND
+		  
+	     Display all jobs queued for printing	  lpq
+	     Delete your jobs from the print queue	  lprm
+	     Print and paginate data			  pr
+	     Print files at the line printer		  print
+	     Queue files for printing			  lpr
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND  
+-process
+
+		 Change or Determine Your Process Execution
+
+		     TASK			       COMMAND
+		  
+	     Create pipe tee for output			tee
+	     Create record of commands executed		script
+	     Execute command and ignore hangups		nohup
+	     Execute commands at a later time		at
+	     Execute command at a lower priority	nice
+	     Reschedule priority of command		renice
+	     Send command to tape drive			mt
+	     Signal a process (command)			kill
+	     Substitute another user's ID		su
+	     Time a command's execution			time
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND  
+-program
+
+	  You can access a summary for each of these regular and shell
+	  programming commands.
+
+		    TASK			      COMMAND
+	     PASCAL code interpreter			pi
+	     PASCAL code interpreter and executor	pix
+	     PASCAL code executor			px
+	     PASCAL execution profiler			pxp
+	     Analyze compiler error messages		error
+	     Assemble programs				as
+	     Augmented make program			s5make
+	     Beautify C programs			cb
+	     Check C code				lint
+	     Compile and link-edit C programs		cc
+	     Compile regular expressions		regcmp
+	     Convert FORTRAN to ratfor program		struct
+	     Create lexical analyzer			lex
+	     Create message file from C programs	mkstr
+	     Create parsing algorithms			yacc
+	     Create program tags files			ctags
+	     Debug program dumps			adb
+	     Display ASCII strings in programs		strings
+	     Display program's checksum			sum
+	     Display program's size			size
+	     Display program's symbol table		nm
+	     Echo arguments (script)			echo
+	     Error logger initialization program	eli
+	     Error logger print program			elp
+	     Extract strings from programs		xstr
+	     FORTRAN compiler				f77
+	     Force true condition (script)		true
+	     Force untrue condition (script)		false
+	     Get command options			getopt
+	     Macro preprocessor 			m4
+	     Macro-11 assembler				m11
+	     Macro-11 loader 				l11
+	     Profile programs				prof
+	     Link compiled programs			ld
+	     Maintain program groups			make
+	     Portable C compiler			pcc
+	     Program in rational FORTRAN		ratfor
+	     Read one line from stdin			line
+	     Remove symbol table and relocation bits    strip
+	     Strip pathnames (script)			basename
+	     Suspend execution for a time (script)	sleep
+	     Test conditions (script)			test
+	     Trace program execution			ctrace
+	     Wait for signals (script)			wait
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND    
+-SCCS
+
+		       Use the Source Code Control System
+
+			TASK				COMMAND
+
+	     Administer SCCS files			 admin
+	     Change delta commentary			 cdc
+	     Combine delta versions			 comb
+	     Create SCCS files				 create
+	     Display SCCS file delta and edit status	 sact
+	     Display changes made to SCCS files		 prt
+	     Display differences between deltas		 sccsdiff
+	     Display ID keywords from SCCS files	 what
+	     Display information about edited files	 info
+	     Display information about SCCS files	 prs
+	     Display information about error messages	 sccshelp
+	     Display names of edited files		 check
+	     Display names of edited files		 tell
+	     Edit SCCS files				 edit
+	     Get copies of SCCS files			 get
+	     Make delta, then edit			 deledit
+	     Make delta, then get			 delget
+	     Remove delta, then edit earlier delta	 fix
+	     Remove SCCS files				 clean
+	     Remove specified delta			 rmdel
+	     Save changes made to SCCS files		 delta
+	     Undo SCCS edit				 unedit
+	     Undo SCCS get				 unget
+	     Use SCCS interface				 sccs
+	     Validate SCCS files			 val 
+	     Version control program			 vc
+
+	  For further help, select the appropriate COMMAND and type:
+
+	       help COMMAND  
+-system
+		     System Administrative Files
+
+		     DESCRIPTION			  KEY
+
+	Command execution database 			/usr/lib/crontab
+	Current login database	 			/etc/utmp
+	DECnet access facility table 			/etc/dgateway
+	Dump date database				/etc/ddate
+	File systems table				/etc/fstab
+	Internet daemon database			/etc/inetd.conf
+	Internet hosts database				/etc/hosts
+	Internet host equivalents			/etc/hosts.equiv
+	Internet networks database			/etc/networks
+	Internet protocols database			/etc/protocols
+	Internet services database			/etc/services
+	Login history database				/usr/adm/wtmp
+	Mail aliases database				/usr/lib/aliases
+	Message-of-the-day file				/etc/motd
+	Mounted file systems table			/etc/mtab
+	Multiuser startup file				/etc/rc
+	Printer capabilities database			/etc/printcap
+	Remote hosts numbers database			/etc/phones
+	Remote hosts database				/etc/remote
+	Syslog configuration file			/etc/syslog.conf
+	System-level shell profile			/etc/profile
+	System-level shell profile			/etc/cshprofile
+	System groups database				/etc/groups
+	System login database 				/etc/passwd
+	Terminal capabilities database			/etc/termcap
+	Terminal configuration table			/etc/gettytab
+	Terminal initialization database		/etc/ttys
+	Terminal types database				/etc/ttytype
+		  
+	For further help, select the appropriate KEY and type:
+
+	       help KEY   
+-table
+
+	  The table of contents lists the commands, terms, files, and 
+	  kernel error messages for which an on-line summary exists:
+
+	  COMMANDS	TASKS
+	  
+	  512dumpdir	Display files on pre-version 3.0 dump tape
+	  512restor	Restore files from pre-version 3.0 dump tape
+	  ac		Display login accounting statistics
+	  accton	Turn on/off system accounting
+	  adb		Interactive C program debugger
+	  admin		Administer SCCS files
+	  apropos	Display command title references
+	  ar		Create and maintain archive libraries
+	  arcv		Convert archives to V7 format
+	  arp		Administer network protocol translation tables
+	  as		Assemble program
+	  at		Execute commands at a later time
+	  awk		Scan for pattern and execute commands
+	  basename	Strip directory prefixes from pathname
+	  bc		Interactive arithmetic language processor
+	  bdiff		Determine differences between big files
+	  bfs		Scan large text files
+	  binmail	Interactive mail program
+	  boot		System boot procedures
+	  bufstat	Display I/O buffer usage
+	  cal		Display calendar for specified month or year
+	  calendar	Use calendar reminder service
+	  cat		Concatenate and display data
+	  catman	Concatenate formatted manual pages
+	  cb		Beautify C program
+	  cc		Compile C program
+	  ccd		Interactive system crash dump copy program
+	  cd		Change directories
+	  cdc		Change delta commentaries in SCCS files
+	  cda		Analyze system crash dump
+	  check		Display names of edited SCCS files
+	  checkeq	Check eqn code
+	  checkmm	Check mm macro codes
+	  chfn		Change user finger information
+	  chgrp		Change file group
+	  chmod		Change file permission settings
+	  chog		Change file owner and group
+	  chown		Change file owner
+	  chroot	Change root directory
+	  chsh		Change login shell
+	  clean		Remove SCCS files
+	  clear		Clear terminal screen
+	  clr		Clear terminal screen
+	  clri		Clear file inode
+	  cmp		Compare file data
+	  col		Process reverse line feeds
+	  comb		Combine deltas in SCCS files
+	  comm		Compare sorted data
+	  cp		Copy file data
+	  cpio		Copy archive files
+	  crash		System crash procedures
+	  create	Create SCCS files
+	  cron		System clock daemon
+	  csh		C shell command interpreter
+	  csplit	Split up text file
+	  ctags		Create ex editor tags file
+	  ctrace	Trace program execution
+	  cu		Call and connect to a remote system
+	  cut 		Cut text from file
+	  date		Display date and time
+	  dc		Interactive desktop calculator
+	  dcat		Concatenate DECnet files
+	  dcheck	Check file system directory consistency
+	  dcopy		Create disk-to-disk file system copy
+	  dcp		Copy DECnet files
+	  dd	   	Copy and convert data
+	  deledit	Make SCCS delta, then edit
+	  delget	Make SCCS delta, then get
+	  delta		Save changes made to SCCS files
+	  deroff	Remove nroff, troff, tbl, and eqn code
+	  df		Display amount of disk free space
+	  diff		Determine differences in file data
+	  diff3		Determine differences between 3 files
+	  dlogin	Log in to DECnet host node
+	  dls		List and generate statistics for DECnet files
+	  dmesg		Copy system messages
+	  drm		Remove DECnet files
+	  du		Display user disk usage
+	  dump		Create incremental file system dump
+	  dumpdir	Display files on a dump tape
+	  echo		Echo arguments
+	  ed		Interactive line-oriented text editor
+	  edit		Edit SCCS files
+	  egrep		Scan data for extended patterns
+	  elc		Error logger copy program
+	  eli		Error logger initialization program
+	  elp		Error logger print program
+	  eqn		Format mathematical equations
+	  error		Analyze compiler error messages
+	  ex		Interactive text editor with screen display
+	  expand	Convert tabs to spaces
+	  expr		Evaluate expressions
+	  f		Display information about users
+	  f77		FORTRAN 77 compiler
+	  factor	Factor numbers
+	  false		Force untrue condition
+	  fgrep		Scan data for fixed pattern
+	  file		Determine file type
+	  find		Locate files
+	  finger	Display user finger information
+	  fix		Remove SCCS delta, then edit earlier version
+	  fmt		Format text into single column paragraphs
+	  fpsim		Turn on/off floating point simulator
+	  from		Display whom mail is from
+	  fsck		Interactive file system check and repair program
+	  fsdb		Interactive file system debugger
+	  ftp		Interactive file transfer program
+	  ftpd		System file transfer protocol daemon
+	  get		Get copies of SCCS files
+	  getopt	Get command line options
+	  getty		Initialize terminal mode
+	  graph		Draw graphs
+	  greek		Extended character set filter
+	  grep		Scan data for pattern
+	  help		Display on-line help
+	  hostid	Display name of host system
+	  hostname	Display system name
+	  icheck	Check file system inode consistency
+	  ifconfig	Configure network interface parameters
+	  inetd		System Internet service daemon
+	  info		Display information about edited SCCS files
+	  init		System initialization program
+	  iostat	Display system I/O statistics
+	  ipatch	Interactive inode patch program
+	  ipcrm		Remove interprocess communication identifier
+	  ipcs		Display interprocess communication status
+	  join		Join file data
+	  kill		Send signal to process
+	  l11		Macro-11 loader
+	  labelit	Create file system labels
+	  last		Display last login times
+	  ld	     	Link-edit (load) C programs
+	  learn		Computer-aided instruction about system
+	  lex		Generate lexical analysis programs
+	  line		Read one line from stdin
+	  lint		Verify C code
+	  ln		Create new directory entry (link)
+	  login		Log in
+	  logins	Enable user logins
+	  look		Find lines in sorted data
+	  lookbib	Lookup bibliographic references
+	  lorder	Find ordering relation for an object library
+	  lpd		System line printer daemon
+	  lpdrestart	Restart line printer daemon
+	  lpq		Display status of printer queue
+	  lpr		Submit jobs to line printer
+	  lprm		Remove jobs from printer queue
+	  lprsetup	Interactive line printer setup program
+	  lpset		Set line printer parameters
+	  ls		List and generate statistics for files
+	  ltf		Labeled Tape Facility (ANSI-compatible)
+	  m11		Macro-11 assembler
+	  m4		Macro preprocessor
+	  mail		Interactive mail program
+	  mailq		Display contents of mailq directory
+	  make		Maintain program groups
+	  makekey	Make new encryption key
+	  man		Display manual pages
+	  mdtar		Create multiple archives
+	  memstat	Display memory usage map
+	  mesg		Enable or disable messages
+	  misd		System miscellaneous services daemon
+	  mkconf	Create system configuration tables 
+	  mkdir		Make directories
+	  mkfs		Make file system structures
+	  mknod		Make special files
+	  mkstr		Make message file from C program
+	  mm		Format text using nroff and mm macros
+	  mmt		Format text using troff and mm macros
+	  more		Display file data, a screen at a time
+	  mount		Mount file systems
+	  msf		Make special file 
+	  mt		Send command file to tape drive
+	  mv		Rename or move files and directories
+	  mvt		Format text using troff and mv macros
+	  ncheck	Generate names from inumbers
+	  neqn		Format mathematical equations for the terminal
+	  netsetup	Interactive network setup program
+	  netstat	Display network status
+	  newaliases	Rebuild mail aliases file
+	  newfs		Construct a new file system
+	  newgrp	Change current group ID
+	  nice		Execute command at low priority
+	  nl		Display text with line numbers
+	  nm		Display program name list
+	  nohup		Execute command and ignore hangups
+	  nologins	Disable logins
+	  nroff		Format text
+	  nu		Interactive new user administration program
+	  od		Dump data
+	  opser		Interactive system maintenance program
+	  osdd		Format text using nroff and osdd macros
+	  osload	Load optional software 
+	  pack		Compress file data
+	  page		Display file data, a screen at a time
+	  passwd	Change login password
+	  paste		Merge file data
+	  pcat		Concatenate compressed file data
+	  pcc		Portable C compiler
+	  pi		PASCAL interpreter
+	  pix		PASCAL interpreter and executor
+	  plot		Generate plotting instructions
+	  pr		Print and paginate data
+	  prep		Generate word list from file data
+	  primes	Generate prime numbers
+	  print		Paginate and print files
+	  printenv	Display environment variable settings
+	  prof		Display program profile data
+	  prs		Display information from SCCS files
+	  prt		Display changes made to SCCS files
+	  ps	     	Display process status statistics
+	  pstat		Display system status statistics
+	  ptx		Create permuted index
+	  pwd		Display current directory
+	  px		PASCAL executor
+	  pxp		PASCAL execution profiler
+	  quot		Display blocks owned by users
+	  ranlib	Convert archives to random libraries
+	  rasize	Display RA disk partition sizes
+	  ratfor	Use rational FORTRAN dialect
+	  rawfs		Extract files from pre-version 3.0 file systems
+	  rcp		Copy files between remote systems
+	  rdate		Set date and time to network date and time
+	  red		Restricted line-oriented text editor
+	  refer		Find or format bibliographic references
+	  regcmp	Compile regular expressions
+	  renice	Change process priority
+	  reset		Reset terminal mode
+	  restor	Restore file systems
+	  rev		Reverse characters
+	  rexecd	System rexec daemon
+	  rlogin	Log in to remote systems
+	  rlogind	System rlogin daemon
+	  rm		Remove (unlink) files
+	  rmail		Route mail to users on remote systems
+	  rmdel		Remove SCCS deltas
+	  rmdir		Remove (unlink) empty directories
+	  roff		Format text
+	  route		Administer network routing tables
+	  routed	System network routing daemon
+	  rsh		Execute command on remote system
+	  rsh5		Restricted SYSTEM V command interpreter
+	  rshd		System rsh daemon
+	  ruptime	Display network status information
+	  rwho		Display who is logged in on network
+	  rwhod		System rwho daemon
+	  rx2fmt	Format RX02 floppy diskettes
+	  s5make	SYSTEM V version of make
+	  sa		Display system accounting statistics
+	  sact		Display SCCS delta and edit status
+	  sccs		Source Code Control System interface
+	  sccsdiff	Display differences between SCCS deltas
+	  sccshelp	Display information about SCCS error messages
+	  script	Create typescript of terminal session
+	  sdiff		Display differences in two-column listing
+	  sed		Edit text (noninteractive)
+	  sendmail	Mail routing program
+	  sh		Bourne shell command interpreter
+	  sh5		SYSTEM V shell command interpreter
+	  shutdown	System shutdown procedures
+	  size		Display program sizes
+	  sleep		Suspend execution for specified time
+	  sort		Sort data
+	  spell		Check data for spelling errors
+	  spline	Draw smooth curve
+	  split		Split file into smaller pieces
+	  strings	Display ASCII strings from program
+	  strip		Remove symbols and relocation bits from program
+	  struct	Structure FORTRAN programs
+	  stty		Set terminal options
+	  su		Substitute user ID
+	  sum		Display program checksum
+	  sync		Update file systems
+	  sysgen	Interactive ULTRIX-11 kernel generation program
+	  syslog	Log datagram socket statistics
+	  tabs		Set terminal tabs
+	  tail		Display lines from file
+	  talk		Communicate with another user
+	  talkd		System talk daemon
+	  tar		Create multiple tape archives
+	  tbl		Format tables for nroff or troff
+	  tc		Simulate phototypesetter output
+	  ted		Interactive /etc/ttys file editor
+	  tee		Pipe output to terminal and files
+	  tell		Display names of edited SCCS files
+	  telnet	Interactive TELNET protocol program
+	  telnetd	System TELNET daemon
+	  test		Evaluate conditional expressions
+	  tftp		Interactive Trivial File Transfer Protocol program
+	  tftpd		System tftp daemon
+	  time		Display command execution times
+	  tip		Connect to remote systems
+	  tk		Paginate output for Tektronix 4014
+	  touch		Update file modification date
+	  tp		Archive files to/from tape
+	  tr		Translate data
+	  troff		Format text for phototypesetting
+	  true		Force true condition
+	  tset		Set terminal mode
+	  tsort		Generate topological sort
+	  tss		Display assigned TTY structures
+	  tty		Display terminal name
+	  u		Display name list of users logged in 
+	  ul		Process underscores in data
+	  ulf		System lpd character filter
+	  ulimit	Limit maximum file size (built-in shell command)
+	  umount	Unmount file systems
+	  uname		Display current host name
+	  unedit	Undo SCCS edit command
+	  unexpand	Convert spaces to tabs
+	  unget		Undo SCCS get and edit commands
+	  uniq		Remove repeated lines from data
+	  units		Interactive units of measure conversion program
+	  unpack	Expand compressed file data
+	  update	File system update daemon
+	  uptime	Display system performance statistics
+	  usat		ULTRIX-11 system acceptance test program
+	  usep		ULTRIX-11 system exerciser package
+	  users		Display name list of users logged in 
+	  uucp		Copy files from remote systems
+	  uucpsetup	Interactive uucp setup program
+	  uulog		Generate log summary for uucp and uux commands
+	  uustat	Control uucp jobs
+	  uux		Execute commands on remote systems
+	  v7tar		Create tape archive
+	  val		Validate SCCS files
+	  vc		SCCS Version control program
+	  vi		Interactive text editor with full-screen display
+	  vipw		Edit locked password file
+	  volcopy	Create file system image copy
+	  w		Display current user information
+	  wait		Suspend execution for signal
+	  wall		Write message to all users
+	  wc		Count characters, words, and lines in file
+	  what		Display ID keywords from SCCS files
+	  whatis	Display command title references
+	  which		Display which programs would be executed
+	  who		Display names and terminals for users logged in 
+	  whoami	Display current login name
+	  write		Write message to another user
+	  xstr		Extract strings from C programs
+	  yacc		Generate parsing algorithms
+	  zaptty	Execute command without controlling terminal
+
+     	   TERM		DESCRIPTION
+
+	  command	Command format
+	  directory	Directory and file	    
+       	  groupID	Group ID number	       
+	  home		Home directory		
+	  inode		File system inode	     
+       	  inumber	File inumber		  
+	  kernel	ULTRIX-11 system kernel
+	  link		File link
+	  mode		File mode settings
+	  multiuser     Multiuser mode
+	  password	Login password		
+	  pid		Process ID number		  
+	  shell		Login shell		   
+	  singleuser    Single-user mode
+	  special	Special file		  
+	  stdin		Standard I/O files: 
+				stdin, stdout, and stderr
+	  user		User login name	       
+	  userID	User ID number		
+   
+     	   FILE			DESCRIPTION
+
+	  /etc/cshprofile	System-level C shell profile
+	  /etc/ddate		System dump date history file
+	  /etc/dgateway		DECnet access facility file
+	  /etc/fstab		File systems table
+	  /etc/gettytab		Terminal configuration database
+	  /etc/group		System groups database
+	  /etc/hosts		Internet hosts database
+	  /etc/hosts.equiv	Internet host equivalents file
+	  /etc/inetd.conf	Internet daemon database
+	  /etc/motd		System message-of-the-day file
+	  /etc/mtab		Mounted file systems table
+	  /etc/networks		Internet networks database
+	  /etc/passwd		System login database
+	  /etc/phones		Remote hosts phone numbers database
+	  /etc/printcap		Printers capabilities database
+	  /etc/profile		System-level Bourne shell profile
+	  /etc/protocols	Internet protocols database
+	  /etc/rc		System multiuser startup file
+	  /etc/remote		Remote hosts database
+	  /etc/services		Internet services database
+	  /etc/syslog.conf	System syslog configuration file
+	  /etc/termcap		Terminal capabilities database
+	  /etc/ttys		Terminals initialization database
+	  /etc/ttytype		Terminal types database
+	  /etc/utmp		Current login database
+	  /usr/adm/wtmp		Login history database
+	  /usr/lib/aliases	Mail aliases database
+	  /usr/lib/crontab	System cron database
+	  
+     	  NUMBER	NAME AND DESCRIPTION
+
+	    1		EPERM -- Not owner
+	    2		ENOENT -- No such file or directory 
+	    3		ESRCH -- No such process 
+	    4		EINTR -- Interrupted system call 
+	    5		EIO -- I/O error 
+	    6		ENXIO -- No such device or address 
+	    7		E2BIG -- Arg list too long 
+	    8		ENOEXEC -- Exec format error 
+	    9		EBADF -- Bad file number 
+	    10		ECHILD -- No children 
+	    11		EAGAIN -- No more processes 
+	    12		ENOMEM -- Not enough core 
+	    13		EACCES -- Permission denied 
+	    14		EFAULT -- Bad address 
+	    15		ENOTBLK -- Block device required 
+	    16		EBUSY -- Mount device busy 
+	    17		EEXIST -- File exists 
+	    18		EXDEV -- Cross-device link 
+	    19		ENODEV -- No such device 
+	    20		ENOTDIR -- Not a directory
+	    21		EISDIR -- Is a directory 
+	    22		EINVAL -- Invalid argument 
+	    23		ENFILE -- File table overflow 
+	    24		EMFILE -- Too many open files 
+	    25		ENOTTY -- Not a typewriter 
+	    26		ETXTBSY -- Text file busy 
+	    27		EFBIG -- File too large 
+	    28		ENOSPC -- No space left on device 
+	    29		ESPIPE -- Illegal seek 
+	    30		EROFS -- Read-only file system 
+	    31		EMLINK -- Too many links 
+	    32		EPIPE -- Broken pipe 
+	    33		EDOM -- Argument too large 
+	    34		ERANGE -- Result too large 
+	    35		ETPL -- Tape position lost 
+	    36		ETOL -- Tape off-line 
+	    37		ETWL -- Tape write locked 
+	    38		ETO -- Tape already open 
+	    39		EDESTADDRREQ -- Destination address required 
+	    40		EMSGSIZE -- Message too long 
+	    41		EPROTOTYPE -- Protocol wrong type for socket 
+	    42		ENOPROTOOPT -- Protocol not available 
+	    43		EPROTONOSUPPORT -- Protocol not supported 
+	    44		ESOCKTNOSUPPORT -- Socket type not supported 
+	    45		EOPNOTSUPP -- Operation not supported
+	    46		EPFNOSUPPORT -- Protocol family not supported 
+	    47		EAFNOSUPPORT -- Address family not supported 
+	    48		EADDRINUSE -- Address already in use 
+	    49		EADDRNOTAVAIL -- Can't assign requested address 
+	    50		ENETDOWN -- Network is down 
+	    51		ENETUNREACH -- Network is unreachable 
+	    52		ENETRESET -- Network dropped connection reset
+	    53		ECONNABORTED -- Software caused connection abort
+	    54		ECONNRESET -- Connection reset by peer 
+	    55		ENOBUFS -- No buffer space available 
+	    56		EISCONN -- Socket is already connected 
+	    57		ENOTCONN -- Socket is not connected 
+	    58		ESHUTDOWN -- Can't send after socket shutdown
+	    59		ETOOMANYREFS -- Too many references
+	    60		ETIMEDOUT -- Connection timed out 
+	    61		ECONNREFUSED -- Connection refused 
+	    62		ELOOP -- Too many levels--symbolic links 
+	    63		ENAMETOOLONG -- File name too long 
+	    64		EHOSTDOWN -- Host is down 
+	    65		EHOSTUNREACH -- No route to host 
+	    66		ENOTEMPTY -- Directory not empty 
+	    67		EPROCLIM -- Too many processes 
+	    68		EUSERS -- Too many users 
+	    69		EDQUOT -- Disc quota exceeded 
+	    70		EWOULDBLOCK -- Operation would block 
+	    71		EINPROGRESS -- Operation now in progress 
+	    72		EALREADY -- Operation already in progress 
+	    73		ENOTSOCK -- Socket operation on non-socket 
+	    74		ENOMSG -- No message of desired type 
+	    75		EIDRM -- Identifier removed 
+	    76		ECHRNG -- Channel number out of range 
+	    77		EL2NSYNC -- Level 2 not synchronized 
+	    78		EL3HLT -- Level 3 halted 
+	    79		EL3RST -- Level 3 reset 
+	    80		ELNRNG -- Link number out of range 
+	    81		EUNATCH	-- Protocol driver not attached 
+	    82		ENOCSI -- No CSI structure available 
+	    83		EL2HLT -- Level 2 halted 
+	    84		EDEADLK -- Deadlock condition avoided 
+	    85		ENOLCK -- No locks available 
+	    86		EBADFS -- Bad file system superblock 
+
+	  For further help, select the appropriate COMMAND or KEY and type:
+
+	       help COMMAND or KEY 
+-terms
+
+		You can access a summary for these ULTRIX-11 terms that
+		recur throughout the command summaries.  These summaries
+		are intended to serve as an on-line glossary.
+
+     			 TERM			KEY
+
+		   Command format		command
+		   Directory and file		directory
+		   Group ID number		groupID
+		   Home directory		home
+		   File system inode		inode
+		   File inumber			inumber
+		   File link			link
+		   File mode settings		mode
+		   Login password		password
+		   Login shell			shell
+		   Multiuser mode		multiuser
+		   Process ID			pid
+		   Single-user mode		singleuser
+		   Special file			special
+		   Standard I/O files:
+		     stdin, stdout, stderr	stdin	   
+		   ULTRIX-11 system kernel	kernel
+		   User ID number		userID
+		   User login name		user
+
+		To display a summary, select the appropriate KEY and type: 
+
+		     help KEY
+		chog and chown (commands)
+-welcome
+	  Welcome to the ULTRIX-11 Help Facility.  You can use the help 
+	  command to display on-line summaries of all ULTRIX-11 commands, 
+	  terms, system administrative files, and kernel error messages.
+
+	  If you are unfamiliar with your ULTRIX-11 system, you can access
+	  one or more menus to help you find the information that you
+	  want.  As you become more familiar with your ULTRIX-11 system,
+	  you can access help information more easily and quickly.  If you 
+	  already know what information you want, you can bypass any or all
+	  menus and can access the specific summary directly.
+
+	  For more detailed explanations of how to obtain help and how to 
+	  page through summaries, read the ULTRIX-11 Help Facility Overview.
+
+	  To access the General Menu, type:
+
+	       help menu
+
+	  If you already know the command, term, system file, or message for 
+	  which you want help, specify the appropriate command or term name, 
+	  complete system file path name, or kernel error message number.
+

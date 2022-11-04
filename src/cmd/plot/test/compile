@@ -1,0 +1,12 @@
+cc -o arc arc.c -lplot
+cc -o boxdemo boxdemo.c -lplot
+cc -o circle circle.c -lplot
+cc -o csun csun.c -lplot
+cc -o erase erase.c -lplot
+cc -o logo logo.c -lplot
+cc -o mline mline.c -lplot
+cc -o orgin orgin.c -lplot
+cc -o plotd plotd.c -lplot
+cc -o pro pro.c -lplot
+cc -o scale scale.c -lplot
+cc -o target target.c -lplot

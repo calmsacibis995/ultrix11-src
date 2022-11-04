@@ -1,0 +1,563 @@
+: 
+# SCCSID: @(#)misc2test	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+# This is Part 2 of usat "misc" test, called only from
+# Part 1;  One argument is passed which is the name of the
+# command to be tested.
+#
+# Returns the status of the comparison, or an 
+# appropriate error code in the "errfile" file.
+
+# save command name
+cmd=$1
+
+# U is this directory, /usr/lib/usat/misc
+U=/usr/lib/usat/misc
+
+# temporary directory
+td=tmp.dir
+
+# arbitrary string
+s="Hello, world"
+
+# test files for ar, cat, cpio, egrep, fgrep, grep, ls, more
+f="file1 file2 file3 file4"
+
+# BIG case table:
+case $cmd in
+
+ac) ac -p -w $U/ac.in > ac.out
+    cmp -s ac.out $U/ac.sav ;;
+
+ar) ar cr tmp.out $f
+    ar t tmp.out > ar.out
+    ls $f > ar.sav
+    cmp -s ar.out ar.sav
+    ss=$?
+    if [ $ss = 0 ]
+    then
+	cp file4 file4.sav
+	mv tmp.out ar.out
+	ar x ar.out file4
+# in case of error...
+	echo "no" > printfiles
+	echo ": could not extract file4 from ar.out" > errfile
+	cmp -s file4 file4.sav
+	ss=$?
+	cp file4.sav file4
+    else
+	echo ": table of contents did not compare" > errfile
+    fi
+    exit $ss ;;
+
+as) exit 0 ;;
+# tested in USAT C compiler test
+
+at) echo "no" > printfiles
+    set `date`
+    echo $4 > tmp.out
+# get the hour
+    hour=`cut -d: -f1 tmp.out`
+# get the minute
+    min=`cut -d: -f2 tmp.out`
+    if [ $min -ge 57 ]
+    then
+# add an hour to hour, reset mins to 0 (ok, we get 3 more mins added on later)
+	hour=`expr $hour + 1`
+	if [ $hour -le 9 ]
+	then
+	    hour=0$hour
+	fi
+	min=00
+# add 3 more minutes: 2 for the future, 1 for ignoring seconds
+	min=0`expr $min + 3`
+# check for wrap around if midnight
+	if [ $hour -ge 24 ]
+	then
+	    hour=00
+	fi
+    else
+	if [ $min -le 6 ]
+    	then
+	    min=0`expr $min + 3`
+	else
+	    min=`expr $min + 3`
+    	fi
+    fi
+    atstart=`expr $hour$min`
+    rm -f at.out
+    echo "echo misc test for the at command. > at.out" > at.in
+    at $atstart at.in ;;
+
+at2) echo "misc test for the at command." > at.sav
+    cmp -s at.out at.sav
+    ;;
+
+adb) echo "diff" > printfiles
+    echo "\$e
+0?5i
+0?16o
+\$q" > adb.in
+    adb $U/date+5 - < adb.in > adb.out
+    cmp -s adb.out $U/adb.sav ;;
+
+basename) echo "no" > printfiles
+    [ `basename /usr/lib/usat/misc/basename.out .out`="basename" ] ;;
+
+bfs) echo "1p" > tmp.out
+    echo "\$p" >> tmp.out
+    echo "
+Apples
+Strawberries" >> bfs.sav
+    bfs - file1 < tmp.out > bfs.out
+    cmp bfs.out bfs.sav ;;
+
+binmail) echo "This is USAT testing binmail." > binmail.send
+    rm -f /usr/spool/mail/usat
+    /bin/mail -d usat < binmail.send
+    sleep 10
+    echo "x" > binmail.recv
+    /bin/mail -f /usr/spool/mail/usat < binmail.recv > tmp.out 2>&1
+    grep "USAT" tmp.out > binmail.out
+    echo "This is USAT testing binmail." > binmail.sav
+    cmp -s binmail.out binmail.sav ;;
+
+cal) cal 10 1985 > cal.out
+    cmp -s cal.out $U/cal.sav ;;
+
+calendar) rm -f tmp.out
+    for i in 1 2 3
+    do 
+	date >> tmp.out 
+    done
+    echo "Reminder #1
+Reminder #2
+Reminder #3" > calendar.sav
+    paste tmp.out calendar.sav > calendar
+# calendar looks in ./calendar for reminders
+    calendar > calendar.out
+    cmp -s calendar calendar.out ;;
+
+cat) echo "diff" > printfiles
+    cat $f > cat.out
+    cmp -s cat.out $U/cat.sav ;;
+
+catman) echo "no" > printfiles
+    if [ ! -d /usr/man/man1 ]
+    then
+	echo ": catman not installed" > errfile
+	false
+    else
+	/etc/catman -p 1> /dev/null 2>&1
+    fi ;;
+
+cb) echo "diff" > printfiles
+    cb < $U/cb.in > cb.out
+    cmp -s cb.out $U/cb.sav ;;
+
+cd) mkdir $td
+    here=`pwd`
+    cd $td
+    there=`pwd`
+    cd ..
+    rmdir $td
+    echo ${here}/$td > cd.sav
+    echo $there > cd.out
+    cmp -s cd.out cd.sav
+    if [ $? != 0 ]
+    then
+	cd $here
+	false
+    else
+	true
+    fi ;;
+
+chfn) echo "
+MK02-1/H10
+8840000
+8800000" > chfn.in
+    chfn usat < chfn.in > chfn.out
+    finger usat > chfn.out
+# restore the entry, regardless of what happens
+    echo "USAT facility
+none
+none
+none" > chfn.in
+    chfn usat < chfn.in > /dev/null
+    rm chfn.in
+    cmp -s chfn.out $U/chfn.sav ;;
+
+chmod) mkdir $td
+    chmod 444 $td
+    ls -ld $td > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+	echo $1 > chmod.out
+	chmod 660 $td
+    else
+	touch chmod.out
+    fi
+
+    ls -ld $td > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+	echo $1 >> chmod.out
+	rmdir $td
+    else
+	touch chmod.out
+    fi
+    echo "dr--r--r--
+drw-rw----" > chmod.sav
+    cmp -s chmod.out chmod.sav ;;
+
+chog) mkdir $td
+    chog usat $td
+    ls -ld $td > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+	echo $3 > chog.out
+    else
+	touch chog.out
+    fi
+    ls -ldg $td > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+	echo $3 >> chog.out
+	rmdir $td
+    else
+	touch chog.out
+    fi
+    echo "usat
+other" > chog.sav
+    cmp -s chog.out chog.sav ;;
+
+chown) mkdir $td
+    chown usat $td
+    ls -ld $td > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+	echo $3 > chown.out
+	rmdir $td
+    else
+	touch chown.out
+    fi
+    echo "usat" > chown.sav
+    cmp -s chown.out chown.sav ;;
+
+chsh) chsh usat /bin/true > chsh.out
+    f usat > chsh.out
+# save second line of finger output
+    grep Shell chsh.out > tmp.out
+    if [ -s tmp.out ]
+    then
+	set `cat tmp.out`
+# get the shell name: should be /bin/true
+	echo $4 > chsh.out
+    else
+	touch chsh.out
+    fi
+# restore to /bin/false
+    chsh usat /bin/false
+    echo "/bin/true" > chsh.sav
+    cmp -s chsh.out chsh.sav ;;
+
+cmp) echo $s > cmp.out
+    echo $s > cmp.sav
+    cmp -s cmp.out cmp.sav ;;
+
+comm) echo "diff" > printfiles
+    comm file1 file2 > comm.out
+    cmp -s comm.out $U/comm.sav ;;
+
+cp) echo $s > cp.sav
+    cp cp.sav cp.out
+    cmp -s cp.out cp.sav ;;
+
+cpio) rm -f cpio.list
+    for i in $f
+    do
+	echo $i >> cpio.list
+    done
+    cpio -oc < cpio.list > cpio.ar.out  2> /dev/null
+    cpio -ict < cpio.ar.out > cpio.out  2> /dev/null
+    echo "file1
+file2
+file3
+file4" > cpio.sav
+    cmp -s cpio.out cpio.sav
+    ss=$?
+    if [ $ss = 0 ]
+    then
+# extract file only if toc succeeds
+	cp file4 file4.sav
+	cat cpio.ar.out | cpio -ic file4  2> /dev/null
+	cmp -s file4 file4.sav
+	ss=$?
+	cp file4.sav file4
+# in case of error...
+	echo ": could not extract file4 from cpio.ar.out" > errfile
+	echo "no" > printfiles
+    else
+	echo ": table of contents did not compare" > errfile
+    fi
+    rm -f cpio.ar.out cpio.list
+    exit $ss ;;
+
+csh) echo "# csh test script
+if (3 != 2) then
+echo true
+else echo false
+endif" > csh.in
+    /bin/csh csh.in > csh.out
+    echo "true" > csh.sav
+    cmp -s csh.out csh.sav ;;
+
+csplit)	echo "57" > csplit.sav
+    echo "70" >> csplit.sav
+    csplit -f csplit file1 '/Kiwi/' > csplit.out
+    cmp csplit.sav csplit.out ;;
+
+ctags) ctags -x $U/ctagspgm.c > ctags.out
+    cmp -s ctags.out $U/ctags.sav ;;
+
+cut) echo "diff" > printfiles
+    cut -f2 -d\  file4 > cut.out
+    cut -c10- -d\  file4 >> cut.out
+    cmp -s cut.out $U/cut.sav ;;
+
+date) date | tee date.sav > date.out
+    cmp -s date.out date.sav ;;
+
+dd) dd if=file1 of=dd.out  2> /dev/null
+    cp file1 dd.sav
+    cmp -s dd.out dd.sav ;;
+
+df) echo "cat" > printfiles
+    df > df.out 2>&1
+    egrep -v "cannot|bad|error" df.out > df.sav
+    cmp -s df.out df.sav ;;
+
+diff3) echo "diff" > printfiles
+    diff3 file1 file2 file3 > diff3.out
+    cmp -s diff3.out $U/diff3.sav ;;
+
+du) echo "cat" > printfiles
+    du /usr/lib/usat/misc > du.out 2>&1
+# look for errors like "pwd: cannot open ..."
+    egrep -v "cannot|bad" du.out > du.sav
+    cmp -s du.out du.sav ;;
+
+echo) /bin/echo -n "This is a test " > echo.out
+    /bin/echo "for the echo command." >> echo.out
+    /bin/echo $s >> echo.out
+    cmp -s echo.out $U/echo.sav ;;
+
+egrep) egrep "Raspberries" $f > egrep.out
+# use grep.sav, it's the same thing
+    cmp -s egrep.out $U/grep.sav ;;
+
+expand)	echo "        Hello             there." > expand.sav
+    echo "	Hello		  there." > tmp.out
+    expand < tmp.out > expand.out
+    cmp -s expand.sav expand.out ;;
+
+expr) echo "no" > printfiles
+    true ;;
+# expr is ok if the misc tests are numbered in order
+
+factor) factor 12 > factor.out
+    echo "
+     2
+     2
+     3" > factor.sav
+    cmp -s factor.out factor.sav
+    ;;
+
+false) echo "no" > printfiles
+    false
+    [ $? != 0 ] ;;
+
+fgrep) fgrep "Raspberries" $f > fgrep.out
+# use grep.out since results are the same
+    cmp -s fgrep.out $U/grep.sav ;;
+
+file) file $U/adb.sav $U/date+5.c $U/date+5 > file.out
+    cmp -s file.out $U/file.sav ;;
+
+find) find /usr/lib/usat/misc -name 'file?' -print | sort > find.out
+    echo "/usr/lib/usat/misc/file1
+/usr/lib/usat/misc/file2
+/usr/lib/usat/misc/file3
+/usr/lib/usat/misc/file4" > find.sav
+    cmp -s find.out find.sav ;;
+
+finger) finger usat > finger.out
+    cmp -s finger.out $U/finger.sav ;;
+
+from)
+# binmail should have left mail in usat's mailbox
+    from -f /usr/spool/mail/usat > from1.out 2>&1
+    if [ -s from1.out ]
+    then
+	set `cat from1.out`
+	echo "$1 $3 $4 $5 $7" > from.out
+    else
+	touch from.out
+    fi
+    set `date`
+    echo "From $1 $2 $3 $6" > from.sav
+    rm -f /usr/spool/mail/usat from1.out
+# before we leave, send some mail for ucbmail test later...
+    echo "
+USAT test for 'ucbmail'.
+.
+
+" > ucbmail.send
+/usr/ucb/mail usat < ucbmail.send > /dev/null 2>&1
+    cmp -s from.out from.sav ;;
+
+getopt)	echo 'getopt: illegal option -- z' > getopt.sav
+    echo '' > tmp.out
+    echo 'set - - `getopt abo: $*`' >> tmp.out
+    sh tmp.out -a 2> getopt.out
+    sh tmp.out -b 2> getopt.out
+    sh tmp.out -o /etc/motd 2> getopt.out
+    sh tmp.out -z 2> getopt.out
+    cmp getopt.out getopt.sav ;;
+
+grep) grep "Raspberries" $f > grep.out
+    cmp -s grep.out $U/grep.sav ;;
+
+help) echo "diff" > printfiles
+    help arcv > tmp.out 2>&1
+    if [ $? != 0 ]
+    then
+	echo "cat" > printfiles
+	cp tmp.out help.out
+	exit 1
+    else
+	grep -v "arcv:" tmp.out > help.out
+    	cmp -s help.out $U/help.sav
+    fi ;;
+
+hostname) echo "cat" > printfiles
+    hostname > hostname.out 2>&1
+    egrep -v "cannot|core" hostname.out > hostname.sav
+    cmp -s hostname.out hostname.sav ;;
+
+ipc) echo "cat" > printfiles
+    $U/ipc_test > ipc.out 2>&1
+    egrep -s "failed" ipc.out
+    if [ $? != 0 ]
+    then true
+    else false
+    fi ;;
+
+join) join file4 file3 > join.out
+    cmp -s join.out $U/join.sav ;;
+
+ld) true ;;
+# ld is tested in USAT cc test
+
+line) echo "hello" > line.sav
+    line < line.sav > line.out
+    cmp line.sav line.out ;;
+
+ln) echo "hello:" > ln.out
+    ln ln.out ln.sav
+    rm -f ln.out
+    echo "hello:" > ln.out
+    cmp -s ln.out ln.sav ;;
+
+look) look Kiwi file1 > look.out
+    echo "Kiwi" > look.sav
+    cmp -s look.out look.sav ;;
+
+ls)  echo "cat" > printfiles
+    ls -l $f > ls.out
+    egrep -v "found|cannot" ls.out > ls.sav
+    cmp -s ls.sav ls.out ;;
+
+make) make -f $U/make.mk > make.out 2>&1
+    cmp -s make.out $U/make.sav ;;
+
+man) man 1 tee > tmp.out 2>&1
+# remove "Printed" and "printed"
+    grep -v "rinted" tmp.out > man.out
+    cmp -s man.out $U/man.sav
+    if [ $? = 0 ]
+    then
+	exit 0
+    fi
+    if [ ! -d /usr/man/man1 ]
+    then
+	echo ": man is not installed." > errfile
+	echo "no" > printfiles
+    else
+	echo "diff" > printfiles
+    fi
+    exit 1 ;;
+
+mkdir) echo "no" > printfiles
+    mkdir $td
+    [ -d $td ]
+    ss=$?
+    rmdir $td
+    exit $ss ;;
+
+msf) echo "c-w--w--w- 1 root 1, 0 /dev/cat" > msf.sav
+    if [ ! -s /dev/cat ]
+    then
+    # make /dev/cat if it doesn't exist
+	/etc/msf ct
+	ls -l /dev/cat > tmp.out
+	if [ -s tmp.out ]
+	then
+	    set `cat tmp.out`
+	    echo $1 $2 $3 $4 $5 $9 > msf.out
+	else
+	    touch msf.out
+	fi
+	/etc/msf -r ct > /dev/null 2>&1
+	cmp -s msf.out msf.sav
+    else
+    # /dev/cat exists, just use it and leave it
+	ls -l /dev/cat > tmp.out
+	if [ -s tmp.out ]
+	then
+	    set `cat tmp.out`
+	    echo $1 $2 $3 $4 $5 $9 > msf.out
+	fi
+	cmp -s msf.out msf.sav
+    fi ;;
+
+mv) echo $s > mv.out
+    cp mv.out mv.tmp
+    mv mv.tmp mv.sav
+    cmp -s mv.out mv.sav ;;
+
+mount) echo "cat" > printfiles
+    /etc/mount > mount.out 2>&1
+    grep -v "FSTAB|cannot" mount.out > mount.sav
+    cmp -s mount.out mount.sav ;;
+
+more) echo "diff" > printfiles
+    more $f > more.out 2>&1
+    cmp -s more.out $U/more.sav ;;
+
+*)  echo
+    echo "misc2test: '$cmd' not in the case list!" ;;
+esac
+
+#end of BIG case table

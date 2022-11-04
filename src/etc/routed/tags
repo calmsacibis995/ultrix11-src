@@ -1,0 +1,57 @@
+Mmain	main.c	/^main(argc, argv)$/
+TRACE_ACTION	trace.h	/^#define	TRACE_ACTION(action, route) { \\$/
+TRACE_INPUT	trace.h	/^#define	TRACE_INPUT(ifp, src, size) { \\$/
+TRACE_OUTPUT	trace.h	/^#define	TRACE_OUTPUT(ifp, dst, size) { \\$/
+dumpif	trace.c	/^dumpif(fd, ifp)$/
+dumppacket	trace.c	/^dumppacket(fd, dir, who, cp, size)$/
+dumptrace	trace.c	/^dumptrace(fd, dir, ifd)$/
+getsocket	main.c	/^getsocket(domain, type, sin)$/
+hup	timer.c	/^hup()$/
+if_iflookup	if.c	/^if_iflookup(addr)$/
+if_ifwithaddr	if.c	/^if_ifwithaddr(addr)$/
+if_ifwithdstaddr	if.c	/^if_ifwithdstaddr(addr)$/
+if_ifwithnet	if.c	/^if_ifwithnet(addr)$/
+iftraceinit	trace.c	/^iftraceinit(ifp, ifd)$/
+inet_canon	af.c	/^inet_canon(sin)$/
+inet_checkhost	af.c	/^inet_checkhost(sin)$/
+inet_hash	af.c	/^inet_hash(sin, hp)$/
+inet_ishost	af.c	/^inet_ishost(sin)$/
+inet_lnaof	inet.c	/^inet_lnaof(in)$/
+inet_makeaddr	inet.c	/^inet_makeaddr(net, host)$/
+inet_mkaddr	inet.c	/^inet_mkaddr(net, host)$/
+inet_netmatch	af.c	/^inet_netmatch(sin1, sin2)$/
+inet_netof	inet.c	/^inet_netof(in)$/
+inet_output	af.c	/^inet_output(s, flags, sin, size)$/
+inet_portcheck	af.c	/^inet_portcheck(sin)$/
+inet_portmatch	af.c	/^inet_portmatch(sin)$/
+insque	aux.c	/^insque(e, prev)$/
+null_canon	af.c	/^null_canon(a1)$/
+null_checkhost	af.c	/^null_checkhost(a1)$/
+null_hash	af.c	/^null_hash(addr, hp)$/
+null_ishost	af.c	/^null_ishost(a1)$/
+null_netmatch	af.c	/^null_netmatch(a1, a2)$/
+null_output	af.c	/^null_output(s, f, a1, n)$/
+null_portcheck	af.c	/^null_portcheck(a1)$/
+null_portmatch	af.c	/^null_portmatch(a1)$/
+process	main.c	/^process(fd)$/
+remque	aux.c	/^remque(e)$/
+rip_input	input.c	/^rip_input(from, size)$/
+rtadd	tables.c	/^rtadd(dst, gate, metric, state)$/
+rtchange	tables.c	/^rtchange(rt, gate, metric)$/
+rtdefault	tables.c	/^rtdefault()$/
+rtdelete	tables.c	/^rtdelete(rt)$/
+rtfind	tables.c	/^rtfind(dst)$/
+rtinit	tables.c	/^rtinit()$/
+rtlookup	tables.c	/^rtlookup(dst)$/
+sendmsg	output.c	/^sendmsg(dst, flags, ifp)$/
+supply	output.c	/^supply(dst, flags, ifp)$/
+timer	timer.c	/^timer()$/
+toall	output.c	/^toall(f)$/
+trace	trace.c	/^trace(ifd, who, p, len, m)$/
+traceaction	trace.c	/^traceaction(fd, action, rt)$/
+traceinit	trace.c	/^traceinit(ifp)$/
+traceoff	trace.c	/^traceoff()$/
+traceon	trace.c	/^traceon(file)$/
+wplay	startup.c	/^wplay()$/
+wplay1	startup.c	/^wplay1(ab)$/
+wquies	startup.c	/^wquies(ab)$/

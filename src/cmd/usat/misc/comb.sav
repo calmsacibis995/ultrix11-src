@@ -1,0 +1,32 @@
+get -s -k -r1.0 -p SCCS/s.prog.c > COMB$$
+admin -iCOMB$$ -r1 -fv  -m '-yThis was COMBined' s.COMB$$
+rm -f COMB$$
+sed -n '/^t$/,/^T$/p' SCCS/s.prog.c >comb$$
+ed - comb$$ <<\!
+1d
+$c
+*** DELTA TABLE PRIOR TO COMBINE ***
+.
+w
+q
+!
+prs -e SCCS/s.prog.c >>comb$$
+admin -tcomb$$ s.COMB$$\
+
+sed -n '/^u$/,/^U$/p' SCCS/s.prog.c >comb$$
+ed - comb$$ <<\!
+v/^/s/.*/ -a& \\/
+1c
+admin s.COMB$$\
+.
+$c
+
+.
+w
+q
+!
+. comb$$
+rm comb$$
+rm -f SCCS/s.prog.c
+mv s.COMB$$ SCCS/s.prog.c
+admin -dv SCCS/s.prog.c

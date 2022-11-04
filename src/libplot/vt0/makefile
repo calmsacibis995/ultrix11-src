@@ -1,0 +1,50 @@
+# SCCSID: @(#)makefile	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+SOURCES = arc.c box.c circle.c close.c dot.c \
+	erase.c frame.c label.c line.c linmod.c \
+	move.c open.c point.c space.c subr.c
+OBJECTS = arc.o box.o circle.o close.o dot.o \
+	erase.o frame.o label.o line.o linmod.o \
+	move.o open.o point.o space.o subr.o
+ARCHIVE = libvt0.a
+CFLAGS = -O
+
+all: ../${ARCHIVE}
+
+../${ARCHIVE}: forceit ${OBJECTS}
+	rm -f ../${ARCHIVE}
+	ar cr ../${ARCHIVE} ${OBJECTS}
+	ranlib ../${ARCHIVE}
+
+sources: ${SOURCES}
+
+${SOURCES}:
+	sccs get $@
+
+install: ../${ARCHIVE}
+	cp ../${ARCHIVE} ${DESTDIR}/usr/lib/${ARCHIVE}
+	chown bin ${DESTDIR}/usr/lib/${ARCHIVE}
+	chgrp bin ${DESTDIR}/usr/lib/${ARCHIVE}
+	chmod 664 ${DESTDIR}/usr/lib/${ARCHIVE}
+	ranlib ${DESTDIR}/usr/lib/${ARCHIVE}
+	make clean
+
+forceit:
+
+clean:
+	rm -f *.o ../${ARCHIVE} a.out core log
+
+clobber: clean
+	sccs clean
+
+tags:	${SOURCES}
+	ctags ${SOURCES}
+
+sccsinfo:
+	sccs info

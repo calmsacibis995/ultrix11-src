@@ -1,0 +1,82 @@
+Copyright	fltpr.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+MIN	fgets.c	/^#define MIN(x, y)	(x < y ? x : y)$/
+_BUFSYNC	stdiom.h	/^#define _BUFSYNC(iop)	if (_bufend(iop) - iop->_ptr/
+_WRTCHK	stdiom.h	/^#define _WRTCHK(iop)	((((iop->_flag & (_IOWRT | _I/
+_bufsync	flsbuf.c	/^_bufsync(iop)$/
+_cleanup	flsbuf.c	/^_cleanup()$/
+_cvt	cvt.c	/^_cvt(number, ndigit, buf, code, flag)$/
+_doscan	doscan.c	/^_doscan(iop, fmt, va_alist)$/
+_endopen	fopen.c	/^_endopen(file, mode, iop)$/
+_filbuf	filbuf.c	/^_filbuf(iop)$/
+_findbuf	flsbuf.c	/^_findbuf(iop)$/
+_findiop	findiop.c	/^_findiop()$/
+_flsbuf	flsbuf.c	/^_flsbuf(c, iop)$/
+_strout	strout.c	/^_strout(string, count, adjust, file)$/
+_wrtchk	flsbuf.c	/^_wrtchk(iop)$/
+_xflsbuf	flsbuf.c	/^_xflsbuf(iop)$/
+clearerr	clrerr.c	/^clearerr(iop)$/
+endfsent	fstab.c	/^endfsent()$/
+endgrent	getgrent.c	/^endgrent()$/
+endpwent	getpwent.c	/^endpwent()$/
+fclose	flsbuf.c	/^fclose(iop)$/
+fdopen	fdopen.c	/^fdopen(fd, mode)$/
+fflush	flsbuf.c	/^fflush(iop)$/
+fgetc	fgetc.c	/^fgetc(fp)$/
+fgetgrent	getgrent.c	/^fgetgrent(f)$/
+fgetpwent	getpwent.c	/^fgetpwent(f)$/
+fgets	fgets.c	/^fgets(ptr, size, iop)$/
+fopen	fopen.c	/^fopen(file, mode)$/
+fprintf	fprintf.c	/^fprintf(iop, format, va_alist)$/
+fputc	fputc.c	/^fputc(c, fp)$/
+fputs	fputs.c	/^fputs(ptr, iop)$/
+fread	fread.c	/^fread(ptr, size, count, iop)$/
+freopen	fopen.c	/^freopen(file, mode, iop)$/
+fscanf	scanf.c	/^fscanf(iop, fmt, va_alist)$/
+fsdigit	fstab.c	/^fsdigit(backp, string, end)$/
+fseek	fseek.c	/^fseek(iop, offset, ptrname)$/
+fsskip	fstab.c	/^fsskip(p)$/
+fstabscan	fstab.c	/^fstabscan(fs)$/
+ftell	ftell.c	/^long ftell(iop)$/
+fwrite	fwrite.c	/^fwrite(ptr, size, count, iop)$/
+getchar	getchar.c	/^getchar()$/
+getfsent	fstab.c	/^getfsent()$/
+getfsfile	fstab.c	/^getfsfile(name)$/
+getfsspec	fstab.c	/^getfsspec(name)$/
+getfstype	fstab.c	/^getfstype(type)$/
+getgrent	getgrent.c	/^getgrent()$/
+getgrgid	getgrgid.c	/^getgrgid(gid)$/
+getgrnam	getgrnam.c	/^getgrnam(name)$/
+getpass	getpass.c	/^getpass(prompt)$/
+getpw	getpw.c	/^getpw(uid, buf)$/
+getpwent	getpwent.c	/^getpwent()$/
+getpwnam	getpwnam.c	/^getpwnam(name)$/
+getpwuid	getpwuid.c	/^getpwuid(uid)$/
+gets	gets.c	/^gets(ptr)$/
+getw	getw.c	/^getw(stream)$/
+grskip	getgrent.c	/^grskip(p, c)$/
+movf	fltpr.s	/^	movf	(r4)+,fr0$/
+number	doscan.c	/^number(stow, type, len, size, iop, listp)$/
+pclose	popen.c	/^pclose(ptr)$/
+popen	popen.c	/^popen(cmd,mode)$/
+printf	printf.c	/^printf(format, va_alist)$/
+putchar	putchar.c	/^putchar(c)$/
+puts	puts.c	/^puts(ptr)$/
+putw	putw.c	/^putw(w, stream)$/
+pwskip	getpwent.c	/^pwskip(p)$/
+rewind	rew.c	/^rewind(iop)$/
+scanf	scanf.c	/^scanf(fmt, va_alist)$/
+setbuf	setbuf.c	/^setbuf(iop, buf)$/
+setfsent	fstab.c	/^setfsent()$/
+setgrent	getgrent.c	/^setgrent()$/
+setpwent	getpwent.c	/^setpwent()$/
+setup	doscan.c	/^setup(fmt, tab)$/
+setvbuf	setvbuf.c	/^setvbuf(iop, type, buf, size)$/
+sprintf	sprintf.c	/^char *sprintf(string, format, va_alist)$/
+sscanf	scanf.c	/^sscanf(str, fmt, va_alist)$/
+string	doscan.c	/^string(stow, type, len, tab, iop, listp)$/
+system	system.c	/^system(s)$/
+tst	popen.c	/^#define	tst(a,b)	(*mode == 'r'? (b) : (a))$/
+ungetc	ungetc.c	/^ungetc(c, iop)$/
+vfprintf	vfprintf.c	/^vfprintf(iop, format, ap)$/
+vprintf	vprintf.c	/^vprintf(format, ap)$/
+vsprintf	vsprintf.c	/^vsprintf(string, format, ap)$/

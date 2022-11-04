@@ -1,0 +1,15 @@
+Copyright	roff1.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+SI	roff1.s	/^   .byte 'x, 016  \/SO (extra chars)$/
+add	roff4.s	/^	add	(sp)+,r1$/
+clr	roff3.s	/^clr	(sp)$/
+clrb	roff2.s	/^	clrb	(r1)$/
+cmp	roff1.s	/^	cmp	(r1)+,$-1$/
+cmpb	roff1.s	/^cmpb	(r4)+,$'+$/
+dec	roff2.s	/^	dec	(sp)$/
+hlf	roff1.s	/^	cmp	r0,$'\\n$/
+inc	roff3.s	/^inc	(sp)$/
+mov	roff1.s	/^mov	(sp)+,argc$/
+movb	roff1.s	/^	movb	(r1)+,r0$/
+trtab	roff1.s	/^	movb	r0,trtab(r0)$/
+tst	roff1.s	/^	tst	(sp)+$/
+tstb	roff1.s	/^tstb	(r1)+$/

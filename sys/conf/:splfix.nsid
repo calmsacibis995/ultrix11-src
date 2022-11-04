@@ -1,0 +1,18 @@
+g/jsr	pc,__spl0/s//bic $340, 177776/
+g/jsr	pc,__spl1/s//bic $300, 177776;bis $40, 177776/
+g/jsr	pc,__spl2/s//bic $240, 177776;bis $100, 177776/
+g/jsr	pc,__spl3/s//bic $200, 177776;bis $140, 177776/
+g/jsr	pc,__spl4/s//bic $140, 177776;bis $200, 177776/
+g/jsr	pc,__spl5/s//bic $100, 177776;bis $240, 177776/
+g/jsr	pc,__spl6/s//bic $040, 177776;bis $300, 177776/
+g/jsr	pc,__spl7/s//bis $340, 177776/
+g/jsr	pc,_spl0/s//mov	177776,r0;bic $340, 177776/
+g/jsr	pc,_spl1/s//mov	177776,r0;bic $300, 177776;bis $040, 177776/
+g/jsr	pc,_spl2/s//mov	177776,r0;bic $240, 177776;bis $100, 177776/
+g/jsr	pc,_spl3/s//mov	177776,r0;bic $200, 177776;bis $140, 177776/
+g/jsr	pc,_spl4/s//mov	177776,r0;bic $140, 177776;bis $200, 177776/
+g/jsr	pc,_spl5/s//mov	177776,r0;bic $100, 177776;bis $240, 177776/
+g/jsr	pc,_spl6/s//mov	177776,r0;bic $040, 177776;bis $300, 177776/
+g/jsr	pc,_spl7/s//mov	177776,r0;bis $340, 177776/
+w
+q

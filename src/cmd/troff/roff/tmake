@@ -1,0 +1,51 @@
+# SCCSID: @(#)tmake	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+#	make file for troff
+
+CFLAGS = -O
+SOURCES = n1.c n2.c n3.c n4.c n5.c t6.c n7.c n8.c n9.c t10.c ni.c \
+		nii.c tab3.c hytab.c
+OBJS = n1.o n2.o n3.o n4.o n5.o t6.o n7.o n8.o n9.o t10.o ni.o \
+		nii.o tab3.o hytab.o
+
+all:	troff
+
+sources: ${SOURCES}
+
+${SOURCES} bldtab.c def.nr.names def.rq.names:
+	sccs get $@
+
+troff:	${OBJS}
+	cc ${CFLAGS} ${OBJS} -o troff
+	rm -f ${OBJS}
+
+install: all
+	cp troff ${DESTDIR}/usr/bin/troff
+	-strip ${DESTDIR}/usr/bin/troff
+	chmod 755 ${DESTDIR}/usr/bin/troff
+	chog bin ${DESTDIR}/usr/bin/troff
+
+n1.o n8.o:	tdef.hd strs.hd tw.hd uns.hd
+
+n2.o n3.o n4.o n5.o n7.o n9.o nii.o:	tdef.hd strs.hd tw.hd
+
+t6.o t10.o:	tdef.hd strs.hd
+
+ni.o:	tdef.hd nrtab.dt rqtab.dt
+
+#	***** NOTE *****  the 300 in the next line is hardwired for (NN)
+nrtab.dt: bldtab def.nr.names
+	./bldtab 300 def.nr.names > nrtab.dt
+
+#	***** NOTE *****  the 350 in the next line is hardwired for (NM)
+rqtab.dt:  bldtab def.rq.names
+	./bldtab 350 def.rq.names > rqtab.dt
+
+bldtab:	bldtab.c tdef.hd
+	cc -s -O -o bldtab bldtab.c

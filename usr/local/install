@@ -1,0 +1,9 @@
+if test -r install.sh
+then
+	sh install.sh $*
+elif test -r ./SCCS/s.install.sh
+	then
+		(sccs get install.sh; sh install.sh $*)
+	else
+		echo "install: cannot find install.sh"
+fi

@@ -1,0 +1,7 @@
+
+These programs are for testing the plot graphics librarys.
+
+	compile - compiles all the programs.  You need to modify
+		  the -l flag based on which library you are testing.
+
+	run - runs all the test graphics programs.

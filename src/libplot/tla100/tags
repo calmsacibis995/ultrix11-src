@@ -1,0 +1,25 @@
+arc	arc.c	/^arc(xi,yi,x0,y0,x1,y1)$/
+arc_points	arc.c	/^arc_points(x,y,ox,oyx,value)$/
+box	box.c	/^box(x0,y0,x1,y1)$/
+char_display	label.c	/^char_display(c)$/
+circle	circle.c	/^circle(xi,yi,radius)$/
+circle_points	circle.c	/^circle_points(x,y,ox,oy)$/
+closepl	close.c	/^closepl()$/
+cont	cont.c	/^cont(x1,y1)$/
+dot	dot.c	/^dot(xi,yi,dx,n,pat)$/
+drawmap	subr.c	/^drawmap()$/
+erase	erase.c	/^erase()$/
+label	label.c	/^label(s)$/
+line	line.c	/^line(x0,y0,x1,y1)$/
+linemod	linemod.c	/^linemod(s)$/
+max	subr.c	/^#define max(A,B) ( (A > B) ? A : B)$/
+min	subr.c	/^#define min(A,B) ( (A < B) ? A : B )$/
+move	move.c	/^move(xi,yi)$/
+octant	arc.c	/^octant(x,y,xp,yp)$/
+openpl	open.c	/^openpl()$/
+point	point.c	/^point(xi,yi)$/
+putbit	subr.c	/^putbit(b)$/
+setbit	subr.c	/^setbit(x,y)$/
+space	space.c	/^space(x1,y1,x2,y2){$/
+xsc	subr.c	/^xsc(xi){$/
+ysc	subr.c	/^ysc(yi){$/

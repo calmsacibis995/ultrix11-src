@@ -1,0 +1,441 @@
+/* SCCSID: @(#)llib-lc	3.0	4/21/86	*/
+
+/**********************************************************************
+ *   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    *
+ *   All Rights Reserved. 					      *
+ *   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      *
+ **********************************************************************/
+
+/*LINTLIBRARY*/
+#include <stdio.h>
+#include <sgtty.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <sys/times.h>
+#include <sys/utsname.h>
+#include <ustat.h>
+#include <pwd.h>
+#include <setjmp.h>
+#include <varargs.h>
+#include <grp.h>
+#include <a.out.h>
+
+int	errno;
+
+/* ACCESS(2) */
+int	access(f, m) char *f; { return(m); }
+
+/* ACCT(2) */
+int	acct(f) char *f; { ; }
+
+/* ALARM(2) */
+unsigned	alarm(s) unsigned s; { ; }
+
+/* BRK(2) */
+int	brk(e) char *e; { return(0); }
+char	*sbrk(i) { return(""); }
+
+/* CHDIR(2) */
+int	chdir(s) char *s; { return(0); }
+
+/* CHMOD(2) */
+int	chmod(s, m) char *s; { return(0); }
+
+/* CHOWN(2) */
+int	chown(s, u, g) char *s; { return(0); }
+
+/* CHROOT(2) */
+int	chroot(p) char *p; { ; }
+
+/* CLOSE(2) */
+int	close(f) { ; }
+
+/* CREAT(2) */
+int	creat(s, m) char *s; { return(0); }
+
+/* DUP(2) */
+int	dup(f) { return(f); }
+
+/* EXEC(2) */
+char **environ;
+	/*VARARGS1*/
+int	execl(f, a) char *f, *a; { ; }
+int	execv(s, v) char *s, *v[]; { ; }
+
+/* EXIT(2) */
+void	exit(s) { ; }
+void	_exit(s) { ; }
+
+/* FORK(2) */
+int	fork() { return(0); }
+
+/* GETPID(2) */
+int	getpid() { return(0); }
+int	getpgrp() { return(0); }
+int	getppid() { return(0); }
+
+/* GETUID(2) */
+int	getuid() { return(0); }
+int	geteuid() { return(0); }
+int	getgid() { return(0); }
+int	getegid() { return(0); }
+
+/* IOCTL(2) */
+	/*VARARGS2*/
+int	ioctl(f, r, a) { return(f); }
+int	gtty(f, b) struct sgttyb *b; { return(0); }
+int	stty(f, b) struct sgttyb *b; { return(0); }
+
+/* KILL(2) */
+int	kill(p, s) { return(0); }
+
+/* LINK(2) */
+int	link(a, b) char *a, *b; { return(0); }
+
+/* LSEEK(2) */
+long	lseek(f, o, d) long o; { return(0L); }
+
+/* MKNOD(2) */
+int	mknod(n, m, d) char *n; { return(0); }
+
+/* MOUNT(2) */
+int	mount(s, d, r) char *s, *d; { return(0); }
+
+/* NICE(2) */
+int	nice(p) { return(0); }
+
+/* OPEN(2) */
+	/*VARARGS2*/
+int	open(f, o, m) char *f; { return(0); }
+
+/* PAUSE(2) */
+int	pause() { ; }
+
+/* PIPE(2) */
+int	pipe(f) int f[2]; { return(0); }
+
+/* PLOCK(2) */
+int	plock(o) { return(0); }
+
+/* PROFIL(2) */
+void	profil(b, s, o, i) char *b; { ; }
+
+/* PTRACE(2) */
+int	ptrace(r, p, a, d) { return(0); }
+
+/* READ(2) */
+int	read(f, b, n) char *b; unsigned n; { return(n); }
+
+/* SETPGRP(2) */
+int	setpgrp() { return(0); }
+
+/* SETUID(2) */
+int	setuid(u) { return(0); }
+int	setgid(g) { return(0); }
+
+/* SIGNAL(2) */
+int (*  signal(c, f))() int (*f)(); { return(f); }
+
+/* STAT(2) */
+int	stat(s, b) char *s; struct stat *b; { return(0); }
+int	fstat(f, b) struct stat *b; { return(0); }
+
+/* STIME(2) */
+int	stime(t) long *t; { return (0); }
+
+/* SYNC(2) */
+void	sync() { ; }
+
+/* TIME */
+time_t	time(t) time_t *t; { return(0L);}
+
+/* TIMES(2) */
+long	times(b) struct tms *b; { return(0L); }
+
+/* UMASK(2) */
+int	umask(c) { return(c); }
+
+/* UMOUNT(2) */
+int	umount(s) char *s; { return(0); }
+
+/* UNAME(2) */
+int	uname(n) struct utsname *n; { return(0); }
+
+/* UNLINK(2) */
+int	unlink(s) char *s; { return(0); }
+
+/* USTAT(2) */
+int	ustat(d, b) struct ustat *b; { return(d); }
+
+/* UTIME(2) */
+int	utime(f, t) char *f; struct { time_t x, y; } *t; { return(0); }
+
+/* WAIT(2) */
+int	wait(s) int *s; { return(0); }
+
+/* WRITE(2) */
+int	write(f, b, n) char *b; { return(n); }
+
+/* ABORT(3) */
+	/*VARARGS0*/
+int	abort() { ; }
+
+/* ABS(3) */
+int	abs(i) { return(i); }
+
+/* ASSERT(3X) */
+void	_assert(a, f, n) char *a, *f; { ; }
+
+/* CLOCK(3) */
+long	clock() { return(0L); }
+
+/* CTIME(3) */
+char	*ctime(c) time_t *c; { return(""); }
+struct tm *localtime(c) time_t *c; { static struct tm x; return(&x); }
+struct tm *gmtime(c) time_t *c; { static struct tm x; return(&x); }
+char	*asctime(t) struct tm *t; { return(""); }
+
+/* CTYPE(3C) */
+#undef isalpha
+#undef isupper
+#undef islower
+#undef isdigit
+#undef isxdigit
+#undef isalnum
+#undef isspace
+#undef ispunct
+#undef isprint
+#undef isgraph
+#undef iscntrl
+#undef isascii
+int	isalpha(c) { return (c); }
+int	isupper(c) { return (c); }
+int	islower(c) { return (c); }
+int	isdigit(c) { return (c); }
+int	isxdigit(c) { return (c); }
+int	isalnum(c) { return (c); }
+int	isspace(c) { return (c); }
+int	ispunct(c) { return (c); }
+int	isprint(c) { return (c); }
+int	isgraph(c) { return (c); }
+int	iscntrl(c) { return (c); }
+int	isascii(c) { return (c); }
+char	_ctype_[];
+
+/* ECVT(3) */
+char	*ecvt(v, n, d, s) double v; int *d, *s; { return(""); }
+char	*fcvt(v, n, d, s) double v; int *d, *s; { return(""); }
+char	*gcvt(v, n, b) double v; char *b; { return(""); }
+
+/* END(3) */
+int	end, etext, edata;
+
+/* FCLOSE(3S) */
+int	fclose(f) FILE *f; { ; }
+int	fflush(f) FILE *f; { ; }
+
+/* FERROR(3S) */
+#undef feof
+#undef ferror
+#undef clearerr
+#undef fileno
+int	feof(f) FILE *f; { return(0); }
+int	ferror(f) FILE *f; { return(0); }
+void	clearerr(f) FILE *f; { ; }
+int	fileno(f) FILE *f; { return(0); }
+
+/* FOPEN(3S) */
+FILE	*fopen(s, m) char *s, *m; { return(stdin); }
+FILE	*freopen(s, m, f) char *s, *m; FILE *f; { return(stdin); }
+FILE	*fdopen(fd, m) char *m; { return(stdin);}
+
+/* FREAD(3S) */
+int	fread(b, s, n, f) char *b; FILE *f; { return(n); }
+int	fwrite(b, s, n, f) char *b; FILE *f; { return(n); }
+
+/* FREXP(3) */
+double	frexp(x, e) double x; int *e; { return(x); }
+double	ldexp(v, e) double v; { return(v); }
+double	modf(v, i) double v, *i; { return(v); }
+
+/* FSEEK(3S) */
+int	fseek(f, o, p) FILE *f; long o; { return(p); }
+long	ftell(f) FILE *f; { return(0L); }
+
+/* GETC(3S) */
+#undef getc
+#undef getchar
+int	getc(f) FILE *f; { return(0); }
+int	getchar() { return(0); }
+int	fgetc(f) FILE *f; { return(0); }
+int	getw(f) FILE *f; { return(0); }
+
+/* GETCWD(3) */
+char	*getcwd(b, s) char *b; { return(b); }
+
+/* GETENV(3) */
+char	*getenv(n) char *n; { return(n); }
+
+/* GETGRENT(3) */
+struct group	*getgrent() { static struct group x; return(&x); }
+struct group	*getgrgid(g) { static struct group x; return(&x); }
+struct group	*getgrnam(n) char *n; { static struct group x; return(&x); }
+void	setgrent() { ; }
+void	endgrent() { ; }
+struct group	*fgetgrent(f) FILE *f; { static struct group x; return(&x); }
+
+/* GETLOGIN(3) */
+char	*getlogin() { return(""); }
+
+/* GETPASS(3) */
+char	*getpass(s) char *s; { return(s); }
+
+/* GETPW(3) */
+int	getpw(u, b) char *b; { return(u); }
+
+/* GETPWENT(3) */
+struct passwd	*getpwent() { static struct passwd x; return(&x); }
+struct passwd	*getpwuid(u) { static struct passwd x; return(&x); }
+struct passwd	*getpwnam(n) char *n; { static struct passwd x; return(&x); }
+void	setpwent() { ; }
+void	endpwent() { ; }
+struct passwd	*fgetpwent(f) FILE *f; { static struct passwd x; return(&x); }
+
+/* GETS(3S) */
+char	*gets(s) char *s; { return(s); }
+char	*fgets(s, n, f) char *s; FILE *f; { return(s); }
+
+/* L3TOL(3) */
+void	l3tol(l, c, n) long *l; char *c; { ; }
+void	ltol3(c, l, n) char *c; long *l; { ; }
+
+/* MALLOC(3) */
+char	*malloc(n) unsigned n; {static char c; return(&c);}
+void	free(p) char *p; { ; }
+char	*realloc(p, n) char *p; unsigned n; { static char c; return(&c);}
+char	*calloc(n, s) unsigned n, s; { static char c[1]; return(c); }
+
+/* MKTEMP(3) */
+char	*mktemp(t) char *t; { return(t); }
+
+/* NLIST(3) */
+int	nlist(f, n) char *f; struct nlist *n; { return(0); }
+
+/* PERROR(3) */
+void	perror(s) char *s; { ; }
+int	errno;
+char	*sys_errlist[];
+int	sys_nerr;
+
+/* POPEN(3S) */
+FILE	*popen(c, t) char *c, *t; { return(stdin); }
+int	pclose(f) FILE *f; { return(0); }
+
+/* PRINTF(3S) */
+	/*VARARGS1*/
+int	printf(s) char *s; { ; }
+	/*VARARGS2*/
+int	fprintf(f, s) FILE *f; char *s; { ; }
+	/*VARARGS2*/
+int	sprintf(p, s) char *p, *s; { ; }
+
+/* PUTC(3S) */
+#undef putc
+#undef putchar
+int	putc(c, f) FILE *f; { return(c); }
+int	putchar(c) { return(c); }
+int	fputc(c, f) FILE *f; { return(c); }
+int	putw(w, f) FILE *f; { return(w); }
+
+/* PUTPWENT(3) */
+int	putpwent(s, f) struct passwd *s; FILE *f; { return(0); }
+
+/* PUTS(3S) */
+int	puts(s) char *s; { return(0); }
+int	fputs(s, f) char *s; FILE *f; { return(0); }
+
+/* QSORT(3) */
+void	qsort(b, n, w, c) char *b; unsigned n, w; int (*c)(); { ; }
+
+/* RAND(3) */
+void	srand(s) unsigned s; { ; }
+int	rand() { return(0); }
+
+/* SCANF(3S) */
+	/*VARARGS1*/
+int	scanf(s) char *s; { return(0); }
+	/*VARARGS2*/
+int	fscanf(f, s) FILE *f; char *s; { return(0); }
+	/*VARARGS2*/
+int	sscanf(p, s) char *p, *s; { return(0); }
+
+/* SETJMP(3) */
+int	setjmp(e) jmp_buf e; { return(0); }
+void	longjmp(e, v) jmp_buf e; { ; }
+
+/* SLEEP(3) */
+unsigned	sleep(n) unsigned n; { ; }
+
+/* SSIGNAL(3) */
+int	(*ssignal(s, a))() int (*a)(); { return(a); }
+int	gsignal(s) { return(s); }
+
+/* STDIO(3S) */
+FILE	_iob[_NFILE];
+unsigned char	*_bufendtab[_NFILE];
+
+/* STRING(3) */
+char	*strcat(a, b) char *a, *b; { ; }
+char	*strncat(a, b, n) char *a, *b; { ; }
+int	strcmp(a, b) char *a, *b; { return(0); }
+int	strncmp(a, b, n) char *a, *b; { return(n); }
+char	*strcpy(a, b) char *a, *b; { ; }
+char	*strncpy(a, b, n) char *a, *b; { ; }
+int	strlen(s) char *s; { return(0); }
+char	*strchr(a, b) char *a, b; { return(a); }
+char	*strrchr(a, b) char *a, b; { return(a); }
+char	*strpbrk(a, b) char *a, *b; { return(a); }
+int	strspn(a, b) char *a, *b; { return(0); }
+int	strcspn(a, b) char *a, *b; { return(0); }
+char	*strtok(a, b) char *a, *b; { return(a); }
+char	*index(s, c) char *s, c; { return(s); }
+char	*rindex(s, c) char *s, c; { return(s); }
+
+/* STRTOD(3) */
+double	strtod(s, t) char *s, **t; { return(0.0); }
+double	atof(s) char *s; { return(0.0); }
+
+/* STRTOL(3) */
+long	strtol(s, t, b) char *s, **t; { return(0L); }
+long	atol(s) char *s; { return(0L); }
+int	atoi(s) char *s; { return(0); }
+
+/* SWAB(3) */
+void	swab(f, t, n) char *f, *t; { ; }
+
+/* SYSTEM(3S) */
+int	system(s) char *s; { return(0); }
+
+/* TMPNAM(3S) */
+char	*tmpnam(s) char *s; { return(s); }
+char	*tempnam(d, s) char *d, *s; { return(d); }
+
+/* TTYNAME(3) */
+char	*ttyname(f) { return(""); }
+int	isatty(f) { return(f); }
+
+/* UNGETC(3S) */
+int	ungetc(c, f) FILE *f; { return(c); }
+
+/* VPRINTF(3S) */
+int	vprintf(s, v) char *s; va_list v; { return(0); }
+int	vfprintf(f, s, v) FILE *f; char *s; va_list v; { return(0); }
+int	vsprintf(p, s, v) char *p, *s; va_list v; { return(0); }
+
+/* UNDOCUMENTED (not for general use) */
+	/*VARARGS3*/
+int	seek(f, o, p) { return(0); }
+long	tell(f) { return(0L); }
+int	ttyslot() { return(0); }
+int	_filbuf(f) FILE *f; { return(0); }

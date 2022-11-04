@@ -1,0 +1,26 @@
+Mmain	main.c	/^main(argc, argv)$/
+call	main.c	/^call(routine, args)$/
+command	main.c	/^command(top)$/
+get	main.c	/^get(argc, argv)$/
+getcmd	main.c	/^getcmd(name)$/
+getusage	main.c	/^getusage(s)$/
+help	main.c	/^help(argc, argv)$/
+intr	main.c	/^intr()$/
+makeargv	main.c	/^makeargv()$/
+makerequest	tftp.c	/^makerequest(request, name)$/
+nak	tftp.c	/^nak(error)$/
+put	main.c	/^put(argc, argv)$/
+putusage	main.c	/^putusage(s)$/
+quit	main.c	/^quit()$/
+recvfile	tftp.c	/^recvfile(fd, name)$/
+sendfile	tftp.c	/^sendfile(fd, name)$/
+setmode	main.c	/^setmode(argc, argv)$/
+setpeer	main.c	/^setpeer(argc, argv)$/
+setrexmt	main.c	/^setrexmt(argc, argv)$/
+settimeout	main.c	/^settimeout(argc, argv)$/
+settrace	main.c	/^settrace()$/
+setverbose	main.c	/^setverbose()$/
+status	main.c	/^status(argc, argv)$/
+tail	main.c	/^tail(filename)$/
+timer	tftp.c	/^timer()$/
+tpacket	tftp.c	/^tpacket(s, tp, n)$/

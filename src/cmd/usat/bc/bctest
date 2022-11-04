@@ -1,0 +1,31 @@
+:
+# SCCSID: @(#)bctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** bc test started - "
+date
+touch $T/bc.$$.err
+
+cat $L/bc/bc.input > $T/bc1.$$.out
+$M bc  < $T/bc1.$$.out > $T/bc2.$$.out
+if test $? = 0
+then
+	cmp $L/bc/bc.sout $T/bc2.$$.out
+	if test $? != 0
+	then
+		echo "bc: Compare after test failed" >> $T/bc.$$.err
+		echo "bc: Compare after test failed"
+	fi
+else
+	echo "bc: test failed" >> $T/bc.$$.err
+fi
+echo -n "****** End  of bc test - "
+date
+cat $T/bc.$$.err >> $T/log.$$.err
+rm -f $RT/bc.$$.err
+rm -f $RT/bc?.$$.out

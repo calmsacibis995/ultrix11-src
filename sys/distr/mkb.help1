@@ -1,0 +1,24 @@
+
+Command     Description
+--------    -----------
+CTRL/C      Abort the current operation and exit.
+
+e [exit]    Exit from the kit build procedure.
+
+h [help]    Print the master kit build instructions.
+
+q [qjn]     List the QJ numbers for all distribution kits.
+
+p [proto]   Update the RM03 binary master from bedrock master RP06, and
+	    install all prototype (kernel, boot, sas) files on the RM03.
+
+r [rxproto] Make the ROOT & /USR, and OPTIONAL SOFTWARE RL02 master disks,
+	    prototypes for building RX50 kits (runs proto command first).
+
+qj08#-h?    Make an RL02/RC25/RX50/MAGTAPE/TK50 kit master.
+            8# is the last two digits of the QJ number.
+	    ? [h=RL02, 3=RX50, 4=RC25, 5=TK50, m=MT 1600, d=MT 800]
+            For example: qj088-hm for 32 user 1600 BPI magtape.
+
+all[??]     mt = magtape, rl = RL02, rx = RX50, rc = RC25, tk = TK50.
+

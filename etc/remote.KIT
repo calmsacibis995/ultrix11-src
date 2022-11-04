@@ -1,0 +1,72 @@
+system1|PDP-11/## system:\
+	:dv=/dev/tty00:el=^A^U^C^S^Q^D^O^Z@:ie=#$%:oe=^D:br#9600:
+system2|PDP-11/## system:\
+	:dv=/dev/tty01:tc=UNIX-9600:
+system3|PDP-11/## system:\
+	:pn=8=##########:tc=UNIX-1200:
+tip0|tip1200:tc=UNIX-1200:
+tip300:tc=UNIX-300:
+tip2400:tc=UNIX-2400:
+cu0|cu300:tc=UNIX-300:
+cu1200:tc=UNIX-1200:
+cu2400:tc=UNIX-2400:
+cu9600:tc=UNIX-9600:
+UNIX-300:\
+	:dv=/dev/cua0,/dev/cua1:el=^D^U^C^S^Q^O@:du:at=df03:ie=#$%:oe=^D:br#300:
+UNIX-1200:\
+	:dv=/dev/cua0,/dev/cua1:el=^D^U^C^S^Q^O@:\
+	:du:at=df03:ie=#$%:oe=^D:br#1200:ds#300:
+UNIX-2400:\
+	:el=^D^U^C^S^Q^O@:\
+	:du:at=df224:ie=#$%:oe=^D:br#2400:
+UNIX-9600:\
+	:el=^A^U^C^S^Q^D^O^Z@:ie=$@:oe=^D:br#9600:
+VMS-300|TOPS20-300:\
+	:dv=/dev/cua0,/dev/cua1:el=^Z^U^C^S^Q^O:\
+	:du:at=df03:ie=$@:oe=^Z:br#300:ds#300:
+VMS-1200|TOPS20-1200:\
+	:dv=/dev/cua0,/dev/cua1:el=^Z^U^C^S^Q^O:\
+	:du:at=df03:ie=$@:oe=^Z:br#1200:ds#300:
+VMS-9600|TOPS20-9600:\
+	:el=^Z^U^C^S^Q^O:ie=$@:oe=^Z:br#9600:
+MARK-1200:\
+	:dv=/dev/cua0,/dev/cua1:el=^Z^U^C^S^Q^O:\
+	:du:at=df03:ie=$@:oe=^Z:br#1200:ds#300:
+--------------------------------------------------------------------
+The attributes are:
+
+dv	device to use for the tty
+el	EOL marks (default is NULL)
+du	make a call flag (dial up)
+pn	phone numbers (@ =>'s search phones file; possibly taken from
+			      PHONES environment variable)
+at	ACU type - Possible values are:
+		df02	- DEC DF02-AC
+		df03	- DEC DF03-AC
+		df112	- DEC DF112 Modem Family pulse dialing
+		df112p	- DEC DF112 Modem Family pulse dialing
+		df112t	- DEC DF112 Modem Family tone dialing
+		df224	- DEC DF224 Modem Family pulse dialing
+		df224p	- DEC DF224 Modem Family pulse dialing
+		df224t	- DEC DF224 Modem Family tone dialing
+		biz31f	- BIZCOMP Model 1031 tone dialing
+		biz31w	- BIZCOMP Model 1031 pulse dialing
+		biz22f	- BIZCOMP Model 1022 tone dialing
+		biz22w	- BIZCOMP Model 1022 pulse dialing
+		dn11	- DEC DN-11/Able Quadracall
+		ventel	- VENTEL 212+
+		v3451	- VADIC 3451
+		v831	- VADIC 831 RS232 Adaptor
+		NOTE:	Although tip knows about all of the
+			above modems, only df02, df03, df112 and df224
+			are officially supported by ULTRIX-11.
+ie	input EOF marks	(default is NULL)
+oe	output EOF string (default is NULL)
+cu	call unit (default is dv)
+br	baud rate (defaults to 300)
+ds	dialspeed - use only if dial speed is different from baudrate
+		(e.g., DF03 where dialspeed is seperate from baudrate...)
+		It defaults to whatever br is.
+fs	frame size (default is BUFSIZ) -- used in buffering writes
+	  on receive operations
+tc	to continue a capability

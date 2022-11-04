@@ -1,0 +1,5 @@
+This directory contains various support routines used by other parts of
+the pascal system.  Fpnofetchi contains the floating point interpreter
+for nonseparate I/D (11/34, 11/40, 11/23) machines without hardware floating
+point.  The fpterp directory contains an old interpreter for a separate I/D
+non-floating point machine; see the comments there if you need it.

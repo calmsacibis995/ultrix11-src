@@ -1,0 +1,10 @@
+g/jsr	pc,_htons$/s//mov	(sp),r0;swab r0/
+g/jsr	pc,\*\$_htons$/s//mov	(sp),r0;swab r0/
+g/jsr	pc,_ntohs$/s//mov	(sp),r0;swab r0/
+g/jsr	pc,\*\$_ntohs$/s//mov	(sp),r0;swab r0/
+g/jsr	pc,_htonl$/s//mov	(sp),r0;swab r0;mov 2(sp),r1;swab r1/
+g/jsr	pc,\*\$_htonl$/s//mov	(sp),r0;swab r0;mov 2(sp),r1;swab r1/
+g/jsr	pc,_ntohl$/s//mov	(sp),r0;swab r0;mov 2(sp),r1;swab r1/
+g/jsr	pc,\*\$_ntohl$/s//mov	(sp),r0;swab r0;mov 2(sp),r1;swab r1/
+w
+q

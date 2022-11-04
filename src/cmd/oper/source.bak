@@ -1,0 +1,31 @@
+: Dump the ROOT and TAR sources and documents.
+: Fred Canter
+
+echo ""
+echo "ULTRIX-11 Master RP06 Source backup"
+echo ""
+echo "Mount a 2400 foot tape on TE16 unit 1"
+echo ""
+echo "Press <RETURN> to continue:"
+read YN
+echo ""
+cd /sas; maketape /dev/nrht1 td1600.sv
+sync
+dump 0yf /dev/nrht1 /dev/rhp00
+/etc/mount -a
+cd /
+tar cb1 20 ./usr/src
+echo ""
+echo "Mount a second 2400 foot tape on TE16 unit 1"
+echo ""
+echo "Press <RETURN> to continue:"
+echo ""
+read YN
+tar cb1 20 ./staff/fred/v2docs \
+./usr/include ./usr/sys \
+./usr/dict ./usr/doc ./usr/games ./usr/local ./usr/man \
+./usr/pub
+/etc/umount -a
+echo ""
+echo "Source Backup Complete"
+echo ""

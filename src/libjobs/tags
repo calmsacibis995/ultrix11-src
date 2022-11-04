@@ -1,0 +1,16 @@
+Copyright	killpg.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+_sigcatch	sigset.c	/^_sigcatch(signum))()$/
+cat	getwd.c	/^cat()$/
+cmp	signal.s	/^cmp	(sp)+,(sp)+$/
+getpgrp	setpgrp.s	/^\/ getpgrp(pid)$/
+getwd	getwd.c	/^getwd(np)$/
+mov	killpg.s	/^mov	(sp)+,r5$/
+sighold	sigset.c	/^sighold(signum)$/
+sigignore	sigset.c	/^sigignore(signum)$/
+signal	sigset.c	/^signal(signum, action))()$/
+sigpause	sigset.c	/^sigpause(signum)$/
+sigrelse	sigset.c	/^sigrelse(signum)$/
+sigset	sigset.c	/^sigset(signum, action))()$/
+sigsys	sigset.c	/^int	(*sigsys())();$/
+sleep	sleep.c	/^sleep(n)$/
+sleepx	sleep.c	/^sleepx()$/

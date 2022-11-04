@@ -1,0 +1,23 @@
+:
+# SCCSID: @(#)makewhatis	3.0	5/9/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+PATH=/usr/ucb:/bin:/usr/bin
+rm -f /tmp/whatis /tmp/whatis$$
+cd /usr/man
+for i in man1 man2 man3 man4 man5 man6 man7 man8
+do
+        cd $i
+        /usr/lib/getNAME *.*
+        cd ..
+done >/tmp/whatis
+sed -f /usr/lib/makewhatis.sed < /tmp/whatis > /tmp/whatis2
+expand -24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100 /tmp/whatis2 | sort >/tmp/whatis$$
+unexpand -a /tmp/whatis$$ > /usr/lib/whatis
+chmod 644 /usr/lib/whatis
+rm -f /tmp/whatis /tmp/whatis2 /tmp/whatis$$

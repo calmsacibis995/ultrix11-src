@@ -1,0 +1,18 @@
+g/jsr	pc,__spl0/s//spl 0/
+g/jsr	pc,__spl1/s//spl 1/
+g/jsr	pc,__spl2/s//spl 2/
+g/jsr	pc,__spl3/s//spl 3/
+g/jsr	pc,__spl4/s//spl 4/
+g/jsr	pc,__spl5/s//spl 5/
+g/jsr	pc,__spl6/s//spl 6/
+g/jsr	pc,__spl7/s//spl 7/
+g/jsr	pc,_spl0/s//mov	177776,r0;spl 0/
+g/jsr	pc,_spl1/s//mov	177776,r0;spl 1/
+g/jsr	pc,_spl2/s//mov	177776,r0;spl 2/
+g/jsr	pc,_spl3/s//mov	177776,r0;spl 3/
+g/jsr	pc,_spl4/s//mov	177776,r0;spl 4/
+g/jsr	pc,_spl5/s//mov	177776,r0;spl 5/
+g/jsr	pc,_spl6/s//mov	177776,r0;spl 6/
+g/jsr	pc,_spl7/s//mov	177776,r0;spl 7/
+w
+q

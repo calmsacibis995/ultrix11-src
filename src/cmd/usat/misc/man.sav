@@ -1,0 +1,66 @@
+
+
+
+                                                           tee(1)
+
+
+
+NNNNAAAAMMMMEEEE
+     tee - pipe fitting
+
+SSSSYYYYNNNNTTTTAAAAXXXX
+     tttteeeeeeee [ ----iiii ] [ ----aaaa ] [ _f_i_l_e... ]
+
+DDDDEEEESSSSCCCCRRRRIIIIPPPPTTTTIIIIOOOONNNN
+     The tttteeeeeeee command transcribes the standard input to the stan-
+     dard output and makes copies in each _f_i_l_e. Option ----iiii ignores
+     interrupts and option ----aaaa causes the output to be appended to
+     each _f_i_l_e rather than overwriting them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                              0-1
+
+
+

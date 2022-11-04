@@ -1,0 +1,49 @@
+Copyright	ranm.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+DPOLYD	erf.c	/^#define DPOLYD(y, p, q)	for (n = d = 0, i = sizeof/
+acos	asin.c	/^acos(x)$/
+add	ranm.s	/^       add     (sp)+,r2$/
+asin	asin.c	/^asin(x)$/
+asin_acos	asin.c	/^asin_acos(x, acosflag)$/
+at	ranm.s	/^\/\/ put the result at (r4)$/
+atan	atan.c	/^atan(x)$/
+atan2	atan.c	/^atan2(y, x)$/
+bit	ranm.s	/^\/\/ the following code multiplies two 31-bit (posit/
+cabs	hypot.c	/^cabs(arg)$/
+ceil	floor.c	/^ceil(x)$/
+cos	sin.c	/^cos(x)$/
+cosh	sinh.c	/^cosh(x)$/
+erf	erf.c	/^erf(x)$/
+erfc	erf.c	/^erfc(x)$/
+exp	exp.c	/^exp(x)$/
+fabs	fabs.c	/^fabs(x)$/
+floor	floor.c	/^floor(x) $/
+fmod	fmod.c	/^fmod(x, y)$/
+gamma	gamma.c	/^gamma(x)$/
+hypot	hypot.c	/^hypot(a, b)$/
+j0	j0.c	/^j0(x)$/
+j0_asympt	j0.c	/^j0_asympt(x, n, j0flag)$/
+j1	j1.c	/^j1(x)$/
+j1_asympt	j1.c	/^j1_asympt(x, n, j1flag)$/
+jn	jn.c	/^jn(n, x)$/
+jn_error	jn.c	/^jn_error(n, x, jnflag)$/
+log	log.c	/^log(x)$/
+log10	log.c	/^log10(x)$/
+log_error	log.c	/^log_error(x, f_name, name_len)$/
+matherr	matherr.c	/^matherr(x)$/
+mov	ranm.s	/^       mov     r4,r5 $/
+mul	ranm.s	/^       mov     (r4),r0         \/ac $/
+pos_gamma	gamma.c	/^pos_gamma(x, excp)$/
+pow	pow.c	/^pow(x, y)$/
+sin	sin.c	/^sin(x)$/
+sin_cos	sin.c	/^sin_cos(x, cosflag)$/
+sinh	sinh.c	/^sinh(x)$/
+sinh_exc	sinh.c	/^sinh_exc(x, y, sinhflag)$/
+sqrt	sqrt.c	/^sqrt(x)$/
+tan	tan.c	/^tan(x)$/
+tanh	tanh.c	/^tanh(x)$/
+tst	ranm.s	/^       mov     (r4),r2         \/ad $/
+x	ranm.s	/^\/\/       negative numbers.  mul x,y gives the 32-b/
+y	ranm.s	/^\/\/       -(w-x)y\/ (w-x)(w-y)-w**2 0<x,y\/ y<0<x\/ x</
+y0	j0.c	/^y0(x)$/
+y1	j1.c	/^y1(x)$/
+yn	jn.c	/^yn(n, x)$/

@@ -1,0 +1,41 @@
+Mlcount	lcount.c	/^main()	\/* count lines in something *\/$/
+Mlearn	learn.c	/^main(argc,argv)$/
+Mtee	tee.c	/^main()$/
+TERM	Init.vi	/^	TERM=xxx; export TERM	(if you are using \/bin\/sh)$/
+abs	selunit.c	/^abs(x)$/
+action	mem.c	/^int *action(s)$/
+adm3a	Init.vi	/^	adm3a		(LSI adm3a)$/
+already	mem.c	/^already(lesson, sequence)$/
+chknam	selsub.c	/^chknam(name)$/
+cmp	copy.c	/^cmp(r)	\/* compare two files for status *\/$/
+copy	copy.c	/^copy(prompt, fin)$/
+dounit	dounit.c	/^dounit()$/
+fcopy	start.c	/^fcopy(new,old)$/
+fl	tee.c	/^fl(f)$/
+getargs	mysys.c	/^getargs(s, v)$/
+grand	selunit.c	/^grand()$/
+hangup	learn.c	/^hangup()$/
+intrpt	learn.c	/^intrpt()$/
+list	list.c	/^list(r)$/
+makpipe	makpipe.c	/^makpipe()$/
+maktee	maktee.c	/^maktee()$/
+mysys	mysys.c	/^mysys(s)$/
+pgets	copy.c	/^pgets(s, prompt, f)$/
+put	tee.c	/^put(c, f)$/
+scopy	copy.c	/^scopy(fi, fo)	\/* copy fi to fo until a line with #/
+selsub	selsub.c	/^selsub(argc,argv)$/
+selunit	selunit.c	/^selunit()$/
+setdid	mem.c	/^setdid(lesson, sequence)$/
+start	start.c	/^start(lesson)$/
+stop	list.c	/^stop()$/
+system	mysys.c	/^system(s)$/
+term	Init.eqn	/^	term=xxx; export term	(if you are using \/bin\/sh)$/
+trim	copy.c	/^trim(s)$/
+tvi920c	Init.vi	/^	tvi920c		(Televideo 912\/920C)$/
+type	Init.vi	/^To do the lessons on 'vi', I need to know your ter/
+untee	maktee.c	/^untee()$/
+using	Init.vi	/^the terminal type for the terminal you are using (/
+vt100	Init.vi	/^	vt100 		(DEC VT100)$/
+whatnow	whatnow.c	/^whatnow()$/
+wordb	copy.c	/^wordb(s, t)	\/* in s, t is prefix; return tail *\/$/
+wrapup	wrapup.c	/^wrapup(n)$/

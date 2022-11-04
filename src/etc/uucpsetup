@@ -1,0 +1,597 @@
+:
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+
+PATH=/usr/ucb:/bin:/usr/bin:/etc
+# SCCSID: @(#)uucpsetup	3.0	4/22/86
+# Based on (ULTRIX-32) uucpsetup.sh	1.13	11/20/84
+#
+# Purpose:	Handles uucp setup.
+# Usage:	uucpsetup
+# Environment:	Bourne shell script
+# Date:		3/28/84
+# Author:	afd
+# 
+# Remarks:
+#	Sets up files:
+#	L.sys
+#	L.cmds
+#	USERFILE
+#	L-devices
+#	L-stat
+#	R-stat
+#
+#	It assumes a simplified view of the world:  only DF02, DF03 and DF112 
+#	are supported, calling times are broken down into Any time, Evenings,
+#	and Nights, a rather "standard" form is used for the L.sys entries.
+
+# Trap ^C signal
+trap "" 1 2 3
+
+HOSTNAME=`hostname`
+
+# Set up Shell file parameters.
+# dir path for uucp.
+# 2 default directories needed for uucp.
+# default execution access level.
+# default tty num to use for outgoing connections.
+
+LIB=/usr/lib/uucp
+#LIB=.
+DIR1=/usr/spool/uucp/sys/DEFAULT/D.$HOSTNAME
+DIR2=/usr/spool/uucp/sys/DEFAULT/D.${HOSTNAME}X
+DEF_XLEVEL=1
+
+# Outgoing tty number used as either tty00 (dz) or ttyh0 (dh).
+OGTTY=2
+
+TTYNUM=$OGTTY
+CUANUM=0$OGTTY
+
+# Require it to be run by root
+me=`whoami`
+if [ ! Z$me = Zroot ]
+then
+	echo "Please su to root first."
+	exit 1
+fi
+
+if [ ! -f ${LIB}/L.cmds ]
+then
+	echo "Please install uucp (optional software) first."
+	exit 1
+fi
+
+if [ ! -w ${LIB}/L.cmds ]
+then
+    echo "${LIB}/L.cmds is not writable, please investigate."
+    exit 1
+fi
+
+# If this script was called by the installation procedure or if uucp
+# was not set up at installation time (default directories don't exist),
+# then do one-time setups.
+# else, just get new systems for uucp connections.
+
+ONETIME=
+ASK=
+case "$1" in
+install)
+	ONETIME=y
+	ASK=y
+	;;
+*)	echo "
+Whenever a default selection is given for a question
+[shown in square brackets] you only need to press the
+<RETURN> key to select the default choice.
+	
+"
+	if test ! -d $DIR1 -o ! -d $DIR2
+	then
+		ONETIME=y
+	fi
+	;;
+esac
+
+case "$ONETIME" in
+"")	# Not called from installation script.  Determine whether system has a 
+	# dz or dh, by looking in /etc/ttys file for which tty device has
+	# a getty on its line.
+
+	grep -s 1.tty03 /etc/ttys
+	case $? in
+	0)	TTYNUM=0$OGTTY
+		;;
+	*)	TTYNUM=h$OGTTY
+		;;
+	esac
+	;;
+*)	# If called from installation script determine whether the system has
+	# a dz or a dh terminal device, and set ttynum accordingly.
+
+	case $2 in
+	dh)	TTYNUM=h$OGTTY
+		;;
+	*)	TTYNUM=0$OGTTY
+		;;
+	esac
+
+	# See if the system is to be set up for uucp.
+
+	case "$ASK" in
+	"")	;;
+	*)	while : # true
+		do
+			echo
+			echo -n "Do you want your system set up for uucp connections [no] ? "
+			read UUCP
+			case $UUCP in
+			[yY]*)	break
+				;;
+			[nN]*|"")
+				exit 0
+				;;
+			*)	echo "   y or n"
+				;;
+			esac
+		done
+		;;
+	esac
+
+	# Create default directories with make file,
+	# and create uustat directories.
+	(cd $LIB; make mkdirs 2> /dev/null)
+	> $LIB/L_stat
+	> $LIB/R_stat
+	> /usr/spool/uucp/LOGFILE
+	> /usr/spool/uucp/SYSLOG
+	chown uucp $LIB/L_stat $LIB/R_stat /usr/spool/uucp/LOGFILE /usr/spool/uucp/SYSLOG 
+	chmod 644 $LIB/L_stat $LIB/R_stat /usr/spool/uucp/LOGFILE /usr/spool/uucp/SYSLOG 
+
+	# Set up cron entries for polling systems hourly and
+	# cleaning up log file daily.
+
+	echo "30 * * * * su uucp < $LIB/uucp.hour
+0 6 * * * su uucp < $LIB/uucp.day" >> /usr/lib/crontab
+
+	# change LOGFILE var in uucp.hour from /dev/console to a null file
+
+	ed ${LIB}/uucp.hour  << EOF > /dev/null 2>&1
+/LOGFILE/
+s/console/null/
+w
+q
+EOF
+
+	echo "
+
+It is recommended that you have only one tty line reserved
+for uucp outgoing connections.  By default this will be set
+up as tty line 2.  You should connect your auto-call unit 
+DF112 (or DF02/DF03) to tty line 2."
+
+	# Make sure first char = 3 (local - no getty)
+	# second character is ignored if first char is 0 or 3
+	ln /dev/tty$TTYNUM /dev/cua$CUANUM
+	chmod 666 /dev/cua$CUANUM
+	cp /etc/ttys /tmp/ttys
+	ed - /tmp/ttys << EOF
+	/..tty$TTYNUM/s//30tty$TTYNUM/
+	w
+	q
+EOF
+	mv /tmp/ttys /etc/ttys ;;
+
+esac	# case "$ONETIME"
+
+# Set up systems to call out to.
+
+echo "
+This subsection of questions deals with outgoing UUCP connections.
+"
+
+ENDING=ne
+
+while : # true
+do
+	echo -n "
+Enter the name of a remote system to call out to
+(<RETURN> only if no${ENDING}): "
+
+	read RSYSTEM
+	case "$RSYSTEM" in
+	"")	break
+		;;
+	esac
+	ENDING=" more"
+
+	OK=y
+	if test -f $LIB/L.sys
+	then
+		grep -s "^$RSYSTEM" $LIB/L.sys
+		case $? in
+		0)	echo "   '$RSYSTEM' is already in $LIB/L.sys file."
+			OK=
+			;;
+		esac
+	fi
+		
+	if test $OK
+	then
+		echo "
+Next you must enter the times when your system can call
+system '$RSYSTEM'.  The four choices are: 
+
+	a)   Any time of any day;
+	e)   Evenings (Mon-Fri 5pm - 8am, Sat & Sun all day)
+	n)   Nights (Mon-Fri 11pm - 8am, Sat all day & Sun until 5pm)
+	x)   Never"
+
+		while : # true
+		do
+			echo -n "
+When do you want your system to call system '$RSYSTEM';
+Any time of any day (a), Evenings (e), Nights (n), Never (x) [a] ? "
+
+			read WHEN
+			case "$WHEN" in
+			a|A|"")	time=Any
+				;;
+			e|E)	time="Sa|Su|Wk1705-2359|Wk0000-0755"
+				;;
+			n|N)	time="Sa|Su0000-1655|Wk2305-2359|Wk0000-0755"
+				;;
+			x|X)	time=Never
+				;;
+			*)	echo "Sorry, that is not a valid choice."
+				continue
+				;;
+			esac
+			break
+
+		done	# while : # true
+
+		# Now get the device entry & set the default class.
+		# Set type and line for L.sys
+
+		DEVICE=ACU
+		DEF_CLASS=1200
+
+		# Set info for L-devices.
+
+		TYPE=ACU
+		LINE=cua$CUANUM
+
+		# Get the class (line speed).  Defaults set in device above.
+
+		echo -n "
+Enter the line speed for system '$RSYSTEM' [$DEF_CLASS] : "
+
+		read CLASS
+		case "$CLASS" in
+		"")	CLASS=$DEF_CLASS
+			;;
+		esac
+
+		# Get the phone #.
+
+		while : # true
+		do
+			echo -n "
+Enter the phone number for system '$RSYSTEM': "
+
+			read PHONE_NUM
+			case "$PHONE_NUM" in
+			"")	echo ""
+				continue
+				;;
+			esac
+			break
+		done
+
+		# Get login name for your connection on remote system
+
+		while : # true
+		do
+			echo -n "
+Enter your login name on system '$RSYSTEM': "
+
+			read LOGIN
+			case "$LOGIN" in
+			"")	echo ""
+				continue
+				;;
+			esac
+			break
+		done
+
+		# Get password for your connection on remote system
+
+		while : # true
+		do
+			echo -n "
+Enter your password for login '$LOGIN' on system '$RSYSTEM': "
+
+			read PASSWORD
+			case "$PASSWORD" in
+			"")	echo ""
+				continue
+				;;
+			esac
+			break
+		done
+
+		# Append entry to the L.sys file.
+
+		echo "
+The entry in $LIB/L.sys will look like:
+  $RSYSTEM $time $DEVICE $CLASS $PHONE_NUM login:--login: $LOGIN ssword $PASSWORD"
+		echo "$RSYSTEM $time $DEVICE $CLASS $PHONE_NUM login:--login: $LOGIN ssword $PASSWORD" >> $LIB/L.sys
+
+		# Call_unit is the same as 'line' for digital DF02|DF03|DF112.
+		# Speed is the same as 'class'.
+
+		CALL_UNIT=$LINE
+		SPEED=$CLASS
+
+		# If line is hard-wired ($PHONE_NUM = $DEVICE) then use
+		# "direct" in brand field. Else, get the brand.
+
+		case $PHONE_NUM in
+		$DEVICE)
+			BRAND=direct
+			;;
+		*)	while : #true
+			do
+				echo -n "
+Enter the modem type [DF112] : "
+
+				read BRAND
+				case "$BRAND" in
+				DF03|DF02|DF112)
+					;;
+				df03)	BRAND=DF03
+					;;
+				df02)	BRAND=DF02
+					;;
+				df112)	BRAND=DF112
+					;;
+				"")	BRAND=DF112
+					;;
+				*)	echo "Sorry, only DF02, DF03 and DF112 are supported."
+					continue
+					;;
+				esac
+				break
+			done
+			;;
+		esac
+
+		# Append entry to the L-devices file, if not already there.
+
+		WRITEIT=y
+		if test -f $LIB/L-devices
+		then
+			grep -s "$TYPE $LINE $CALL_UNIT $SPEED $BRAND" $LIB/L-devices
+			case $? in
+			0)	WRITEIT=
+				;;
+			esac
+		fi
+
+		case "$WRITEIT" in
+		y)	echo "
+The entry in $LIB/L-devices will look like:
+   $TYPE $LINE $CALL_UNIT $SPEED $BRAND"
+			echo "$TYPE $LINE $CALL_UNIT $SPEED $BRAND" >> $LIB/L-devices
+			;;
+		esac
+	fi; # if test $OK
+
+done	# while true over RSYSTEM
+
+
+#
+# Get info for systems allowed to make incoming connections.
+#
+
+echo "
+This subsection of questions deals with incoming UUCP connections.
+"
+
+# Set up default entries in USERFILE, if not already there.
+
+WRITEIT=y
+if test -f $LIB/USERFILE
+then
+	grep -s "remote" $LIB/USERFILE
+	case $? in
+	0)	WRITEIT=""
+		;;
+	esac
+fi
+
+case "$WRITEIT" in
+y)	echo "remote,	X0	/usr/spool/uucppublic" >> $LIB/USERFILE
+	;;
+esac
+
+WRITEIT=y
+if test -f $LIB/USERFILE
+then
+	grep -s "local" $LIB/USERFILE
+	case $? in
+	0)	WRITEIT=
+		;;
+	esac
+fi
+
+case $WRITEIT in
+y)	echo "local,	X9	/" >> $LIB/USERFILE
+	;;
+esac
+
+echo -n "
+Enter the name of a system allowed to establish incoming
+uucp connections: (<RETURN> only if none): "
+read INSYSTEM
+
+case "$INSYSTEM" in
+"")	;;
+*)	echo "
+For each system, you will be asked for a short comment for
+the password file, a login password, the execution access
+level, and the default directory path.
+
+Enter these items one at time, as you are prompted for them.
+
+The execution access level can range from 0 to 9, where 0
+gives no access to the remote system, and 9 gives the most
+access.  In order for a remote system to be able to execute
+a particular command on your system, the remote system must
+have an access level equal to or greater than the corresponding
+protection level in the L.cmds file."
+
+	while : # true
+	do
+		echo -n "
+Do you wish to see the L.cmds file [yes] ? "
+
+		read YORN
+		case $YORN in
+		[yY]*|"")
+			echo
+			more $LIB/L.cmds
+			;;
+		[nN]*)	;;
+		*)	echo "   y or n"
+			continue
+			;;
+		esac
+		break
+	done
+
+	MORE=y
+	while test $INSYSTEM
+	do
+		OK=y
+		if test -f $LIB/USERFILE
+		then
+			grep -s "^$INSYSTEM" $LIB/USERFILE
+			case $? in
+			0)	echo "   '$INSYSTEM' is already in $LIB/USERFILE file."
+				OK=""
+				;;
+			esac
+		fi
+		
+		case $OK in
+		y)	# Comment is not necessary, so it need not be entered.
+			echo -n "
+Enter a short comment for the passwd file: "
+
+			read COMMENT
+
+			echo "U$INSYSTEM::4:2:$COMMENT:/usr/spool/uucppublic:/usr/lib/uucp/uucico">> /etc/passwd
+			echo "
+Enter a password for system '$INSYSTEM' for the passwd file."
+
+			while : # true
+			do
+				passwd U$INSYSTEM
+				case $? in
+				0)	break
+					;;
+				esac
+			done
+
+			# Next set up the USERFILE
+
+			while : # true 
+			do
+				echo -n "
+Enter the execution access level for system '$INSYSTEM' [$DEF_XLEVEL] : "
+
+				read XLEVEL
+				case $XLEVEL in
+				[0-9])	;;
+				"")	XLEVEL=DEF_XLEVEL
+					;;
+				*)	echo "   The execution access level must be between 0 and 9."
+					continue
+					;;
+				esac
+				break
+			done
+
+			while : # true
+			do
+				echo -n "
+If you choose the call back option you will always pay
+the phone  bill for connections.  Do you want the call
+back option for system '$INSYSTEM' [no] : "
+
+				read CALLBACK
+				case $CALLBACK in
+				[yY]*) CALLBACK=c
+					;;
+				[nN]*|"")
+					CALLBACK=
+					;;
+				*)	echo "   y or n"
+					continue
+					;;
+				esac
+				break
+			done
+
+			echo -n "
+Enter the directory path for system '$INSYSTEM' [/usr/spool/uucppublic] : "
+
+			read DIRPATH
+			case $DIRPATH in
+			"")	DIRPATH="/usr/spool/uucppublic"
+				;;
+			esac
+
+			echo "U$INSYSTEM,$INSYSTEM X$XLEVEL $CALLBACK	$DIRPATH" >> $LIB/USERFILE
+
+			# If $INSYSTEM is not in the L.sys file already,
+			# for outgoing connections, then add it in.
+
+			if test -f $LIB/L.sys
+			then
+				grep -s "^$INSYSTEM" $LIB/L.sys
+				case $? in
+				0)	;;
+				*)	echo "$INSYSTEM incoming" >> $LIB/L.sys
+					;;
+				esac
+			fi
+			;;
+		esac	# case $OK in
+
+		# See if any more remote incoming systems.
+
+		echo -n "
+Enter the next system allowed to establish incoming uucp connections: 
+(<RETURN> only if no more): "
+		read INSYSTEM
+
+	done; # while test $INSYSTEM
+	;;
+esac	# case $INSYSTEM in
+
+chown uucp $LIB/USERFILE $LIB/L.sys $LIB/L-devices 2> /dev/null
+chmod 400 $LIB/USERFILE $LIB/L.sys $LIB/L-devices 2> /dev/null
+
+echo ""
+echo "Read the uucpsetup(8) manual page in the ULTRIX-11 Programmer's"
+echo "manual for the next step to finish setting up UUCP.  This involves"
+echo "editing the \"/usr/lib/sendmail.cf\" and \"/usr/lib/crontab\" files"
+echo "to include UUCP services."
+echo ""
+echo "Finished with automated portion of UUCP setup."

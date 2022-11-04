@@ -1,0 +1,11 @@
+
+ad1:
+"d has no argument"
+You did not supply the one-letter flagname to be deleted.
+
+bd1:
+"arg count"
+You invoked bdiff with either too few or too many arguments.
+
+ut1:
+"directory `...' nonexistent"

@@ -1,0 +1,20 @@
+swtab:	    01150
+nulstr:	    067050
+_dmsize:    037
+_daytab:    05
+_allocb:    014324
+_allocp:    014324
+nd:	    014332
+__iob:	    0
+__lastbu:   011470
+__bufend:   0
+__stdbuf:   012226
+__ovno:	    0
+__novno:    0
+start:		setd
+		mov	02(sp),r0
+		clr	0177776(r0)
+		mov	sp,r0
+		sub	$04,sp
+start:		0170011	016600	02	05060	0177776	010600	0162706	04
+		016616	04	05720	010066	02	05720	01376	020076

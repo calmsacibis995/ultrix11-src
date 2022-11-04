@@ -1,0 +1,24 @@
+; SCCSID @(#)nu.cf	3.0	4/21/86
+; This configuration file is used to control the behavior
+; of the /etc/nu (new user) program.  Pay attention to UPPER or
+; lower case letters in variable names, they are important!
+;
+Debug=0				; 1 = turn on debugging, used with shell scripts
+DefGroup=15 			; default newuser group number
+DefShell="/bin/csh"		; default login shell
+MaxNameLength=8			; number of chars in a login name (fixed)
+PasswdFile="/etc/passwd"	; password file, should not be changed
+Backupfile="/usr/adm/nu.passwd"	; backup password file (used internally)
+Logfile="/usr/adm/nu.log"	; record file of all accounts changed
+Tempfile="/usr/adm/nu.temp"	; temporary file (used internally)
+Dummyfile="/etc/vipw.lock"	; think twice before changing this
+Linkfile="/etc/ptmp"		; think thrice before changing this
+CreateDir="/etc/nulib/nu1.sh"	; shell script to make a new user's directory
+CreateFiles="/etc/nulib/nu2.sh"	; script to setup .profile, .login, .cshrc, etc.
+DeleteAccts="/etc/nulib/nu3.sh"	; script to remove a user's files but retain
+				; his /etc/passwd entry (with logins disabled)
+KillAccts="/etc/nulib/nu4.sh"	; script to purge an old account entirely
+
+DefHome="/usr"			; default HOME directory, used if no GroupHome
+				; declaration exists for the given group.
+GroupHome= 15 "/usr/guest"	; sample GroupHome declaration for group "guest"

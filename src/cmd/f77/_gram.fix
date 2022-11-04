@@ -1,0 +1,16 @@
+/globl[ 	]*_yyexca$/
+-
+ma a
+/globl[ 	]*_yychar$/
+-
+ma b
+'a,'bg/globl/d
+'a,'bg/\.data/s//.text/
+/^_yyexca:/i
+.text
+.
+/^_yychar:/i
+.data
+.
+w
+q

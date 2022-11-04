@@ -1,0 +1,4864 @@
+-adb
+
+DESCRIPTION	The adb command provides an interactive C program debugger
+		that has a full subset of commands.
+
+SYNTAX		adb [ -w ] [ object ] [ core ]
+
+		  object   Name of object program to be debugged.  If not 
+			   specified, uses a.out in current directory.
+
+		  core     Name of program's core dump.  If not specified,
+			   uses core in current directory.
+
+OPTIONS		-w   Creates object and core files, if necessary.
+
+DOCUMENTATION   adb(1) in the ULTRIX-11 Programmer's Manual
+		"A Tutorial Introduction to ADB" in the ULTRIX-11 Supplementary
+		Documents, Volume 1
+-admin
+
+DESCRIPTION	The SCCS admin command creates SCCS files or changes parameters
+		of existing SCCS files.
+
+SYNTAX		sccs admin [ options ] file...
+
+		  file   Name of each file to be created or administered.
+
+OPTIONS		-a  Adds specified user (-aname) to list of those permitted
+		    to make changes (deltas) to existing SCCS files.
+       		-d  Turns off (deletes) specified flag (-dxx).  Useful flags
+		    are: b (allows branches), d (sets default delta number),
+		    i (treats no ID keywords as fatal error), and t (module
+		    type).  For a complete list of flags, read the admin
+		    manual page.
+		-e  Erases specified user (-ename) from list of those permitted
+		    to make changes (deltas) to existing SCCS files.
+		-f  Turns on specified flag (-fxx).  See -d option.
+		-h  Checks the structure of the SCCS file.
+		-i  Creates SCCS file (first delta) using text from specified 
+		    file (-ifile). 
+		-m  Inserts specified modification request numbers (-mlist).
+		-n  Creates a new SCCS file.
+		-r  Indicates initial release number (-r#).  Must be used with
+		    -i option.  If not specified, uses 1.0.
+		-t  Replaces descriptive text of an existing SCCS file with 
+		    contents of specified file (-tfile).
+		-y  Inserts specified comment (-ystring) as comment for initial
+		    delta.  If not specified, uses default comment line.
+		-z  Recomputes SCCS file checksum (used with corrupted SCCS 
+		    files).
+
+DOCUMENTATION	admin(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the 
+		ULTRIX-11 Supplementary Documents, Volume 1
+-apropos
+
+DESCRIPTION	The apropos command displays the sections of the 
+		ULTRIX-11 Programmer's Manual that contain references
+		to each specified word in the title descriptions.
+
+SYNTAX	  	apropos word...
+
+		  word   Each word for which references are to be 
+			 displayed.
+
+DOCUMENTATION   apropos(1) in the ULTRIX-11 Programmer's Manual
+-ar
+
+DESCRIPTION	The ar command creates and maintains archive libraries.
+
+SYNTAX		ar key [ pos ] archive file...
+
+		  pos	     Key and file name (keyname) used in adding, 
+			     moving, or replacing files.  Position keys are:
+			     a (after file) and b or i (before file).  If not 
+			     specified, adds new file to end of archive.
+
+		  archive    Name of archive library (file).
+
+		  file       Name of each file to be archived.
+
+KEYS		c   Creates new archive, but suppresses normal message.
+		d   Deletes each named file from archive.
+		l   Uses local (current) directory when making a temporary copy
+		    of each specified file.
+		m   Moves each named file to position, if used, or end of 
+		    archive.
+		p   Displays each specified file.
+		q   Quickly adds each named file to end of archive.
+		r   Replaces existing file and places new copy at position,
+		    if used, or at end of archive.  If u character is added,
+		    checks modification date of both files.  Then, replaces
+		    existing file only if its modification date is earlier 
+		    than that of the new copy.
+		t   Displays table of contents containing each named file.  If 
+		    not specified, displays table containing all files.
+		v   Displays verbose information for each named file added to 
+		    archive.
+		x   Extracts each named file from archive.  If not specified,
+		    extracts all files from archive.
+
+DOCUMENTATION	ar(1) in the ULTRIX-11 Programmer's Manual
+-as
+
+DESCRIPTION	The as command assembles each specified file into a single
+		executable program.
+
+SYNTAX		as [ options ] file...
+
+		  file   Name of each file to be assembled.
+
+OPTIONS		-    Treats all undefined symbols as globals.
+		-V   Leaves references to all global variables unresolved.
+		-o   Writes output to specified file (next argument).  
+		     If not specified, defaults to a.out.
+
+DOCUMENTATION	as(1) in the ULTRIX-11 Programmer's Manual
+		"Assembler Reference Manual" in the ULTRIX-11 Supplementary
+		Documents, Volume 2
+-at
+
+DESCRIPTION	The at command builds a script file to be executed by the shell
+		at the later, designated time.
+
+SYNTAX		at time [ day ] [ file ]
+
+		  time    Up to 4 digits (hhmm, 24-hour clock) and optional 
+			  letter: A (am), P (pm), N (noon), or M (midnight).
+
+		  day     Either month name plus day number or day name.
+
+		  file    Name of file from which commands for script are to
+			  be read. If not specified, reads stdin until <CTRL/D>
+			  and uses this as input.
+
+EXAMPLES	at 1P fri report1
+		at 1000A jan20 report2
+
+DOCUMENTATION	at(1) in the ULTRIX-11 Programmer's Manual
+-awk
+
+DESCRIPTION	The awk command provides a pattern scanning and processing
+		language that has a full subset of language constructs.
+ 
+SYNTAX		awk [ options ] [ string ] [ file... ]
+
+		  string   Each pattern and action.  For further information,
+			   read the awk manual page.
+
+		  file     Name of each file to be scanned.  If not specified,
+			   or if dash (-) is specified, reads stdin until 
+			   <CTRL/D> and scans this input.
+
+OPTIONS		-F   Sets interfield separator to specified character (-Fc).
+		-f   Uses specified file (next argument) as input for patterns
+		     and actions.
+
+DOCUMENTATION	awk(1) in the ULTRIX-11 Programmer's Manual
+		"Awk--A Pattern Scanning and Processing Language" in the
+		ULTRIX-11 Supplementary Documents, Volume 2
+-basename
+
+DESCRIPTION	The basename command strips all directory prefixes from the
+		specified pathname.
+
+SYNTAX		basename path [ suffix ]
+
+		  path     Pathname from which all preceding directory names 
+			   are to be deleted.
+
+		  suffix   Suffix which, if present in pathname, also is to 
+			   be deleted.
+
+DOCUMENTATION	basename(1) in the ULTRIX-11 Programmer's Manual
+-bc
+
+DESCRIPTION	The bc command provides an interactive arithmetic language 
+		processor that has a full language subset.
+
+SYNTAX		bc [ options ] [ file... ]
+
+		  file   Name of each file from which input is to be read.
+
+OPTIONS		-c   Compiles input only.
+		-l   Uses standard math library (/usr/lib/lib.b).
+
+DOCUMENTATION	bc(1) in the ULTRIX-11 Programmer's Manual
+		"BC -- An Arbitrary Precision Desk-Calculator Language" in the
+		ULTRIX-11 Supplementary Documents, Volume 2
+-bdiff
+	
+DESCRIPTION	The bdiff command displays the textual differences between two 
+		big files.
+
+SYNTAX		bdiff file1 file2 [ lines ] [ -s ]
+
+		  file1   Names of files whose differences are to be 
+		  file2   displayed.  If - is specified for either file,
+			  reads stdin until <CTRL/D> in place of that file
+			  and displays differences between this input and
+			  data in the specified file.
+
+		  lines   Number of lines each segment is to contain.  If not
+			  specified, splits each file into segments containing
+			  3500 lines each before determining their differences.
+
+OPTIONS		-s   Suppresses normal diagnostic messages.
+
+DOCUMENTATION	bdiff(1) in the ULTRIX-11 Programmer's Manual
+-bfs
+
+DESCRIPTION	The bfs command allows you to scan large text
+		files (maximum 1024K bytes and 32K lines).
+
+SYNTAX	  	bfs [ - ] file
+
+		  file   Name of the file to be processed.
+
+OPTIONS		-   Suppresses all character count displays.
+		
+DOCUMENTATION   bfs(1) in the ULTRIX-11 Programmer's Manual
+-binmail
+
+DESCRIPTION	The binmail command provides an interactive program
+		with a full set of subcommands for sending or receiving
+		mail messages.
+
+SYNTAX	  	/bin/mail [ options ] [ user... ]
+
+		  user   Name of each user to which mail is to be sent.
+			 If not specified, reads current mail, if any, 
+			 from your mailbox file.
+
+OPTIONS		-f   Displays mail messages contained in the specified
+		     file (next argument) in place of your mailbox file.
+		-p   Displays mail messages directly (does not require
+		     disposition command).
+		-q   Exits binmail session without affecting (updating)
+		     your mailbox file.
+		-r   Displays mail messages in a first-in, first-out
+		     order.
+
+EXAMPLES	/bin/mail
+		/bin/mail -f mbox
+
+DOCUMENTATION	binmail(1) in the ULTRIX-11 Programmer's Manual
+-cal
+
+DESCRIPTION	The cal command displays a calendar for the specified month or
+		year.
+
+SYNTAX		cal [ month ] year
+ 
+		  month  Month number: 1-12.  If specified, displays calendar
+			 for that month only.
+
+		  year   Year number: 1-9999. 
+
+EXAMPLES	cal 1985
+		cal 4 1900
+
+DOCUMENTATION	cal(1) in the ULTRIX-11 Programmer's Manual
+-calendar
+
+DESCRIPTION	The calendar command provides a calendar reminder service by
+		reading a user-created file and displaying all lines containing
+		the current date.
+
+SYNTAX		calendar [ - ]
+  
+DOCUMENTATION	calendar(1) in the ULTRIX-11 Programmer's Manual
+-cat
+
+DESCRIPTION	The cat command concatenates each specified file into a 
+		continuous output stream.
+
+SYNTAX		cat [ options ] file...
+
+		  file   Name of each file to be concatenated.  If not 
+			 specified, reads stdin until <CTRL/D> and writes
+			 this input to stdout.
+
+OPTIONS		-b   Ignores all blank lines and precedes each output line
+		     with its line number.
+		-e   Displays a dollar sign ($) at end of each line.
+		-n   Precedes all output lines (including blank lines) with
+		     line numbers.
+		-s   Squeezes multiple blank lines from output: single spaces
+		     output.
+		-t   Displays all nonprinting character (including tabs):
+		     <CTRL/X> as ^X, <DELETE> as ^?, non-ASCII characters 
+		     (with high bit set) as M- followed by low bits character,
+		     and tabs as ^I.
+		-u   Unbuffers all output.  Normally, output is buffered.
+		-v   Displays all nonprinting characters (excluding tabs): 
+		     <CTRL/X> as ^X, <DELETE> as ^?, and non-ASCII characters 
+		     (with high bit set) as M- followed by low bits character.
+
+DOCUMENTATION	cat(1) in the ULTRIX-11 Programmer's Manual
+-cb
+
+DESCRIPTION	The cb command uniformly spaces and indents C programs. 
+
+SYNTAX		cb
+
+DOCUMENTATION	cb(1) in the ULTRIX-11 Programmer's Manual
+-cc
+
+DESCRIPTION	The cc command compiles and links C programs.
+
+SYNTAX		cc [ options ] file...
+  
+		  file   Name of each file to compiled and/or linked.
+
+OPTIONS		-B   Finds substitutes for compiler passes from files with 
+		     suffixes cpp, c0, c1, and c2 in named path (-Bpath).  
+		     If path is not specified, uses /usr/c/o directory.
+		-D   Defines name to specified value (-Dname=value).  If value
+		     not specified, defined to 1.
+		-E   Runs preprocessor (cpp) only and writes output to stdout.
+		-I   Searches named directory (-Idirectory) for include files. 
+		-N   Places switch tables into text space.
+		-O   Uses the object code optimizer (c2).
+		-P   Runs preprocessor (cpp) and writes output to .i files.
+		-S   Compiles programs and writes output to .s files.
+		-U   Removes initial definition of name (-Uname).
+		-V   Generates code suitable for overlaid programs.
+		-Y   Compiles the named C programs with the SYSTEM V
+		     compatibility library.  The /lib/libcV.a library is 
+		     loaded prior to the /lib/libc.a library.
+		-c   Suppresses loading and produces an object (.o) file even 
+		     if only one program is being complied.
+		-o   Writes output to specified file (next argument).
+		-p   Produces count of times each routine is called.
+		-t   Finds substitute compiler pass from path named with -B
+		     option and optional key (-t[x...]).  Optional keys are:
+		     p (cpp), 0 (c0), 1 (c1), and 2 (c2).  
+
+DOCUMENTATION	cc(1) in the ULTRIX-11 Programmer's Manual
+		"A Tour through the UNIX C Compiler" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+		"The C Programming Language--Reference Manual" and "UNIX 
+		Programming--Second Edition" in the ULTRIX-11 Supplementary
+		Documents, Volume 1
+-cd
+
+DESCRIPTION	The cd command changes your current directory to the specified
+		directory.
+
+SYNTAX		cd [ directory ]
+
+		  directory   Name of directory to be changed to.  If not 
+			      specified, changes to your home directory.
+
+DOCUMENTATION	cd(1) in the ULTRIX-11 Programmer's Manual
+-cdc
+
+DESCRIPTION	The SCCS cdc command changes the commentary for the specified
+		release number (delta).
+
+SYNTAX		sccs cdc [ options ] file...
+
+		  file  Name of each file to be changed.
+
+OPTIONS		-m  Adds or deletes the specified modification numbers (-m##),
+		    from delta commentary.  Must be used with -r option.
+		-r  Indicates delta number (-r#).
+		-y  Changes commentary to specified string (-ystring).  Must 
+		    be used with -r option.
+
+DOCUMENTATION	cdc(1) in the  ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-check
+
+DESCRIPTION	The SCCS check command displays a list of file names of SCCS 
+		files that are currently being edited.  If none are being  
+		edited, returns exit status only.
+
+SYNTAX		sccs check 
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-checkeq
+
+DESCRIPTION	The checkeq command checks each specified file for unmatched
+		eqn codes.
+
+SYNTAX		checkeq [ file... ]
+
+		  file    Name of each file to be checked.  If not specified,
+			  reads stdin until <CTRL/D> and checks this input.
+
+DOCUMENTATION	eqn(1) in the ULTRIX-11 Programmer's Manual
+-checkmm
+
+DESCRIPTION	The checkmm command checks the mm macro coding in the
+		specified text file.
+
+SYNTAX	  	checkmm [ file... ]
+
+		  file   Name of each text file to be processed.
+			 If not specified, reads stdin until <CTRL/D>
+			 and processes this input.
+
+DOCUMENTATION   mm(1) in the ULTRIX-11 Programmer's Manual
+		"Memorandum Macros" in the ULTRIX-11 Supplementary
+		Documents, Volume 1
+-chfn
+
+DESCRIPTION	The chfn command changes the personal information in 
+		your /etc/passwd entry.
+
+SYNTAX		chfn
+
+DOCUMENTATION	chfn(1) in the ULTRIX-11 Programmer's Manual
+-chgrp
+
+DESCRIPTION	The chgrp command changes the group ID of each specified
+		file to that of the named group.
+
+SYNTAX		chgrp group file...
+
+		  group   Name of group whose ID is to be applied.
+
+		  file    Name of each file to be changed.
+
+EXAMPLES	chgrp bin program1 program2 program3
+
+DOCUMENTATION	chown(1) in the ULTRIX-11 Programmer's Manual
+-chmod
+
+DESCRIPTION	The chmod command changes the mode (access permissions)
+		of each specified file.
+
+SYNTAX		chmod mode file...
+
+		  mode   Mode (access permissions) to be applied.
+			 You can specify mode in octal or symbolic
+			 representation (see below).    
+
+		  file   Name of each file to be changed.
+
+   Octal representations are	      Symbolic representations are
+   formed by adding:		      formed by combining, in order:
+					     
+       0400  Owner read permission		u  Owner
+       0200  Owner write permission	  	g  Group 
+       0100  Owner execute permission		o  Other
+       0040  Group read permission	    	+  Adds permissions 
+       0020  Group write permission	   	-  Removes permissions
+       0010  Group execute permission	 	=  Sets permissions
+       0004  Other read permission	    	r  Read permission
+       0002  Other write permission	   	w  Write permission
+       0001  Other execute permission	 	x  Execute permission   
+
+     Symbolic representation allows for multiple changes to the same 
+     setting group or groups and, when comma separated, to different 
+     setting groups (see first and second examples).
+
+     For a list of other permissions settings, read chmod(1).
+
+EXAMPLES	chmod go+rx-w project.dir
+		chmod u+x,g=rw,o-r report
+		chmod 740 report
+
+DOCUMENTATION	chmod(1) in the ULTRIX-11 Programmer's Manual
+-chog
+
+DESCRIPTION	The chog command changes the user and group IDs of each
+		specified file to those of the named user.
+
+SYNTAX		chog user file...
+   
+		  user    Login name of user whose IDs are to be applied.
+
+		  file    Name of each file to be changed.
+
+EXAMPLES	chog bill report program1
+
+DOCUMENTATION	chog(1) in the ULTRIX-11 Programmer's Manual
+-chown
+
+DESCRIPTION	The chown command changes the user ID of each specified file 
+		to that of the named user.
+
+SYNTAX		chown user file...
+
+		  user    Login name of user whose ID is to be applied.
+
+		  file    Name of each file to be changed.
+
+EXAMPLES	chown bill program1 program2 
+
+DOCUMENTATION	chmod(1) in the ULTRIX-11 Programmer's Manual
+-chroot
+
+DESCRIPTION	The chroot command changes the root directory (/) to
+		the specified directory and executes a new shell.
+
+SYNTAX	  	chroot directory
+
+		  directory   Name of the directory that is to become
+			      the new root directory.
+
+DOCUMENTATION   chroot(1) in the ULTRIX-11 Programmer's Manual
+-chsh
+
+DESCRIPTION	The chsh command changes your login shell.
+
+SYNTAX		chsh user [ shell ]
+
+		  user    Login name of user whose shell is to be changed.
+
+		  shell   Name of shell to be changed to.  If not specified,
+			  changes to /bin/sh.
+
+EXAMPLES	chsh bill /bin/csh
+		chsh bill
+
+DOCUMENTATION	chsh(1) in the ULTRIX-11 Programmer's Manual
+-clean
+
+DESCRIPTION	The SCCS clean command removes all SCCS files in the 
+		current directory that can be recreated.
+
+SYNTAX		sccs clean
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-clear
+
+DESCRIPTION	The clear command clears your terminal screen.
+
+SYNTAX	  	clear
+
+DOCUMENTATION   clear(1) in the ULTRIX-11 Programmer's Manual
+-clr
+
+DESCRIPTION	The clr command clears your terminal screen.
+
+SYNTAX	  	clr
+
+DOCUMENTATION   clear(1) in the ULTRIX-11 Programmer's Manual.
+-cmp
+
+DESCRIPTION	The cmp command compares data from two files.
+
+SYNTAX		cmp [ options ] file1 file2
+
+		  file1    Names of two files to be compared.  If - is 
+		  file2    specified for file1, reads stdin until <CTRL/D> 
+			   and compares this data with file2.
+
+OPTIONS		-l   Displays differences in long format: byte address where 
+		     differences (decimal) and data differences (octal).
+		-s   Suppresses normal output and returns exit code only.
+		     Returns 0 if files are identical, 1 if different, and
+		     2 if an error occurred.
+
+DOCUMENTATION	cmp(1) in the ULTRIX-11 Programmer's Manual
+-col
+	
+DESCRIPTION	The col command processes line overlays and half-line feeds 
+		in text data.
+
+SYNTAX		col [ options ]
+
+OPTIONS		-b   Specifies that output device does not have backspacing.
+		-f   Suppresses moving half lines to next full line.
+		-x   Suppresses conversion of white space to tabs.
+
+DOCUMENTATION	col(1) in the ULTRIX-11 Programmer's Manual
+-comb
+
+DESCRIPTION	The SCCS comb command combines delta versions of an SCCS file.
+
+SYNTAX		sccs comb [ options ] file...
+
+		  file  Name of each SCCS file to be processed.
+
+OPTIONS		-c  Preserves specified deltas (-clist).  All other deltas
+		    are discarded.
+		-o  Causes reconstructed file to be accessed at release of
+		    delta to be created.
+		-p  Indicates oldest delta number (-p#) to preserve.
+		-s  Generates additional shell script that, when executed, 
+		    reports: file name, size (blocks) after combining, size
+		    (blocks) of original, and percentage changed.
+
+DOCUMENTATION	comb(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-comm
+	
+DESCRIPTION	The comm command compares data from two sorted files.
+
+SYNTAX		comm [ options ] file1 file2
+
+		  file1   Name of each file to be compared.  If - is 
+		  file2   specified for either file1 or file2, reads 
+			  stdin until <CTRL/D> and compares input with 
+			  that from named file.
+
+OPTIONS		-1   Suppresses column one: lines in file1 only.
+		-2   Suppresses column two: lines in file2 only.
+		-3   Suppresses column three: lines in file1 and file2.
+
+EXAMPLES	comm -1 program1 program2
+		comm -23 program1 program2
+
+DOCUMENTATION	comm(1) in the ULTRIX-11 Programmer's Manual
+-cp
+
+DESCRIPTION	The cp command copies file data to another file or directory.
+
+SYNTAX		cp file1 file2
+		cp file... directory
+
+		  file1       Name of file whose data is to be copied and
+		  file2       name given file into which data is copied.
+
+		  file	      Name of each file to be copied to directory.
+
+		  directory   Name of directory into which each file is copied.
+
+EXAMPLES	cp /usr/bin/program mycopy
+		cp program1 program2 program3 mydirectory
+
+DOCUMENTATION	cp(1) in the ULTRIX-11 Programmer's Manual
+-cpio
+
+DESCRIPTION	The cpio command copies files in and out of archive
+		libraries.
+
+SYNTAX	  	cpio option[key]
+
+OPTIONS		-i   Copies in files that match the specified pattern
+		     (next argument).  If the pattern is not specified,
+		     copies in all files.
+		-o   Reads stdin until <CTRL/D> and copies out the 
+		     specified files.
+		-p   Copies file into the specified directory (next
+		     argument).
+
+KEYS		B    Resets the access time of each copied file.  Can be
+		     used with the -o and -p.
+		S    Swaps half words while copying files in.  Used with
+		     -i only.
+		6    Indicates file is in UNIX 6th edition format. Used
+		     with -i only.
+		a    Updates the access time of each copied file.  Can 
+		     be used with -o and -p.
+		b    Swaps both bytes and half words while copying files
+		     in.  Used with -i only.
+		c    Creates header information in ASCII format.  Used
+		     with -i and -o.
+		d    Creates directories as needed.  Can be used with
+		     -i and -o.
+		f    Copies all files except those that match the 
+		     specified pattern.  Used with -i only.
+		l    Creates links wherever possible.  Used with -p 
+		     only.
+		m    Retains modification time for each copied file.  
+		     Can be used with -i and -p.
+		r    Interactively renames files.  Can be used with -i 
+		     and -p.
+		s    Swaps bytes while copying files in.  Used with
+		     -i only.
+		t    Displays the archive's table of contents or the 
+		     files created.  Used with -i only.
+		u    Copies files unconditionally.  Can be used with -i
+		     and -p.
+		v    Displays detailed (verbose) information as it 
+		     copies and/or creates file.
+
+DOCUMENTATION   cpio(1) in the ULTRIX-11 Programmer's Manual
+-create
+
+DESCRIPTION	The SCCS create command creates new SCCS files.
+
+SYNTAX		sccs create file...
+
+		  file  Name of each SCCS file to be created.
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-csh
+
+DESCRIPTION	The csh command provides an interactive command interpreter
+		that has a full subset of options, special characters, and
+		control flow constructs.
+
+SYNTAX		csh [ options ] [ arg... ]
+
+		  arg   Name of each command to be executed and command
+			options and arguments, if any.   If not specified,
+			invokes csh for interactive execution.
+
+OPTIONS		-V  Displays verbose information as input is read, even
+		    before .cshrc file is read.
+		-X  Display command sequence before execution, even before
+		    .cshrc file is read.
+       		-c  Reads commands from specified file (next argument).
+		-e  Exits if any command terminates abnormally.
+		-f  Invokes fast startup: does not read .cshrc file.
+		-i  Invokes interactive shell (default).
+		-n  Reads commands only: does not execute them.
+		-s  Reads input from stdin.
+		-t  Exits after one command.
+		-v  Displays verbose information as input is read.
+		-x  Display command sequence before execution.
+
+DOCUMENTATION	csh(1) in the ULTRIX-11 Programmer's Manual
+		"An introduction to the C shell" in the ULTRIX-11 Supplementary
+		Documents, Volume 1
+-csplit
+
+DESCRIPTION	The csplit command splits the specified file into 
+		smaller sized files.
+
+SYNTAX	  	csplit [ options ] file arg...
+
+		  file   Name of the file that is to be processed.  
+
+		  arg    Each context pattern string that determines how
+			 the file is to be split up.
+
+OPTIONS		-f   Uses the specified string (-fstring) as a name 
+		     prefix for all created files.  If not specified, 
+		     uses xx prefix.
+		-k   Does not remove all created files if an error 
+		     occurs.  If not specified, removes all created 
+		     files on error.
+		-s   Suppresses all character count displays.  If not
+		     specified, displays character count for each file
+		     created.
+
+DOCUMENTATION   csplit(1) in the ULTRIX-11 Programmer's Manual
+-ctags
+
+DESCRIPTION	The ctags command creates a tags file for the ex editor
+		from the specified C, PASCAL, or FORTRAN source file.
+
+SYNTAX	  	ctags [ options ] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-B   Uses backward pattern search.
+		-F   Uses forward pattern search.
+		-a   Appends information to an existing tags file.
+		-t   Create typedef tags.
+		-u   Updates the specified tags file.
+		-v   Produces an index for the generated output.
+		-w   Suppresses all diagnostic information.
+		-x   Generates a cross reference listing.
+
+DOCUMENTATION   ctags(1) in the ULTRIX-11 Programmer's Manual
+-ctrace
+
+DESCRIPTION	The ctrace command traces the statement-by-statement 
+		execution of the specified C program.
+
+SYNTAX	  	ctrace [ options ] [ file ]
+
+		  file   Name of the C program to be processed.  If not
+			 specified, reads stdin until <CTRL/D> and 
+			 processes this input.
+
+OPTIONS		-P   Runs the preprocessor on input before tracing its
+		     execution.
+		-e   Prints variables in floating point.
+		-f   Traces only the specified functions (next 
+		     arguments).
+		-l   Uses the specified number (next argument) as the 
+		     number of consecutive statements to be checked for
+		     loop tracing.  If not specified, checks 20.
+		-o   Prints variables in octal format.
+		-p   Changes the print function according to the 
+		     specified prefix (next argument).
+		-r   Uses the specified file (next argument) in place of
+		     the runtime.c trace package.
+		-s   Suppresses redundant trace output.
+		-t   Traces the specified number (next argument) of 
+		     variables per statement.  If not specified, traces 
+		     10.
+		-u   Prints variables in unsigned format.
+		-v   Traces all but the specified functions (next 
+		     arguments).
+		-x   Prints variable in hexadecimal format.
+
+DOCUMENTATION   ctrace(1) in the ULTRIX-11 Programmer's Manual
+-cu
+
+DESCRIPTION	The cu command allows you to call and connect to a remote 
+		system.
+
+SYNTAX		cu phone [ options ]
+
+		   phone   Telephone number to be called.
+
+OPTIONS		-#  Uses specified number (#) as communications line special
+		    file.
+        	-a  Uses specified special file (next argument) as ACU (auto
+		    call unit).  If not specified, uses /dev/cua0.
+		-l  Uses specified special file (next argument) as the
+		    communications device.  If not specified, uses /dev/cu10.
+		-s  Uses specified speed (next argument) as the baud rate.
+		    If not specified, uses 300.
+		-t  Dials out to terminal.
+
+DOCUMENTATION	tip(1c) in the ULTRIX-11 Programmer's Manual
+-cut
+
+DESCRIPTION	The cut command deletes selected fields of each line 
+		from the specified files.
+
+SYNTAX	  	cut [ options ] file...
+
+		  file   Name of each file to be processed.  If not 
+			 specified, reads stdin until <CTRL/D> and
+			 processes this input.
+
+OPTIONS		-c   Specifies the character positions to be cut out
+		     (-clist).
+		-d   Uses the specified character (-dx) as the field 
+		     delimiter.  If not specified, uses a tab.
+		-f   Specifies the fields (-flist) to be cut out. 
+		-s   Suppresses all lines with no delimiter characters.
+		     If not specified, lines with no delimiters are 
+		     passed through untouched.  Used with the -f
+		     option only.
+
+DOCUMENTATION   cut(1) in the ULTRIX-11 Programmer's Manual
+-date
+	
+DESCRIPTION	The date command displays the current date and time.
+
+SYNTAX		date [ -u ]
+
+OPTIONS		-u   Displays time in GMT. 
+
+EXAMPLES	date
+		date -u
+
+DOCUMENTATION	date(1) in the ULTRIX-11 Programmer's Manual
+-dc
+	
+DESCRIPTION	The dc command provides an interactive desktop calculator
+		that has a full language subset.
+
+SYNTAX		dc [ file ]
+
+		  file   Name of file from which data is to be read.
+
+DOCUMENTATION	dc(1) in the ULTRIX-11 Programmer's Manual
+		"DC--An Interactive Desk Calculator" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-dcat
+
+DESCRIPTION	The dcat command concatenates the contents of the
+		specified DECnet files.
+
+SYNTAX	  	dcat [ options ] file...
+
+		  file   Name of each DECnet file to be processed.
+
+OPTIONS		-d   Displays debugging information in Data Access 
+		     Protocol (DAP) message trace format.
+		-v   Displays the name of each DECnet file as processed.
+		
+DOCUMENTATION   dcat(1d) in the ULTRIX-11 Programmer's Manual
+		DECnet ULTRIX documentation
+-dcp
+
+DESCRIPTION	The dcp command copies the specified file to and from
+		DECnet nodes.
+
+SYNTAX	  	dcp [ options ] ifile ofile
+
+		  ifile   Name of each DECnet input file specification.
+
+		  ofile   Name of each DECnet output file specification.
+
+OPTIONS		-A   Appends each input file to the specified output 
+		     file.
+		-P   Copies and displays the name of each output file 
+		     on close.
+		-S   Copies and executes each output file on the remote
+		     system.
+		-a   Copies each specified input file in ASCII mode.
+		-d   Displays debugging information in Data Access 
+		     Protocol (DAP) message trace format.
+		-i   Copies each specified input file in image mode.
+		-v   Displays the name of each DECnet file processed on
+		     stderr.
+
+DOCUMENTATION   dcp(1d) in the ULTRIX-11 Programmer's Manual
+		DECnet ULTRIX documentation
+-dd
+	
+DESCRIPTION	The dd command copies and converts file data.
+
+SYNTAX		dd [ keyword ]
+
+KEYWORDS	if=     Name of input file.
+		of=     Name of output file.
+		ibs=    Sets input block size to # bytes.  If not specified, 
+			defaults to 512.
+		obs=    Sets output block size to # bytes.  If not specified, 
+			defaults to 512.
+		bs=     Sets input and output block size to # bytes.
+			If specified, overrides ibs= and obs= keywords.
+		cbs=    Sets conversion buffer size to # bytes.  Required with
+			conv= keyword.
+		skip=   Skips # records before copying.
+		files=  Copies # files.
+		seek=   Seeks to #th record on output file before copying.
+		count=  Copies # input records.
+		conv=   Converts data: ascii (EBCDIC to ASCII), ebcdic (ASCII
+			to EBCDIC), ibm (ASCII to EBCDIC, for IBM print chain),
+			lcase (alphabetics to lower case), ucase (alphabetics 
+			to upper case), swap (swap every pair of bytes), 
+			noerror (continue on error), and sync (pad input 
+			records to input buffer size).
+
+EXAMPLES	dd if=/dev/rht0 of=myfile ibs=800 cbs=80 conv=ascii,lcase
+
+DOCUMENTATION	dd(1) in the ULTRIX-11 Programmer's Manual
+-deledit
+
+DESCRIPTION	The SCCS deledit command, first, makes a new delta and, then,
+		gets that delta for editing.
+
+SYNTAX		sccs deledit file...
+
+		  file   Name of each SCCS file to be processed.
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-delget
+
+DESCRIPTION	The SCCS delget command, first, makes a new delta and, then,
+		get a copy of that delta.
+
+SYNTAX		sccs delget file...
+
+		  file   Name of each SCCS file to be processed.
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-delta
+
+DESCRIPTION	The SCCS delta command saves all changes made to an SCCS file
+		by creating a new delta.
+
+SYNTAX		sccs delta [ options ] file
+
+		  file   Name of SCCS file to be processed.
+
+OPTIONS		-g  Ignores specified list of deltas (-gstring).
+		-m  Indicates the modification request number.
+		-n  Does not delete edited file.
+		-p  Displays differences before and after delta is applied.
+		-r  Indicates new delta release number (-r#).
+		-s  Suppresses all messages.
+		-y  Creates delta with specified commentary (-ystring).
+
+DOCUMENTATION	delta(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-deroff
+	
+DESCRIPTION	The deroff command removes eqn, nroff, tbl, and troff coding
+		from each specified file.
+
+SYNTAX		deroff [ -w ] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-w   Produces word list (one word per line) in place of normal
+		     output.
+
+DOCUMENTATION	deroff(1) in the ULTRIX-11 Programmer's Manual
+-diff
+
+DESCRIPTION	The diff command displays text differences between files.
+
+SYNTAX		diff [ options ] file1 file2
+
+		  file1   Names of files whose differences are to be 
+		  file2   displayed.  If - is specified for either file,
+			  reads stdin until <CTRL/D> in place of that file.
+			  Then, it displays differences between named file 
+			  and this input.  If a directory is specified for 
+			  either file, uses file in that directory with
+			  same name as named file.  Then, it displays 
+			  differences in their data.
+
+OPTIONS		-D   Uses specified string (-Dstring) and creates merged 
+		     version of file1 and file2.
+		-S   Beginning with the specified file (next argument)
+		     compares the files in the current directory.
+       		-b   Ignores all trailing blanks.
+		-c   Displays specified number of context lines (-c#) 
+		     with each output line.  If number is not specified,
+		     displays three context lines.
+		-e   Writes output to ed script.
+		-f   Writes output to script, but in the reverse order.
+		-h   Makes hasty (quick) comparison.
+		-l   Displays output in long format.
+		-r   Recursively checks all files in common subdirectories.
+		-s   Displays names of files that are the same.
+
+DOCUMENTATION	diff(1) in the ULTRIX-11 Programmer's Manual
+-diff3
+
+DESCRIPTION	The diff3 command compares the data in three specified 
+		files.
+
+SYNTAX	  	diff3 [ options ] file1 file2 file3
+
+		  file1   Name of each file to be processed.
+		  file2
+		  file3
+
+OPTIONS		-3   Produces an ed editor script containing the changes
+		     between file1 and file2 that are to be incorporated
+		     into file3.
+		-e   Produces an ed editor script containing the changes
+		     between file2 and file3 that are to be incorporated
+		     into file1.
+		-x   Produces an ed editor script containing the changes
+		     between all three files.
+		
+DOCUMENTATION   diff3(1) in the ULTRIX-11 Programmer's Manual
+-dlogin
+
+DESCRIPTION	The dlogin command allows you to log in to a remote 
+		DECnet host node.
+
+SYNTAX	  	dlogin node [ options ]
+
+		  node   Name of the remote DECnet host node.
+
+OPTIONS		-e   Uses the specified character (next argument) as the
+		     dlogin escape character.  If not specified, uses ~
+		     as the escape character.
+		-l   Uses the specified file (next argument) as the
+		     logfile for this session.
+		
+DOCUMENTATION   dlogin(1d) in the ULTRIX-11 Programmer's Manual
+		DECnet ULTRIX documentation
+-dls
+
+DESCRIPTION	The dls command lists the contents of or generates 
+		statistics for the specified DECnet directory or file.
+
+SYNTAX	  	dls [ options ] file
+
+		  file   File specification for the remote DECnet 
+			 directory or file.
+
+OPTIONS		-C   Lists the directory contents in multicolumn format.
+		-1   Lists the directory contents in single column 
+		     format.
+		-a   Lists all files including . and .. in an ULTRIX
+		     directory.
+		-d   Displays debugging information in Data Access
+		     Protocol (DAP) message trace format.
+		-l   Displays statistics for the contents of the DECnet
+		     directory in long format.
+
+DOCUMENTATION   dls(1d) in the ULTRIX-11 Programmer's Manual
+		DECnet ULTRIX documentation
+-drm
+
+DESCRIPTION	The drm command removes the specified file from a remote
+		DECnet directory.
+
+SYNTAX	  	drm [ -d ] file
+
+		  file   File specification for the remote DECnet file.
+
+OPTIONS		-d   Displays debugging information in Data Access
+		     Protocol (DAP) message trace format.
+
+DOCUMENTATION   drm(1d) in the ULTRIX-11 Programmer's Manual
+		DECnet ULTRIX documentation
+-du
+	
+DESCRIPTION	The du command displays the amount of disk usage for each
+		specified directory or file.
+
+SYNTAX		du [ options ] [ name... ]
+
+		  name   Name of each directory or file for which usage 
+			 summary is generated.  If not specified, uses 
+			 current directory.
+
+OPTIONS		-a    Displays disk usage for all files.
+		-s    Displays only summary total.
+
+DOCUMENTATION	du(1) in the ULTRIX-11 Programmer's Manual
+-echo
+	
+DESCRIPTION	The echo command writes each specified argument to stdout.
+
+SYNTAX		echo [ -n ] [ string... ]
+
+		  string   Each argument to be written to stdout.  The echo 
+			   command separates all arguments with blanks and 
+			   terminates string with a newline.
+
+OPTIONS		-n   Suppresses newlines from output.
+
+DOCUMENTATION	echo(1) in the ULTRIX-11 Programmer's Manual
+-ed
+	
+DESCRIPTION	The ed command provides an interactive, line-oriented editor 
+		that has a full subset of commands.
+
+SYNTAX		ed [ - ] [ file ]
+
+		  file   Name of file to be edited.  The ed command edits 
+			 a copy of the named file and update source file only
+			 when the write command (w) is invoked.  If not 
+			 specified, edits unnamed temporary file.
+
+OPTIONS		-   Suppresses all character count displays.  Normally, ed
+		    displays a character count when invoked, whenever
+		    you edit another file (e), read in data from another
+		    file (r), or write out to file (w).
+
+DOCUMENTATION	ed(1) in the ULTRIX-11 Programmer's Manual
+		"A Tutorial Introduction to the UNIX Text Editor" and "Advanced
+		Editing on UNIX" in the ULTRIX-11 Supplementary Documents, 
+		Volume 1
+-edit
+
+DESCRIPTION	The SCCS edit command gets an SCCS file for editing.
+
+SYNTAX		sccs edit [ options ] file
+
+		  file  Name of the SCCS file to be processed.
+
+OPTIONS		-b  Creates a branch.
+		-i  Includes specified list of deltas (-istring).
+		-r  Indicates delta number (-r#) to get for editing.
+		-x  Excludes specified list of deltas (-xstring).
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-egrep
+	
+DESCRIPTION	The egrep command performs a fast search of each specified file
+		for the designated extended expression.
+
+SYNTAX		egrep [ options ] [ string ] [ file... ]
+  
+		  string   Pattern to be searched for.
+
+		  file     Name of each file to be searched.
+
+OPTIONS		-b   Precedes each output line with its block number.
+		-c   Produces count of matching lines only.
+		-e   Uses specified expression (next argument) that begins with
+		     minus (-).
+		-f   Uses specified file (next argument) for input of regular 
+		     expression.
+		-h   Suppresses file name headers from output.
+		-l   Lists files and matching lines only once, separated by 
+		     newline.
+		-n   Precedes each matching line with its line number.
+		-s   Suppresses output and displays return code only: 0, if
+		     match found; 1, if none; 2, if error occurred.
+		-v   Displays all lines that do not match specified expression.
+
+DOCUMENTATION	grep(1) in the ULTRIX-11 Programmer's Manual
+-eqn
+	
+DESCRIPTION	The eqn command provides a formatter for mathematic equations.
+
+SYNTAX		eqn [ options ] [ file... ]
+
+		  file   Name of each file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and processes this input.
+
+OPTIONS		-d   Sets text delimiters to specified characters (-dxy).
+		     Both delimiters can be set to same character. 
+		-f   Sets font to specified font number (-f#).
+		-p   Reduces point size by the specified points (-p#).
+		-s   Sets equation size to specified number (-s#). 
+
+DOCUMENTATION	eqn(1) in the ULTRIX-11 Programmer's Manual
+		"Typesetting Mathematics--User's Guide" in the ULTRIX-11
+		Supplementary Documents, Volume 1
+-error
+
+DESCRIPTION	The error command analyzes and disperses compiler and 
+		processor error messages back into the source file.
+
+SYNTAX	  	error [ options ] [ file ]
+
+		  file   Name of the source file to be processed.  If 
+			 not specified, reads stdin until <CTRL/D> and
+			 processes this input.
+
+OPTIONS		-I   Ignores the functions listed in the specified file
+		     (next argument).
+		-n   Displays error messages at stderr but does not 
+		     merge them back into the source file.
+		-q   Prompts before touching the source file.
+		-s   Displays statistics for each error type.
+		-t   Does not touch those files that match the specified
+		     suffix (next argument).
+		-v   Invokes the vi editor on each file that had been 
+		     touched.
+		
+DOCUMENTATION   error(1) in the ULTRIX-11 Programmer's Manual
+-ex
+
+DESCRIPTION	The ex command provides an interactive, line-oriented editor 
+		that has a display feature and a full subset of commands.
+
+SYNTAX		ex [ options ] [ +cmd ] file...
+
+		  +cmd   Starts edit session with specified command (cmd).
+
+		  file   Name of each file to be edited.  If more than one
+			 file is specified, edits each file in succession. 
+			 For further information, read about the :n command 
+			 in the ex manual page.
+
+OPTIONS		-   Suppresses all character count displays.  Normally, ex
+		    displays a character count upon being invoked, whenever
+		    you edit another file (e), read-in data from another
+		    file (r), or write out to a file (w).
+		-l  Sets up edit session for LISP.
+		-r  Recovers edit session lost during a system crash.
+		-t  Searches file for and begins session at occurrence of
+		    specified string (next argument).
+		-v  Invokes full-screen text display (equivalent to vi editor).
+
+DOCUMENTATION	ex(1) in the ULTRIX-11 Programmer's Manual
+		"Ex Reference Manual" in the ULTRIX-11 Supplementary Documents, 
+		Volume 1
+-expand
+
+DESCRIPTION	The expand command expands all tabs in each specified 
+		file to spaces.
+
+SYNTAX	  	expand [ options ] [ file... ]
+
+		  file   Name of each file to be processed.  If not 
+			 specified, reads stdin until <CTRL/D> and
+			 processes this input.
+
+OPTIONS		-#   Sets tab stops the specified number of spaces (#)
+		     apart.  If more than one number is specified (comma
+		     separated), sets them at the specified columns.
+
+DOCUMENTATION   expand(1) in the ULTRIX-11 Programmer's Manual
+-expr
+	
+DESCRIPTION	The expr command evaluates each specified expression.
+
+SYNTAX		expr expression...
+
+		  expression   Name of each expression to be evaluated. 
+			       For list of expressions, read the expr 
+			       manual page.
+
+DOCUMENTATION	expr(1) in the ULTRIX-11 Programmer's Manual
+-f
+
+DESCRIPTION	The f command displays information about all users 
+		that are currently logged on the system.
+
+SYNTAX		f
+
+DOCUMENTATION	finger(1) in the ULTRIX-11 Programmer's Manual
+-f77
+
+DESCRIPTION	The f77 command compiles and links FORTRAN 77 programs.
+
+SYNTAX	  	f77 [ options ] file...
+
+		  file   Name of each FORTRAN 77 source file to be 
+			 processed.
+
+OPTIONS		-C   Runs the compiler and checks that all subscripts 
+		     are within declared boundaries.
+		-E   Uses specified character (-Ex) as the EFL option.
+		-F   Runs the EFL and Ratfor preprocessors only.
+		-N   Uses specified key and numbers (-N[key]nnn) to 
+		     change the static compiler tables.  The keys are:
+			c   Maximum depth for control statements.  The
+			    default is 20.
+			n   Maximum number of identifiers.  The default
+			    is 401.
+			q   Maximum number of equivalenced variables.  
+			    The default is 150.
+			s   Maximum number of statement numbers.  The
+			    default is 201.
+			x   Maximum number of external names.  The
+			    default is 200.
+		-O   Uses the object code optimizer (/lib/c2).
+		-R   Uses the specified string (-Rstring) for a Ratfor
+		     option.
+		-S   Compiles files and writes output to .s files.
+		-T   Uses specified key and name (-T[key]name) as 
+		     substitute compiler pass.  The keys are:
+			F   Substitutes named file for /lib/crt0.
+			M   Substitutes named file for /usr/bin/m4.
+			1   Substitutes named file for /usr/c/oc1.
+			2   Substitutes named file for /usr/c/oc2.
+			a   Substitutes named file for /bin/as.
+			l   Substitutes named file for /bin/ld.
+		-V   Generates code suitable for overlaid programs.
+		-c   Suppresses loading and produces .o files.
+		-f   Uses the floating point interpreter.
+		-m   Uses the m4 preprocessor.
+		-o   Write output to the specified file (next
+		     argument).
+		-onetrip   Compiles do loops that are used only once.
+		-p   Displays count of times each routine is called.
+		-u   Makes default variable type "undefined".
+
+DOCUMENTATION   f77(1) in the ULTRIX-11 Programmer's Manual
+		"A Portable Fortran 77 Compiler" in the ULTRIX-11
+		Supplementary Documents, Volume 2
+-factor
+	
+DESCRIPTION	The factor command factors the specified number.
+
+SYNTAX		factor [ num ]
+
+		  num   Number to be factored.  If not specified, reads 
+			stdin until number is typed and displays its prime 
+			factors.
+
+EXAMPLES	factor 36
+
+DOCUMENTATION	factor(1) in the ULTRIX-11 Programmer's Manual
+-false
+	
+DESCRIPTION	The false command forces an unsuccessful exit status.
+
+SYNTAX		false
+
+DOCUMENTATION	true(1) in the ULTRIX-11 Programmer's Manual
+-fgrep
+	
+DESCRIPTION	The fgrep command performs a fast, compact search of each 
+		specified file for the designated fixed pattern.
+
+SYNTAX		fgrep [ options ] [ string ] [ file... ]
+  
+		  string   Pattern to be searched for.
+
+		  file     Name of each file to be searched.
+
+OPTIONS		-b   Precedes each output line with its block number.
+		-c   Produces count of matching lines only.
+		-e   Uses specified expression (next argument) that begins with
+		     minus (-).
+		-f   Uses specified file (next argument) for input of regular 
+		     expression.
+		-h   Suppresses file name headers from output.
+		-l   Lists files and matching lines only once, separated by 
+		     newline.
+		-n   Precedes each matching line with its line number.
+		-s   Suppresses output and displays return code only: 0, if
+		     match found; 1, if none; 2, if error occurred.
+		-v   Displays all lines that do not match specified expression.
+		-x   Displays only lines that match in their entirety.
+
+DOCUMENTATION	grep(1) in the ULTRIX-11 Programmer's Manual
+-file
+	
+DESCRIPTION	The file command attempts to determine the file type of each 
+		specified file.
+
+SYNTAX		file file... 
+
+		  file   Name of each file whose data type is to be determined.
+
+DOCUMENTATION	file(1) in the ULTRIX-11 Programmer's Manual
+-find
+	
+DESCRIPTION	The find command attempts to locate each specified file.
+
+SYNTAX		find path expression
+
+		  path    Pathname of directories to be searched for files 
+			  that match specified expression.
+
+EXPRESSIONS	-atime   Tests if file has been accessed in specified number
+			 of days (next argument).
+		-exec    Tests true if specified command (next argument) 
+			 returns a 0 on exit.
+		-group   Tests if group ID matches specified group name (next
+			 argument).
+		-inum    Tests if file has specified inode number (next 
+			 argument).
+		-links   Tests if file has specified number of links (next 
+			 argument).
+		-mtime   Tests if file has been modified in specified number 
+			 of days (next argument).
+		-name    Tests if file has specified name (next argument).
+		-newer   Tests if file has been modified more recently than
+			 the specified file (next argument).
+		-ok      Executes the specified command (next argument) and
+			 displays output to stdout.
+		-perm    Tests if file has specified (octal) mode (next 
+			 argument).
+		-print   Prints current pathname.
+		-size    Tests if file has specified number of blocks (next 
+			 argument).
+		-type    Tests if file is specified type (next argument).
+		-user    Tests if file owner is specified user (next argument).
+
+DOCUMENTATION	find(1) in the ULTRIX-11 Programmer's Manual
+-finger
+	
+DESCRIPTION	The finger command displays personal information about 
+		each user who has an account on the system.
+
+SYNTAX		finger [ options ] [ user... ]
+
+		  user    Login name of each user whose finger information is
+			  to be displayed.  If not specified, displays summary 
+			  list for all users currently logged in.
+
+OPTIONS		-b   Uses slightly briefer display.
+		-f   Suppresses normal header.
+		-h   Suppresses project information (.project) from display.
+		-i   Displays quick list that includes all idle time.
+		-l   Displays output in long format.
+		-p   Suppresses plan information (.plan) from display.
+		-q   Displays a quick list only.
+		-s   Displays output in short format.
+		-w   Displays output in narrow format.
+
+EXAMPLES	finger
+		finger bill jones mary
+		finger -q 
+
+DOCUMENTATION	finger(1) in the ULTRIX-11 Programmer's Manual
+-fix
+
+DESCRIPTION	The SCCS fix command removes the current delta and gets the 
+		earlier delta for edit.
+
+SYNTAX		sccs fix file...
+
+		  file  Name of each SCCS file to be processed.
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-fmt
+
+DESCRIPTION	The fmt command formats text into single column
+		paragraphs.
+
+SYNTAX	  	fmt [ file ]
+
+		  file   Name of the file to be processed.  If not
+			 specified, reads stdin until <CTRL/D> and
+			 processes this input.
+
+DOCUMENTATION   fmt(1) in the ULTRIX-11 Programmer's Manual
+-from
+	
+DESCRIPTION	The from command displays whom your mail is from.
+
+SYNTAX		from [ options ]
+
+OPTIONS		-f   Uses specified file (next argument) instead of your
+		     normal mail file.  If this option is used, but file 
+		     argument is not specified, reads your mbox file.
+		-s   Determines if any new mail from specified user (next 
+		     argument).
+
+EXAMPLES	from 
+		from -f 
+		from -f -s mary
+  
+DOCUMENTATION	from(1) in the ULTRIX-11 Programmer's Manual
+-ftp
+
+DESCRIPTION	The ftp command provides an interactive, user interface
+		to the ARPANET standard File Transfer Protocol.
+
+SYNTAX	  	ftp [ options ] [ system ]
+
+		  system   Name of the destination system.  If not 
+			   specified, uses the system named by the
+			   subcommand.
+
+OPTIONS		-d   Enables debugging.
+		-g   Disables file name expansion.
+		-i   Disables prompting during multiple file transfers.
+		-n   Disables autologin during an initial connection.
+		-v   Displays all responses from the remote server as
+		     well as all data transfer statistics.
+		
+DOCUMENTATION   ftp(1c) in the ULTRIX-11 Programmer's Manual
+-get
+
+DESCRIPTION	The SCCS get command gets a copy of an SCCS file.
+
+SYNTAX		sccs get [ options ] file...
+
+		  file   Name of each SCCS file to be processed.
+
+OPTIONS		-a  Retrieves the specified delta sequence number (-a#).
+		-b  Gets delta from new branch.  Must be used with -e option.
+		-c  Does not apply to deltas created after specified date
+		    (-cdate).
+		-e  Gets specified delta version for edit.
+		-g  Suppresses getting text from delta.
+		-i  Includes specified list of deltas (-istring).
+		-k  Does not expand ID keywords.
+		-l  Writes delta summary to l-file.  If optional p key is also
+		    specified (-lp), writes delta summary to stdout only.
+		-m  Precedes each text line with delta version number.
+		-n  Precedes each text line with identification keyword.
+		-p  Writes text to stdout.
+		-r  Indicates specified delta version number (-r#).
+		-s  Suppresses all messages.
+		-t  Gets most recently created (top) delta.
+		-x  Excludes specified list of deltas (-xstring).
+
+DOCUMENTATION	get(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-getopt
+
+DESCRIPTION	The getopt command parses and checks options that are
+		specified on the command line.
+
+SYNTAX	  	set - `getopt string $*`
+
+		  string   Alphanumeric list of option letters.
+
+DOCUMENTATION   getopt(1) in the ULTRIX-11 Programmer's Manual
+-graph
+	
+DESCRIPTION	The graph command draws a graph from the specified options.
+
+SYNTAX		graph [ options ] 
+
+OPTIONS		-a   Supplies abcissas automatically (not in input) and uses
+		     next two arguments to set spacing and starting point.
+		-b   Breaks graph after each label in input.
+		-c   Uses specified string (next argument) as label.
+		-g   Uses specified number (next argument) in setting up grid
+		     style: 0 (no grid), 1 (frame with ticks), and 3 (full 
+		     grid).  If not specified, uses 3.
+		-h   Uses specified number (next argument) as fraction of space
+		     for height.
+		-l   Uses specified string (next argument) as graph label.
+		-m   Uses specified number (next argument) in setting up line
+		     mode: 0 (disconnected) and 1 (connected).  If not 
+		     specified, uses 1.
+		-r   Uses specified number (next argument) as fraction of space
+		     to right before plotting.
+		-s   Saves screen (no erase) before plotting.
+		-t   Transposes vertical and horizontal axises.
+		-u   Uses specified number (next argument) as fraction of space
+		     up before plotting.
+		-w   Uses specified number (next argument) as fraction of space
+		     for width.
+		-x   Determines x axis logarithmically.
+		-y   Determines y axis logarithmically.
+
+DOCUMENTATION	graph(1g) in the ULTRIX-11 Programmer's Manual
+-greek
+
+DESCRIPTION	The greek command provides a filter that re-interprets
+		all characters typed at your terminal to an extended
+		character set.
+
+SYNTAX	  	greek [ option ]
+
+OPTIONS		-T   Uses the specified name (next argument) as the 
+		     terminal type.
+		
+DOCUMENTATION   greek(1) in the ULTRIX-11 Programmer's Manual
+-grep
+	
+DESCRIPTION	The grep command searches each specified file for the 
+		designated regular expression.
+
+SYNTAX		grep [ options ] string [ file... ]
+  
+		  string   Pattern to be searched for. Patterns are limited 
+			   to regular expressions.
+
+		  file     Name of each file to be searched.
+
+OPTIONS		-b   Precedes each output line with its block number.
+		-c   Produces count of matching lines only.
+		-e   Uses specified expression (next argument) that begins with
+		     minus (-).
+		-h   Suppresses file name headers from output.
+		-l   Lists files and matching lines only once, separated by 
+		     newline.
+		-n   Precedes each matching line with its line number.
+		-s   Suppresses output and display return code only: 0, if
+		     match found; 1, if none; 2, if error occurred.
+		-v   Displays all lines that do not match specified expression.
+		-y   Matches lowercase letters with uppercase.
+
+DOCUMENTATION	grep(1) in the ULTRIX-11 Programmer's Manual
+-help
+	
+DESCRIPTION	The help command displays on-line help information.
+
+SYNTAX		help [ arg... ]
+
+		  arg   Menu, command, term, file, or kernel error 
+			message for which you want help information 
+			displayed.  If not specified, displays help 
+			welcome menu.
+
+DOCUMENTATION	help(1) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 Help Facility Overview
+-hostid
+
+DESCRIPTION	The hostid command displays the name of your current
+		host system.
+
+SYNTAX	  	hostid
+
+DOCUMENTATION   hostid(1) in the ULTRIX-11 Programmer's Manual
+-hostname
+	
+DESCRIPTION	The hostname command displays your system's name.
+
+SYNTAX		hostname
+
+DOCUMENTATION	hostname(1) in the ULTRIX-11 Programmer's Manual
+-info
+
+DESCRIPTION	The SCCS info command displays information about those SCCS 
+		files currently being edited.
+
+SYNTAX		sccs info [ options ]
+
+OPTIONS		-b  Ignores branches.
+		-u  Displays information for SCCS files edited by specified 
+		    user only (-uname).
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-ipcrm
+
+DESCRIPTION	The ipcrm command removes the specified interprocess
+		communication identifier.
+
+SYNTAX	  	ipcrm [ options ]
+
+OPTIONS		-Q   Removes the message queue identifier specified
+		     by message key (next argument).
+		-S   Removes the message queue identifier specified
+		     by semaphore key (next argument).
+		-q   Removes the specified message queue identifier
+		     (next argument).
+		-s   Removes the specified semaphore queue identifier
+		     (next argument).
+
+DOCUMENTATION   ipcrm(1) in the ULTRIX-11 Programmer's Manual
+-ipcs
+
+DESCRIPTION	The ipcs command displays the status information for
+		the current interprocess facilities.
+
+SYNTAX	  	ipcs [ options ]
+
+OPTIONS		-C   Uses the specified core file (next argument) in
+		     place of /dev/kmem.
+		-N   Uses the specified namelist (next argument) in
+		     place of /unix.
+		-a   Uses all display options (shorthand for -b, -c,
+		     -o, -p, and -t).
+		-b   Displays the biggest allowable size information
+		     (maximum bytes in message and semaphores).
+		-c   Displays creator's login and group names.
+		-o   Displays the outstanding usage information
+		     (number of messages in queue and size of each).
+		-p   Displays the process ID information (last process
+		     to send and first process to receive).
+		-q   Displays information about active message queues.
+		-s   Displays information about active semaphore queues.
+		-t   Displays all time statistics.
+
+DOCUMENTATION   ipcs(1) in the ULTRIX-11 Programmer's Manual
+-join
+
+DESCRIPTION	The join command joins the data from two specified files.
+
+SYNTAX		join [ options ] file1 file2
+
+		  file1   Names of files whose data is to be joined.
+		  file2   
+
+OPTIONS		-a   Produces additional line for unpaired lines from 
+		     specified file (-an).
+		-e   Uses specified replacement string (next argument)
+		     for all empty output fields (-e string).
+		-j   Joins mth field in nth file (-jn m).
+		-o   Uses specified list of fields (next argument) for
+		     output lines (-o n.m).
+		-t   Sets tab character (-tc).
+
+DOCUMENTATION	join(1) in the ULTRIX-11 Programmer's Manual
+-kill
+	
+DESCRIPTION	The kill command sends a signal to the specified process.
+
+SYNTAX		kill [ -signal ] pid...
+
+		  pid     Process ID number of each process to receive signal.
+
+SIGNALS		Signal number to be sent.  If not specified, sends signal 15 
+		(terminate).  The signal most frequently sent is 9 (kill). 
+		Other signals sent by users are:
+
+		     1   Hangup (SIGHUP)
+		     2   Interrupt (SIGINT)
+		     3   Quit (SIGQUIT)
+		     4   Illegal instruction (SIGILL)
+		     5   Trace trap (SIGTRAP)
+		     6   IOT instruction (SIGIOT)
+		     7   EMT instruction (SIGEMT)
+		     8   Floating point exception (SIGFPE)
+		     9   Kill process (SIGKILL)
+		     10  Bus error (SIGBUS)
+		     11  Segmentation violation (SIGSEGV)
+		     12  Bad system call (SIGSYS)
+		     13  Write to pipe with no one to read (SIGPIPE)
+		     14  Alarm clock (SIGALRM)
+		     15  Software termination (SIGTERM)
+		     30  User-defined signal 1 (SIGUSR1)
+		     31  User-defined signal 2 (SIGUSR2)
+
+EXAMPLES	kill -9 12989
+
+DOCUMENTATION	kill(1) in the ULTRIX-11 Programmer's Manual
+-l11
+
+DESCRIPTION	The l11 command is the Macro-11 loader.
+
+SYNTAX	  	l11 [ option ] file...
+
+		  file   Name of each file to processed.
+
+OPTIONS		-    Suppresses all normal diagnostic messages.
+		-K   Precedes all global symbols with an underscore (_).
+		-c   Writes output to .o files.
+		-go  Preserves external symbols only in the output 
+		     symbol table (excludes all nongobal symbols).
+		-i   Creates an output file with text and data in 
+		     separate address space.
+		-lp  Prints the load map at the line printer.
+		-mp  Displays the load map at your terminal.
+		-n   Creates output file so text and data are shared
+		     and readonly.
+		-no  Runs pass1 and exits (does not create output file).
+		-ns  Strips symbol table and relocation bits from output
+		     file.
+		-r   Generates relocation bits in output file.
+		-v   Displays detailed (verbose) diagnostic information.
+
+DOCUMENTATION   l11(1) in the ULTRIX-11 Programmer's Manual
+-last
+
+DESCRIPTION	The last command displays the last login times for
+		each specified user.
+
+SYNTAX	  	last [ options ] [ user... ] [ tty... ]
+
+		  user   Login name of each user for which information
+			 is to be specified.  If not specified, displays
+			 all login records.
+
+		  tty    Name of each tty for which the information is
+			 to be restricted.  If not specified, displays
+			 information for all terminals.
+
+OPTIONS		-#   Limits the number of output lines to the specified
+		     number (#).
+		
+DOCUMENTATION   last(1) in the ULTRIX-11 Programmer's Manual
+-ld
+	
+DESCRIPTION	The ld command loads (combines) compiled C modules into one
+		executable program.
+
+SYNTAX		ld [ options ] file...
+
+		 file    Name of each compiled C program module to be 
+			 combined into one executable program.
+
+OPTIONS		-D   Uses specified number (next argument) as size of data 
+		     segment.
+		-L   Marks end of all overlays.
+		-O   Loads overlaid file.
+		-X   Saves local symbols but those beginning with capital L.
+		-Z   Marks beginning of all overlays.
+		-d   Forces definition of common storage.
+		-e   Uses specified location (next argument) as entry point.
+		-i   Sets up separate instruction and data address space (data
+		     starts at location 0).
+		-l   Searches specified path (-lpath) for library.
+		-n   Loads text segment as read only (shared text).
+		-o   Uses specified file (next argument) as output file.  If 
+		     not specified, uses a.out.
+		-r   Generates relocation bits for another loader run.
+		-s   Strips symbol table and relocation bits from output.
+		-u   Enters specified symbol (next argument) in symbol table. 
+		-x   Enters only external symbols in symbol table.
+
+DOCUMENTATION	ld(1) in the ULTRIX-11 Programmer's Manual
+-learn
+
+DESCRIPTION	The learn command provides computer-aided instruction about
+		your ULTRIX-11 system.
+
+SYNTAX		learn [ -directory ] [ subject [ lesson [ speed ] ] ] 
+
+		  -directory  Runs script from specified directory.
+
+		  subject     Subject about which you want instruction. 
+			      CAI exists for: editor, eqn, files, macros, 
+			      morefiles, and C.  If not specified, prompts
+			      you for desired subject.
+
+		  lesson      Last lesson number.  If specified, learn resumes 
+			      with the next lesson.
+
+		  speed       Level of difficulty.
+			    
+DOCUMENTATION	learn(1) in the ULTRIX-11 Programmer's Manual
+		"LEARN--Computer-Aided Instruction on UNIX" in the ULTRIX-11
+		Supplementary Documents, Volume 1
+-lex
+	
+DESCRIPTION	The lex command generates programs that are to be used for
+		lexically analyzing text files.
+
+SYNTAX		lex [ options ] [ file... ]
+
+		  file   Name of each file that contains a regular expression
+			 and its corresponding actions.  If not specified, 
+			 reads stdin until <CTRL/D> and uses this as input.
+
+OPTIONS		-f   Runs a faster compilation (does not pack resulting 
+		     tables).
+		-n   Prints no summary information (default option).
+		-t   Writes output to stdout instead of a source file.
+		-v   Prints one line summary of generated statistics.
+
+DOCUMENTATION	lex(1) in the ULTRIX-11 Programmer's Manual
+		"Lex--A Lexical Analyzer Generator in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-line
+
+DESCRIPTION	The line command reads one line from stdin and writes it
+		to stdout.
+
+SYNTAX	  	line
+
+DOCUMENTATION   line(1) in the ULTRIX-11 Programmer's Manual
+-lint
+	
+DESCRIPTION	The lint program checks C programs.
+
+SYNTAX		lint [ options ] file...
+
+		  file   Name of each C program to be checked.
+
+OPTIONS		-a   Reports assignments of long values to integer variables.
+		-b   Reports break statements that cannot be reached.
+		-c   Reports casts which have questionable portability.
+		-h   Applies heuristic tests to detect bugs, improve style,
+		     and reduce waste.
+		-n   Does not check compatibility with standard library.
+		-p   Checks portability to IBM and GCOS dialects of C.
+		-u   Ignores all used functions and variables that are 
+		     not defined or all defined functions and variables that 
+		     are not used.
+		-v   Ignores all unused arguments in functions.
+		-x   Reports all external variables that are not used.
+
+DOCUMENTATION	lint(1) in the ULTRIX-11 Programmer's Manual
+		"Lint, a C Program Checker" in the ULTRIX-11 Supplementary
+		Documents, Volume 1
+-ln
+	
+DESCRIPTION	The ln command creates a new directory entry (link) to an 
+		existing file.
+
+SYNTAX		ln [ options ] file1 [ file2 ]
+
+		  file1   Name of existing file and name given to new 
+		  file2   directory entry (link).  If not specified, uses 
+			  name of existing file.
+
+OPTIONS		-f    Forces a link to an existing directory.  This option is
+		      restricted to use by the superuser only.
+		-s    Creates a symbolic link.
+
+EXAMPLES	ln /staff/fred/bin/program1 mycopy
+		ln program1 /staff/dave/bin/mycopy
+ 
+DOCUMENTATION	ln(1) in the ULTRIX-11 Programmer's Manual
+-login
+	
+DESCRIPTION	The login command allows you to log in to an ULTRIX-11 system.
+		Normally, the login command is automatically invoked at your
+		terminal during multiuser startup.
+
+SYNTAX		login [ user ]
+
+		  user   Login name of user.  If not specified, prompts for 
+			 user name.  
+
+DOCUMENTATION	login(1) in the ULTRIX-11 Programmer's Manual
+-look
+	
+DESCRIPTION	The look command finds lines in sorted data that begin with 
+		the specified pattern.
+		
+
+SYNTAX		look [ options ] string [ file ]
+
+		  string   Pattern to be searched for.
+
+		  file     Name of file to be searched.  If not specified, 
+			   uses /usr/dict/words with the -df options.
+
+OPTIONS		-d   Uses dictionary order: letters, digits, tabs, and blanks. 
+		-f   Folds upper case to lower case (compares equally).
+
+DOCUMENTATION	look(1) in the ULTRIX-11 Programmer's Manual
+-lookbib
+
+DESCRIPTION	The lookbib command reads stdin until a <CTRL/D> for
+		keywords and searches the bibliography database for
+		all references to the specified keywords.
+
+SYNTAX		lookbib [ file... ]
+
+		  file   Name of each file to be searched.  If not
+			 specified, searches /usr/dict/papers.
+
+DOCUMENTATION	refer(1) in the ULTRIX-11 Programmer's Guide
+-lorder
+	
+DESCRIPTION	The lorder command finds the ordering relationships between
+		object files or library archive files.
+
+SYNTAX		lorder file...
+
+		  file   Name of each file to be processed. 
+
+DOCUMENTATION	lorder(1) in the ULTRIX-11 Programmer's Manual
+-lpq
+	
+DESCRIPTION	The lpq command displays the status of the line printer queue.
+
+SYNTAX		lpq [ options ] [ job... ] [ user... ]
+
+		  job   Number of each job for which status information is 
+			displayed.
+
+		  user  Login name of each user for whom status information is
+			to be displayed.
+
+OPTIONS		-P   Displays status for specified printer queue (-Pprinter).
+		-l   Displays queue status in long format.
+ 
+EXAMPLES	lpq
+		lpq -Plp2 bill
+
+DOCUMENTATION	lpq(1) in the ULTRIX-11 Programmer's Manual
+-lpr
+	
+DESCRIPTION	The lpr command submits jobs to the line printer queue.
+
+SYNTAX		lpr [ options ] [ file... ]
+
+		  file   Name of each file to be submitted.  If not specified,
+			 reads stdin until <CTRL/D> and submits this input.
+
+OPTIONS		-C   Prints file with specified hostname in header (-Cname).
+		-J   Prints each file with specified header name (-Jname)
+		     instead file name on header.
+		-P   Submits file to specified printer queue (-Pprinter).
+		-##  Prints the specified number of copies (for example,
+		     -#3).
+		-c   Copies each file before submitting it to print queue.
+		-h   Prints each file with specified header name (-hname)
+		     instead of its file name.
+		-i   Indents printout specified number of spaces (-i#).
+		     If number is not specified, defaults to 8.
+		-m   Mails a job completion message.
+		-p   Paginates printout. 
+		-r   Removes each file after submitting it to printer queue.
+
+DOCUMENTATION	lpr(1) in the ULTRIX-11 Programmer's Manual
+-lprm
+	
+DESCRIPTION	The lprm command removes jobs submitted to the printer queue.
+
+SYNTAX		lprm  [ options ] [ job... ] [ user... ] 
+
+		  job   Number of each job that is to be removed.
+
+		  user  Login name of each user whose jobs are to be removed.
+
+OPTIONS		-    Removes all jobs owned by you only.
+		-P   Removes jobs from specified printer queue (-Pprinter).
+ 
+EXAMPLES	lprm
+		lprm -Plp2 bill
+		lprm 438
+
+DOCUMENTATION	lprm(1) in the ULTRIX-11 Programmer's Manual
+-ls
+	
+DESCRIPTION	The ls command lists and generates statistics on files.
+
+SYNTAX		ls [ options ] [ file... ]
+
+		  file   Name of each directory or file for which a list 
+			 and/or statistics are to be generated.  If not 
+			 specified, lists and/or generates statistics for 
+			 all files in your current directory.
+
+OPTIONS		-C   Forces multicolumn output for a pipe or filter.
+		-F   Marks directories with slash (/) and executable files with
+		     an asterisk (*). 
+		-R   Recursively lists all subdirectories.
+		-1   Displays one entry per line.
+		-a   Displays all entries (including those beginning with
+		     a period (.).
+		-b   Displays nonprintable characters as \nnn (octal).
+		-c   Sorts entries by time of creation, not by name.
+		-d   Displays names of directories only, not contents.
+		-f   Displays names in the order they exist in directory.
+		-g   Displays group ID, not owner ID (used with -l only).
+		-i   Displays corresponding inumbers (column 1) for all files.
+		-l   Displays file statistics: mode (permissions), link count,
+		     owner, size (bytes), and time last modified.
+		-m   Forces stream output, not multicolumn format.
+		-q   Displays nonprintable characters as a question mark (?).
+		-r   Sorts entries in reverse alphabetic or time order.
+		-s   Displays size in blocks (including indirect blocks).
+		-t   Sorts by time modified (latest first), not by name.
+		-u   Sorts by time last accessed (latest first), not by name.
+		-x   Forces sorted columnar printing (usually one column/page).
+
+DOCUMENTATION	ls(1) in the ULTRIX-11 Programmer's Manual
+-ltf
+
+DESCRIPTION	The ltf command (Labeled Tape Facility) reads and writes
+		Versions 3 and 4 ANSI-compatible tape volumes.
+
+SYNTAX		ltf option[keys] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-c   Creates a new tape volume.
+		-t   Lists the names of each file on the volume.
+		-x   Extracts each named file from the volume.
+
+KEYS		B    Uses the specified number (next argument) as
+		     the blocking factor on write operations.  If not 
+		     specified, sets the blocking factor to 2048-bytes
+		     (maximum allowed).
+		I    Reads the file names to be processed from the 
+		     specified file (next argument).  If - is specified
+		     as the file, reads stdin and prompts for all 
+		     required information.
+		L    Uses the specified six characters (next argument) 
+		     as the volume label.
+		O    Omits headers the optional headers HDR3-HDR9.
+		P    Positions the volume at the specified file sequence
+		     and section number (next argument) before beginning
+		     the requested action (-t and -x options only).
+		R    Uses the specified number (next argument) as the 
+		     the volume record length.  If not specified, sets
+		     record length to 512-bytes.
+		V    Displays verbose information about directories
+		     as well as files on the volume.
+		0-9  Uses the specified tape unit number.  Can be used
+		     g, k, and n keys.
+		a    Creates the volume in Version 3 ANSI-compatible
+		     format.  If not specified, uses Version 4 format.
+		f    Uses the specified special file (next argument)
+		     as the tape device name.  If not specified, uses
+		     /dev/rht0.
+		g    Specifies 6250 GCR tape.
+		h    Writes all files that are pointed to be a symbolic
+		     link to the volume in place of recreating each 
+		     symbolic link on the volume.
+		k    Specifies TK50 tape cartridge.
+		n    Specifies 800 bpi tape.
+		o    Omits directory blocks from the volume.
+		p    Restores each file with its original mode, owner
+		     (user ID), and group ID.  Can be used with the
+		     -x option and by the superuser only.
+		v    Displays verbose information about files on the
+		     volume only.
+		w    Displays a warning if, when creating a volume (-c),
+		     a file is in danger of being truncated or, when 
+		     extracting a file (-x), a file is in danger of 
+		     being overwritten.
+
+EXAMPLES	ltf -cfB /dev/rht1 100 file...
+
+DOCUMENTATION	ltf(1) in the ULTRIX-11 Programmer's Manual
+-m11
+
+DESCRIPTION	The m11 command is the Macro-11 assembler.
+
+SYNTAX	  	m11 [ options ] file...
+
+		  file   Name of each file to be assembled.
+
+OPTIONS		-cr  Generates a cross reference list from the specified
+		     keys(-cr:keys).  The keys consist of a colon 
+		     separated list from: sym (user-defined symbols),
+		     mac (macro names), per (permanent symbols), pse 
+		     (psect names), err (errors), and reg (registers).
+		-da  Redefines default .asect attributes to specified 
+		     string (-da:string).
+		-de  Mimics DEC Macro-11 assembly.
+		-dp  Redefines either default .psect attributes and
+		     unnamed .csect from specified string (-dp:string)
+		     or default named .csect attribute (-dp:c).
+		-ds  Simulates an initial .dsbl directive from the 
+		     specified string (-ds:string).
+		-en  Simulates an initial .enabl directive from the
+		     specified string (-en:string).
+		-fl  Produces a listing in structured format.
+		-ha  Mimics Harvard Macro-11 assembly.
+		-l0  Generates an error when PDP-11 instruction set does
+		     not contain the op code.
+		-li  Simulates an initial .list directive from the 
+		     specified string (-li:string).
+		-lp  Spools assembly listing for printing. 
+		-ls  Generates assembly listing and writes it to .lst 
+		     file.
+		-lt  Generates an assembly listing and writes it to 
+		     stdout.
+		-my  Generates a listing as it appears after macro 
+		     expansion but excludes macro calls, conditional 
+		     directives, and so on.
+		-mx  Same as -my option but includes macro calls, 
+		     conditional directives, and so on.
+		-na  Uses specified name (-na:name) for output file.
+		-nl  Simulates an initial .nlist directive from the
+		     specified string (-nl:string).
+		-no  Checks syntax and listing but does not produce
+		     the object file.
+		-ns  Does not include the symbol table in the object 
+		     file.
+		-sx  Includes local symbols in the symbol table.
+		-u   Treats form feeds as spaces.
+		-uc  Simulates an initial .dsabl directive.
+		-um  Converts all macro definitions to upper case.
+		-xs  Generates the symbol table and macro storage with 
+		     the specified K words size (-xs:nn).
+		-xx  Displays debugging information.
+
+DOCUMENTATION   m11(1) in the ULTRIX-11 Programmer's Manual
+-m4
+
+DESCRIPTION	The m4 command is a macro preprocessor for C, Ratfor, 
+		and other languages.
+
+SYNTAX	  	m4 [ file... ]
+
+		  file   Name of each file to be processed.  If not 
+			 specified, or if - is specified in file list,
+			 reads stdin until <CTRL/D> and processes this
+			 input.
+		
+DOCUMENTATION   m4(1) in the ULTRIX-11 Programmer's Manual
+		"The M4 Processor" in the ULTRIX-11 Supplementary Documents,
+		Volume 2
+-mail
+	
+DESCRIPTION	The mail command provides an interactive program with a full
+		subset of commands for sending or reading mail messages.
+
+SYNTAX		mail [ options ] [ user... ]
+
+		  user   Login name of each user to which the message is sent.
+			 If not specified, reads your mail account for messages.
+
+OPTIONS		-f   Checks specified file (next argument) instead of your 
+		     normal account for mail.
+		-i   Ignores all tty-generated interrupt signals.
+		-n   Ignores /usr/lib/Mail.rc during startup.
+		-s   Uses specified subject (next argument) for header. 
+		-u   Checks specified user's (next argument) account for mail.
+		-v   Displays verbose delivery information.
+
+DOCUMENTATION	mail(1) in the ULTRIX-11 Programmer's Manual
+		"MAIL REFERENCE MANUAL" in the ULTRIX-11 Supplementary
+		Documents, Volume 1
+-make
+
+DESCRIPTION	The make command updates program groups. 
+
+SYNTAX		make [ options ] file...
+
+OPTIONS		-b   Runs in compatibility mode for old makefiles.
+		-d   Displays detailed information about file and times
+		     examined (debug mode).
+		-e   Overrides makefile assignments with environment variables.
+		-f   Uses specified file (next argument) as input.  If not 
+		     specified, uses makefile and Makefile, respectively,
+		     in current directory .  If - is specified, reads 
+		     stdin until <CTRL/D> and uses this as input.
+		-i   Ignores returned error codes.
+		-k   Stops processing current entry on nonzero return, but 
+		     continues with other branches that do not depend on that
+		     entry.
+		-m   Displays memory map: text, data, and stack.
+		-n   Displays but does not execute commands needed to 
+		     update target programs.
+		-p   Displays macro definitions and target descriptions.
+		-q   Returns zero exit status if file is updated or nonzero
+		     exit status if file is not updated.
+		-r   Does not use built-in rules.
+		-s   Does not display commands before execution (silent mode).
+		-t   Touches (updates) modification date only of each target 
+		     program.
+
+DOCUMENTATION	make(1) in the ULTRIX-11 Programmer's Manual
+		"Make--A Program for Maintaining Computer Programs" in the
+		ULTRIX-11 Programmer's Manual, Vol. 2A
+-man
+	
+DESCRIPTION	The man command displays manual pages at your terminal.
+
+SYNTAX		man [ options ] [ section ] title...
+
+		  section   Section of the ULTRIX-11 Programmer's Manual. 
+			    If not specified, searches all sections.
+
+		  title     Name of user command, system call, subroutine,
+			    special file, file format, game, or maintenance 
+			    command to be displayed.
+
+OPTIONS		-    Squeezes multiple blank lines from output.
+		-f   Displays one-line summary of each manual page that
+		     contains one of the specified file names (next arguments).
+		-k   Displays one-line summary of each manual page that 
+		     contains one of the specified keywords (next arguments).
+		-t   Phototypesets output (uses troff).
+
+EXAMPLES	man 1 sync
+		man 2 sync
+
+DOCUMENTATION	man(1) in the ULTRIX-11 Programmer's Manual
+-mdtar
+
+DESCRIPTION	The mdtar command archives files to and from multiple
+		RX50 diskettes.
+
+SYNTAX	  	mdtar [ -C ] [ keys ] [ file... ]
+
+		  file   Name of each file to be archived.
+
+OPTIONS		-C  Changes directories to that in the specified path
+		    (next argument) before processing. This option
+		    can be used multiple times on the same command line.
+
+KEYS		A   Uses the specified number (next argument) as 
+		    archive with which to begin the output.
+		B   Forces input and output blocking to 20 blocks 
+		    per record. 
+		D   Specifies all directory output to be in v7tar
+		    format. 
+		F   Skips all SCCS directories, core files, and err 
+		    files.  If additional F key (FF) is specified,
+		    also skips all a.out and .o files.
+		H   Displays help summary of all keys.
+		M   Specifies the maximum archive number (1-99) to be 
+		    written (next argument).
+		N   Suppresses multivolume, file-splitting, and new 
+		    header format from output.
+		O   Additionally displays file owner and group names
+		    for t and x keys.  For c, r, and u keys, displays
+		    warning message if user and group IDs cannot be 
+		    found in /etc/passwd or /etc/group, respectively.
+		S   Creates output with /USER/GROUP standard archive 
+		    headers.
+		V   Displays expanded verbose information about all 
+		    directories as well as files on the volume.
+	       0-9  Uses specified drive number as alternate on which
+		    archive is mounted.  If not specified, uses 
+		    /dev/rht0.
+		b   Uses specified number (next argument) as the 
+		    blocking factor.  If not specified, uses 20 blocks.
+		c   Creates a new archive library.
+		d   Specifies RX50 as the device: uses /dev/rrx1.
+		f   Uses specified file (next argument) as the name
+		    of the archive. If not specified, uses /dev/rht0.
+		g   Specifies 6250 bpi tape: uses /dev/rgt0.
+		h   Saves a copy of the file (excludes symbolic links).
+		i   Ignores checksum errors.
+		k   Specifies TK50 as the device: uses /dev/rtk0.
+		l   Displays error message if links cannot be resolved.
+		m   Does not restore file modification time.
+		n   Specifies 800 bp1 tape: uses /dev/rmt0.
+		o   Suppresses all directory information.
+		p   Restores each specified file to its original mode.
+		r   Writes each specified file to the end of archive.
+		s   Uses specified number (next argument) as size of 
+		    media in 512-byte blocks.
+		t   Generates archive table of contents.
+		u   Updates the archive library: adds each if only if
+		    it either is not already in archive or has been
+		    modified since originally archived.
+		v   Displays detailed (verbose) information as it 
+		    archives files.
+		w   Displays action to be taken for each file and 
+		    prompts for confirmation.
+		x   Extracts each specified file from the archive.
+
+EXAMPLES	mdtar c -C /usr/include -C /etc
+		mdtar cvb 10 /
+	
+DOCUMENTATION   tar(1) in the ULTRIX-11 Programmer's Manual
+-mesg
+	
+DESCRIPTION	The mesg command allows you to permit or deny messages.
+
+SYNTAX		mesg [ n ] [ y ]
+
+		  n   Disallows messages from other users. 
+
+		  y   Allows messages from other users.
+
+EXAMPLES	mesg n
+		mesg y
+
+DOCUMENTATION	mesg(1) in the ULTRIX-11 Programmer's Manual
+-mkdir
+	
+DESCRIPTION	The mkdir command makes new directories.
+
+SYNTAX		mkdir name...
+
+		  name   Name of each new directory to be created.
+
+EXAMPLES	mkdir newdir1 newdir2
+
+DOCUMENTATION	mkdir(1) in the ULTRIX-11 Programmer's Manual
+-mkstr
+	
+DESCRIPTION	The mkstr command creates a message file from C programs.
+
+SYNTAX		mkstr [ - ] msgfile prefix file...
+
+		  msgfile  Name of file into which error messages are written.
+
+		  prefix   Prefix name to be used in creating copies of
+			   processed C source.
+			    
+		  file     Name of each C program to be processed.  If 
+			   pathnames are not specified, searches current 
+			   directory for each specified file.
+
+OPTIONS		-   Places error messages at end of specified message file.
+
+DOCUMENTATION	mkstr(1) in the ULTRIX-11 Programmer's Manual
+-mm
+
+DESCRIPTION	The mm command formats text using nroff and the mm
+		macro package.
+
+SYNTAX	  	mm [ options ] [ file... ]
+
+		  file   Name of each text file to be processed.
+			 If not specified, reads stdin until <CTRL/D>
+			 and processes this input.
+
+OPTIONS		-E   Invokes nroff with the -e option specified.
+		-T   Uses the specified string (-Tstring) as the output
+		     terminal type.  If not specified, uses the type
+		     defined by the TERM environment variable.
+		-c   Invokes the col command to process the input.
+		-e   Invokes the neqn command to process the input.
+		-l2  Formats the document in 12 pitch.
+		-t   Invokes the tbl command to process the input.
+		-y   Uses the uncompacted versions of the mm macros.
+
+DOCUMENTATION   mm(1) in the ULTRIX-11 Programmer's Manual
+		"Memorandum Macros" in the ULTRIX-11 Supplementary 
+		Documents, Volume 2
+-mmt
+
+DESCRIPTION	The mmt command formats text using troff and the mm
+		macro package.
+
+SYNTAX	  	mmt [ options ] [ file... ]
+
+		  file   Name of each text file to be processed.
+			 If not specified, reads stdin until <CTRL/D>
+			 and processes this input.
+
+OPTIONS		-T4014  Invokes the tc command to process the output
+			for the Tektronix 4014 terminal.  
+		-Ttek   Same as -T4014 option.
+		-Tst    Writes output to the MH STARE facility.
+		-Tvp    Writes output to the Versatec printer.
+		-a      Invokes troff with the -a option specified.
+		-e      Invokes the eqn command to process the input.
+		-t      Invokes the tbl command to process the input.
+		-y      Uses the uncompacted mm macros.
+
+DOCUMENTATION   mmt(1) in the ULTRIX-11 Programmer's Manual
+		"Memorandum Macros" in the ULTRIX-11 Supplementary
+		Documents, Volume 2
+-more
+	
+DESCRIPTION	The more command displays file data at your terminal.
+
+SYNTAX		more [ options ] [ +number ] [ +/string ] file... 
+
+		  +number    Use specified line number as place to start
+			     display.
+
+		  +/string   Pattern to be searched for.  If found, 
+			     display starts with two lines immediately 
+			     preceding the line containing the pattern.
+			     
+		  file       Name of each file to be displayed.   
+
+OPTIONS		-#   Uses specified number (#) as screen window size.
+		-c   Clears screen (starting from the top) as it displays
+		     next screen of data.  
+		-d   Displays extended continuation prompt at end of each 
+		     display.
+		-f   Counts logical text lines (does not fold long lines). 
+		     Normally, counts literal lines (including folded 
+		     lines containing escape sequences).
+		-l   Ignores line feeds (^Ls).  Normally, pauses at line feeds.
+		-s   Squeezes multiple blank lines from output.
+		-u   Ignores all underlining in the data.
+
+
+EXAMPLES	more program1
+		more program1 program2
+
+DOCUMENTATION	more(1) in the ULTRIX-11 Programmer's Manual
+-mt
+
+DESCRIPTION	The mt command allows you to send commands directly to 
+		the specified tape drive.
+
+SYNTAX	  	mt [ -f ] cmd
+
+		  cmd   Command to be performed.
+
+OPTIONS		-f   Uses the specified file (next argument) as the tape
+		     device.  If not specified, uses /dev/nrht0.
+
+COMMANDS	bsf  Moves back the specified number of files (next 
+	 	     argument). 
+		bsr  Moves back the specified number of records (next
+		     argument).
+	      cache  Enables caching (TK50/TU81 only).
+		cls  Clears the subsystem.
+		clx  Reinitializes the tape unit.
+		cse  Clears EOT (software clear).
+	     diseot  Disables EOT driver code.
+	     enaeot  Enables default EOT driver code.
+		eof  Write the specified number of EOF marks (next 
+		     argument) at the current tape position.
+		fsf  Moves forward the specified number of files (next
+		     argument).
+		fsr  Moves forward the specified number of records (next
+		     argument).
+	    nocache  Disables caching (TK50/TU81 only).
+	    offline  Rewinds the tape and places the unit off line.
+	     rewind  Rewinds the tape.
+	    rewoffl  Rewinds the tape and places the unit off line.
+	     status  Displays status information. 
+	       weof  Write the specified number of EOF marks (next 
+		     argument) at the current tape position.
+		
+DOCUMENTATION   mt(1) in the ULTRIX-11 Programmer's Manual
+-mv
+	
+DESCRIPTION	The mv command renames or moves files and directories.
+
+SYNTAX		mv file1 file2
+		mv file... directory
+
+		  file1      Name of existing file or directory and new
+		  file2      file name.
+
+		  file       Name of each file to be moved to specified 
+			     directory.
+
+		  directory  Name of directory to which each named file 
+			     is to be moved.
+
+EXAMPLES	mv program1 old.program
+		mv directory1 groupdir
+		mv program1 program2 program3 /usr/staff/projectdir
+
+DOCUMENTATION	mv(1) in the ULTRIX-11 Programmer's Manual
+-mvt
+
+DESCRIPTION	The mvt command formats text using troff and the 
+		mv macro package.
+
+SYNTAX	  	mvt [ options ] [ file... ]
+
+		  file   Name of each text file to be processed.
+			 If not specified, reads stdin until <CTRL/D>
+			 and processes this input.
+
+OPTIONS		-T4014  Invokes the tc command to process the output
+			for the Tektronix 4014 terminal.  
+		-Ttek   Same as -T4014 option.
+		-Tst    Writes output to the MH STARE facility.
+		-Tvp    Writes output to the Versatec printer.
+		-a      Invokes troff with the -a option specified.
+		-e      Invokes the eqn command to process the input.
+		-t      Invokes the tbl command to process the input.
+		-y      Uses the uncompacted mm macros.
+
+DOCUMENTATION   mmt(1) in the ULTRIX-11 Programmer's Manual
+		"Viewgraphs and Slides Macros" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-neqn
+	
+DESCRIPTION	The neqn command formats mathematic equations to be
+		displayed at your terminal.
+
+SYNTAX		neqn [ options ] [ file... ]
+
+		  file   Name of each file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and processes this input.
+
+OPTIONS		-d   Sets text delimiters to specified characters (-dxy).
+		     Both delimiters can be set to same character. 
+		-f   Sets font to specified font number (-f#).
+		-p   Reduces point size by specified points (-p#).
+		-s   Sets equation size to specified number (-s#). 
+
+DOCUMENTATION	eqn(1) in the ULTRIX-11 Programmer's Manual
+		"Typesetting Mathematics--User's Guide" in the ULTRIX-11
+		Supplementary Documents, Volume 1
+-netstat
+
+DESCRIPTION	The netstat command displays the status information for
+		your local area network.
+
+SYNTAX	  	netstat [ options ] [ interval ] [ system ] [ core ]
+
+		  interval  Displays status information every interval
+			    seconds.
+
+		  system    Name of the system file to be used in place 
+			    of /unix.
+
+		  core      Name of the core file to be used in place of
+			    /dev/kmem.
+
+OPTIONS		-A   Displays the addresses of any associated protocol
+		     control blocks.
+		-a   Displays information for all sockets.  If not 
+		     specified, does not display information for sockets
+		     used by server processes.
+		-i   Displays status information for autoconfigured
+		     interfaces.
+		-m   Displays information for the memory management 
+		     routines.
+		-n   Displays network addresses as numbers.
+		-r   Displays network routing tables.
+		-s   Displays protocol statistics.
+		-t   Displays time since interface routine startups.
+
+DOCUMENTATION   netstat(1) in the ULTRIX-11 Programmer's Manual
+-newgrp
+	
+DESCRIPTION	The newgrp command changes your current group ID to that of 
+		the specified group.
+
+SYNTAX		newgrp group
+
+		  group  Group name to be changed to.
+
+EXAMPLES	newgrp staff2
+
+DOCUMENTATION	newgrp(1) in the ULTRIX-11 Programmer's Manual
+-nice
+	
+DESCRIPTION	The nice command executes the specified command at a lower 
+		scheduling priority.
+
+SYNTAX		nice [ -n ] cmd [ arg... ]
+
+		  cmd   Command to be executed.
+
+		  arg   Each argument for specified command. 
+
+OPTIONS		-#   Uses specified number (#) as increment for priority.
+		     If number is not specified, increments priority by 10.
+		   
+EXAMPLES	nice -20 nroff -ms report1 report2 | lpr
+
+DOCUMENTATION	nice(1) in the ULTRIX-11 Programmer's Manual
+-nl
+
+DESCRIPTION	The nl command displays the text from each specified
+		file with line numbers.
+
+SYNTAX	  	nl [ options ] [ file... ]
+
+OPTIONS		-b  Displays line numbers for text lines which match
+		    the specified type (-btype).  The type can be: 
+		    a (all lines), t (lines with printable text only),
+		    n (no line numbering), pstring (lines that match
+		    the specified string).  The default is a.
+		-d  Uses the specified characters as delimiters
+		    (-dxx).
+		-f  Displays line numbers for footer lines that match 
+		    the specified type (-ftype).  See type above.
+		-h  Displays line numbers for header lines that match
+		    the specified type (-htype).  See type above.
+		-i  Uses the specified number (-i#) as the increment
+		    value for numbering lines.
+		-l  Uses the specified number (-l#) as the number of 
+		    blank lines to fold together while numbering.
+		-n  Formats line numbers according to the specified
+		    key (-nkey).  The key can be: ln (left justified),
+		    rn (right justified), and ra (right justified with
+		    leading zeroes).
+		-p  Does not restart numbering at logical page breaks.
+		-s  Uses the specified character (-sx) to mark the
+		    separation of line numbers and text.
+		-v  Starts line numbers with the specified number (-v#).
+		-w  Uses the specified number (-w#) as the number of 
+		    characters for the line number display.  If not
+		    specified, uses 6.
+
+DOCUMENTATION   nl(1) in the ULTRIX-11 Programmer's Manual
+-nm
+
+DESCRIPTION	The nm command displays the name list (symbolic table) for each
+		specified object file.
+
+SYNTAX		nm [ options ] [ file... ]  
+
+		  file   Name of each object file to be processed.  If not 
+			 specified, displays name list for a.out.  If archive
+			 file is specified, displays name list for each object 
+			 file in archive.
+
+OPTIONS		-g   Displays global (external) symbols only.
+		-n   Sorts display numerically, not alphabetically (default).
+		-o   Prepends file name to each output line, not once for each 
+		     group (default).
+		-p   Displays in symbol table order (no sorts performed).
+		-r   Sorts display in reverse order.
+		-u   Displays undefined symbols only.
+
+DOCUMENTATION	nm(1) in the ULTRIX-11 Programmer's Manual
+-nohup
+	
+DESCRIPTION	The nohup command executes the specified command with hangups
+		and termination signals from the controlling terminal disabled.
+
+SYNTAX		nohup cmd [ arg... ]
+
+		  cmd   Command to be executed.
+
+		  arg   Each argument for specified command.
+
+EXAMPLES	nohup nroff -ms report1 report2 | lpr
+
+DOCUMENTATION	nice(1) in the ULTRIX-11 Programmer's Manual
+-nroff
+	
+DESCRIPTION	The nroff command provides a formatter with a full subset 
+		of formatting macros.
+
+SYNTAX		nroff [ options ] [ file... ]
+
+		  file   Name of each file to be formatted.  If not specified,
+			 or if - is specified, reads stdin until <CTRL/D> and
+			 formats this input.
+
+OPTIONS		-T   Uses specified name (-Tname) as terminal for which output
+		     is prepared.
+		-e   Formats text with equally spaced words, justified lines,
+		     and full terminal resolution.
+		-h   Uses tabs in horizontal spacing to speed up output and 
+		     reduce output character count.
+		-i   Reads stdin after input files are processed.
+		-m   Uses specified macro package (-mxx) in formatting text.
+		-n   Uses specified number (-n#) as first page to be printed.
+		-o   Uses specified list (-olist) as only pages to be printed.
+		-q   Invokes simultaneous input/output mode.
+		-r   Sets named register to specified value (-rxvalue).
+		-s   Stops after specified number of pages (-s#).
+
+DOCUMENTATION	troff(1) in the ULTRIX-11 Programmer's Manual
+		"NROFF/TROFF User's Manual" and "A TROFF Tutorial" in the 
+		ULTRIX-11 Supplementary Documents, Volume 1 
+-od
+	
+DESCRIPTION	The od command creates a dump of the specified file.
+
+SYNTAX		od [ options ] [ file ] [ [ + ]offset[ . ][ b ] ] 
+
+		  file     Name of file to be dumped.  If not specified,
+			   reads stdin until <CTRL/D> and dumps this input.
+
+		  offset   Position in the file where the dump is to begin.  
+			   If file is not specified, offset must be preceded
+			   by plus (+).  If . suffix is specified, offset is
+			   interpreted in decimal.  If b suffix is specified,
+			   offset is interpreted in 512-byte blocks.
+
+OPTIONS		-b   Displays bytes in octal.
+		-c   Displays bytes in ASCII (nonprintable characters in C 
+		     escapes equivalences or octal numbers).
+		-d   Displays words in decimal. 
+		-o   Displays words in octal (default).
+		-x   Displays words in hexadecimal.
+
+DOCUMENTATION	od(1) in the ULTRIX-11 Programmer's Manual
+-osdd
+
+DESCRIPTION	The osdd command formats text using nroff and the 
+		mosd macro package.
+
+SYNTAX	  	osdd [ options ] [ file... ]
+
+		  file   Name of each text file to be processed.
+			 If not specified, reads stdin until <CTRL/D>
+			 and processes this input.
+
+OPTIONS		-E   Invokes nroff with the -a option specified.
+		-T   Uses the specified string (-Tstring) as the output
+		     terminal type.  If not specified, uses the type
+		     defined by the TERM environment variable.
+		-c   Invokes the col command to process the input.
+		-e   Invokes the neqn command to process the input.
+		-l2  Formats the document in 12 pitch.
+		-t   Invokes the tbl command to process the input.
+		-y   Uses the uncompacted versions of the mm macros.
+
+DOCUMENTATION   mm(1) in the ULTRIX-11 Programmer's Manual
+		"Memorandum Macros" in the ULTRIX-11 Supplementary
+		Documents, Volume 2
+-pack
+
+DESCRIPTION	The pack command compresses the data in each specified 
+		file.
+
+SYNTAX	  	pack [ options ] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-   Displays the number of times each byte is used,
+		    its relative frequency, and its code.
+		-f  Forces compression of the specified file.  This
+		    option is useful for compressing an entire 
+		    directory.
+		
+DOCUMENTATION   pack(1) in the ULTRIX-11 Programmer's Manual
+-page
+
+DESCRIPTION	The page command displays file data at your terminal.
+
+SYNTAX		page [ options ] [ +number ] [ +/string ] file... 
+
+		  +number    Use specified line number as place to start
+			     the display.
+
+		  +/string   Pattern to be searched for.  If found, 
+			     display starts with two lines immediately 
+			     preceding the line containing the pattern.
+			     
+		  file       Name of each file to be displayed.   
+
+OPTIONS		-#   Uses specified number (#) as screen window size.
+		-d   Displays extended continuation prompt at end of each 
+		     display.
+		-f   Counts logical text lines (does not fold long lines). 
+		     Normally, counts literal lines (including folded 
+		     lines containing escape sequences).
+		-l   Ignores line feeds (^Ls).  Normally, pauses at line feeds.
+		-s   Squeezes multiple blank lines from output.
+		-u   Ignores all underlining in the data.
+
+DOCUMENTATION	more(1) in the ULTRIX-11 Programmer's Manual
+-passwd
+	
+DESCRIPTION 	The passwd command changes your login password.
+
+SYNTAX		passwd [ -g ]
+
+OPTIONS		-g  Changes the password entry in the /etc/group file 
+		    for the specified group (next argument).  This option 
+		    is restricted to use by the superuser only.
+
+DOCUMENTATION	passwd(1) in the ULTRIX-11 Programmer's Manual
+-paste
+	
+DESCRIPTION	The paste command merges file data.
+
+SYNTAX		paste [ options ] file...
+
+		  file   Name of each file whose data is to be merged.  If
+			 - is specified for any file, reads stdin until
+			 <CTRL/D> and merges this input with named files.
+
+OPTIONS		-d   Replaces the newline characters of all but last file with 
+		     tabs (column separators).  If list of characters is added
+		     (-dlist), uses these characters circularly in place of 
+		     tabs.  The list may contain the following C escapes: 
+
+			  \n (newline)
+			  \t (tab)
+			  \\ (backslash)
+			  \0 (empty string).
+
+		-s   Merges subsequent lines rather than one from each file.
+		     Also uses tabs as column separators in all but last file,
+		     except when used with -dlist option.
+
+DOCUMENTATION	paste(1) in the ULTRIX-11 Programmer's Manual
+-pcat
+
+DESCRIPTION	The pcat command concatenates the compressed data
+		for each specified file into a continuous output
+		stream.
+
+SYNTAX	  	pcat file...
+
+		  file   Name of each file to be processed.
+		
+DOCUMENTATION   pack(1) in the ULTRIX-11 Programmer's Manual
+-pcc
+
+DESCRIPTION	The pcc command is the portable C compiler.
+
+SYNTAX	  	pcc [ options ] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-D   Defines name to specified value (-Dname=value).  If value
+		     not specified, defined to 1.
+		-I   Searches named directory (-Idirectory) for include files. 
+		-N   Places switch tables into text space.
+		-O   Uses the object code optimizer (c2).
+		-P   Runs preprocessor (cpp) and writes output to .i files.
+		-S   Compiles programs and writes output to .s files.
+		-U   Removes initial definition of name (-Uname).
+		-V   Generates code suitable for overlaid programs.
+		-c   Suppresses loading and produces an object (.o) file even 
+		     if only one program is being complied.
+		-o   Writes output to specified file (next argument).
+		-p   Produces count of times each routine is called.
+
+DOCUMENTATION	cc(1) in the ULTRIX-11 Programmer's Manual
+		"A Tour through the UNIX C Compiler" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+		"The C Programming Language--Reference Manual" and "UNIX 
+		Programming--Second Edition" in the ULTRIX-11 Supplementary 
+		Documents, Volume 1
+-pi
+
+DESCRIPTION	The pi command translates the specified Pascal program 
+		into object code.
+
+SYNTAX	  	pi [ options ] file...
+
+		  file  Name of the Pascal source file to be processed.
+
+OPTIONS		-b  Block buffers the output.
+		-i  Enables the listing for any specified procedures
+		    and functions, and while processing	any specified
+		    include files.
+		-l  Creates a program listing while translating source.
+		-n  Begins each listed include file on a new page and
+		    with a banner line.
+		-p  Suppresses control flow backtraces on error.
+		-s  Accepts standard Pascal only.
+		-t  Suppresses runtime test of subrange variables.
+		-u  Runs in card image mode.
+		-w  Suppresses all warning diagnostics.
+		-z  Enables execution profiling.
+
+DOCUMENTATION   pi(1) in the ULTRIX-11 Programmer's Manual
+		"Berkeley Pascal User's Guide" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-pix
+
+DESCRIPTION	The pix command translates the specified Pascal source
+		file and then executes the resulting object code.
+
+SYNTAX	  	pix [ options ] file [ arg... ]
+
+		  file   Name of the Pascal source file to be processed.
+
+		  arg    Each argument that is to be passed to the 
+			 Pascal program during its execution.
+
+OPTIONS		-b  Block buffers the output.
+		-i  Enables the listing for any specified procedures
+		    and functions, and while processing	any specified
+		    include files.
+		-l  Creates a program listing while translating source.
+		-n  Begins each listed include file on a new page and
+		    with a banner line.
+		-p  Suppresses control flow backtraces on error.
+		-s  Accepts standard Pascal only.
+		-t  Suppresses runtime test of subrange variables.
+		-u  Runs in card image mode.
+		-w  Suppresses all warning diagnostics.
+		-z  Enables execution profiling.
+
+DOCUMENTATION   pix(1) in the ULTRIX-11 Programmer's Manual
+		"Berkeley Pascal User's Guide" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-plot
+
+DESCRIPTION	The plot command produces plotting instructions for the
+		specified terminal.
+
+SYNTAX	  	plot [ options ] 
+
+OPTIONS		raster  Uses the scan-converted image from 
+			/usr/tmp/raster and sends the output directly
+			to the plotter.
+		-T      Uses the specified name (-Tname) as the terminal
+			type for which plotting instructions are to be
+			generated.
+
+DOCUMENTATION   plot(1g) in the ULTRIX-11 Programmer's Manual
+-pr
+	
+DESCRIPTION 	The pr command prints and paginates file data.
+
+SYNTAX		pr [ options ] [ +num ] [ file... ] 
+
+		  +num   Begins printing with specified page number.
+
+		  file   Name of each file to be printed.
+
+OPTIONS		-#   Prints output in specified number of columns (-#).
+       		-h   Prints output with specified header (next argument).
+		-l   Uses specified number (-l#) as lines per page. If not 
+		     specified, uses 66 lines/page.
+		-m   Prints all files simultaneously, in multicolumns.
+		-s   Uses specified character (-sc) as column separator.
+		     If character not specified, uses tab.
+		-t   Prints data without 5-line header and trailer.
+		-w   Uses specified number (-w#) as page width (in 
+		     characters).  If not specified, uses 72 characters.
+
+DOCUMENTATION	pr(1) in the ULTRIX-11 Programmer's Manual
+-prep
+	
+DESCRIPTION	The prep command produces a word list from file data.
+
+SYNTAX		prep [ options ] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-d   Lists word number with word.
+		-i   Ignores specified file (next argument).  If -d is 
+		     specified, counts words but does not include them in list.
+		-o   Lists words only in specified file (next argument). 
+		     If -d is specified, counts words from other files but does
+		     not include them in list.
+		-p   Lists all punctuation on separate output lines.  If -d
+		     also is specified, does not count them as words.
+
+DOCUMENTATION	prep(1) in the ULTRIX-11 Programmer's Manual
+-primes
+
+DESCRIPTION	The primes command reads stdin until <RETURN> and
+		displays all primes that are greater than or equal to
+		the specified number.
+
+SYNTAX	  	primes
+
+DOCUMENTATION   factor(1) in the ULTRIX-11 Programmer's Manual
+-print
+
+DESCRIPTION	The print command paginates and submits files for
+		printing at the line printer.
+
+SYNTAX		print file...
+
+		  file   Name of each file to be processed.
+
+DOCUMENTATION	lpr(1) in the ULTRIX-11 Programmer's Manual
+-printenv
+	
+DESCRIPTION 	The printenv command displays the current values of your
+		environment variables.
+
+SYNTAX		printenv [ name ]
+
+		  name   Variable to be displayed.  If name is not specified,
+			 displays all currently set variables.
+
+EXAMPLES	printenv 
+		printenv MAIL
+
+DOCUMENTATION	printenv(1) in the ULTRIX-11 Programmer's Manual
+-prof
+	
+DESCRIPTION	The prof command displays program profile data.
+
+SYNTAX		prof [ options ] [ file ]
+
+		  file   Name of object file to be profiled.
+
+OPTIONS		-a   Displays all symbols. If not specified, displays external 
+		     symbols only.
+		-l   Displays output by symbol value. If not specified, 
+		     displays output by decreasing percentages.   
+		-v   Produces graphic output to be used with plot(1g) command.
+		     Additional -low and -high numbers select the profile 
+		     percentage to be plotted with higher resolution (defaults
+		     are 0 and 100, respectively).
+
+DOCUMENTATION	prof(1) in the ULTRIX-11 Programmer's Manual
+-prs
+
+DESCRIPTION	The SCCS prs command displays information from an SCCS file.
+
+SYNTAX		sccs prs [ options ] file...
+
+		  file   Name of each SCCS file to be processed.
+
+OPTIONS		-a  Displays information for both existing and removed deltas.
+		-d  Displays information specified by dataspec (-dstring).
+		-e  Displays information for all deltas created earlier than
+		    and including specified delta (-e#).
+		-l  Displays information for all deltas created including
+		    and later than specified delta (-l#).
+		-r  Indicates specified delta version number (-r#).
+
+DOCUMENTATION	prs(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-prt
+
+DESCRIPTION	The SCCS prt command displays a list of all changes made to a
+		SCCS file.
+
+SYNTAX		sccs prt file...
+
+		  file  Name of each SCCS file to be processed.
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-ps
+	
+DESCRIPTION	The ps command displays current process status information.
+
+SYNTAX		ps [ option ] [ list ] [ core ]
+
+		  list   Name list that is to be used.  If not specified, 
+			 uses /unix.
+
+		  core   Name of core file from which the information is 
+			 to be gathered.  If not specified, uses /dev/mem and
+			 gathers current system information.
+
+OPTIONS		-a   Displays information for processes executed from all user
+		     terminals.  If not specified, displays information only 
+		     for processes executed from your terminal.
+		-l   Displays information in long format: F (flags), S (state),
+		     UID (userID), PID (process ID), PPID (parent process ID),
+		     CPU (processor utilization), PRI (priority), NICE 
+		     (priority computation), ADDR (memory address), SZ
+		     (size in 512-byte blocks), WCHAN (waiting/sleeping),
+		     TTY (terminal), TIME (execution time), and CMD (command 
+		     currently being executed).		      
+		-t   Uses specified number (-t#) and displays information 
+		     for that terminal only.
+		-v   Displays process's system time and user time in 
+		     addition to cumulative time.
+		-x   Displays information for all processes, including those
+		     not executed from terminals.
+
+DOCUMENTATION	ps(1) in the ULTRIX-11 Programmer's Manual
+-ptx
+	
+DESCRIPTION	The ptx command generates a permuted index.
+
+SYNTAX		ptx [ options ] [ file1 [ file2 ] ]
+
+		  file1   Name of input file from which index is to be
+			  generated.  If not specified, reads stdin until 
+			  <CTRL/D> and processes this input.
+
+		  file2   Name of output file to which index is to be 
+			  written.  If not specified, writes output to stdout.
+
+OPTIONS		-b   Uses characters in specified file (next argument) as 
+		     separators.
+		-f   Folds upper and lower case when sorting.
+		-g   Uses specified number (next argument) as interfield gap.
+		     If not specified, uses three characters.
+		-i   Ignores words listed in specified file (next argument).
+		     If -i and -o are not specified, ignores words listed 
+		     in /usr/lib/eign.
+		-o   Uses words listed only in specified file (next argument).
+		-r   Uses leading nonblanks as reference identifiers.
+		-t   Produces output ready for phototypesetter.
+		-w   Uses specified number (next argument) as width of output
+		     line.  If not specified, uses 72 characters.
+
+DOCUMENTATION	ptx(1) in the ULTRIX-11 Programmer's Manual
+-pwd
+	
+DESCRIPTION	The pwd command displays the name (absolute path) of your
+		current working directory.
+
+SYNTAX		pwd
+
+DOCUMENTATION	pwd(1) in the ULTRIX-11 Programmer's Manual
+-px
+
+DESCRIPTION	The px command executes the specified Pascal object file
+
+SYNTAX	  	px [ file ] [ arg... ]
+
+		  file   Name of the Pascal object file to be processed.
+
+		  arg    Each argument that is to be passed to the 
+			 Pascal program during its execution.
+
+DOCUMENTATION   px(1) in the ULTRIX-11 Programmer's Manual
+		"Berkeley Pascal User's Guide" in the ULTRIX-11 
+		Supplementary Document, Volume 2
+-pxp
+
+DESCRIPTION	The pxp command generates an execution profile for
+		the specified Pascal object file.
+
+SYNTAX	  	pxp [ options ] file
+
+		  file   Name of the Pascal object file to be processed.
+
+OPTIONS		-#  Uses the specified number (#) as the indentation 
+		    unit.  If not specified, uses 4.
+		-_  Underscores all keywords.
+		-a  Displays all procedures (even those not executed).
+		-c  Uses the core file in generating the profiling data.
+		-d  Displays all declaration parts.
+		-e  Eliminates include directives when reformatting the
+		    file.
+		-f  Displays all parenthesized expressions.
+		-j  Left justifies all procedures and functions.
+		-n  Begins a new page for each included file.
+		-s  Strips comments from the input text.
+		-t  Displays a table that summarizes procedure and
+		    function call counts.
+		-u  Generates the output in card image format.
+		-w  Suppresses all warning diagnostics.
+		-z  Generates an execution profile for the specified
+		    modules (next arguments).  If none are specified,
+		    generates execution profile for the entire program.	
+
+DOCUMENTATION   pxp(1) in the ULTRIX-11 Programmer's Manual
+		"Berkeley Pascal User's Guide" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-ranlib
+	
+DESCRIPTION	The ranlib command converts archives to random libraries.
+
+SYNTAX		ranlib archive...
+
+		  archive   Name of each archive library to be converted.
+
+DOCUMENTATION   ranlib(1) in the ULTRIX-11 Programmer's Manual
+-ratfor
+	
+DESCRIPTION	The ratfor command converts a dialect of FORTRAN into ordinary
+		FORTRAN code.
+
+SYNTAX		ratfor [ options ] [ file... ]
+
+		  file   Name of each file to be converted. 
+
+OPTIONS		-C   Copies all comments to output and attempts to format them
+		     neatly.
+		-6x  Places continuation character (x) in column 6.
+		-h   Converts quoted strings to 27H constructs.
+
+DOCUMENTATION	ratfor(1) in the ULTRIX-11 Programmer's Manual
+		"RATFOR--A Preprocessor for a Rational Fortran" in the 
+		ULTRIX-11 Supplementary Documents, Volume 2
+-rcp
+
+DESCRIPTION	The rcp command copies data from files on your host 
+		machine to files on a remote machine.
+
+SYNTAX	  	rcp [ options ] file... string
+
+		  file     Name of each file to be copied.
+
+		  string   Character string that either identifies
+			   the local file to be copied to or a remote
+			   host name and, if required, a path name
+			   (rhost:[path]).  If path is not specified,
+			   copies data to file of the same name in your
+			   home directory on the remote machine.
+
+OPTIONS		-p  Attempts to preserve the mode and modification times
+		    (ignores umask) as it copies each file.
+		-r  Recursively copies files in all subdirectories,
+		    if the specified file to be copied is a directory.
+		
+DOCUMENTATION   rcp(1c) in the ULTRIX-11 Programmer's Manual
+-red
+
+DESCRIPTION	The red command is a restricted version of the ed text
+		editor.
+
+SYNTAX	  	red [ - ] file
+
+		  file   Name of file to be edited.  The red command edits 
+			 a copy of the named file and updates source file only
+			 when the write command (w) is invoked.  If not 
+			 specified, edits unnamed temporary file.
+
+OPTIONS		-   Suppresses all character count displays.  Normally, ed
+		    displays a character count when invoked, whenever
+		    you edit another file (e), read in data from another
+		    file (r), or write out to file (w).
+
+DOCUMENTATION	ed(1) in the ULTRIX-11 Programmer's Manual
+		"A Tutorial Introduction to the UNIX Text Editor" and "Advanced
+		Editing on UNIX" in the ULTRIX-11 Supplementary Documents, 
+		Volume 1
+-refer
+	
+DESCRIPTION	The refer command finds and formats bibliographic references
+		for nroff and troff files.
+
+SYNTAX		refer [ options ]
+
+OPTIONS		-a   Uses specified name (-aname) and reverses order of first
+		     entry for that name only.  If name not specified, reverses
+		     order of names for all entries.
+		-b   Creates bare entries: no flags, numbers, or labels.
+		-c   Uses specified string (-cstring) and capitalizes fields
+		     whose key letters are in string.
+		-e   Accumulates all references in one list.  If not specified,
+		     creates references where encountered in text.
+		-k   Uses specified label (-klabel) in place of numbering for
+		     each reference.
+		-l   Uses specified characters and digits (-lc,#) and creates
+		     labels for all references using senior author's list and 
+		     only specified characters of each last name and specified 
+		     digits of the date.
+		-n   Does not search /usr/dict/papers.
+		-p   Uses specified file (next argument) as file to be 
+		     searched before /usr/dict/papers.  If not specified,
+		     searches /usr/dict/papers only.
+		-s   Uses specified key (-sstring) in sorting references. 
+
+DOCUMENTATION	refer(1) in the ULTRIX-11 Programmer's Manual
+		"Some Applications of Inverted Indexes on the UNIX System" in 
+		the ULTRIX-11 Supplementary Documents, Volume 1
+-regcmp
+
+DESCRIPTION	The regcmp command complies the regular expressions in
+		each specified file and writes all output to a .i file.
+
+SYNTAX	  	regcmp [ - ] file...
+
+		  file   Name of each file to be processed.
+
+OPTIONS		-   Writes output to a .c file in place of the .i file.
+		
+DOCUMENTATION   regcmp(1) in the ULTRIX-11 Programmer's Manual
+-renice
+	
+DESCRIPTION	The renice command reschedules the priority of your processes.
+
+SYNTAX		renice num pid...
+
+		  num   Number to be used in rescheduling. A positive number
+			reschedules a lower priority.  A negative number
+			reschedules a higher priority.
+ 
+		  pid   Process ID number of each process to be rescheduled.    
+ 
+EXAMPLES	renice 30 12877 12898
+		renice -5 3450 
+
+DOCUMENTATION	renice(1) in the ULTRIX-11 Programmer's Manual
+-reset
+
+DESCRIPTION	The reset command resets your terminal mode.
+
+SYNTAX	  	reset
+
+DOCUMENTATION   tset(1) in the ULTRIX-11 Programmer's Manual
+-rev
+	
+DESCRIPTION 	The rev command reverses the order of characters in each line
+		of a file.
+
+SYNTAX		rev [ file... ]
+
+		  file   Name of each file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and processes this input.
+
+DOCUMENTATION 	rev(1) in the ULTRIX-11 Programmer's Manual
+-rlogin
+
+DESCRIPTION	The rlogin command logs you into the specified remote
+		system.
+
+SYNTAX	  	rlogin system [ options ]
+
+		  system   Name of the remote system to be logged into.
+
+OPTIONS		-e   Uses the specified character (next argument) as the
+		     rlogin escape character.  If not specified, uses a
+		     tilde (~).
+		
+		-l   Logs you in as the specified user (next argument),
+		     not as your user login name.
+
+DOCUMENTATION   rlogin(1c) in the ULTRIX-11 Programmer's Manual
+-rm
+	
+DESCRIPTION	The rm command removes a directory entry for a file.
+
+SYNTAX		rm [ options ] file...
+
+		  file   Name of each file whose directory entry is to be 
+			 removed (unlinked).  When the last entry (link) 
+			 to a file is removed, only then is its data removed O
+			 from the file system.
+
+OPTIONS		-    Specifies that the file names begin with a minus (-name).
+		-f   Suppresses normal diagnostics/prompts and attempts to 
+		     force the removal.
+		-i   Prompts for yes or no response before removing each entry.
+		-r   Recursively removes all entries from the specified 
+	 	     directory and, then, removes the entry for that directory
+		     from its parent directory.
+
+DOCUMENTATION	rm(1) in the ULTRIX-11 Programmer's Manual
+-rmail
+
+DESCRIPTION	The rmail command routes the remote mail received from
+		the uucp command.
+
+SYNTAX	  	rmail user...
+
+		  user   Name of each user for which mail is to be sent.
+
+DOCUMENTATION   rmail(1) in the ULTRIX-11 Programmer's Manual
+-rmdel
+
+DESCRIPTION	The SCCS rmdel command removes the specified delta version
+		from an SCCS file.
+
+SYNTAX		sccs rmdel -r file...
+
+		  file  Name of each SCCS file to be processed.
+
+OPTIONS		-r  Indicates specified delta version number (-r#).
+
+DOCUMENTATION	rmdel(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-rmdir
+	
+DESCRIPTION	The rmdir command removes the entry for each empty directory
+		from its parent directory.
+
+SYNTAX		rmdir directory
+
+		  directory  Name of each empty directory whose entry is to be
+			     removed.
+
+EXAMPLES	rmdir project.dir
+
+DOCUMENTATION	rm(1) in the ULTRIX-11 Programmer's Manual
+-roff
+	
+DESCRIPTION	The roff command provides a simple text formatter.
+
+SYNTAX		roff [ options ] [ +num ] file...
+
+		  +num  Starts printing with specified page.
+
+		  file     Name of each file to be formatted.
+
+OPTIONS		-#   Stops printing after specified page (-#).
+       		-h   Inserts tabs (when appropriate) in place of spaces.
+		-s   Stops printing before each page (including first)
+		     to allow for paper manipulation.  Resumes printing
+		     on receipt of interrupt signal.
+
+DOCUMENTATION	roff(1) in the ULTRIX-11 Programmer's Manual
+-rsh
+
+DESCRIPTION	The rsh command logs you in to the named remote system
+		and executes the specified command sequence.
+
+SYNTAX	  	rsh system [ options ] cmd
+
+		  system   Name of the remote system.
+
+		  cmd      Complete command sequence that is to be 
+			   executed.
+
+OPTIONS		-l   Logs you in as the specified user (next argument),
+		     not as your user login name.
+
+		-n   Redirects all command input from /dev/null.
+		
+DOCUMENTATION   rsh(1c) in the ULTRIX-11 Programmer's Manual
+-rsh5
+
+DESCRIPTION	The rsh5 command is the restricted SYSTEM V version of 
+		the Bourne shell that provides an interactive command 
+		line interpreter and has a full subset of options,
+		special characters, and control flow constructs.
+
+SYNTAX	  	rsh5 [ options ] [ arg... ]
+
+		  arg   Name of each command sequence to be executed.
+			If not specified, invokes rsh5 command for 
+			interactive execution.
+
+OPTIONS		-a  Marks those variables which are modified or created
+		    for export.
+		-c  Executes the specified commands (next arguments).
+		-e  Exits immediately on unsuccessful execution of
+		    a command.
+		-f  Disable file name expansion.
+		-h  Locates and remembers all function commands.
+		-i  Invokes rsh5 for interactive session.
+		-k  Places all specified keywords (next arguments)
+		    into current execution environment.
+		-n  Reads all commands but does not execute them.
+		-s  Reads stdin until <CTRL/D> and uses this input
+		    as the command sequences to be executed.
+		-t  Exit after executing one command only.
+		-u  Treats all undefined variables as an error.
+		-v  Displays each input line upon execution.
+		-x  Displays all command sequences before execution.
+
+DOCUMENTATION   sh5(1) in the ULTRIX-11 Programmer's Manual
+-ruptime
+
+DESCRIPTION	The ruptime command displays the current status of each
+		network machine.
+
+SYNTAX	  	ruptime [ options ]
+
+OPTIONS		-a  Displays a count of all users who have been idle
+		    for an hour or more.  If not specified, omits this
+		    information. 
+
+		-l  Sorts information by load average, not by host name.
+
+		-t  Sorts information by host uptime, not by host name.
+		
+		-u  Sorts information by number of user, not by host 
+		    name.
+
+DOCUMENTATION   ruptime(1c) in the ULTRIX-11 Programmer's Manual
+-rwho
+
+DESCRIPTION	The rwho command displays who is logged in to all 
+		machines on your network.
+
+SYNTAX	  	rwho [ -a ]
+
+OPTIONS		-a  Displays the names of all users who have been idle
+		    for an hour or more.  If not specified, omits this
+		    information. 
+		
+DOCUMENTATION   rwho(1c) in the ULTRIX-11 Programmer's Manual
+-s5make
+
+DESCRIPTION	s5make, if installed, is the SYSTEM V replacement for
+		the make command.
+
+DOCUMENTATION	s5make(1) in the ULTRIX-11 Programmer's Manual
+		"Augmented Version of Make" in the ULTRIX-11 
+		Programmer's Manual, Vol. 2B
+-sact
+
+DESCRIPTION	The sact command displays the delta and edit status
+		of each specified SCCS file.
+
+SYNTAX	  	sact file...
+
+		  file   Name of each SCCS file to be processed.
+			 If - is specified, reads stdin until <CTRL/D>
+			 and uses this input as the file name.
+
+DOCUMENTATION   sact(1) in the ULTRIX-11 Programmer's Manual
+-sccs
+
+DESCRIPTION	The sccs command provides a Source Code Control System that
+		has a full subset of commands.
+
+SYNTAX		sccs [ options ] arg...
+
+		  arg  Each SCCS command sequence (command options arguments)
+		       to be executed under control of sccs.
+
+OPTIONS		-d  Prepends named directory path (-dpath) to specified file
+		    name.
+		-p  Additionally prepends named path (-ppath) between directory
+		    and specified file name.
+		-r  Preserves your user ID during execution.
+
+COMMANDS	admin      Administers SCCS files.
+		cdc	   Changes delta commentary.
+		check	   Checks if SCCS files are currently being edited.
+		clean      Removes all recreatable SCCS files.
+		comb       Combines deltas.
+		create     Creates SCCS files.
+		deledit    Creates new delta and edits file.
+		delget     Creates delta and gets a copy of file.
+		delta      Creates delta, saving changes.
+		edit       Edits SCCS file.
+		fix	   Removes current delta.
+		get	   Gets copy of an SCCS file.
+		info       Displays information about SCCS files being edited.
+		prs	   Displays information from SCCS files.
+		prt	   Displays list of delta changes.
+		rmdel      Removes delta.
+		sccsdiff   Compares two deltas.
+		sccshelp   Displays explanations of error messages.
+		tell       Displays names of SCCS file being edited.
+		unedit     Undoes SCCS edit command.
+		unget	   Undoes SCCS get and edit commands.
+		val	   Validates SCCS files.
+		what       Finds and displays ID keywords.
+
+		For further information about an sccs command, type:
+
+		  help COMMAND
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-sccsdiff
+
+DESCRIPTION	The sccsdiff command compare two deltas and displays their 
+		differences.
+
+SYNTAX		sccs sccsdiff [ options ] file...
+
+		  file   Name of each SCCS file to be compared.
+
+OPTIONS		-p  Displays output using pr command.
+		-r  Indicates deltas to be compared (-r#1 and -r#2).
+		-s  Sets number of lines each segment is to contain (-s#).
+
+DOCUMENTATION	sccsdiff(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-sccshelp
+
+DESCRIPTION	The sccshelp command displays short explanations of SCCS 
+		error messages and command syntax lines.
+
+SYNTAX		sccshelp [ arg... ]
+
+		  arg  Each error message or command name for which you 
+		       want an explanation displayed.
+
+DOCUMENTATION	sccshelp(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-script
+	
+DESCRIPTION	The script command generates a typescript of your terminal 
+		session until <CTRL/D>.
+
+SYNTAX		script [ options ] [ file ]
+
+		  file   Name of file into which typescript is written.
+			 If file is not specified, uses file "typescript".
+
+OPTIONS		-S   Uses specified shell (next argument).  If this shell is
+		     not available, uses any shell that it can find.
+		-a   Appends output to typescript file.
+		-n   Uses new shell (site dependent).
+		-q   Suppresses normal startup and done messages.
+		-s   Uses standard shell (normally, sh).
+
+DOCUMENTATION	script(1) in the ULTRIX-11 Programmer's Manual
+-sdiff
+
+DESCRIPTION	The sdiff command determines the differences between
+		two files and displays the differences in a two column
+		listing.
+
+SYNTAX	  	sdiff [ options ] file1 file2
+
+		  file1   Name of the two files to be processed.
+		  file2
+
+OPTIONS		-l  Displays the left side of all identical lines.
+		
+		-o  Uses the specified file (next argument) and 
+		    creates a user-controlled merge file.
+
+		-s  Suppresses all identical lines from the output.
+
+		-w  Uses the specified number (next argument) as the
+		    width of the output lines.
+
+DOCUMENTATION   sdiff(1) in the ULTRIX-11 Programmer's Manual
+-sed
+	
+DESCRIPTION	The sed command provides a noninteractive, stream editor that 
+		provides a full range of commands.
+
+SYNTAX		sed [ options ] [ file... ]
+
+		  file   Name of each file to be edited.  If not specified,
+			 reads stdin until <CTRL/D> and edits this input.
+
+OPTIONS		-e   Uses specified file (next argument) as input file of
+		     commands to be executed.
+		-f   Uses specified file (next argument) as input file of
+		     commands to be executed.   May be used in conjunction with
+		     -e option to indicate two script files.
+		-n   Suppresses all normal output.
+
+DOCUMENTATION	sed(1) in the ULTRIX-11 Programmer's Manual
+		"SED--A Non-interactive Text Editor" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-sh
+
+DESCRIPTION	The sh command provides an interactive command 
+		interpreter that has a full subset of options,
+		special characters, and control flow constructs.
+
+SYNTAX	  	sh [ options ] [ arg... ]
+
+		  arg   Name of each command sequence to be executed.
+			If not specified, invokes sh command for 
+			interactive execution.
+
+OPTIONS		-c  Executes the specified commands (next arguments).
+		-e  Exits immediately on unsuccessful execution of
+		    a command.
+		-i  Invokes sh for interactive session.
+		-k  Places all specified keywords (next arguments)
+		    into current execution environment.
+		-n  Reads all commands but does not execute them.
+		-s  Reads stdin until <CTRL/D> and uses this input
+		    as the command sequences to be executed.
+		-t  Exit after executing one command only.
+		-u  Treats all undefined variables as an error.
+		-v  Displays each input line upon execution.
+		-x  Displays all commands sequences before execution.
+
+DOCUMENTATION   sh(1) in the ULTRIX-11 Programmer's Manual
+-sh5
+
+DESCRIPTION	The sh5 command is the SYSTEM V version of the sh
+		command that provides an interactive command line
+		interpreter and has a full subset of options,
+		special characters, and control flow constructs.
+
+SYNTAX	  	sh5 [ options ] [ arg... ]
+
+		  arg   Name of each command sequence to be executed.
+			If not specified, invokes sh5 command for 
+			interactive execution.
+
+OPTIONS		-a  Marks those variables which are modified or created
+		    for export.
+		-c  Executes the specified commands (next arguments).
+		-e  Exits immediately on unsuccessful execution of
+		    a command.
+		-f  Disable file name expansion.
+		-h  Locates and remembers all function commands.
+		-i  Invokes sh5 for interactive session.
+		-k  Places all specified keywords (next arguments)
+		    into current execution environment.
+		-n  Reads all commands but does not execute them.
+		-r  Invokes sh5 for restricted session.	
+		-s  Reads stdin until <CTRL/D> and uses this input
+		    as the command sequences to be executed.
+		-t  Exit after executing one command only.
+		-u  Treats all undefined variables as an error.
+		-v  Displays each input line upon execution.
+		-x  Displays all command sequences before execution.
+
+DOCUMENTATION   sh5(1) in the ULTRIX-11 Programmer's Manual
+-size
+	
+DESCRIPTION	The size command displays the sizes of each segment for the
+		specified object file. 
+
+SYNTAX		size [ file... ]
+
+		  file   Name of each object program to be sized.  If not
+			 specified, displays the sizes of a.out in current
+			 directory.
+
+DOCUMENTATION	size(1) in the ULTRIX-11 Programmer's Manual
+-sleep
+	
+DESCRIPTION	The sleep command suspends execution for the specified time.
+
+SYNTAX		sleep time
+
+		  time   Number of seconds that execution is suspended.
+
+DOCUMENTATION 	sleep(1) in the ULTRIX-11 Programmer's Manual
+-sort
+	
+DESCRIPTION	The sort command sorts and merges file data.
+
+SYNTAX		sort [ options ] [ +pos [ -pos ] ] [ file... ]
+
+		  +pos   Data field (inclusive) at which sorting is to begin.
+
+		  -pos   Data file (exclusive) before which sorting is to end.
+
+		  file   Name of each file to be sorted and merged.  If not 
+			 specified, or if - is specified, reads stdin until 
+			 <CTRL/D> and sorts this input.
+
+OPTIONS		-T   Uses specified directory (next argument) to build 
+		     temporary files.
+		-b   Ignores all leading blanks (spaces and tabs).
+		-c   Checks that input file was sorted according to ordering
+		     rules and displays output only if out of order.
+		-d   Sorts data according to dictionary ordering: letters,
+		     digits, and blanks only.
+		-f   Folds upper case to lower case while sorting.
+		-i   Ignores character outside ASCII range 040-0176.
+		-m   Merges previously sorted data.
+		-n   Sorts fields containing numbers numerically, fields 
+		     containing alphanumerics alphabetically.
+		-o   Uses specified file (next argument) as output file.
+		     If not specified, write output to stdout.
+		-r   Reverses sorting order (descending).
+		-t   Uses specified character (-tc) as field separator.
+		-u   Suppresses all duplicate entries.
+
+DOCUMENTATION	sort(1) in the ULTRIX-11 Programmer's Manual
+-spell
+	
+DESCRIPTION	The spell command checks data for spelling errors.
+
+SYNTAX		spell [ options ] [ file... ]
+
+		  file   Name of each file to be checked.  If not specified,
+			 reads stdin until <CTRL/D> and checks this input.
+
+OPTIONS		-b   Checks data according to British spellings.
+		-v   Displays all words not found in the spelling list with
+		     all plausible derivations.
+		-x   Precedes each word with = and displays all plausible
+		     derivations.
+
+DOCUMENTATION	spell(1) in the ULTRIX-11 Programmer's Manual
+-spline
+
+DESCRIPTION	The spline command draws a smooth curve from specified input.  
+
+SYNTAX		spline [ options ]
+
+OPTIONS		-?   Uses specified value (-?) for boundary value constant.
+		-#   Uses specified number (-#) in calculating intervals
+		     between lower and upper limits.  If not specified,
+		     uses 100.
+		-a   Supplies the abscissa automatically (not specified in 
+		     input) and uses specified number (next argument) for 
+		     spacing.  If not specified, uses 1 for spacing.
+		-p   Periodically produces output (matches derivatives at 
+		     ends).
+		-x   Uses specified numbers (next arguments) as lower and upper
+		     limits, respectively.  If first argument is not specified,
+		     uses 0 as lower limit.  If neither argument is specified,
+		     calculates values from data.
+
+DOCUMENTATION	spline(1g) in the ULTRIX-11 Programmer's Manual
+-split
+	
+DESCRIPTION	The split command divides a file into smaller files.
+
+SYNTAX		split [ -# ] [ file [ name ] ] 
+
+		  file   Name of file to be split.  If not specified or
+			 if - is specified, reads stdin until <CTRL/D> and
+			 splits this input into smaller files.
+
+		  name   Name with which each output file is to be created. 
+			 Each file is created with this name and the suffix 
+			 aa, ab, ac, and so on.  If not specified, creates
+			 each output file with name x and suffixes aa, ab, ac,
+			 and so on.
+ 
+OPTIONS		-#   Uses specified number (#) as number of lines that are to 
+		     be written to each output file.  If # is not specified, 
+		     uses 1000.
+
+DOCUMENTATION	split(1) in the ULTRIX-11 Programmer's Manual
+-strings
+	
+DESCRIPTION	The strings command displays all printable ASCII strings
+		in each specified object file.
+
+SYNTAX		strings [ options ] file...
+
+		   file   Name of each object file to be processed.  
+
+OPTIONS		-   Looks through the entire object file for ASCII strings.
+		    If not specified, looks only in the initialized data space.
+		-#  Uses specified number (#) as minimum string length.  If not
+		    specified, uses four characters.
+		-o  Precedes each string with its file offset (octal).
+
+DOCUMENTATION	strings(1) in the ULTRIX-11 Programmer's Manual
+-strip
+	
+DESCRIPTION	The strip command removes all symbols and relocation bits from 
+		each specified object file.
+
+SYNTAX		strip file...
+
+		  file   Name of each object file to be processed.
+
+DOCUMENTATION	strip(1) in the ULTRIX-11 Programmer's Manual
+-struct
+
+DESCRIPTION	The struct command converts ordinary FORTRAN code to rational 
+		FORTRAN (ratfor) code.
+
+SYNTAX		struct [ options ] file
+
+		  file   Name of file to be converted.
+
+OPTIONS		-a   Converts else-if sequences into non-Ratfor switch forms.
+		-b   Generates goto statements in place of multilevel breaks.
+		-e   Uses the specified number (-e#) to test loops. 
+		-i   Does not convert goto statements into switches.
+		-n   Generates goto statements in place of multilevel next 
+		     statements.
+		-s   Accepts input in standard format: comment character in
+		     column one and continuation character in column six.
+
+DOCUMENTATION	struct(1) in the ULTRIX-11 Programmer's Manual
+-stty
+	
+DESCRIPTION	The stty command normally is executed from your .login file to
+		set up your terminal I/O characteristics.
+
+SYNTAX		stty [ options ]
+
+OPTIONS		brk       Sets brk character to specified character (next 
+			  argument). 
+		bs0 bs1   Selects backspace delay.
+		cbreak    Makes characters available as received.
+		cooked    Same as -raw.
+		cr0 cr1 cr2 cr3
+			  Selects carriage return delay.
+		crt       Sets crt options.
+		crtbs     Sets crt backspace.
+		crtkill   Uses crterase to kill line.
+		ctlecho   Echoes control characters as ^X
+		crterase  Sets erase characters with "backspace space 
+			  backspace".
+		dec       Sets erase = DEL, kill = ^U, intr = ^C.
+		echo      Echoes every character.
+		ek 	  Resets erase and kill to # and @.
+		eof       Sets eof character to specified character (next 
+			  argument).
+		erase     Sets erase character to specified character (next 
+			  argument).
+		even      Allows even parity.
+		ff0 ff1   Selects form feed delay.
+		hup       Hangs up dataphone on last close.
+		intr      Sets interrupt character to specified character (next
+			  argument).
+		kill      Sets kill character to specified character (next 
+			  argument).
+		lcase     Translates upper case to lower case.
+		min	  Sets minimum number of characters (next argument) 
+			  that should be received to satisfy read.
+		nl	  Accepts only newline character to terminate lines.
+		nl0 nl1 nl2 nl3
+			  Selects linefeed delay.
+		odd       Allows odd parity.
+		prterase  Echoes erase between \ and /.
+		quit      Sets quit character to specified character (next 
+			  argument).
+		raw       Pass all characters (no character processing).
+		start     Sets start character to specified character (next 
+			  argument).
+		stop      Sets stop character to specified character (next 
+			  argument).
+		tabs      Preserves tabs.
+		tab0 tab1 tab2 tab3
+			  Select tab delay.
+		time	  Sets timer (next argument) in 0.1 granularity for
+			  timeout bursty and short term data transmissions.
+		-option   Negates option.
+
+DOCUMENTATION	stty(1) in the ULTRIX-11 Programmer's Manual
+-su
+	
+DESCRIPTION	The su command temporarily substitutes your user ID to that 
+		of the specified user.
+
+SYNTAX		su [ - ] [ user ]
+
+		  user   Login name of user whose ID is to be substituted.
+			 Where applicable, prompts for user's login password.
+			 If correct password is given, invokes a new shell 
+			 running under user's ID.  If not specified, assumes
+			 root and prompts for the appropriate password.
+
+OPTIONS		-   Establishes user's login environment: changes directory 
+		    to user's home directory and invokes user's login shell.
+
+DOCUMENTATION	su(1) in the ULTRIX-11 Programmer's Manual
+-sum
+	
+DESCRIPTION 	The sum command displays a 16-bit checksum and the size in
+		blocks of the specified file.
+
+SYNTAX		sum file
+
+		  file   Name of file to be processed.
+
+DOCUMENTATION 	sum(1) in the ULTRIX-11 Programmer's Manual
+-tabs
+	
+DESCRIPTION	The tabs command sets the tabs spacing for your terminal.
+
+SYNTAX		tabs [ -n ] [ special ]
+
+		  special   Special file of terminal to be affected.
+
+OPTIONS		-n   Does not indent left margin. 
+
+DOCUMENTATION	tabs(1) in the ULTRIX-11 Programmer's Manual
+-tail
+
+DESCRIPTION	The tail command displays file data.
+
+SYNTAX		tail [ pos ] [ file ]
+
+		  pos    Where display is to begin: +number (from beginning
+			 of file) and -number (from end of file). You can add 
+			 a units indicator to the position argument: b 
+			 (blocks), c (characters), or l (lines).  If not 
+			 specified, counts by units of lines.  You also 
+			 can add these optional function keys: f (do not 
+			 quit at end-of-file) and r (print lines from end 
+			 in reverse order).
+
+		  file   Name of file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and displays data from 
+			 this input.
+
+EXAMPLES	tail +150lr program1
+		tail -10bf program1
+
+DOCUMENTATION	tail(1) in the ULTRIX-11 Programmer's Manual
+-talk
+
+DESCRIPTION	The talk command provides two-way communication
+		between you and the specified user.
+
+SYNTAX	  	talk user [ tty ]
+
+		  user   Login name of the user with whom you wish
+			 to communicate.
+
+		  tty    Special file name of the terminal for which
+			 the talk session is to apply.  This argument
+			 is useful when the specified user is logged 
+			 in more than once.
+
+DOCUMENTATION   talk(1) in the ULTRIX-11 Programmer's Manual
+-tar
+
+DESCRIPTION	The tar command archives files to and from multiple
+		tape volumes.
+
+SYNTAX	  	tar [ -C ] [ keys ] [ file... ]
+
+		  file   Name of each file to be archived.
+
+OPTIONS		-C  Changes directories to that in the specified path
+		    (next argument) before processing. This option
+		    can be used multiple times on the same command line.
+
+KEYS		A   Uses the specified number (next argument) as 
+		    archive with which to begin the output.
+		B   Forces input and output blocking to 20 blocks 
+		    per record. 
+		D   Specifies all directory output to be in v7tar
+		    format. 
+		F   Skips all SCCS directories, core files, and err 
+		    files.  If additional F key (FF) is specified,
+		    also skips all a.out and .o files.
+		H   Displays help summary of all keys.
+		M   Specifies the maximum archive number (1-99) to be 
+		    written (next argument).
+		N   Suppresses multivolume, file-splitting, and new 
+		    header format from output.
+		O   Additionally displays file owner and group names
+		    for t and x keys.  For c, r, and u keys, displays
+		    warning message if user and group IDs cannot be 
+		    found in /etc/passwd or /etc/group, respectively.
+		S   Creates output with /USER/GROUP standard archive 
+		    headers.
+		V   Displays expanded verbose information about all 
+		    directories as well as files on the volume.
+	       0-9  Uses specified drive number as alternate on which
+		    archive is mounted.  If not specified, uses 
+		    /dev/rht0.
+		b   Uses specified number (next argument) as the 
+		    blocking factor.  If not specified, uses 20 blocks.
+		c   Creates a new archive library.
+		d   Specifies RX50 as the device: uses /dev/rrx1.
+		f   Uses specified file (next argument) as the name
+		    of the archive. If not specified, uses /dev/rht0.
+		g   Specifies 6250 bpi tape: uses /dev/rgt0.
+		h   Saves a copy of the file (excludes symbolic links).
+		i   Ignores checksum errors.
+		k   Specifies TK50 as the device: uses /dev/rtk0.
+		l   Displays error message if links cannot be resolved.
+		m   Does not restore file modification time.
+		n   Specifies 800 bp1 tape: uses /dev/rmt0.
+		o   Suppresses all directory information.
+		p   Restores each specified file to its original mode.
+		r   Writes each specified file to the end of archive.
+		s   Uses specified number (next argument) as size of 
+		    media in 512-byte blocks.
+		t   Generates archive table of contents.
+		u   Updates the archive library: adds each if only if
+		    it either is not already in archive or has been
+		    modified since originally archived.
+		v   Displays detailed (verbose) information as it 
+		    archives files.
+		w   Displays action to be taken for each file and 
+		    prompts for confirmation.
+		x   Extracts each specified file from the archive.
+
+EXAMPLES	tar c -C /usr/include -C /etc
+		tar cvb 10 /
+	
+DOCUMENTATION   tar(1) in the ULTRIX-11 Programmer's Manual
+-tbl
+	
+DESCRIPTION	The tbl command formats tables for nroff and troff processing.
+
+SYNTAX		tbl [ file... ]
+
+		  file  Name of each file to be processed.  If not specified,
+			reads stdin until <CTRL/D> and processes this input.
+
+DOCUMENTATION	tbl(1) in the ULTRIX-11 Programmer's Manual
+		"TBL--A Program to Format Tables" in the ULTRIX-11 
+		Supplementary Documents, Volume 1
+-tc
+	
+DESCRIPTION	The tc command simulates phototypesetter output.
+
+SYNTAX		tc [ options ] [ file ]
+
+		  file   Name of file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and processes this input.
+
+OPTIONS		-l   Multiplies page aspect ratio (1.5) by l/w (must be 
+		     quoted on command line). 
+		-p   Uses specified page length (-pL). This length can include
+		     scale factors: p (points), i (inches), c (centimeters), 
+		     and P (picas). 
+		-s   Skips specified number of pages (-s#).
+		-t   Does not wait between pages.  
+
+DOCUMENTATION	tc(1) in the ULTRIX-11 Programmer's Manual
+-tee
+	
+DESCRIPTION	The tee command pipes input to your terminal (stdout) and to
+		each specified file.
+
+SYNTAX		tee [ options ] [ file... ]
+
+		  file   Name of each file to which input is to be written.
+			 If not specified, writes data to stdout only.
+
+OPTIONS		-a   Appends input to existing files.
+		-i   Ignores interrupts.
+
+DOCUMENTATION	tee(1) in the ULTRIX-11 Programmer's Manual
+-tell
+
+DESCRIPTION	The SCCS tell command displays the names of those SCCS file 
+		currently being edited.
+
+SYNTAX		sccs tell
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-telnet
+
+DESCRIPTION	The telnet command provides an interactive user
+		interface to the TELNET protocol that has a full
+		set of subcommands for communicating with another 
+		host machine.
+
+SYNTAX	  	telnet [ system ] [ port ]
+
+		  system  Name of the remote system.  If not specified,
+			  prompts for the remote system name. 
+
+		  port    Number of the port to be connected to.  If not
+			  specified, uses default port.
+		
+DOCUMENTATION   telnet(1c) in the ULTRIX-11 Programmer's Manual
+-test
+	
+DESCRIPTION	The test command evaluates specified conditional expressions.
+
+SYNTAX		test expr
+
+		  expr   Expression to be evaluated.  Expressions
+			 can test: file conditions, numerical comparisons,
+			 or string comparisons (see below).  
+
+EXPRESSIONS	-d   Tests if file (next argument) exists and is a directory.
+		-f   Tests if file (next argument) exists and is not a 
+		     directory.
+		-n   Tests if length of string (next argument) is nonzero.
+		-r   Tests if file (next argument) exists and is readable.
+		-s   Tests if file (next argument) exists and size is greater
+		     than 0.
+		-t   Tests if file descriptor (next argument) is terminal.  
+		     If fd not specified, tests descriptor 1.
+		-w   Tests if file (next argument) exists and is writable.
+		-z   Tests if length of string (next argument) is zero.
+		n1 -eq n2      
+		     Tests if number1 equals number2.
+		n1 -ge n2      
+		     Tests if number1 is greater than or equal to number2.
+		n1 -gt n2      
+		     Tests if number1 is greater than number2.
+		n1 -le n2      
+		     Tests if number1 is less than or equal to number2.
+		n1 -lt n2      
+		     Tests if number1 is less than number2.
+		n1 -ne n2      
+		     Tests if number1 does not equal number2.
+		s1   Tests if string1 is not a null string.
+		s1 = s2	
+		     Tests if string1 and string2 are equal.
+		s1 != s2       
+		     Tests if string1 and string2 are not equal.
+		! expr	 
+		     Negates evaluation of expression.
+		expr -a expr   
+		     Tests logical and of two expressions.
+		expr -o expr   
+		     Tests logical or of two expressions.
+		( expr... )    
+		     Groups expressions.
+
+DOCUMENTATION	test(1) in the ULTRIX-11 Programmer's Manual
+-tftp
+
+DESCRIPTION	The tftp command is an interactive user interface
+		to the ARPANET standard Trivial File Transfer Protocol
+		that has a full subset of commands for transferring
+		files to and from remote systems.
+
+SYNTAX	  	tftp [ system ] [ port ]
+
+		  system  Name of the remote system.  If not specified,
+			  prompts for the remote system name. 
+
+		  port    Number of the port to be connected to.  If not
+			  specified, uses default port.
+		
+DOCUMENTATION   tftp(1c) in the ULTRIX-11 Programmer's Manual
+-time
+	
+DESCRIPTION	The time command displays execution times for the specified 
+		command.
+
+SYNTAX		time cmd
+
+		  cmd   Command for which times are to be displayed.  
+
+DOCUMENTATION	time(1) in the ULTRIX-11 Programmer's Manual
+-tip
+	
+DESCRIPTION	The tip command connects you with remote systems.
+
+SYNTAX		tip [ options ] system
+
+		  system   System to which you are to be connected.  You can 
+			   indicate the system by specifying either hostname
+			   or phone number.
+
+OPTIONS		-#   Uses specified number (#) as baud rate.
+		-v   Displays all variable settings.
+
+DOCUMENTATION	tip(1c) in the ULTRIX-11 Programmer's Manual
+-tk
+
+DESCRIPTION	The tk command paginates output for the Tektronix 4014
+		terminal.
+
+SYNTAX	  	tk [ options ] [ file ]
+
+		  file   Name of the file to be processed.  If not
+			 specified, reads stdin until <CTRL/D> and
+			 processes this input.
+
+OPTIONS		-#   Uses the specified number (#) as the number of 
+		     columns for the screen output.
+		
+		-p   Uses the specified number (-pn) as the page length.
+
+		-t   Does not pause between pages.  If not specified,
+		     pauses after each page and reads stdin until 
+		     <RETURN> before proceeding.
+
+DOCUMENTATION   tk(1) in the ULTRIX-11 Programmer's Manual
+-touch
+	
+DESCRIPTION	The touch command updates the modification date of each 
+		specified file.
+
+SYNTAX		touch [ -c ] file...
+
+		  file   Name of each file to be processed.  If a file does
+			 not exist, attempts to create it with current date.
+
+OPTIONS		-c   Does not attempt to create file if it does not exist.
+
+DOCUMENTATION	touch(1) in the ULTRIX-11 Programmer's Manual
+-tp
+	
+DESCRIPTION	The tp command archives files to/from tape.
+
+SYNTAX		tp [ key ]
+
+KEYS		0-7  Uses specified number to indicate tape drive.  If not 
+		     specified, uses RX50 as the default device.
+		c    Creates a new tape archive.
+		d    Deletes specified files (next arguments) from tape.
+		f    Uses specified file (next argument) in place of 
+		     tape.
+		g    Uses 6250 BPI tape in place of RX50s.
+		h    Uses 1600 BPI tape in place of RX50s.
+		i    Displays read/write errors, but proceeds instead of 
+		     returning to command level.
+		k    Uses TK50 in place of RX50s.
+		m    Uses 800 BPI tape in place of Rx50s.
+		r    Replaces specified files (next arguments) on tape.
+		t    Lists names of specified files (next arguments) if each 
+		     appears on tape.  If files not specified, lists
+		     names of all files on tape.
+		u    Updates specified files (next arguments) only if each
+		     has been modified since modification time of copy already
+		     on tape. 
+		v    Displays verbose information as it archives each file.
+		w    Waits for confirmation response before proceeding.
+		x    Extracts specified files (next arguments) from tape.
+
+DOCUMENTATION	tp(1) in the ULTRIX-11 Programmer's Manual
+-tr
+
+DESCRIPTION	The tr command translates the specified character string.
+
+SYNTAX		tr [ options ] [ string1 [ string2 ] ] 
+
+		  string1   Character string to be translated. 
+
+		  string2   Character string to be translated to.
+
+		Strings can be specified by a character (c), a range of 
+		characters (c-c), or an octal number (\###).
+
+OPTIONS		-c   Translates compliments: string1 to those not in string1.
+		-d   Deletes all characters in string1 from output.
+		-s   Squeezes multiple occurrences of a character in string1 
+		     to one.
+
+EXAMPLES	tr 0-9 0 
+		tr -s ' ' 
+
+DOCUMENTATION	tr(1) in the ULTRIX-11 Programmer's Manual
+-troff
+	
+DESCRIPTION	The troff command provides a text formatter with a full subset
+		of macros for phototypesetting.
+
+SYNTAX		troff [ options ] [ file... ]
+
+		  file   Name of each file to be formatted.  If not specified,
+			 or if - is specified, reads stdin until <CTRL/D> and
+			 formats this input.
+
+OPTIONS		-a   Sends ASCII approximations to stdout.
+		-b   Reports status of phototypesetter only (no formatting).
+		-f   Does not feed paper and stop typesetter at end of run.
+		-g   Prepares output for GCOS phototypesetter and writes it
+		     to stdout.
+		-i   Reads stdin after input files are processed.
+		-m   Uses specified macro package (-mxx) in formatting text.
+		-n   Uses specified number (-n#) as first page to be printed.
+		-o   Uses specified list (-olist) as only pages to be printed.
+		-p   Uses specified number (-p#) as desired point size.
+		-q   Invokes simultaneous input/output mode.
+		-r   Sets named register to specified value (-rxv).
+		-s   Stops after specified number of pages (-s#).
+		-t   Writes output to stdout, not to phototypesetter.
+		-w   Waits for phototypesetter if currently busy.
+
+DOCUMENTATION	troff(1) in the ULTRIX-11 Programmer's Manual
+		"NROFF/TROFF User's Manual" and "A TROFF Tutorial" in the 
+		ULTRIX-11 Supplementary Documents, Volume 1 
+-true
+	
+DESCRIPTION	The true command forces a successful exit status.
+
+SYNTAX		true
+
+DOCUMENTATION	true(1) in the ULTRIX-11 Programmer's Manual
+-tset
+
+DESCRIPTION	The tset command sets your terminal mode.
+
+SYNTAX	  	tset [ options ]
+
+OPTIONS		-I   Does not transmit terminal initialization strings.
+		-Q   Suppresses erase and kill character message.
+		-S   Displays assigned strings as set by TERM variable
+		     and from /etc/termcap file.
+		-e   Uses the specified character (-ex) as the erase
+		     character.  If not specified, uses <DELETE>.
+		-k   Uses the specified character (-kx) as the kill
+		     character.  
+		-m   Uses the specified argument string for the terminal
+		     map.  The optional arguments, in the order 
+		     specified, are: port type, identifier, baud rate,
+		     and terminal type.
+		-n   Initializes the "new" tty driver, if applicable.
+		-v   Sets the mode to a nonvirtual terminal.  
+		
+DOCUMENTATION   tset(1) in the ULTRIX-11 Programmer's Manual
+-tsort
+	
+DESCRIPTION	The tsort command generates a topologically sorted list of
+		items from data in the specified file.
+
+SYNTAX		tsort [ file ]
+
+		  file    Name of file to be processed.  If not specified,
+			  reads stdin until <CTRL/D> and sorts this input.
+
+DOCUMENTATION	tsort(1) in the ULTRIX-11 Programmer's Manual
+-tty
+	
+DESCRIPTION	The tty command displays the name of your terminal.
+
+SYNTAX		tty
+
+DOCUMENTATION	tty(1) in the ULTRIX-11 Programmer's Manual
+-u
+	
+DESCRIPTION	The u command displays the names of each user who 
+		currently is logged on the system.
+
+SYNTAX		u
+
+DOCUMENTATION	users(1) in the ULTRIX-11 Programmer's Manual
+
+-ul
+	
+DESCRIPTION	The ul command formats underscored text for your terminal type.
+
+SYNTAX		ul [ options ] [ file... ] 
+
+		  file   Name of each file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and processes this input.
+
+OPTIONS		-i   Displays underscoring on separate line containing 
+		     appropriate dashes (-).
+		-t   Uses type of specified terminal (next argument) in place
+		     your terminal's type.
+
+DOCUMENTATION	ul(1) in the ULTRIX-11 Programmer's Manual
+-uname
+
+DESCRIPTION	The uname command displays the name of your current
+		host system.
+
+SYNTAX	  	uname [ options ]
+
+OPTIONS		-a   Displays all information: shorthand for -mnrsv.
+		-m   Displays the machine hardware type.
+		-n   Displays the network node name.
+		-r   Displays the operating system's release number.
+		-s   Displays the host system name (default option).
+		-v   Displays the operating system's version number.
+
+DOCUMENTATION   uname(1) in the ULTRIX-11 Programmer's Manual
+-unedit
+
+DESCRIPTION	The SCCS unedit command removes a copy of an SCCS file opened
+		for edit without merging any changes made back to the original
+		SCCS file.
+
+SYNTAX		sccs unedit file...
+
+		  file   Name of each SCCS file to be unedited.
+
+DOCUMENTATION	"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-unexpand
+
+DESCRIPTION	The unexpand command converts spaces in each specified
+		file to tabs.
+
+SYNTAX	  	unexpand [ -a ] [ file... ]
+
+		  file   Name of each file to be processed.  If not 
+			 specified, reads stdin until <CTRL/D> and
+			 processes this input.
+
+OPTIONS		-a   Compresses the file whenever possible by inserting
+		     tabs for two or more spaces.
+		
+DOCUMENTATION   expand(1) in the ULTRIX-11 Programmer's Manual
+-unget
+
+DESCRIPTION	The SCCS unget command undoes an SCCS edit command (get -e).
+
+SYNTAX		sccs unget [ options ] file...
+
+		  file   Name of each SCCS file to be processed.
+
+OPTIONS		-n  Retains copy of SCCS file which normally is removed 
+		    from current directory.
+		-r  Indicates delta version number (-r#).
+		-s  Suppresses all messages.
+
+DOCUMENTATION	unget(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-uniq
+
+DESCRIPTION	The uniq command removes repeated lines from a file.
+
+SYNTAX		uniq [ options ] [ +num ] [ file1 [ file2 ] ]
+
+		  +num 	   Skips specified number of characters (num) in 
+			   addition to the specified fields. 
+
+		  file1    Name of input file to be processed.  If not 
+			   specified, reads stdin until <CTRL/D> and 
+			   processes this input.
+
+		  file2    Name of output file to which all unique lines
+			   are written.  If not specified, writes output 
+			   to stdout.
+
+OPTIONS		-#   Skips additional number of fields (#).
+		-c   Displays number of repetitions, if any, for each line.
+		-d   Displays only lines that were repeated.
+		-u   Displays only unique (nonrepeated) lines.
+
+DOCUMENTATION	uniq(1) in the ULTRIX-11 Programmer's Manual
+-units
+	
+DESCRIPTION     The units command provides an interactive conversion program 
+		with a full subset of conversion scales.
+
+SYNTAX	  	units
+
+DOCUMENTATION	units(1) in the ULTRIX-11 Programmer's Manual
+-unpack
+
+DESCRIPTION	The unpack command expands the compressed data in
+		each specified file.
+
+SYNTAX	  	unpack file...
+
+		  file   Name of each file to be processed.
+
+DOCUMENTATION   pack(1) in the ULTRIX-11 Programmer's Manual
+-uptime
+
+DESCRIPTION	The uptime command displays performance information
+		about your system.
+
+SYNTAX	  	uptime
+
+DOCUMENTATION   uptime(1) in the ULTRIX-11 Programmer's Manual
+-users
+	
+DESCRIPTION	The users command displays the names of each user who currently
+		is logged on the system.
+
+SYNTAX		users
+
+DOCUMENTATION	users(1) in the ULTRIX-11 Programmer's Manual
+-uucp
+	
+DESCRIPTION	The uucp command copies files to remote systems.
+
+SYNTAX		uucp [ options ] file... system...
+ 
+		  file    Name of each file to be copied to specified
+			  remote system.
+
+		  system  Destination system and optional pathname to which
+			  files are to be copied.   
+
+OPTIONS		-c   Copies each file to remote system directly from source. 
+		     Normally, copies file to spool directory and then to 
+		     remote system.
+		-d   Creates all necessary directories before copying.
+		-m   Notifies you by mail when copying is completed.
+
+DOCUMENTATION	uucp(1c) in the ULTRIX-11 Programmer's Manual
+		"Uucp Implementation Description" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-uulog
+	
+DESCRIPTION	The uulog command maintains a summary of all uucp and uux
+		transactions.
+
+SYNTAX		uulog [ options ]
+
+OPTIONS		-s   Displays information about specified system (-ssystem).
+		-u   Displays information about specified user (-uuser).
+
+DOCUMENTATION	uucp(1c) in the ULTRIX-11 Programmer's Manual
+		"Uucp Implementation Description" in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-uustat
+
+DESCRIPTION	The uustat command displays status information about
+		and provides control of uucp jobs.
+
+SYNTAX	  	uustat [ options ]
+
+OPTIONS		-c   Removes entries for requests that are older than 
+		     the specified time (-ctime).
+		-j   Displays status information for the specified job
+		     only (-jnnn).  If -jall is specified, displays
+		     information for all jobs.
+		-k   Kills the specified job (-knnn).
+		-m   Displays accessibility status of the specified 
+		     machine (-mmachine).  If -mall is specified,
+		     displays information for all machines.
+		-o   Displays information for requests that are older
+		     than the specified time (-otime).
+		-s   Displays information for requests that are destined
+		     for the specified system (-ssystem).
+		-u   Displays information for requests made by the 
+		     specified user (-uname).
+		-v   Displays detailed (verbose) information.
+		-y   Displays information for requests that are younger
+		     than the specified time (-ytime).
+		
+DOCUMENTATION   uustat(1c) in the ULTRIX-11 Programmer's Manual
+-uux
+	
+DESCRIPTION	The uux command executes specified commands on remote systems.
+
+SYNTAX		uux [ - ] string...
+
+		  String   Each argument that makes up system-command string 
+			   to be executed.  If first argument is system!, 
+			   remaining command and arguments are executed on 
+			   that system.  If system! is not first argument,  
+			   command and arguments are executed on your local 
+			   system.  For further information, read the uux 
+			   manual page.
+
+OPTIONS		-   Reads stdin until <CTRL/D> and uses input as system-command
+		    string.
+
+DOCUMENTATION	uux(1c) in the ULTRIX-11 Programmer's Manual
+		"Uucp Implementation Description in the ULTRIX-11 
+		Supplementary Documents, Volume 2
+-v7tar
+	
+DESCRIPTION	The v7tar command archives files to and from tape.
+
+SYNTAX		tar [ key ]
+
+KEYS		B   Creates a new tape archive.
+		0-7 Uses specified number (0-7) as drive on which tape is
+		    mounted.
+		b   Uses specified number (next argument) as blocking factor.
+		    Maximum blocking is 20. If not specified, uses 1 (tape) 
+		    and 10 (RX50 diskette).
+		c   Creates new tape archive.
+		d   Uses RX50 diskettes in place of tape.  
+		f   Uses specified special file (next argument) as tape drive.
+		l   Reports if cannot resolve all links to file being dumped.
+		    If not specified, no messages are displayed.
+		m   Does not restore the modification time for each file: uses
+		    time of extraction.
+		n   Uses 800 BPI tape.
+		o   Suppresses normal directory output.
+		p   Changes mode of extracted files to their original mode.
+		r   Writes specified files to end-of-tape.
+		t   Displays names of specified files (next arguments) if
+		    each appears on tape.  If names are not specified, 
+		    displays all names on tape.
+		u   Updates specified files (next arguments) if not on tape or
+		    if each has been modified since modification time of copy
+		    already on tape.
+		v   Displays verbose information as it archives each file.
+		w   Waits for confirmation response before proceeding.
+		x   Extracts only named files (next arguments) from tape.
+
+DOCUMENTATION	v7tar(1) in the ULTRIX-11 Programmer's Manual
+-val
+
+DESCRIPTION	The SCCS val command validates the specified SCCS files.
+
+SYNTAX		sccs val [ options ] file...
+
+		  file   Name of each SCCS file to be processed.
+
+OPTIONS		-m  Compares specified value (-mstring) with helptext1 keyword.
+		-r  Indicates specified delta version number (-r#).
+		-s  Suppresses all error messages.
+		-y  Compares specified type (-ystring) with  keyword.
+
+DOCUMENTATION	val(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-vc
+
+DESCRIPTION	The vc command copies lines from stdin to stdout in 
+		accordance with the specified control arguments.
+
+SYNTAX	  	vc [ options ] [ keyword ]
+
+		  keyword   Replaces each specified keyword found in 
+			    the text with its defined value 
+			    (keyword=value).
+
+OPTIONS		-a   Replaces the keywords surrounded by control 
+		     characters in all text lines.
+		-c   Uses the specified character (-cx) as the control
+		     character.  If not specified, uses a colon (:).
+		-s   Suppresses all warning messages.
+		-t   Ignores all characters from the beginning of the
+		     line to the first tab.
+		
+DOCUMENTATION   vc(1) in the ULTRIX-11 Programmer's Manual
+-vi
+	
+DESCRIPTION	The vi command provides an interactive, line-oriented editor 
+		that has full-screen display and a full subset of commands.
+
+SYNTAX		vi [ options ] [ +cmd ] file...
+
+		  +cmd   Starts edit session with  specified command (cmd).
+
+		  file   Name of each file to be edited.  If more than one 
+			 file is specified, edits each file in succession. 
+			 For further information, read about the :n command 
+			 in the vi manual page.
+
+OPTIONS		-l  Sets up edit session for LISP.
+		-r  Recovers an edit session lost because of a system crash.
+		-t  Searches file for and begins session at occurrence of
+		    specified string (next argument).
+		-w  Uses specified number (-w#) as screen window size.
+
+DOCUMENTATION	vi(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to Display Editing with vi" and "Ex Reference
+		Manual" in the ULTRIX-11 Supplementary Documents, Volume 1
+-w
+
+DESCRIPTION	The w command displays who is logged into the system
+		and what they are currently doing.
+
+SYNTAX	  	w [ options ] [ user ]
+
+		  user   User login name for which information is 
+			 to be displayed.  If not specified, displays 
+			 information for all users.
+
+OPTIONS		-h   Suppresses the normal header from the output.
+		-l   Displays information in long format (default 
+		     option).
+		-s   Displays information in short format.
+		
+DOCUMENTATION   w(1) in the ULTRIX-11 Programmer's Manual
+-wait
+	
+DESCRIPTION	The wait command suspends execution until all background
+		processes have completed.
+
+SYNTAX		wait
+
+DOCUMENTATION	wait(1) in the ULTRIX-11 Programmer's Manual
+-wall
+	
+DESCRIPTION	The wall command writes a message to all users currently logged
+		in to the system.
+
+SYNTAX		wall
+
+DOCUMENTATION	wall(1) in the ULTRIX-11 Programmer's Manual
+-wc
+	
+DESCRIPTION	The wc command displays the number of words, lines, and 
+		characters in each specified file.
+
+SYNTAX		wc [ options ] [ file... ]
+
+		  file   Name of each file to be processed.  If not specified,
+			 reads stdin until <CTRL/D> and processes this input.
+
+OPTIONS		-c   Displays number of characters only.
+		-l   Displays number of lines only.
+		-w   Displays number of words only.
+
+DOCUMENTATION	wc(1) in the ULTRIX-11 Programmer's Manual
+-what
+
+DESCRIPTION	The SCCS what command displays ID keywords from each specified
+		SCCS file.
+
+SYNTAX		sccs what file...
+
+		  file   Name of each file to be processed.
+
+DOCUMENTATION	what(1) in the ULTRIX-11 Programmer's Manual
+		"An Introduction to the Source Code Control System" in the
+		ULTRIX-11 Supplementary Documents, Volume 1
+-whatis
+
+DESCRIPTION	The whatis command displays information about
+		each specified command.
+
+SYNTAX	  	whatis cmd...
+
+		  cmd   Name of each command for which information is to
+		 	be displayed.
+
+DOCUMENTATION   whatis(1) in the ULTRIX-11 Programmer's Manual
+-which
+
+DESCRIPTION	The which command takes a list of command names and
+		displays which programs (files) would be executed.
+
+SYNTAX	  	which [ cmd... ]
+ 
+		  cmd   Name of each command for which information
+			is to be displayed.
+
+DOCUMENTATION   which(1) in the ULTRIX-11 Programmer's Manual
+-who
+	
+DESCRIPTION	The who command displays a list of users currently logged in
+		to the system.
+
+SYNTAX		who [ file ]
+
+		  file   Name of login accounting file from which list is to 
+			 be generated.  If not specified, generates list
+			 from information in /etc/utmp.
+
+DOCUMENTATION	who(1) in the ULTRIX-11 Programmer's Manual
+-whoami
+	
+DESCRIPTION	The whoami command displays your current login name.
+
+SYNTAX		whoami
+
+DOCUMENTATION	whoami(1) in the ULTRIX-11 Programmer's Manual
+-write
+	
+DESCRIPTION	The write command writes a message to the specified user.
+
+SYNTAX		write user [ special ]
+
+		  user      Login name of user to receive message.
+
+		  special   Name of special file for terminal to which 
+			    message is to be written.  This argument is 
+			    useful when a user is logged in at multiple
+			    terminals.
+
+DOCUMENTATION	write(1) in the ULTRIX-11 Programmer's Manual
+-xstr
+	
+DESCRIPTION	The xstr command extracts strings from a C program.
+
+SYNTAX		xstr [ options ] [ file ]
+
+		  file   Name of C program to be processed.  If file is not
+			 specified or if - is specified, reads stdin until 
+			 <CTRL/D> and processes this input.
+
+OPTIONS		-c   Extracts strings from specified C source (next argument).
+
+DOCUMENTATION	xstr(1) in the ULTRIX-11 Programmer's Manual
+-yacc
+	
+DESCRIPTION	The yacc command converts specified grammar constructs into 
+		tables for processing by a parsing algorithm. 
+
+SYNTAX		yacc [ options ] grammar
+
+		  grammar   User input to be processed.
+
+OPTIONS		-d   Writes all define statements to y.tab.h file.
+		-v   Writes parsing tables and report of grammatical conflicts 
+		     to y.output file.
+
+DOCUMENTATION	yacc(1) in the ULTRIX-11 Programmer's Manual
+		"Yacc: Yet Another Compiler-Compiler" in the ULTRIX-11 
+		Supplementary Documents, Volume 2

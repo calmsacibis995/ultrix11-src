@@ -1,0 +1,15 @@
+Mdriver	driver.c	/^main(argc,argv)  char **argv; {$/
+Mvplot	vplot.c	/^main(argc, argv)$/
+fplt	driver.c	/^fplt(fin)  FILE *fin; {$/
+getblk	vplot.c	/^getblk(b)$/
+getpict	vplot.c	/^getpict()$/
+getsi	driver.c	/^getsi(fin)  FILE *fin; {	\/* get an integer stored /
+l_gets	driver.c	/^l_gets(s,fin)  char *s;  FILE *fin; {$/
+line	vplot.c	/^line(x0, y0, x1, y1)$/
+mapx	vplot.c	/^#define	mapx(x)	((1536*((x)-botx)\/del)+centx)$/
+mapy	vplot.c	/^#define	mapy(y)	((1536*(del-(y)+boty)\/del)-centy)$/
+onintr	vplot.c	/^onintr()$/
+plotch	vplot.c	/^plotch(c)$/
+point	vplot.c	/^point(x, y)$/
+putpict	vplot.c	/^putpict()$/
+zseek	vplot.c	/^zseek(a, b)$/

@@ -1,0 +1,3 @@
+set append save dot msgprompt
+set EDITOR=/usr/bin/ex
+set VISUAL=/usr/bin/vi

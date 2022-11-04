@@ -1,0 +1,11 @@
+speed 0 baud; nl -echo tabs 
+erase = ^@, kill = ^@, intr = ^@, quit = ^@, start = ^@, stop = ^@, eof = ^@, brk = ^@
+speed 0 baud; nl -echo tabs 
+erase  kill   intr   quit   stop   eof
+^@     ^@     ^@     ^@     ^@     ^@     
+min = 0  time = 0
+old tty, speed 0 baud
+-raw nl -echo -lcase -tandem tabs -cbreak 
+erase  kill   intr   quit   stop   eof
+^@     ^@     ^@     ^@     ^@     ^@     
+min = 0  time = 0

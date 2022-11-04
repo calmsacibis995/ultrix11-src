@@ -1,0 +1,43 @@
+#	Termcap source file @(#)termcap.src	1.3 6/21/81
+#	Mark Horton, U.C. Berkeley
+#
+# This file describes capabilities of various terminals, as needed by
+# software such as screen editors.  It does not attempt to describe
+# printing terminals very well, nor graphics terminals.  Someday.
+# See termcap(5) in the Unix Programmers Manual for documentation.
+#
+# The A manufacturer represents Diablo, DTC, Xerox, Qume, and other Daisy
+# wheel terminals until such time as termcap distinguishes between them
+# enough to justify separate codes.
+# 1620 uses all 132 columns, 1640 sets left margin to 8 and uses snazzy
+# binary tabset file.  Both should work on both terminals.
+# vt100 and vt132 are still untested
+d0|vt100n|vt100 w/no init:is@:if@:tc=vt100:
+d1|vt100|vt-100|pt100|pt-100|dec vt100:\
+	:co#80:li#24:am:cl=50\E[;H\E[2J:bs:cm=5\E[%i%2;%2H:nd=2\E[C:up=2\E[A:\
+	:ce=3\E[K:cd=50\E[J:so=2\E[7m:se=2\E[m:us=2\E[4m:ue=2\E[m:\
+	:is=\E>\E[?3l\E[?4l\E[?5l\E[?7h\E[?8h:ks=\E[?1h\E=:ke=\E[?1l\E>:\
+	:if=/usr/lib/tabset/vt100:ku=\EOA:kd=\EOB:kr=\EOC:kl=\EOD:\
+	:kh=\E[H:k1=\EOP:k2=\EOQ:k3=\EOR:k4=\EOS:pt:sr=5\EM:
+d2|gt42|dec gt42:\
+	:bs:co#72:ns:li#40:os:
+d3|vt132|vt-132:\
+	:al=99\E[L:dl=99\E[M:ip=7:dc=7\E[P:ei=\E[4h:im=\E[4l:xn:dN#30:tc=vt100:
+d4|gt40|dec gt40:\
+	:bs:co#72:ns:li#30:os:
+d5|vt50|dec vt50:\
+	:bs:cd=\EJ:ce=\EK:cl=\EH\EJ:co#80:li#12:nd=\EC:pt:up=\EA:
+dI|dw1|decwriter I:\
+	:bs:co#72:hc:os:
+dh|vt50h|dec vt50h:\
+	:bs:cd=\EJ:ce=\EK:cl=\EH\EJ:cm=\EY%+ %+ :co#80:li#12:nd=\EC:\
+	:pt:sr=\EI:up=\EA:
+ds|vt100s|vt-100s|pt100s|pt-100s|dec vt100 132 cols 14 lines:\
+	:li#14:tc=vt100w:
+dt|vt100w|vt-100w|pt100w|pt-100w|dec vt100 132 cols:\
+	:co#128:li#24:is=\E>\E[?3h\E[?4l\E[?5l\E[?7h\E[?8h:tc=vt100:
+dv|vt52|dec vt52:\
+	:bs:cd=\EJ:ce=\EK:cl=\EH\EJ:cm=\EY%+ %+ :co#80:li#24:nd=\EC:\
+	:pt:sr=\EI:up=\EA:ku=\EA:kd=\EB:kr=\EC:kl=\ED:
+dw|dw2|dw3|dw4|decwriter II:\
+	:kb=^h:bs:co#132:hc:os:

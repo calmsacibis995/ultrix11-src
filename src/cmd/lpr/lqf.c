@@ -1,0 +1,209 @@
+static char Sccsid[] = "@(#)lqf.c	3.1	4/22/86";
+
+/**********************************************************************
+ *   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    *
+ *   All Rights Reserved. 					      *
+ *   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      *
+ **********************************************************************/
+
+/*
+ *	General output filter for "letter quality" class of printers.
+ *	Specifically supports the LQP02, but should work for any DEC
+ * 	impact letter printers.  The filter allows the escape characters
+ *	and control sequences to be transmitted to the printers.
+ *
+ * 	The filter reads the output of nroff and converts lines
+ *	with ^H's to overwritten lines.  Thus this works like 'ul'
+ *	but is much better: it can handle more than 2 overwrites
+ *	and it is written with some style.
+ *	modified by kls to use register references instead of arrays
+ *	to try to gain a little speed.
+ *
+ *	Note: the LA210 does not have an escape sequence to reset all the
+ *	power up default values.  Therefore, if any attributes are changed
+ *	by transmission of escape/control sequences, these changes will 
+ *	remain in effect unless specifically cancelled by other escape/
+ *	control sequences, or until the printer is powered off and on.
+ *
+ */
+
+#include	<signal.h>
+#include	<stdio.h>
+#include	<ctype.h>
+#include	<errno.h>
+#include	<sgtty.h>
+#include	"lp.local.h"
+#include	"globals.h"
+
+#define MAXWIDTH  256	/* was 132 */
+#define MAXREP    10
+
+/******************************************/
+/* added for escape sequence pass through */
+/******************************************/
+#define ESC	  '\033'	/* escape sequence introducer */
+#define BSLH	  '\134'	/* back slash */
+#define UCP	  '\120'	/* upper case P */
+#define escend(x) ((x!='\120')&&(x!='\133')&&(x>='\100')&&(x<='\176'))
+int   	escflg =  0;		/* escape sequence flag, 1 = in progress */
+int	lstchr;		
+
+main(argc, argv) 
+	int argc;
+	char *argv[];
+{
+	register int i, col;
+	register char *cp;
+	char	buf1[MAXREP][MAXWIDTH];
+	int	maxcol[MAXREP];
+	int	lineno=0;
+	int	indent=0;	/* indentation length */
+	int	literal=0;	/* print control characters */
+	int done, linedone, maxrep;
+	char ch, *limit;
+
+	width=80;	/* initialized values, init() changes them later */
+	length=66;
+	npages=1;
+	init(argv);
+	for(i=0;i<MAXREP;maxcol[i]= -1, i++);
+	for (cp = buf1[0], limit = buf1[MAXREP]; cp < limit; *cp++ = ' ');
+	/* width=80; */
+	/* length=66; */
+	done = 0;
+	escflg = 0;		/* is escape/control sequence in progress? */
+	while (!done) {
+		col = indent;
+		maxrep = -1;
+		linedone = 0;
+		while (!linedone) {
+			ch=getchar() & 0177;
+			if (((escflg==0)&&(ch==ESC))||escflg)
+				eschdl(ch);	/* deal with escape character */
+			else 
+				switch (ch) {
+				case EOF:
+					linedone = done = 1;
+					ch = '\n';
+					break;
+	
+				case '\f':		/* new page on form feed */
+					lineno = length;
+				case '\n':		/* new line */
+					if (maxrep < 0)
+						maxrep = 0;
+					linedone = 1;
+					break;
+	
+				case '\b':		/* backspace */
+					if (--col < indent)
+						col = indent;
+					break;
+	
+				case '\r':		/* carriage return */
+					col = indent;
+					break;
+	
+				case '\t':		/* tab */
+					col = ((col - indent) | 07) + indent + 1;
+					break;
+	
+				default:		/* everything else */
+					if (col >= width || !literal && ch < ' ') {
+						col++;
+						break;
+					}
+					cp = &buf1[0][col];
+					for (i = 0; i < MAXREP; i++) {
+						if (i > maxrep)
+							maxrep = i;
+						if (*cp == ' ') {
+							*cp = ch;
+							if (col > maxcol[i])
+								maxcol[i] = col;
+							break;
+						}
+						cp += MAXWIDTH;
+					}
+					col++;
+					break;
+				}
+			}
+
+		/* print out lines */
+		for (i = 0; i <= maxrep; i++) {
+			for (cp = buf1[i], limit = cp+maxcol[i]; cp <= limit;) {
+				putchar(*cp);
+				*cp++ = ' ';
+			}
+			if (i < maxrep)
+				putchar('\r');
+			else
+				putchar(ch);
+			if (++lineno >= length) {
+				npages++;
+				lineno = 0;
+				if (length != 66)	/* 66 lines fill page just right so no FF */
+					putchar('\f'); 
+			}
+			maxcol[i] = -1;
+		}
+	}
+	if (lineno) {		/* be sure to end on a page boundary */
+		putchar('\f');
+		npages++;
+	}
+	bill(user);
+	fprintf(stdout,"\033\143"); /* reset defaults (no effect on la210) */ 
+	sleep(20);		/* reset eats lines so wait */
+}
+/****************************************************************/
+/*								*/
+/*	eschdl - escape sequence handler			*/
+/*								*/
+/*      This routine intercepts escape sequences for the purpose*/
+/*	of pass through.					*/
+/*								*/
+/****************************************************************/
+eschdl(c)
+int c;
+{
+if(escflg==0)
+	{		/* set escflg=1 => ready to receive 2nd seqchar*/
+	escflg=1;
+	}
+else	switch(escflg)
+		{
+		case 1:		/* second character of escseq 		*/
+			switch(c)
+				{
+  				case UCP:
+					escflg=2; /*ctrl str pass thru mode=8 */
+					lstchr=c;
+					putchar(ESC);
+					putchar(c);
+					break;
+				default:
+					escflg=3;  /* set seq pass thru mode*/
+					putchar(ESC);
+					putchar(c);
+					break;
+				}
+			break;
+		case 2:		/* ctrl string pass through mode       	*/
+			if((lstchr==ESC) && (c==BSLH))
+				{
+				escflg=0;
+				lstchr=0;
+				}
+			else lstchr=c;	/* save it for next pass */
+			putchar(c);
+			break;
+		case 3:
+			if(escend(c))
+				escflg=0;/* turn off esc handler if at end  */
+			putchar(c);
+			break;
+		}
+return(0);
+}

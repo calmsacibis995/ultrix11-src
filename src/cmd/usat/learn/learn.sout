@@ -1,0 +1,139 @@
+These are the available courses -
+
+  files
+
+  editor
+
+  vi
+
+  morefiles
+
+  macros
+
+  eqn
+
+  C
+
+If you want more information about the courses,
+or if you have never used 'learn' before,
+type 'return'; otherwise type the name of
+the course you want, followed by 'return'.
+If you were in the middle of this subject
+and want to start where you left off, type
+the last lesson number the computer printed.
+To start at the beginning, just hit return.
+Will the name
+  xyz
+be selected by the pattern
+  x?
+in an "ls" command?
+Type "yes" or "no".  If you
+have trouble, there is such a file
+in the current directory,
+so you can find out by trial and error.
+(For example, you might do an ordinary "ls"
+and then try "ls x?" and compare the results.)
+$ 
+Good.  Lesson 5.1b (1)
+
+The "?" may appear anywhere in the name.
+For example you can type
+  a?bc
+to match the list of names
+  axbc, aybc, a3bc
+and so forth.
+But the number of characters must always agree.
+How many of the following file names
+are matched by "x?xx"?
+  x1xx, y1xx, x1xxa, xxx
+Type "answer N" where N is the number of matching names.
+You can experiment in the current directory to
+check your answer before typing it.
+$ 
+Good.  Lesson 5.1c (2)
+
+Will the name
+  ?xx
+match "axx"?  Again, you may
+experiment before typing your
+answer.
+$ 
+Good.  Lesson 5.1d (3)
+
+Not only may the ? appear anywhere in a name,
+but there may be several ? characters in it.
+For example,
+  g??rge
+will match "george" and "goerge", among others.
+And "a??" will match "abc" or "a11" (but NOT "ax").
+Look at the files in the current directory and decide
+how many names the pattern
+   a?b?c
+will select.  Again, you can try this out
+by comparing an ordinary "ls" with "ls a?b?c"
+to see what happens.  When you figure
+out how many names are selected,
+type "answer N" where N is the number of file names.
+$ 
+Sorry, that's not right.  Do you want to try again?  
+OK.  Lesson 5.1e (3)
+Skipping to next lesson.
+
+Since the '?' character only matches single
+characters in file names, it is not useful for
+questions like "how many files have names which
+begin with the letter g?"  There is another character
+  *
+which can be used in patterns for file names
+and matches any number of any kind of characters.
+So
+  g*
+selects all file names beginning with g, and
+  *x
+selects all file names which end in x.  Try
+  ls *x
+How many files match?
+Compare with an ordinary
+  ls
+if you like.  Type "answer N" eventually where
+N is the number of files whose names end in "x".
+$ 
+Sorry, that's not right.  Do you want to try again?  
+Do you want the instructions printed again? Since the '?' character only matches single
+characters in file names, it is not useful for
+questions like "how many files have names which
+begin with the letter g?"  There is another character
+  *
+which can be used in patterns for file names
+and matches any number of any kind of characters.
+So
+  g*
+selects all file names beginning with g, and
+  *x
+selects all file names which end in x.  Try
+  ls *x
+How many files match?
+Compare with an ordinary
+  ls
+if you like.  Type "answer N" eventually where
+N is the number of files whose names end in "x".
+$ 
+Sorry, that's still not right.  Do you want to try again?  
+OK.  Lesson 6.2a (0)
+Skipping to next lesson.
+
+Since the "?" character only matches single characters,
+it isn't useful for such questions as "how many files
+have names beginning with g?"  There is another character,
+  *
+which can be used in patterns for file names, and which matches
+any number of characters of any sort.  Thus
+   g*
+matches anything beginning with g.
+And
+   *x
+matches anything ending in x.  
+There is one file in this directory whose name ends
+in "memo".  Find out that file name
+and print the contents of the file.  Then type "ready".
+$ Bye.

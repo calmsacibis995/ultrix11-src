@@ -1,0 +1,30 @@
+static char Sccsdrv[] = "@(#)drivedefs	3.0	4/21/86";
+
+/**********************************************************************
+ *   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    *
+ *   All Rights Reserved. 					      *
+ *   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      *
+ **********************************************************************/
+
+/*
+  Definitions for Fortran 77 Compiler driver
+  For the PDP11, Running on the PDP11, 
+  using the second pass of the Ritchie C compiler as code generator.
+*/
+
+#if HERE!=PDP11 || TARGET!=PDP11 || FAMILY!=DMR
+	Wrong Definitions File!
+#endif
+
+#define PASS1NAME	"/usr/lib/f77pass1"
+#define PASS2NAME	"/usr/c/oc1"
+#define PASS2OPT	"/usr/c/oc2"
+#define ASMNAME	"/bin/as"
+#define LDNAME	"/bin/ld"
+#define FOOTNAME	"/lib/crt0.o"
+#define PROFFOOT	"/lib/mcrt0.o"
+#define NOFLFOOT	"/lib/fcrt0.o"
+#define NOFLPASS2	"/lib/fc1"
+#define NOFLPROFFOOT	"/lib/fmcrt0.o"
+
+static char *liblist [ ] = { "-lF77", "-lI77", "-lm", "-lc", NULL };

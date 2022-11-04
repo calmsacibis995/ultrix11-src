@@ -1,0 +1,45 @@
+AddDevice	lprsetup.c	/^AddDevice ()$/
+AddEntry	lprsetup.c	/^AddEntry ()$/
+AddField	lprsetup.c	/^AddField ()$/
+AddSyn	lprsetup.c	/^AddSyn ()$/
+CopyEntry	lprsetup.c	/^CopyEntry ()$/
+DeleteEntry	lprsetup.c	/^DeleteEntry ()$/
+DoAdd	lprsetup.c	/^DoAdd ()$/
+DoDelete	lprsetup.c	/^DoDelete ()$/
+DoModify	lprsetup.c	/^DoModify ()$/
+DoSymbol	misc.c	/^DoSymbol ()$/
+HasBadChars	misc.c	/^HasBadChars (b)$/
+LinkFilter	lprsetup.c	/^LinkFilter ()$/
+MakeSpool	lprsetup.c	/^MakeSpool (passwd)$/
+MapLowerCase	misc.c	/^MapLowerCase (b)$/
+MatchPrinter	lprsetup.c	/^MatchPrinter ()$/
+Mlprsetup	lprsetup.c	/^main (argc, argv)$/
+ModifyEntry	lprsetup.c	/^ModifyEntry ()$/
+Popen	misc.c	/^Popen(s1, s2)$/
+Print	misc.c	/^Print (flag)$/
+SetVal	lprsetup.c	/^SetVal (val, buf)$/
+UnLinkFilter	lprsetup.c	/^UnLinkFilter ()$/
+UnLinkSpooler	lprsetup.c	/^UnLinkSpooler()$/
+UseDefault	misc.c	/^UseDefault (str, def, i)$/
+Verified	misc.c	/^Verified ()$/
+WriteEntry	lprsetup.c	/^WriteEntry (fp)$/
+YesNo	misc.c	/^YesNo (def_ans)$/
+badfile	lprsetup.c	/^badfile(s)$/
+findptype	lprsetup.c	/^findptype()$/
+fixtty	misc.c	/^fixtty(line, mode)$/
+freemem	misc.c	/^freemem ()$/
+getcmd	misc.c	/^getcmd ()$/
+getsymbol	misc.c	/^getsymbol ()$/
+leave	misc.c	/^leave (status)$/
+mer	globals.h	364
+realhelp	misc.c	/^realhelp(i)$/
+tdecode	printlib.c	/^tdecode(str, area)$/
+tgetent	printlib.c	/^tgetent(bp, name)$/
+tgetflag	printlib.c	/^tgetflag(id)$/
+tgetnum	printlib.c	/^tgetnum(id)$/
+tgetstr	printlib.c	/^tgetstr(id, area)$/
+tnamatch	printlib.c	/^tnamatch(np)$/
+tnchktc	printlib.c	/^tnchktc()$/
+tskip	printlib.c	/^tskip(bp)$/
+usage	misc.c	/^usage ()$/
+validate	misc.c	/^validate(i,value1)$/

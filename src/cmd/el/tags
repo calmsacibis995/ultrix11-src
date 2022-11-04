@@ -1,0 +1,53 @@
+Mccd	ccd.c	/^main()$/
+Mcda	cda.c	/^main(argc, argv)$/
+Melc	elc.c	/^main ()$/
+Meli	eli.c	/^main (argc, argv)$/
+Melp1	elp1.c	/^main (argc, argv)$/
+bioinfo	cda_q.c	/^bioinfo()$/
+bufnum	cda_q.c	/^bufnum(bp)$/
+bwrite	elc.c	/^bwrite(bno)$/
+cchk	cda_q.c	/^cchk(bp,rmbp,type,name)$/
+cdhead	cda.c	/^cdhead()$/
+closeup	ccd.c	/^closeup()$/
+docopy	ccd.c	/^docopy(bcnt, nb, bufsize)$/
+ecmd	cda.c	/^ecmd()$/
+elwb	elc.c	/^elwb()$/
+emsg	elp1.c	/^emsg(m)$/
+erfull	elp4.c	/^erfull(fi, filen)$/
+errexit	ccd.c	/^errexit(doperror, fmt, a1, a2)$/
+ersum	elp2.c	/^ersum(fi, filen)$/
+fd_exit	ccd.c	/^fd_exit(how, bcnt, err)$/
+getdensity	ccd.c	/^getdensity(str, unit, density)$/
+getline	ccd.c	/^getline(buf, msg, hmsg)$/
+getunit	ccd.c	/^getunit(nm, nh, defunit, maxunit)$/
+gtd	elp1.c	/^gtd()$/
+gte	elp2.c	/^gte(t1,t2)$/
+kcmd	cda_k.c	/^kcmd(arg)	\/* unit + 1, 0 means all drives *\/$/
+lte	elp2.c	/^lte(t1, t2)$/
+onintr	ccd.c	/^onintr()$/
+output	cda_q.c	/^output(x)$/
+pbda	elp4.c	/^pbda(devact, mcact)$/
+pdt	elp4.c	/^pdt(time)$/
+phelp	cda.c	/^phelp()$/
+prbuf	cda_q.c	/^prbuf(bp,type,name,out)$/
+prdev	cda_q.c	/^prdev(maj,flag)$/
+prfree	cda_q.c	/^prfree()$/
+prnt	cda_u.c	/^prnt(ctrl)$/
+prraw	cda_q.c	/^prraw(maj)$/
+prtc	ccd.c	/^prtc()$/
+prudev	cda_q.c	/^prudev(maj,pos,off)$/
+qcmd	cda_q.c	/^qcmd()$/
+ra_scp	elp4.c	/^ra_scp(code,flag)$/
+rai_me	cda_u.c	/^rai_me()$/
+rai_re	cda_u.c	/^rai_re()$/
+rainfo	cda_u.c	/^rainfo()$/
+rcmd	cda.c	/^rcmd()$/
+rzchk	cda.c	/^rzchk()$/
+seq	elp4.c	/^seq(sn)$/
+setrat	elp2.c	/^setrat(mct)$/
+tcmd	cda.c	/^tcmd()$/
+tk_me	cda_k.c	/^tk_me()$/
+tk_re	cda_k.c	/^tk_re()$/
+tkinfo	cda_k.c	/^tkinfo()$/
+tkprnt	cda_k.c	/^tkprnt(unit)$/
+ucmd	cda_u.c	/^ucmd(arg)$/

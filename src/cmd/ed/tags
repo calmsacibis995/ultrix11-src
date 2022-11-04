@@ -1,0 +1,88 @@
+ERROR	ed.c	/^#define ERROR(c)	error1(c)$/
+GETC	ed.c	/^#define GETC()		getchr()$/
+ISTHERE	regexp.h	/^#define ISTHERE(c)	(ep[c >> 3] & bittab[c & 07])$/
+Med	ed.c	/^main(argc, argv)$/
+Med_v7	ed_v7.c	/^main(argc, argv)$/
+PEEKC	ed.c	/^#define PEEKC()		(peekc = getchr())$/
+PLACE	regexp.h	/^#define PLACE(c)	ep[c >> 3] |= bittab[c & 07]$/
+PUTM	ed.c	/^#define	PUTM()	if(xcode >= 0) puts(msgtab[xcode])$/
+RETURN	ed.c	/^#define RETURN(c)	return$/
+UNGETC	ed.c	/^#define UNGETC(c)	(peekc = c)$/
+address	ed.c	/^LINE $/
+advance	ed_v7.c	/^advance(lp, ep)$/
+append	ed.c	/^append(f, a)$/
+backref	ed_v7.c	/^backref(i, lp)$/
+blkio	ed.c	/^blkio(b, buf, iofcn)$/
+callunix	ed_v7.c	/^callunix()$/
+cclass	ed_v7.c	/^cclass(set, c, af)$/
+chktime	ed.c	/^chktime() \/* check saved mod time against current /
+clear	ed.c	/^clear(f)$/
+commands	ed.c	/^commands()$/
+compile	ed_v7.c	/^compile(aeof)$/
+compsub	ed.c	/^compsub()$/
+crblock	ed.c	/^crblock(permp, buf, nchar, startn)$/
+crinit	ed.c	/^crinit(keyp, permp)$/
+delete	ed.c	/^delete()$/
+dosub	ed.c	/^dosub()$/
+eclose	ed.c	/^eclose(f)$/
+ecmp	regexp.h	/^ecmp(a, b, count)$/
+eopen	ed.c	/^eopen(string, rw)$/
+error	ed.c	/^error(code)$/
+error1	ed.c	/^error1(code)$/
+execute	ed.c	/^execute(gf, addr)$/
+exfile	ed.c	/^exfile()$/
+expnd	ed.c	/^expnd(line,buf,sz,f)$/
+filename	ed.c	/^filename(comm)$/
+fspec	ed.c	/^fspec(line,f,up)$/
+gdelete	ed.c	/^gdelete()$/
+getblock	ed.c	/^getblock(atl, iof)$/
+getchr	ed.c	/^getchr()$/
+getcopy	ed.c	/^getcopy()$/
+getfile	ed.c	/^getfile()$/
+getime	ed.c	/^getime() \/* get modified time of file and save *\/$/
+getkey	ed.c	/^getkey()$/
+getline	ed.c	/^getline(tl)$/
+getrnge	regexp.h	/^getrnge(str)$/
+getsub	ed.c	/^getsub()$/
+gettty	ed.c	/^gettty()$/
+global	ed.c	/^global(k)$/
+globaln	ed.c	/^globaln(k)$/
+init	ed.c	/^init()$/
+join	ed.c	/^join()$/
+lenchk	ed.c	/^lenchk(line,f)$/
+makekey	ed.c	/^makekey(a, b)$/
+mkfunny	ed.c	/^mkfunny()$/
+move	ed.c	/^move(cflag)$/
+newline	ed.c	/^newline()$/
+newtime	ed.c	/^newtime() \/* get new mod time and save *\/$/
+nonzero	ed.c	/^nonzero()$/
+numb	ed.c	/^numb()$/
+onhup	ed.c	/^onhup()$/
+onintr	ed.c	/^onintr()$/
+onpipe	ed.c	/^onpipe()$/
+place	ed.c	/^place(sp, l1, l2)$/
+putchr	ed.c	/^putchr(ac)$/
+putd	ed.c	/^putd()$/
+putfile	ed.c	/^putfile()$/
+putline	ed.c	/^putline()$/
+puts	ed.c	/^puts(sp)$/
+quit	ed.c	/^quit()$/
+rdelete	ed.c	/^rdelete(ad1, ad2)$/
+red	ed.c	/^red(op) \/* restricted - check for '\/' in name *\/$/
+reverse	ed.c	/^reverse(a1, a2)$/
+save	ed.c	/^save() {$/
+setall	ed.c	/^setall()$/
+setdot	ed.c	/^setdot()$/
+setnoaddr	ed.c	/^setnoaddr()$/
+signal	ed.c	/^int	(*signal())();$/
+stdtab	ed.c	/^stdtab(option,tabvect)$/
+step	regexp.h	/^step(p1, p2)$/
+strcopy	ed.c	/^strcopy(source,dest)$/
+strequal	ed.c	/^strequal(scan1,str)$/
+substitute	ed.c	/^substitute(inglob)$/
+targ	ed.c	/^targ(f)$/
+tincr	ed.c	/^tincr(n,f)$/
+tlist	ed.c	/^tlist(f)$/
+tstd	ed.c	/^tstd(f)$/
+undo	ed.c	/^undo() {$/
+unixcom	ed.c	/^unixcom()$/

@@ -1,0 +1,54 @@
+SCCSID="@(#)restart	3.0	4/22/86"
+# unset all /opr/opser environment variables,
+# preventing inheritence to programs started from here.
+PATH=
+SHELL=/bin/sh
+TERM=
+TZ=
+HOME=
+export PATH SHELL TERM TZ HOME
+PATH=/usr/ucb:/bin:/usr/bin
+echo ""
+echo "Restarting ULTRIX-11 Time-sharing"
+rm -f /etc/mtab
+# cat /dev/null >/etc/utmp
+echo ""
+/etc/mount -a -v
+# Next line should match the one in /etc/rc.
+# /etc/accton /usr/adm/acct
+rm -f /usr/tmp/*
+rm -f /tmp/*
+echo ""
+echo "Enabling Error Logging"
+/etc/eli -e
+/etc/eli -u
+echo ""
+echo "Enabling Terminals"
+kill -1 1
+/etc/ifconfig de0
+if [ $? -eq 0 ]; then
+	echo -n "re-starting network: "				>/dev/console
+	if [ -f /usr/etc/syslog ]; then
+		zaptty /usr/etc/syslog && echo -n ' syslog'	>/dev/console
+	fi
+	if [ -f /usr/etc/routed ]; then
+		zaptty /usr/etc/routed && echo -n ' routed'	>/dev/console
+	fi
+	if [ -f /usr/etc/inetd ]; then
+		zaptty /usr/etc/inetd && echo -n ' inetd'	>/dev/console
+	fi
+	if [ -f /usr/etc/rwhod ]; then
+		zaptty /usr/etc/rwhod && echo -n ' rwhod'	>/dev/console
+	fi
+	if [ -f /usr/lib/sendmail ]; then
+		zaptty /usr/lib/sendmail -bd -q30m && echo -n ' sendmail' >/dev/console
+	fi
+	echo '.'						>/dev/console
+fi
+zaptty /etc/cron
+zaptty /etc/update
+rm -f /etc/loglock
+rm -f /usr/spool/uucp/LCK..*
+/etc/lpdrestart
+echo ""
+echo "Time-sharing Restarted."

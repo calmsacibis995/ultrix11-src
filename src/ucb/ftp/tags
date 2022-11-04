@@ -1,0 +1,99 @@
+Gcat	glob.c	/^Gcat(s1, s2)$/
+Gmatch	glob.c	/^Gmatch(s, p)$/
+Mmain	main.c	/^main(argc, argv)$/
+abortrecv	ftp.c	/^abortrecv()$/
+abortsend	ftp.c	/^abortsend()$/
+acollect	glob.c	/^acollect(as)$/
+addpath	glob.c	/^addpath(c)$/
+amatch	glob.c	/^amatch(s, p)$/
+any	glob.c	/^any(c, s)$/
+blkcpy	glob.c	/^blkcpy(oav, bv)$/
+blkfree	glob.c	/^blkfree(av0)$/
+blklen	glob.c	/^blklen(av)$/
+call	main.c	/^call(routine, args)$/
+cd	cmds.c	/^cd(argc, argv)$/
+cmdscanner	main.c	/^cmdscanner(top)$/
+collect	glob.c	/^collect(as)$/
+command	ftp.c	/^command(fmt, args)$/
+confirm	cmds.c	/^confirm(cmd, file)$/
+copyblk	glob.c	/^copyblk(v)$/
+dataconn	ftp.c	/^dataconn(mode)$/
+delete	cmds.c	/^delete(argc, argv)$/
+digit	glob.c	/^digit(c)$/
+disconnect	cmds.c	/^disconnect()$/
+empty	ftp.c	/^empty(f)$/
+eq	glob.c	/^#define	eq(a,b)		(strcmp(a, b)==0)$/
+execbrc	glob.c	/^execbrc(p, s)$/
+expand	glob.c	/^expand(as)$/
+fatal	cmds.c	/^fatal(msg)$/
+get	cmds.c	/^get(argc, argv)$/
+getcmd	main.c	/^getcmd(name)$/
+gethdir	glob.c	/^gethdir(home)$/
+getpass	getpass.c	/^getpass(prompt)$/
+getreply	ftp.c	/^getreply(expecteof)$/
+gettimeofday	ftp.c	/^#define	gettimeofday(x,y)	ftime(x)$/
+ginit	glob.c	/^ginit(agargv)$/
+glob	glob.c	/^glob(v)$/
+globulize	cmds.c	/^globulize(cpp)$/
+help	main.c	/^help(argc, argv)$/
+hookup	ftp.c	/^hookup(host, port)$/
+initconn	ftp.c	/^initconn()$/
+intr	main.c	/^intr()$/
+isdir	glob.c	/^#define	isdir(d)	((d.st_mode & S_IFMT) == S_IFDIR)/
+lcd	cmds.c	/^lcd(argc, argv)$/
+letter	glob.c	/^letter(c)$/
+login	ftp.c	/^login(hp)$/
+lostpeer	main.c	/^lostpeer()$/
+ls	cmds.c	/^ls(argc, argv)$/
+makeargv	main.c	/^makeargv()$/
+makedir	cmds.c	/^makedir(argc, argv)$/
+match	glob.c	/^match(s, p)$/
+matchdir	glob.c	/^matchdir(pattern)$/
+mdelete	cmds.c	/^mdelete(argc, argv)$/
+mget	cmds.c	/^mget(argc, argv)$/
+mls	cmds.c	/^mls(argc, argv)$/
+mput	cmds.c	/^mput(argc, argv)$/
+onoff	cmds.c	/^onoff(bool)$/
+ptransfer	ftp.c	/^ptransfer(direction, bytes, t0, t1)$/
+put	cmds.c	/^put(argc, argv)$/
+pwd	cmds.c	/^pwd()$/
+quit	cmds.c	/^quit()$/
+quote	cmds.c	/^quote(argc, argv)$/
+recvrequest	ftp.c	/^recvrequest(cmd, local, remote, mode)$/
+remglob	cmds.c	/^remglob(argc, argv)$/
+removedir	cmds.c	/^removedir(argc, argv)$/
+renamefile	cmds.c	/^renamefile(argc, argv)$/
+rmthelp	cmds.c	/^rmthelp(argc, argv)$/
+rscan	glob.c	/^rscan(t, f)$/
+scan	glob.c	/^scan(t, f)$/
+sendrequest	ftp.c	/^sendrequest(cmd, local, remote)$/
+setascii	cmds.c	/^setascii()$/
+setbell	cmds.c	/^setbell()$/
+setbinary	cmds.c	/^setbinary()$/
+setdebug	cmds.c	/^setdebug(argc, argv)$/
+setebcdic	cmds.c	/^setebcdic()$/
+setform	cmds.c	/^setform(argc, argv)$/
+setglob	cmds.c	/^setglob()$/
+sethash	cmds.c	/^sethash()$/
+setmode	cmds.c	/^setmode(argc, argv)$/
+setpeer	cmds.c	/^setpeer(argc, argv)$/
+setport	cmds.c	/^setport()$/
+setprompt	cmds.c	/^setprompt()$/
+setstruct	cmds.c	/^setstruct(argc, argv)$/
+settenex	cmds.c	/^settenex()$/
+settrace	cmds.c	/^settrace()$/
+settype	cmds.c	/^settype(argc, argv)$/
+setverbose	cmds.c	/^setverbose()$/
+shell	cmds.c	/^shell(argc, argv)$/
+sizeof	cmdtab.c	/^int	NCMDS = sizeof (cmdtab) \/ sizeof (cmdtab[0]);$/
+slurpstring	main.c	/^slurpstring()$/
+sort	glob.c	/^sort()$/
+status	cmds.c	/^status(argc, argv)$/
+strend	glob.c	/^strend(cp)$/
+strspl	glob.c	/^strspl(cp, dp)$/
+tail	main.c	/^tail(filename)$/
+tglob	glob.c	/^tglob(c)$/
+trim	glob.c	/^trim(c)$/
+tvadd	ftp.c	/^tvadd(tsum, t0)$/
+tvsub	ftp.c	/^tvsub(tdiff, t1, t0)$/
+user	cmds.c	/^user(argc, argv)$/

@@ -1,0 +1,204 @@
+Ldup	main.c	/^Ldup(fa, fb)$/
+Mmain	main.c	/^main(c, v, e)$/
+STRCMP	hash.c	/^#define STRCMP(A, B)	(cf(A, B) != 0)$/
+addblok	blok.c	/^addblok(reqd)$/
+addg	expand.c	/^addg(as1, as2, as3)$/
+alloc	blok.c	/^alloc(nbytes)$/
+any	string.c	/^any(c, s)$/
+argpath	hashserv.c	/^argpath(arg)$/
+assign	name.c	/^assign(n, v)$/
+assnum	name.c	/^assnum(p, i)$/
+await	service.c	/^await(i, bckg)$/
+bfailed	test.c	/^bfailed(s1, s2, s3) $/
+busy	blok.c	/^#define busy(x)	(Rcheat((x)->word) & BUSY)$/
+catpath	service.c	/^catpath(path, name)$/
+cf	string.c	/^cf(s1, s2)$/
+chk_access	hashserv.c	/^chk_access(name)$/
+chkbptr	blok.c	/^chkbptr(ptr)$/
+chkid	name.c	/^chkid(nam)$/
+chkmail	main.c	/^chkmail()$/
+chkmem	blok.c	/^chkmem()$/
+chkopen	io.c	/^chkopen(idf)$/
+chkpipe	io.c	/^chkpipe(pv)$/
+chkpr	main.c	/^chkpr()$/
+chksym	cmd.c	/^chksym(sym)$/
+chktrap	fault.c	/^chktrap()$/
+chkword	cmd.c	/^chkword()$/
+clean_args	args.c	/^clean_args(blk)$/
+clear_buff	print.c	/^clear_buff()$/
+clearup	args.c	/^clearup()$/
+clrsig	fault.c	/^clrsig(i)$/
+cmd	cmd.c	/^cmd(sym, flg)$/
+compress	service.c	/^compress(t)$/
+comsubst	macro.c	/^comsubst()$/
+copy	io.c	/^copy(ioparg)$/
+copyargs	args.c	/^copyargs(from, n)$/
+copyto	macro.c	/^copyto(endch)$/
+cpystak	stak.c	/^cpystak(x)$/
+create	io.c	/^create(s)$/
+crunch	hash.c	/^static unsigned int $/
+cwd	pwd.c	/^cwd(dir)$/
+cwdprint	pwd.c	/^cwdprint()$/
+dfault	name.c	/^dfault(n, v)$/
+doacct	service.c	/^doacct()$/
+done	error.c	/^done()$/
+e1	test.c	/^e1()$/
+e2	test.c	/^e2()$/
+e3	test.c	/^e3()$/
+echo	echo.c	/^echo(argc, argv)$/
+endstak	stak.c	/^endstak(argp)		\/* tidy up after `locstak' *\/$/
+error	error.c	/^error(s)$/
+estabf	io.c	/^estabf(s)$/
+execa	service.c	/^int	execa(at, pos)$/
+execexp	xec.c	/^execexp(s, f)$/
+execprint	xec.c	/^execprint(com)$/
+execs	service.c	/^execs(ap, t)$/
+execute	xec.c	/^execute(argt, exec_link, errorflg, pf1, pf2)$/
+exfile	main.c	/^exfile(prof)$/
+exit	echo.c	/^#define	exit(a)	flushb();return(a)$/
+exitsh	error.c	/^exitsh(xno)$/
+exname	name.c	/^exname(n)$/
+exp	test.c	/^exp()$/
+expand	expand.c	/^expand(as, rcnt)$/
+failed	error.c	/^failed(s1, s2)$/
+fault	fault.c	/^fault(sig)$/
+filtyp	test.c	/^filtyp(f,field)$/
+findnam	name.c	/^findnam(nam)$/
+findpath	hashserv.c	/^findpath(name, oldpath)$/
+flush	macro.c	/^flush(ot)$/
+flushb	print.c	/^flushb()$/
+free	blok.c	/^free(ap)$/
+free_arg	func.c	/^free_arg(argp)$/
+freeargs	args.c	/^freeargs(blk)$/
+freedolh	args.c	/^freedolh()$/
+freefunc	func.c	/^freefunc(n)$/
+freeio	func.c	/^freeio(iop)$/
+freereg	func.c	/^freereg(regp)$/
+freetree	func.c	/^freetree(t)$/
+fsizep	test.c	/^fsizep(f)$/
+ftype	test.c	/^ftype(f, field)$/
+func_unhash	hashserv.c	/^func_unhash(name)$/
+getarg	service.c	/^getarg(ac)$/
+getch	macro.c	/^getch(endch)$/
+getdir	expand.c	/^getdir(dirf)$/
+getpath	service.c	/^getpath(s)$/
+getsig	fault.c	/^getsig(n)$/
+getstak	stak.c	/^getstak(asize)			\/* allocate requested stack *\/$/
+getstor	cmd.c	/^getstor(asize)$/
+gmatch	expand.c	/^gmatch(s, p)$/
+gsort	service.c	/^gsort(from, to)$/
+hash	hash.c	/^#define hash(str)		(int) (((unsigned) (crunch(str)/
+hash_cmd	hashserv.c	/^hash_cmd(name)$/
+hash_func	hashserv.c	/^hash_func(name)$/
+hashout	hashserv.c	/^hashout(h)$/
+hashpr	hashserv.c	/^hashpr()$/
+hcreate	hash.c	/^hcreate()$/
+henter	hash.c	/^henter(item)$/
+hfind	hash.c	/^hfind(str)$/
+hscan	hash.c	/^void hscan(uscan)	$/
+ignsig	fault.c	/^ignsig(n)$/
+initf	io.c	/^initf(fd)$/
+initio	service.c	/^initio(iop, save)$/
+inout	cmd.c	/^inout(lastio)$/
+item	cmd.c	/^item(flag)$/
+itos	print.c	/^itos(n)$/
+length	string.c	/^length(as)$/
+link_iodocs	io.c	/^link_iodocs(i)$/
+list	cmd.c	/^list(flg)$/
+locstak	stak.c	/^locstak()$/
+lookup	name.c	/^lookup(nam)$/
+macro	macro.c	/^macro(as)$/
+mactrim	service.c	/^mactrim(s)$/
+make	name.c	/^make(v)$/
+makearg	expand.c	/^makearg(args)$/
+makefork	cmd.c	/^makefork(flgs, i)$/
+makelist	cmd.c	/^makelist(type, i, r)$/
+movstr	string.c	/^movstr(a, b)$/
+movstrn	string.c	/^movstrn(a, b, n)$/
+namscan	name.c	/^namscan(fn)$/
+namwalk	name.c	/^namwalk(np)$/
+nextc	word.c	/^nextc(quote)$/
+nextpath	service.c	/^nextpath(path)$/
+nxtarg	test.c	/^nxtarg(mt)$/
+oldsigs	fault.c	/^oldsigs()$/
+options	args.c	/^options(argc,argv)$/
+pathlook	hashserv.c	/^pathlook(com, flg, arg)$/
+pathopen	service.c	/^pathopen(path, name)$/
+pop	io.c	/^pop()$/
+poptemp	io.c	/^poptemp()$/
+post	service.c	/^post(pcsid)$/
+postclr	service.c	/^postclr()$/
+pr_path	hashserv.c	/^pr_path(name, count)$/
+prarg	func.c	/^prarg(argp)$/
+prc	print.c	/^prc(c)$/
+prc_buff	print.c	/^prc_buff(c)$/
+preacct	service.c	/^preacct(cmdadr)$/
+prf	func.c	/^prf(t)$/
+printexp	name.c	/^printexp(n)$/
+printnam	name.c	/^printnam(n)$/
+printro	name.c	/^printro(n)$/
+prio	func.c	/^prio(iop)$/
+prl	print.c	/^prl(n)$/
+prn	print.c	/^prn(n)$/
+prn_buff	print.c	/^prn_buff(n)$/
+prp	print.c	/^prp()$/
+prs	print.c	/^prs(as)$/
+prs_buff	print.c	/^prs_buff(s)$/
+prs_cntl	print.c	/^prs_cntl(s)$/
+prsym	cmd.c	/^prsym(sym)$/
+prt	print.c	/^prt(t)$/
+push	io.c	/^push(af)$/
+pushnam	name.c	/^pushnam(n)$/
+pushtemp	io.c	/^pushtemp(fd,tb)$/
+pwd	pwd.c	/^pwd()$/
+readb	word.c	/^readb()$/
+readc	word.c	/^readc()$/
+readvar	name.c	/^readvar(names)$/
+rename	io.c	/^rename(f1, f2)$/
+replace	name.c	/^replace(a, v)$/
+reset_dir	expand.c	/^reset_dir()$/
+restore	io.c	/^restore(last)$/
+rmfunctmp	error.c	/^rmfunctmp()$/
+rmslash	pwd.c	/^rmslash(string)$/
+rmtemp	error.c	/^rmtemp(base)$/
+savefd	io.c	/^savefd(fd)$/
+savstak	stak.c	/^savstak()$/
+scan	service.c	/^scan(argn)$/
+set_dotpath	hashserv.c	/^set_dotpath()$/
+setargs	args.c	/^setargs(argi)$/
+setbrk	setbrk.c	/^setbrk(incr)$/
+setenv	name.c	/^setenv()$/
+setlist	name.c	/^setlist(arg, xp)$/
+setmail	main.c	/^setmail(mailpath)$/
+setname	name.c	/^setname(argi, xp)	\/* does parameter assignments *\//
+setsig	fault.c	/^setsig(n)$/
+settmp	main.c	/^settmp()$/
+setup_env	name.c	/^setup_env()$/
+simple	service.c	/^simple(s)$/
+skipc	word.c	/^skipc()$/
+skipnl	cmd.c	/^skipnl()$/
+skipto	macro.c	/^skipto(endch)$/
+split	service.c	/^split(s)		\/* blank interpretation routine *\/$/
+stakchk	stak.c	/^stakchk()$/
+staknam	name.c	/^staknam(n)$/
+stdsigs	fault.c	/^stdsigs()$/
+stoi	print.c	/^stoi(icp)$/
+subst	macro.c	/^subst(in, ot)$/
+suspacct	service.c	/^suspacct()$/
+swap_iodoc_nm	io.c	/^swap_iodoc_nm(i)$/
+synbad	cmd.c	/^synbad()$/
+syncase	cmd.c	/^syncase(esym)$/
+syslook	name.c	/^syslook(w, syswds, n)$/
+tdystak	stak.c	/^tdystak(x)		\/* try to bring stack back to x *\/$/
+term	cmd.c	/^term(flg)$/
+test	test.c	/^test(argn, com)$/
+tio	test.c	/^tio(a, f)$/
+tmpfil	io.c	/^tmpfil(tb)$/
+trim	service.c	/^trim(at)$/
+unset_name	name.c	/^unset_name(name)$/
+useargs	args.c	/^useargs()$/
+what_is_path	hashserv.c	/^what_is_path(name)$/
+word	word.c	/^word()$/
+zapcd	hashserv.c	/^void $/
+zapentry	hashserv.c	/^zapentry(h)$/
+zaphash	hashserv.c	/^zaphash()$/

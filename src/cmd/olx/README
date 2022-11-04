@@ -1,0 +1,39 @@
+Many changes to the USEP package.
+
+The sysx program has been split into 3 parts:
+
+	sysx_m.c generates sysx 
+		Which does all old sysx functions with the exception of
+		creating and running scripts.
+
+	sysx_c.c generates sysx_c
+		Which is called on by sysx to create a script.
+		Scripts are still executabe by the shell, even though
+		the shell is not used to run them under sysx control.
+
+	sysx_r.c generates sysx_r
+		Which is called on by sysx to run a script.
+		Scripts entries are now run by using fork/exec to
+		allow for restart capability. Eventflag information
+		is now generated dynamically when script execution
+		starts (the z flag is not in the script file).
+		Sysx_r also handles a number of commands 
+		(Stop, Help, List, Print running script, Restart 
+		and shell command execution(!)).
+		The prompt from this portion of sysx is "run>".
+		
+overall changes:
+	Handling of shell command execution is improved.
+	Log file monitoring is turned back on after a stop
+		command as long as there are still exercisers 
+		running that are using logfiles.
+	Process group 31111 is used by all exercisers to allow
+		for reliable termination of exercisers run under
+		sysx, shell or csh control.
+	The "sysxstop" command has been added to send the quit signal
+		to all processes which are in the sysx process group
+		(31111). The "s" command in sysx has the same effect.
+	All exercisers, when not run from sysx, print a message on
+		the standard error output indicating that they are
+		detaching from the terminal and to use the "sysxstop"
+		command to stop them.

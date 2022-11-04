@@ -1,0 +1,68 @@
+:
+# SCCSID: @(#)systest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** Start of systat - "
+date
+touch $T/sys.$$.log
+echo -n "###### Start of systat - " >> $T/sys.$$.log
+date >> $T/sys.$$.log
+
+echo "who"
+echo "who" >> $T/sys.$$.log
+echo "" >> $T/sys.$$.log
+$M who >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "ps -alx"
+echo "ps -alx" >> $T/sys.$$.log
+$M ps -alx >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "pstat -pxift"
+echo "" >> $T/sys.$$.log
+echo "pstat -pxift" >> $T/sys.$$.log
+$M pstat -pxift >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "memstat"
+echo "" >> $T/sys.$$.log
+echo "memstat" >> $T/sys.$$.log
+$M memstat >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "bufstat"
+echo "" >> $T/sys.$$.log
+echo "bufstat">> $T/sys.$$.log
+$M bufstat >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "iostat"
+echo "" >> $T/sys.$$.log
+echo "iostat" >> $T/sys.$$.log
+$M iostat >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "df"
+echo "df">> $T/sys.$$.log
+echo "" >> $T/sys.$$.log
+$M df >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo "ipcs"
+echo "ipcs">> $T/sys.$$.log
+echo "" >> $T/sys.$$.log
+$M ipcs >> $T/sys.$$.log 2>&1
+echo "" >> $T/sys.$$.log
+
+echo -n "****** End   of systat - "
+date
+echo -n "###### End   of systat - " >> $T/sys.$$.log
+date >> $T/sys.$$.log
+cat $T/sys.$$.log >> $T/log.$$.log
+rm -f $RT/sys.$$.log

@@ -1,0 +1,20 @@
+Copyright	fp1.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+adc	fp3.s	/^	adc	(sp)$/
+add	fp3.s	/^add	(r0)+,r1$/
+agndat	fp1.s	/^jmp	*agndat(r4)$/
+areg	fp3.s	/^bic	r1,areg(r2)$/
+bis	fp3.s	/^	bis	(r0)+,r1$/
+bit	fp3.s	/^	bis	$2,fpsr			\/ set v-bit (overflow)$/
+breg	fp3.s	/^	bic	r1,breg(r2)$/
+clr	fp1.s	/^	clr	(r0)$/
+cls2dat	fp1.s	/^jsr	pc,*cls2dat(r4)$/
+cls3dat	fp1.s	/^jsr	pc,*cls3dat(r4)$/
+cmp	fp3.s	/^cmp	(r0)+,r1$/
+dec	fp1.s	/^	dec	(r0)+$/
+inc	fp1.s	/^inc	(r0)+$/
+moddat	fp1.s	/^jmp	*moddat(r0)$/
+mov	fp1.s	/^	mov	(sp)+,spc$/
+neg	fp3.s	/^neg	(r1)$/
+ror	fp3.s	/^ror	(sp)$/
+sub	fp3.s	/^sub	(r0)+,r1$/
+tst	fp3.s	/^	tst	(sp)+$/

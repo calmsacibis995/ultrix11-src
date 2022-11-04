@@ -1,0 +1,152 @@
+SCCSID="@(#)tk_daily.bak	3.0	4/22/86"
+# ULTRIX-11 DAILY file system backup command file
+# TK50 Cartridge magtape dump
+#
+# This prototype file is set up to dump three
+# file systems from an RD52/RD53 based system onto
+# a tk50 magtape cartridge
+# Level 0 (full) dumps are done for all three file systems
+# (root, /usr, and /user).
+# You may want to do incremental dumps daily and only do full
+# dumps weekly or monthly, if so, modify this file as follows:
+#
+# 1.	Copy this file to tk_monthly.bak or tk_weekly.bak.
+#
+# 2.	Change each occurance of the word daily to monthly or weekly.
+#
+# 3.	DIGITAL recommends a level 0 dump of the root daily.
+#
+# 4.	Change the "dump 0ufyt" commands to "dump 9ufyt" for
+#	those file systems to be incrementaly dumped daily.
+#
+# NOTE: you may need to modify this file to match
+#	your system's file system layout.
+#
+#
+# This script repositions the tape and retires
+# the dump if it fails.
+
+ERR=0
+echo ""
+echo "ULTRIX-11 DAILY File System Backup"
+echo ""
+echo -n "Mount a daily dump tape for - "
+date
+echo ""
+YN=n
+while test $YN != y
+do
+	echo -n "Ready <y or n> ? "
+	read YN
+	if test $YN
+	then	echo ""
+	else	YN=n
+		echo ""
+	fi
+done
+while true
+do
+	YN=n
+	if test $ERR = 1
+	then	while test $YN != y
+		do
+			echo ""
+			echo -n "Is tape drive ready <y or n> ? "
+			read YN
+			if test $YN
+			then	echo ""
+			else	YN=n
+			echo ""
+			fi
+		done
+		echo ""
+		echo "Repositioning tape - Please wait"
+		echo ""
+		mt -f /dev/rtk0 rewind
+		ERR=0
+	fi
+	echo "Dumping root filesystem to tape file 0"
+	dump 0ufyt /dev/nrtk0 /dev/rrd00
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		else	ERR=1
+		fi
+	fi
+done
+while true
+do
+	echo ""
+	echo "Dumping /usr filesystem to tape file 1"
+	YN=n
+	if test $ERR = 1
+	then	while test $YN != y
+		do
+			echo ""
+			echo -n "Is tape drive ready <y or n> ? "
+			read YN
+			if test $YN
+			then	echo ""
+			else	YN=n
+			echo ""
+			fi
+		done
+		echo ""
+		echo "Repositioning tape - Please wait"
+		echo ""
+		mt -f /dev/rtk0 rewind
+		mt -f /dev/nrtk0 fsf 1
+		ERR=0
+	fi
+	dump 0ufyt /dev/nrtk0 /dev/rrd01
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		else	ERR=1
+		fi
+	fi
+done
+while true
+do
+	echo ""
+	echo "Dumping user filesystem to tape file 2"
+	YN=n
+	if test $ERR = 1
+	then	while test $YN != y
+		do
+			echo ""
+			echo -n "Is tape drive ready <y or n> ? "
+			read YN
+			if test $YN
+			then	echo ""
+			else	YN=n
+			echo ""
+			fi
+		done
+		echo ""
+		echo "Repositioning tape - Please wait"
+		echo ""
+		mt -f /dev/rtk0 rewind
+		mt -f /dev/nrtk0 fsf 2
+		ERR=0
+	fi
+	dump 0ufyt /dev/rtk0 /dev/rrd03
+	if test $? = 0
+	then	break
+	else	echo ""
+		echo -n "FATAL ERROR: try again <y or n> ? "
+		read YN
+		if test $YN != y
+		then	break
+		else	ERR=1
+		fi
+	fi
+done

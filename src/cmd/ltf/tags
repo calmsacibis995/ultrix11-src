@@ -1,0 +1,56 @@
+Filetype	filetype.c	/^Filetype(file,caller)$/
+Lookup	filenames.c	/^struct FILESTAT * Lookup(name)$/
+Mltf	ltf.c	/^main (argc, argv)$/
+addrtyp	putfile.c	/^addrtyp(inch, typ)$/
+append	putfile.c	/^long append(name, fp, type, tftype, max, Inbuf)$/
+ascom	filetype.c	/^ascom()$/
+bflush	putfile.c	/^bflush(name, Inbuf)$/
+bsf	odm.c	/^bsf(n)$/
+ccom	filetype.c	/^if (!ccom()) {$/
+ceot	odm.c	/^ceot()$/
+checkdir	xtractf.c	/^checkdir(path)$/
+date_time	scantape.c	/^date_time(sdate, sec)$/
+date_year	scantape.c	/^date_year(sdate, century, date)$/
+dfsf	odm.c	/^dfsf()$/
+dprocess	putdir.c	/^dprocess(longname, shortname)$/
+english	filetype.c	/^english(bp, n)$/
+expand_mode	scantape.c	/^expand_mode(mode)$/
+expandm	scantape.c	/^expandm(choices, mode)$/
+expnum	filenames.c	/^expnum(numstring)$/
+fdlist	putdir.c	/^fdlist()$/
+filter_to_a	filenames.c	/^filter_to_a (string,report_errors)$/
+fopen	filetype.c	/^if((ifile = fopen(file, "r")) == NULL) {$/
+for	filetype.c	/^for (x=i;x<i+80;x++)$/
+fsf	odm.c	/^fsf(n)$/
+fufcnv	xtractf.c	/^fufcnv(name, p, count, fp)$/
+getlen	xtractf.c	/^getlen(s)$/
+if	filenames.c	/^if (non_a && report_errors)$/
+initvol	initvol.c	/^initvol(num, args, iflag, inputfile)$/
+lookupe	filetype.c	/^lookupe(tab)$/
+make_name	filenames.c	/^make_name(file, dest)$/
+malloc	filenames.c	/^*dest = (char *) malloc (strlen(file) + 1);$/
+mstrcmp	mstrcmp.c	/^mstrcmp(s, t)$/
+process	putfile.c	/^process(reallong, longname, shortname, type)$/
+putdir	putdir.c	/^putdir(longname, shortname, workdir)$/
+putfile	putfile.c	/^putfile(longname, shortname, iflag, workdir)$/
+rec_args	filenames.c	/^rec_args(longname, dumpflag)$/
+rec_file	filenames.c	/^rec_file(fp, iflag, crname)$/
+response	ltf.c	/^response()$/
+rew	odm.c	/^rew(n)$/
+scantape	scantape.c	/^scantape()$/
+showhelp	filenames.c	/^showhelp()$/
+sprintf	initvol.c	/^sprintf(Labelbuf, "VOL1%-6.6s %-13.13s%-13.13s%-14/
+strcmp	initvol.c	/^ret = putfile(!strcmp(pathname, "\/") ? "" : pathna/
+strlen	putdir.c	/^length = (strlen(longname)) -1;$/
+strncmp	filetype.c	/^if (!strncmp(buf, "VOL1", 4)) {$/
+switch	filetype.c	/^switch (mbuf.st_mode & S_IFMT) {$/
+tape	odm.c	/^tape(special)$/
+tape_mark	odm.c	/^tape_mark(bp)$/
+term_string	filenames.c	/^term_string(string,delnl,truncate)$/
+tree	initvol.c	/^tree(pathname, iflag)$/
+troffint	filetype.c	/^troffint(bp, n)$/
+usage	filenames.c	/^usage()$/
+wbadlab	scantape.c	/^wbadlab()$/
+weof	odm.c	/^weof()$/
+while	filetype.c	/^while(buf[i] == ' ' || buf[i] == '#' || buf[i] == /
+xtractf	xtractf.c	/^long xtractf(path, s, charcnt, name)$/

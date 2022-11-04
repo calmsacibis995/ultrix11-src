@@ -1,0 +1,39 @@
+Mcpp	cpp.c	/^main(argc,argv)$/
+bob	cpp.c	/^#define bob(a) (pbeg>=(a))$/
+close	cpp.c	/^# define close(F)	fclose(_f[F])$/
+control	cpp.c	/^control(p) register char *p; {\/* find and handle p/
+copy	cpp.c	/^copy(s) register char *s; {$/
+cotoken	cpp.c	/^cotoken(p) register char *p; {$/
+dodef	cpp.c	/^dodef(p) char *p; {\/* process '#define' *\/$/
+doincl	cpp.c	/^doincl(p) register char *p; {$/
+dump	cpp.c	/^dump() {$/
+eob	cpp.c	/^#define eob(a) ((a)>=pend)$/
+equfrm	cpp.c	/^equfrm(a,p1,p2) register char *a,*p1,*p2; {$/
+exit	cpp.c	/^# define exit(S)	longjmp(env, 1)$/
+fasscan	cpp.c	/^#define fasscan() ptrtab=fastab+COFF$/
+iscom	cpp.c	/^#define iscom(a) ((fastab+COFF)[a]&CB)$/
+isid	cpp.c	/^#define isid(a)  ((fastab+COFF)[a]&IB)$/
+isnum	cpp.c	/^#define isnum(a) ((fastab+COFF)[a]&NB)$/
+isquo	cpp.c	/^#define isquo(a) ((fastab+COFF)[a]&QB)$/
+isspc	cpp.c	/^#define isspc(a) (ptrtab[a]&SB)$/
+iswarn	cpp.c	/^#define iswarn(a) ((fastab+COFF)[a]&WB)$/
+lookup	cpp.c	/^lookup(namep, enterf)$/
+open	cpp.c	/^# define open(S,D)	fileno(fopen(S, "r"))$/
+pperror	cpp.c	/^pperror(s,x,y) char *s; {$/
+ppsym	cpp.c	/^ppsym(s) char *s; {\/* kluge *\/$/
+ppwarn	cpp.c	/^ppwarn(s,x) char *s; {$/
+refill	cpp.c	/^refill(p) register char *p; {$/
+sayline	cpp.c	/^sayline() {$/
+skipbl	cpp.c	/^skipbl(p) register char *p; {\/* get next non-blank/
+slookup	cpp.c	/^slookup(p1,p2,enterf) register char *p1,*p2; int e/
+sloscan	cpp.c	/^#define sloscan() ptrtab=slotab+COFF$/
+strdex	cpp.c	/^strdex(s,c) char *s,c; {$/
+stsym	cpp.c	/^stsym(s) register char *s; {$/
+subst	cpp.c	/^subst(p,sp) register char *p; struct symtab *sp; {/
+tobinary	yylex.c	/^tobinary(st, b) char *st; {$/
+trmdir	cpp.c	/^trmdir(s) register char *s; {$/
+unfill	cpp.c	/^unfill(p) register char *p; {$/
+while	cpp.c	/^	while (p1<inp) putc(*p1++,f);$/
+yyerror	cpp.c	/^yyerror(s,a,b) char *s; {$/
+yylex	yylex.c	/^yylex() {$/
+yywrap	cpp.c	/^yywrap(){ return(1); }$/

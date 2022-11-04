@@ -1,0 +1,95 @@
+:
+# SCCSID: @(#)pascaltest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** pascal test started - "
+date
+touch $T/pas.$$.err
+
+# Test pi, then run 'obj'.  Pix depends on pi being
+# there, so only test everything if pi is installed.
+
+if test -f "$pascalpath"
+then
+
+# Test 1 pi - pascal interpreter
+# output is a table of temperatures
+	echo "pi:"
+	$M pi $L/pascal/test1.p
+	mv obj $T/pas.$$.exe
+	$T/pas.$$.exe > $T/pas1.$$.out
+
+	cmp $L/pascal/test1.sout $T/pas1.$$.out
+	if test $? != 0
+	then
+	     echo "pascal: pi: Compare after execute failed" >> $T/pas.$$.err
+	     echo "Compare after execute failed"
+	fi
+
+# Test 2 pix - compiler and executioner
+# output should be the line: "Pascal test 2 for USAT"
+	echo "pix:"
+	pix $L/pascal/test2.p > $T/pas.$$.tmp 2>&1
+	grep "seconds" $T/pas.$$.tmp
+# if seconds failed, there might be an error
+	if [ $? != 0 ]
+	then
+	    cat $T/pas.$$.tmp
+	fi
+	grep -v "seconds" $T/pas.$$.tmp > $T/pas2.$$.out
+
+	cmp $L/pascal/test2.sout $T/pas2.$$.out
+	if test $? != 0
+	then
+	     echo "pascal: pix: Compare after execute failed" >> $T/pas.$$.err
+	     echo "Compare after execute failed"
+	fi
+
+# Test 3 px - interpreter only
+# produces the same output as test number 1 above
+	echo "px:"
+	pi $L/pascal/test1.p
+	mv obj $T/pas.$$.exe
+# seconds are printed out automatically in next line
+	$M px $T/pas.$$.exe > $T/pas3.$$.out
+
+	cmp $L/pascal/test1.sout $T/pas3.$$.out
+	if test $? != 0
+	then
+	     echo "pascal: px: Compare after execute failed" >> $T/pas.$$.err
+	     echo "Compare after execute failed"
+	fi
+
+# Test 4 pxp - preprocessor and profiler
+# produces same output as test number 2
+	echo "pxp:"
+	pix -z $L/pascal/test2.p > $T/pas.$$.tmp 2>&1
+	grep "seconds" $T/pas.$$.tmp
+	$M pxp -z $L/pascal/test2.p > $T/pas.$$.tmp 2>&1
+# get rid of the lines with the date in them
+	grep -v "Profiled" $T/pas.$$.tmp \
+	    | grep -v "test2.p" > $T/pas4.$$.out
+
+	cmp $L/pascal/test4.sout $T/pas4.$$.out
+	if test $? != 0
+	then
+	     echo "pascal: pxp: Compare after execute failed" >> $T/pas.$$.err
+	     echo "Compare after execute failed"
+	fi
+
+else
+	echo "pascal: $pascalpath: not installed" >> $T/pas.$$.err
+	echo "$pascalpath: not tested (command not installed)"
+fi
+
+echo -n "****** End  of pascal test - "
+date
+cat $T/pas.$$.err >> $T/log.$$.err
+rm -f pmon.out
+rm -f $RT/pas.$$.*
+rm -f $RT/pas?.$$.*

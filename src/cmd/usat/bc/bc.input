@@ -1,0 +1,12 @@
+define e(x) {
+	auto p, i
+	p=1; f=1
+	for(i=1; i<=x; i++) {
+		f=f*i
+		p=p+(1.0/f)
+	}
+	return(p)
+}
+scale=50
+e(42)
+quit

@@ -1,0 +1,42 @@
+Mm4	m4.c	/^main(argc, argv)$/
+catchsig	m4.c	/^catchsig()$/
+copy	m4.c	/^char *copy(s)$/
+ctoi	m4.c	/^ctoi(s)$/
+ctol	m4.c	/^long ctol(str)$/
+delexit	m4.c	/^delexit()$/
+docq	m4.c	/^docq(ap, c)$/
+dodef	m4.c	/^dodef(ap, c)$/
+dodiv	m4.c	/^dodiv(ap, c)$/
+dodivnum	m4.c	/^dodivnum(ap, c)$/
+dodnl	m4.c	/^dodnl(ap, c)$/
+dodump	m4.c	/^dodump(ap, c)$/
+doerrp	m4.c	/^doerrp(ap, c)$/
+doeval	m4.c	/^doeval(ap, c)$/
+doif	m4.c	/^doif(ap, c)$/
+doifdef	m4.c	/^doifdef(ap, c)$/
+doincl	m4.c	/^doincl(ap, c, noisy)$/
+doincr	m4.c	/^doincr(ap, c)$/
+doindex	m4.c	/^doindex(ap, c)$/
+dolen	m4.c	/^dolen(ap, c)$/
+domake	m4.c	/^domake(ap, c)$/
+doshift	m4.c	/^doshift(ap, c)$/
+dosubstr	m4.c	/^dosubstr(ap, c)$/
+dosyscmd	m4.c	/^dosyscmd(ap, c)$/
+dotransl	m4.c	/^dotransl(ap, c)$/
+doundef	m4.c	/^doundef(ap, c)$/
+doundiv	m4.c	/^doundiv(ap, c)$/
+expand	m4.c	/^expand(a1, c)$/
+getchr	m4.c	/^#define	getchr()	(ip>cur_ip?*--ip: getc(infile[inf/
+install	m4.c	/^char *install(nam, val)$/
+lookup	m4.c	/^struct nlist *lookup(str)$/
+max	m4.c	/^max(a, b)$/
+min	m4.c	/^min(a, b)$/
+pbstr	m4.c	/^pbstr(str)$/
+peek	m4y.y	/^peek(c, r1, r2)$/
+putbak	m4.c	/^#define	putbak(c)	*ip++ = c;$/
+putchr	m4.c	/^#define	putchr(c)	if (cp==NULL) {if (curfile)putc(/
+putnum	m4.c	/^putnum(num)$/
+puttok	m4.c	/^puttok()$/
+strindex	m4.c	/^strindex(p1, p2)$/
+yyerror	m4y.y	/^yyerror(s)$/
+yylex	m4y.y	/^yylex() {$/

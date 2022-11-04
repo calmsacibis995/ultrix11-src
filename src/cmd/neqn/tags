@@ -1,0 +1,60 @@
+EFFPS	e.h	/^#define	EFFPS(p)	((p) >= 6 ? (p) : 6)$/
+Mio	io.c	/^main(argc,argv) int argc; char *argv[];{$/
+VERT	e.h	/^#define	VERT(n)	(20 * (n))$/
+boverb	over.c	/^boverb(p1, p2) int p1, p2; {$/
+brack	paren.c	/^brack(m, t, c, b) int m; char *t, *c, *b; {$/
+bshiftb	shift.c	/^bshiftb(p1, dir, p2) int p1, dir, p2; {$/
+column	matrix.c	/^column(type, p1) int type, p1; {$/
+cstr	lex.c	/^cstr(s, quote, maxs) char *s; int quote; {$/
+define	lex.c	/^define(type) int type; {$/
+delim	lex.c	/^delim() {$/
+diacrit	diacrit.c	/^diacrit(p1, type) int p1, type; {$/
+eqn	io.c	/^eqn(argc,argv) int argc; char *argv[];{$/
+eqnbox	eqnbox.c	/^eqnbox(p1, p2, lu) {$/
+eqnexit	io.c	/^eqnexit(n) {$/
+error	io.c	/^error(fatal, s1, s2) int fatal; char *s1, *s2; {$/
+fatbox	font.c	/^fatbox(p) int p; {$/
+font	font.c	/^font(p1, p2) int p1, p2; {$/
+fromto	fromto.c	/^fromto(p1, p2, p3) int p1, p2, p3; {$/
+funny	funny.c	/^funny(n) int n; {$/
+getline	io.c	/^getline(s) register char *s; {$/
+getstr	lex.c	/^getstr(s, n) char *s; register int n; {$/
+globfont	font.c	/^globfont() {$/
+globsize	size.c	/^globsize() {$/
+gtc	lex.c	/^gtc() {$/
+include	lex.c	/^include() {$/
+init	io.c	/^init() {$/
+init_tbl	lookup.c	/^init_tbl()	\/* initialize all tables *\/$/
+inline	io.c	/^inline() {$/
+integral	integral.c	/^integral(p, p1, p2) {$/
+lineup	mark.c	/^lineup(p1) {$/
+lookup	lookup.c	/^tbl *lookup(tblp, name, defn)	\/* find name in tbl./
+lpile	pile.c	/^lpile(type, p1, p2) int type, p1, p2; {$/
+mark	mark.c	/^mark(p1) int p1; {$/
+matrix	matrix.c	/^matrix(p1) int p1; {$/
+max	io.c	/^max(i,j) int i,j; {$/
+move	move.c	/^move(dir, amt, p) int dir, amt, p; {$/
+name4	text.c	/^name4(c1,c2) int c1,c2; {$/
+nrwid	io.c	/^nrwid(n1, p, n2) int n1, p, n2; {$/
+oalloc	io.c	/^oalloc() {$/
+ofree	io.c	/^ofree(n) int n; {$/
+paren	paren.c	/^paren(leftc, p1, rightc) int p1, leftc, rightc; {$/
+pbstr	lex.c	/^pbstr(str)$/
+putbak	lex.c	/^#define	putbak(c)	*ip++ = c;$/
+putout	io.c	/^putout(p1) int p1; {$/
+roman	text.c	/^roman(c) int c; {$/
+setfile	io.c	/^setfile(argc, argv) int argc; char *argv[]; {$/
+setfont	font.c	/^setfont(ch1) char ch1; {$/
+setintegral	integral.c	/^setintegral() {$/
+setps	io.c	/^setps(p) int p; {$/
+setsize	size.c	/^setsize(p)	\/* set size as found in p *\/$/
+shift	shift.c	/^shift(p1) int p1; {$/
+shift2	shift.c	/^shift2(p1, p2, p3) int p1, p2, p3; {$/
+shim	text.c	/^shim() {$/
+size	size.c	/^size(p1, p2) int p1, p2; {$/
+sqrt	sqrt.c	/^sqrt(p2) int p2; {$/
+strsave	lex.c	/^char *strsave(s)$/
+text	text.c	/^text(t,p1) int t; char *p1; {$/
+trans	text.c	/^trans(c,p1) int c; char *p1; {$/
+yyerror	io.c	/^yyerror() {;}$/
+yylex	lex.c	/^yylex() {$/

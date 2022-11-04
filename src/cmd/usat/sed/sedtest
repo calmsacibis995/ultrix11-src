@@ -1,0 +1,37 @@
+:
+# SCCSID: @(#)sedtest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** sed test started - "
+date
+touch $T/sed.$$.err
+
+cat $L/sed/sed.input |  $M sed s/0/1/g	|\
+			$M sed s/1/\ /g	|\
+			$M sed s/\ //g > $T/sed.$$.out
+cmp $L/sed/sed.sout $T/sed.$$.out
+if test $? != 0
+then
+	echo "sed:  Compare after sed failed" >> $T/sed.$$.err
+	echo "Compare after sed failed"
+else
+	cat $L/sed/sed.input |  $M sed s/0/1/g	|\
+				$M sed s/1/\ /g	|\
+				$M sed s/\ //g > $T/sed.$$.out
+	cmp $L/sed/sed.sout $T/sed.$$.out
+	if test $? != 0
+	then
+		echo "sed:  Compare after sed failed" >> $T/sed.$$.err
+		echo "Compare after sed failed"
+	fi
+fi
+echo -n "****** End of  sed test - "
+date
+cat $T/sed.$$.err >> $T/log.$$.err
+rm -f $RT/sed.$$.err
+rm -f $RT/sed.$$.out

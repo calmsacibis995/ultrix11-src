@@ -1,0 +1,32 @@
+:
+# SCCSID: @(#)linttest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** lint test started - "
+date
+touch $T/lnt.$$.err
+
+if test -f "$lintpath"
+then
+	$M lint -hp $L/lint/lintfile.c > $T/lnt.$$.out
+
+	cmp $L/lint/lint.sout $T/lnt.$$.out
+	if test $? != 0
+	then
+		echo "lint:   Compare after lint failed" >> $T/lnt.$$.err
+		echo "Compare after lint failed"
+	fi
+else
+	echo "$lintpath: not installed" >> $T/lnt.$$.err
+	echo "$lintpath: not tested (command not installed)"
+fi
+echo -n "****** End of  lint test - "
+date
+cat $T/lnt.$$.err >> $T/log.$$.err
+rm -f $RT/lnt.$$.err
+rm -f $RT/lnt.$$.out

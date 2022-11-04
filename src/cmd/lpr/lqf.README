@@ -1,0 +1,11 @@
+lqf.README:
+
+The lqf print filter was modified to include support for
+the LA210 printer being able to print greater than 132
+columns of output.  The LA210 can actually print up to
+219 columns, so the filter now allows up to 256 columns.
+
+The original ULTRIX-11 V3.0 source for lqf is in the file
+named lqf.c.V3.0, while the improved version is in lqf.c.
+
+John Dustin  7-APR-86

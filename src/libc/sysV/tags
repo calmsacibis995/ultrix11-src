@@ -1,0 +1,98 @@
+ADDEQU	drand48.c	/^#define ADDEQU(x, y, z)	(z = CARRY(x, (y)), x = LO/
+CARRY	drand48.c	/^#define CARRY(x, y)	((long)(x) + (long)(y) > MASK)/
+COMPARE	hsearch.c	/^#    define COMPARE(A, B) (* hcompar)((A), (B))$/
+Copyright	_tolower.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+DIGIT	strtol.c	/^#define DIGIT(x)	(isdigit(x) ? (x) - '0' : \\$/
+ERR	getopt.c	/^#define ERR(s, c)	if(opterr){\\$/
+HASH2	hsearch.c	/^#    define HASH2(A) 1		\/* Secondary hash function/
+HIGH	drand48.c	/^#define HIGH(x)	LOW((x) >> N)$/
+LOW	drand48.c	/^#define LOW(x)	((unsigned)(x) & MASK)$/
+MUL	drand48.c	/^#define MUL(x, y, z)	{ long l = (long)(x) * (long)/
+Mdrand48	drand48.c	/^main()$/
+Mhsearch	hsearch.c	/^main()$/
+NEST	drand48.c	/^#define NEST(TYPE, f, F)	TYPE f(xsubi) register un/
+REST	drand48.c	/^#define REST(v)	for (i = 0; i < 3; i++) { xsubi[i]/
+SEED	drand48.c	/^#define SEED(x0, x1, x2) (SET3(x, x0, x1, x2), SET/
+SET3	drand48.c	/^#define SET3(x, x0, x1, x2)	((x)[0] = (x0), (x)[1]/
+SETLOW	drand48.c	/^#define SETLOW(x, y, n) SET3(x, LOW((y)[n]), LOW((/
+STRCMP	hsearch.c	/^#        define STRCMP(A, B) (COMPARE((A), (B)) > /
+TIMES	clock.c	/^#define TIMES(B)	(B.tms_utime+B.tms_stime+B.tms_cu/
+_twalk	tsearch.c	/^_twalk(root, action, level)	\/* Walk the nodes of a/
+a64l	a64l.c	/^a64l(s)$/
+alrmcatch	dial.c	/^alrmcatch()$/
+bsearch	bsearch.c	/^bsearch(key, base, nel, width, compar)$/
+build	hsearch.c	/^*build(last, next, item)$/
+clock	clock.c	/^clock()$/
+compare	hsearch.c	/^compare(a, b)$/
+connect	dial.c	/^connect(call)$/
+crunch	hsearch.c	/^crunch(key)		\/* Convert multicharacter key to unsi/
+ctermid	ctermid.c	/^ctermid(s)$/
+cuserid	cuserid.c	/^cuserid(s)$/
+dial	dial.c	/^dial(call)$/
+drand48	drand48.c	/^drand48()$/
+dump	dial.c	/^dump(arg, fd)$/
+endutent	getut.c	/^endutent()$/
+find	putenv.c	/^find(str)$/
+find_dev	dial.c	/^find_dev(iop, call)$/
+ftok	ftok.c	/^ftok(path, id)$/
+ftw	ftw.c	/^ftw(path, fn, depth)$/
+gdebug	getut.c	/^gdebug(format,arg1,arg2,arg3,arg4,arg5,arg6)$/
+getcwd	getcwd.c	/^getcwd(arg1, arg2)$/
+getopt	getopt.c	/^getopt(argc, argv, opts)$/
+getpw	getpw.c	/^getpw(uid, buf)$/
+getutent	getut.c	/^struct utmp *getutent()$/
+getutid	getut.c	/^struct utmp *getutid(entry)$/
+getutline	getut.c	/^struct utmp *getutline(entry)$/
+gsignal	ssignal.c	/^gsignal(sig)$/
+hash2m	hsearch.c	/^hash2m(key)		\/* Secondary hashing routine *\/$/
+hashd	hsearch.c	/^hashd(key)		\/* Division hashing scheme *\/$/
+hashm	hsearch.c	/^hashm(key)		\/* Multiplication hashing scheme *\/$/
+hcreate	hsearch.c	/^hcreate(size)		\/* Create a hash table no smaller t/
+hdestroy	hsearch.c	/^hdestroy()	\/* Reset the module to its initial stat/
+hdump	hsearch.c	/^hdump()			\/* Dumps loc, data, probe count, key *\/$/
+hsearch	hsearch.c	/^*hsearch(item, action)	\/* Find or insert the item /
+hupcatch	dial.c	/^hupcatch()$/
+intcatch	dial.c	/^intcatch()$/
+irand48	drand48.c	/^irand48(m)$/
+krand48	drand48.c	/^krand48(xsubi, m)$/
+l64a	l64a.c	/^l64a(lg)$/
+lcong48	drand48.c	/^lcong48(param)$/
+lfind	lfind.c	/^lfind(key, base, nelp, width, compar)$/
+lockf	lockf.c	/^lockf(fildes, function, size)$/
+lrand48	drand48.c	/^lrand48()$/
+lsearch	lsearch.c	/^lsearch(key, base, nelp, width, compar)$/
+match	putenv.c	/^match(s1, s2)$/
+max	tempnam.c	/^#define max(A,B) (((A)<(B))?(B):(A))$/
+memccpy	memccpy.c	/^memccpy(s1, s2, c, n)$/
+memchr	memchr.c	/^memchr(sp, c, n)$/
+memcmp	memcmp.c	/^memcmp(s1, s2, n)$/
+memcpy	memcpy.c	/^memcpy(s1, s2, n)$/
+memset	memset.c	/^memset(sp, c, n)$/
+mrand48	drand48.c	/^mrand48()$/
+next	drand48.c	/^next()$/
+pcopy	tempnam.c	/^pcopy(space, arg)$/
+putenv	putenv.c	/^putenv(change)$/
+pututline	getut.c	/^struct utmp *pututline(entry)$/
+seed48	drand48.c	/^seed48(seed16v)$/
+setutent	getut.c	/^setutent()$/
+sizeof	dial.c	/^cul[15+sizeof(DEVDIR)] = DEV, \/* line's device-nam/
+srand48	drand48.c	/^srand48(seedval)$/
+ssignal	ssignal.c	/^*ssignal(sig, fn))()$/
+strchr	strchr.c	/^strchr(sp, c)$/
+strcspn	strcspn.c	/^strcspn(string, charset)$/
+strpbrk	strpbrk.c	/^strpbrk(string, brkset)$/
+strrchr	strrchr.c	/^strrchr(sp, c)$/
+strspn	strspn.c	/^strspn(string, charset)$/
+strtok	strtok.c	/^strtok(string, sepset)$/
+strtol	strtol.c	/^strtol(str, ptr, base)$/
+tdelete	tsearch.c	/^tdelete(key, rootp, compar)	\/* Delete node with ke/
+tempnam	tempnam.c	/^tempnam(dir, pfx)$/
+tmpfile	tmpfile.c	/^tmpfile()$/
+tmpnam	tmpnam.c	/^tmpnam(s)$/
+tolower	tolower.c	/^tolower(c)$/
+toupper	toupper.c	/^toupper(c)$/
+tsearch	tsearch.c	/^tsearch(key, rootp, compar)	\/* Find or insert key /
+twalk	tsearch.c	/^twalk(root, action)		\/* Walk the nodes of a tree */
+undial	dial.c	/^undial(rfd)$/
+until	hsearch.c	/^#define until(A)	if(A) break;$/
+utmpname	getut.c	/^utmpname(newfile)$/

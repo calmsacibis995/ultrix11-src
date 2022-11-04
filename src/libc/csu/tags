@@ -1,0 +1,3 @@
+Copyright	crt0.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+cmp	crt0.s	/^cmp	(sp)+,(sp)+$/
+tst	crt0.s	/^	tst	(r0)+$/

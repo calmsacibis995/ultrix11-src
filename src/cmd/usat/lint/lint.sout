@@ -1,0 +1,30 @@
+"/usr/lib/usat/lint/lintfile.c", line 8: warning: illegal combination of pointer and integer
+"/usr/lib/usat/lint/lintfile.c", line 13: warning: i redefinition hides earlier one
+"/usr/lib/usat/lint/lintfile.c", line 19: warning: null effect
+"/usr/lib/usat/lint/lintfile.c", line 13: warning: i unused in function main
+"/usr/lib/usat/lint/lintfile.c", line 55: warning: statement not reached
+"/usr/lib/usat/lint/lintfile.c", line 50: warning: argument a unused in function askcorr
+"/usr/lib/usat/lint/lintfile.c", line 56: warning: function askcorr has return(e); and return;
+"/usr/lib/usat/lint/lintfile.c", line 67: warning: constant in conditional context
+"/usr/lib/usat/lint/lintfile.c", line 67: warning: constant argument to NOT
+"/usr/lib/usat/lint/lintfile.c", line 67: warning: constant in conditional context
+"/usr/lib/usat/lint/lintfile.c", line 69: warning: statement not reached
+"/usr/lib/usat/lint/lintfile.c", line 71: warning: function fillarr has return(e); and return;
+"/usr/lib/usat/lint/lintfile.c", line 75: warning: i redefinition hides earlier one
+"/usr/lib/usat/lint/lintfile.c", line 82: warning: arg2 may be used before set
+"/usr/lib/usat/lint/lintfile.c", line 82: warning: arg1 may be used before set
+"/usr/lib/usat/lint/lintfile.c", line 87: warning: statement not reached
+"/usr/lib/usat/lint/lintfile.c", line 78: warning: i set but not used in function lockup
+"/usr/lib/usat/lint/lintfile.c", line 88: warning: function lockup has return(e); and return;
+"/usr/lib/usat/lint/lintfile.c", line 97: warning: i redefinition hides earlier one
+"/usr/lib/usat/lint/lintfile.c", line 107: warning: i redefinition hides earlier one
+"/usr/lib/usat/lint/lintfile.c", line 112: warning: i set but not used in function checkok
+askcor defined( "/usr/lib/usat/lint/lintfile.c"(51) ), but never used
+checko value is used, but none returned
+cleanu: variable # of args.	"/usr/lib/usat/lint/lintfile.c"(91)  ::  "/usr/lib/usat/lint/lintfile.c"(82)
+cleanu: variable # of args.	"/usr/lib/usat/lint/lintfile.c"(91)  ::  "/usr/lib/usat/lint/lintfile.c"(29)
+cleanu value is used, but none returned
+clrreg: variable # of args.	"/usr/lib/usat/lint/lintfile.c"(96)  ::  "/usr/lib/usat/lint/lintfile.c"(35)
+i defined( "/usr/lib/usat/lint/lintfile.c"(9) ), but never used
+interr value is used, but none returned
+mktemp: variable # of args.	"/usr/lib/usat/lint/lintfile.c"(86)  ::  "/usr/lib/usat/lint/lintfile.c"(85)

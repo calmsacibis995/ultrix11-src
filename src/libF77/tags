@@ -1,0 +1,133 @@
+EVEN	ef1asc_.c	/^#define EVEN(x)	( ( (x)+ M) & (~M) )$/
+Mmain	main.c	/^main(argc, argv, arge)$/
+abort_	abort_.c	/^abort_()$/
+besj0_	besj0_.c	/^float besj0_(x)$/
+besj1_	besj1_.c	/^float besj1_(x)$/
+besjn_	besjn_.c	/^float besjn_(n, x)$/
+besy0_	besy0_.c	/^float besy0_(x)$/
+besy1_	besy1_.c	/^float besy1_(x)$/
+besyn_	besyn_.c	/^float besyn_(n, x)$/
+c_abs	c_abs.c	/^float c_abs(z)$/
+c_cos	c_cos.c	/^c_cos(r, z)$/
+c_div	c_div.c	/^c_div(c, a, b)$/
+c_exp	c_exp.c	/^c_exp(r, z)$/
+c_log	c_log.c	/^c_log(r, z)$/
+c_sin	c_sin.c	/^c_sin(r, z)$/
+c_sqrt	c_sqrt.c	/^c_sqrt(r, z)$/
+cabs	cabs.c	/^double cabs(real, imag)$/
+cosh	sinh.c	/^cosh(arg)$/
+d_abs	d_abs.c	/^double d_abs(x)$/
+d_acos	d_acos.c	/^double d_acos(x)$/
+d_asin	d_asin.c	/^double d_asin(x)$/
+d_atan	d_atan.c	/^double d_atan(x)$/
+d_atn2	d_atn2.c	/^double d_atn2(x,y)$/
+d_cnjg	d_cnjg.c	/^d_cnjg(r, z)$/
+d_cos	d_cos.c	/^double d_cos(x)$/
+d_cosh	d_cosh.c	/^double d_cosh(x)$/
+d_dim	d_dim.c	/^double d_dim(a,b)$/
+d_exp	d_exp.c	/^double d_exp(x)$/
+d_imag	d_imag.c	/^double d_imag(z)$/
+d_int	d_int.c	/^double d_int(x)$/
+d_lg10	d_lg10.c	/^double d_lg10(x)$/
+d_log	d_log.c	/^double d_log(x)$/
+d_mod	d_mod.c	/^double d_mod(x,y)$/
+d_nint	d_nint.c	/^double d_nint(x)$/
+d_prod	d_prod.c	/^double d_prod(x,y)$/
+d_sign	d_sign.c	/^double d_sign(a,b)$/
+d_sin	d_sin.c	/^double d_sin(x)$/
+d_sinh	d_sinh.c	/^double d_sinh(x)$/
+d_sqrt	d_sqrt.c	/^double d_sqrt(x)$/
+d_tan	d_tan.c	/^double d_tan(x)$/
+d_tanh	d_tanh.c	/^double d_tanh(x)$/
+derf_	derf_.c	/^double derf_(x)$/
+derfc_	derfc_.c	/^double derfc_(x)$/
+drand_	rand_.c	/^double drand_(iarg)$/
+ef1asc_	ef1asc_.c	/^ef1asc_(a, la, b, lb)$/
+ef1cmc_	ef1cmc_.c	/^long int ef1cmc_(a, la, b, lb)$/
+erf_	erf_.c	/^float erf_(x)$/
+erfc_	erfc_.c	/^float erfc_(x)$/
+exit_	exit_.c	/^exit_(n)$/
+getarg_	getarg_.c	/^getarg_(n, s, ls)$/
+getenv_	getenv_.c	/^getenv_(fname, value, flen, vlen)$/
+h_abs	h_abs.c	/^short h_abs(x)$/
+h_dim	h_dim.c	/^short h_dim(a,b)$/
+h_dnnt	h_dnnt.c	/^short h_dnnt(x)$/
+h_indx	h_indx.c	/^short h_indx(a, b, la, lb)$/
+h_len	h_len.c	/^short h_len(s, n)$/
+h_mod	h_mod.c	/^short h_mod(a,b)$/
+h_nint	h_nint.c	/^short h_nint(x)$/
+h_sign	h_sign.c	/^short h_sign(a,b)$/
+i_abs	i_abs.c	/^long int i_abs(x)$/
+i_dim	i_dim.c	/^long int i_dim(a,b)$/
+i_dnnt	i_dnnt.c	/^long int i_dnnt(x)$/
+i_indx	i_indx.c	/^long int i_indx(a, b, la, lb)$/
+i_len	i_len.c	/^long int i_len(s, n)$/
+i_mod	i_mod.c	/^long int i_mod(a,b)$/
+i_nint	i_nint.c	/^long int i_nint(x)$/
+i_sign	i_sign.c	/^long int i_sign(a,b)$/
+iargc_	iargc_.c	/^long int iargc_()$/
+irand_	rand_.c	/^long irand_(iarg)$/
+l_ge	hl_ge.c	/^short l_ge(a,b,la,lb)$/
+l_gt	hl_gt.c	/^short l_gt(a,b,la,lb)$/
+l_le	hl_le.c	/^short l_le(a,b,la,lb)$/
+l_lt	hl_lt.c	/^short l_lt(a,b,la,lb)$/
+long_	long_.c	/^long long_(i)$/
+mclock_	mclock_.c	/^long int  mclock_()$/
+outstr_	outstr_.c	/^outstr_(s, n)$/
+pow_ci	pow_ci.c	/^pow_ci(p, a, b) 	\/* p = a**b  *\/$/
+pow_dd	pow_dd.c	/^double pow_dd(ap, bp)$/
+pow_di	pow_di.c	/^double pow_di(ap, bp)$/
+pow_hh	pow_hh.c	/^short pow_hh(ap, bp)$/
+pow_ii	pow_ii.c	/^long int pow_ii(ap, bp)$/
+pow_ri	pow_ri.c	/^float pow_ri(ap, bp)$/
+pow_zi	pow_zi.c	/^pow_zi(p, a, b) 	\/* p = a**b  *\/$/
+pow_zz	pow_zz.c	/^pow_zz(r,a,b)$/
+r_abs	r_abs.c	/^double r_abs(x)$/
+r_acos	r_acos.c	/^double r_acos(x)$/
+r_asin	r_asin.c	/^double r_asin(x)$/
+r_atan	r_atan.c	/^double r_atan(x)$/
+r_atn2	r_atn2.c	/^double r_atn2(x,y)$/
+r_cnjg	r_cnjg.c	/^r_cnjg(r, z)$/
+r_cos	r_cos.c	/^double r_cos(x)$/
+r_cosh	r_cosh.c	/^double r_cosh(x)$/
+r_dim	r_dim.c	/^double r_dim(a,b)$/
+r_exp	r_exp.c	/^double r_exp(x)$/
+r_imag	r_imag.c	/^double r_imag(z)$/
+r_int	r_int.c	/^double r_int(x)$/
+r_lg10	r_lg10.c	/^double r_lg10(x)$/
+r_log	r_log.c	/^double r_log(x)$/
+r_mod	r_mod.c	/^double r_mod(x,y)$/
+r_nint	r_nint.c	/^double r_nint(x)$/
+r_sign	r_sign.c	/^double r_sign(a,b)$/
+r_sin	r_sin.c	/^double r_sin(x)$/
+r_sinh	r_sinh.c	/^double r_sinh(x)$/
+r_sqrt	r_sqrt.c	/^double r_sqrt(x)$/
+r_tan	r_tan.c	/^double r_tan(x)$/
+r_tanh	r_tanh.c	/^double r_tanh(x)$/
+rand_	rand_.c	/^float rand_(iarg)$/
+s_cat	s_cat.c	/^s_cat(lp, rpp, rnp, np, ll)$/
+s_cmp	s_cmp.c	/^int s_cmp(a, b, la, lb)	\/* compare two strings *\/$/
+s_copy	s_copy.c	/^s_copy(a, b, la, lb)	\/* assign strings:  a = b *\/$/
+s_paus	s_paus.c	/^s_paus(s, n)$/
+s_rnge	s_rnge.c	/^s_rnge(varn, offset, procn, line)$/
+s_stop	s_stop.c	/^s_stop(s, n)$/
+sigdie	main.c	/^static sigdie(s, kill)$/
+sigfdie	main.c	/^static sigfdie()$/
+sigidie	main.c	/^static sigidie()$/
+sigindie	main.c	/^static sigindie()$/
+signal_	signal_.c	/^signal_(sigp, procp)$/
+sigqdie	main.c	/^static sigqdie()$/
+sigtdie	main.c	/^static sigtdie()$/
+sinh	sinh.c	/^sinh(arg)$/
+subout	subout.c	/^subout(varn, offset, procn, line)$/
+system_	system_.c	/^system_(s, n)$/
+tanh	tanh.c	/^tanh(arg)$/
+traper_	traper_.c	/^long traper_(msk)$/
+waitpause	s_paus.c	/^static waitpause()$/
+z_abs	z_abs.c	/^double z_abs(z)$/
+z_cos	z_cos.c	/^z_cos(r, z)$/
+z_div	z_div.c	/^z_div(c, a, b)$/
+z_exp	z_exp.c	/^z_exp(r, z)$/
+z_log	z_log.c	/^z_log(r, z)$/
+z_sin	z_sin.c	/^z_sin(r, z)$/
+z_sqrt	z_sqrt.c	/^z_sqrt(r, z)$/

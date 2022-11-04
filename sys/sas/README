@@ -1,0 +1,286 @@
+
+	ULTRIX-11 V3.0 changes to stand-alone system.
+
+	Fred Canter 6/20/85
+
+	The 1K file system caused all the stand-alone program to grow a
+	bunch. Many of them got too big! This required shrinking libsa.a.
+	This was accomplished by changing the NBUF definition in saio.h
+	from 4 to 1. This saved 3K bytes in buffers, but limits the max
+	size of files the stand-alone system can load to 260 Kbytes, i.e.,
+	a single indirect block.
+
+	The #define NO_FIO was also added to SYS.c. This removes all code
+	that deals with accessing files thru the file system. NO_FIO is
+	used to shrink programs like RABADS that only access physical devices
+	and don't need the file I/O support code.
+
+	*note - there are other changes I need to document someday!
+
+	The new boot program size limit is 55552 bytes. This makes sure that
+	when the block zero boot program (??uboot) loads the secondary boot
+	program (/boot), /boot does not overwrite the block zero boot.
+	The following is the memory layout for uboot and boot.
+
+		+---------------+ 0
+		| boot		|
+		| max size is	|
+		| 55552 bytes	|
+		|		|
+		|		|
+		+---------------+ 0154400
+		| buf		|
+		| 1024 bytes	|
+		|		|
+		+---------------+
+		| stack & data	|
+		| 256 bytes	|
+		+---------------+ 0157000
+		| ??uboot	|
+		| 512 bytes	|
+		+---------------+ 0160000
+
+		V7M-11 V1.1 NEW STANDALONE PROGRAM FORMAT
+
+		Fred Canter 12/19/83
+
+
+	PROBLEMS
+
+	1.	Some of the standalone programs, dskinit & restor mainly,
+		became so large that they used all of the virtual address
+		space available in the PDP-11. The 56 Kbyte program size
+		limit prevented the addition of new features to the stand-
+		alone programs.
+
+	2.	Because KISA6 was used to map both the stack and program data
+		space, there was no way to prevent a stack overflow from
+		overwriting the program. This lead to unexplained crashes after
+		almost any modification that increased the size of the program.
+
+	SOLUTION
+
+	The standalone programs have been divided into two segments, the program
+	segment and the syscall segment. Previously, a standalone program was
+	created by linking the program to the standalone library (/lib/libsa.a).
+	The standalone library simulated the V7M-11 kernel environment for the
+	program. Libsa.a consists of: trap handler, terminal I/O routines, 
+	printf, system calls, and device drivers.
+
+	There is a reasonably clean functional separation between the program
+	and the standalone library. The linkages between them are mostly via
+	the stack and there is very little common code. This provides for a
+	clean segmentation of the standalone programs, i.e., the entire program
+	need not be permanently mapped into memory at all times.
+
+	CAVEATS
+
+	1.	The syscall segment must be loaded each time a program is
+		loaded because there is no way to reinitialize MSCP disk
+		controllers (ra_openf). It would speed things up a bit if
+		the syscall segment could be loaded with the first program
+		only.
+
+	2.	Calls to the routine _stop always cause a trap, this problem
+		exists in the old standalone program format as well.
+
+	3.	A standalone program cannot open a file and read from it. A
+		program can only open and read physical devices. The getc
+		and getw functions must be used to get data from a file in
+		the file system. As yet, none of the standalone programs use
+		this feature. This restriction does not apply to BOOT.
+
+	4.	Standalone program trap handling has not been completely test
+		yet.
+
+	The new virtual address layout of a standalone program is as follows:
+
+		+---------------+
+	KISA0	|    PROGRAM	|
+		+    SEGMENT	+
+	KISA1	|      or	|
+		+    SYSCALL	+
+	KISA2	|    SEGMENT	|
+		+		+
+	KISA3	|		|
+		+		+
+	KISA4	|		|
+		+		+
+	KISA5	|		|
+		+---------------+
+	KISA6	|    SYSCALL	|
+		|   INTERFACE	|
+		|      and	|
+		|     STACK	|
+		+---------------+
+	KISA7	|   UNIBUS I/O	|
+		+---------------+
+
+	The first six memory management segmentation registers map the program
+	segment or syscall segment into the first 48 Kbytes of virtual address
+	space as required. The stack and system call interface code is always
+	mapped to virtual address 140000 and is 8 Kbytes in length. This allows
+	for a large enough stack space to solve the stack overflow problem.
+	The syscall interface is the small amount of code needed to be permently
+	mapped, that handles the linkages between the two segments. The last
+	segmentation register maps to UNIBUS I/O space.
+
+	The Boot and standalone programs are loaded into physical memory as
+	follows:
+
+	     0	+---------------+
+		|   srt0.o	|  Startup code for program segment
+		+		+
+		|   program.o	|  The actual program
+		|		|
+		+		+
+		|   sci.o	|  Program resident syscall interface
+		+		+
+		|   SYS.o	|  exit, stop, and trap handler from libsa.a
+		+		+
+		|   prf.o	|  Terminal I/O and printf routines
+		+		+
+		|   libc.a	|  Routines from C library (-lc)
+		+		+
+		:		:
+		:		:
+	  48KB	+---------------+
+		|   sci.o	|  System call interface code (relocated)
+		|		|
+		|   stack	|  Stack expanding downwards
+	  56KB  +---------------+
+		|   unused	|
+		|   memory	|
+	  64KB	+---------------+
+		|   srt1.o	|  Syscall segment startup code & EMT handler
+		+		+
+		|   libsa.a	|  System calls and device drivers (-lsa)
+		+		+
+		|   libc.a	|  Routines form the C library (-lc)
+		+		+
+		|   I/O buffers	|  General I/O and disk bad block buffers
+		+		+
+		:		:
+		:		:
+		+---------------+
+		|   unused	|
+		|   memory	|
+	 128KB	+---------------+
+		|   M.o		|  BOOT startup code & trap handler
+		+		+
+		|   boot.o	|  BOOT program (Boot:)
+		+		+
+		|   libsa.a	|  Standalone library (with syscalls & drivers)
+		+		+
+		|   libc.a	|  Routines from the C library
+		+		+
+		:		:
+		:		:
+		+---------------+
+		|   stack	|  A small (512 byte) stack
+		+---------------+
+
+	Standalone programs are loaded and executed by the BOOT program.
+	The sequence is as follows:
+
+	1.	The primary boot program (block zero disk or magtape boot)
+		loads the BOOT program into low memory and starts it a zero.
+
+	2.	The BOOT sets up memory management, relocates itself to 128KB,
+		and starts executing at 128KB in user mode. Then prompts with
+
+			Boot:
+
+	3.	The user types the name of the standalone program. The BOOT
+		program loads the standalone program segment and syscall segment
+		as shown above. The BOOT program then starts the standalone
+		program by executing a TRAP instruction.
+
+	4.	The startup code (srt0.o) initializes the program segment,
+		copies the syscall interface code to 140000, and starts the
+		program running.
+
+	5.	When the program exits control is returned to BOOT via a
+		RTT (return from trap).
+
+	The standalone program functions as before, except when one of the
+	following routines (syscalls) is called:
+
+		_lseek, _getc, _getw, _read, _write, _open, _close
+
+	Calls to these routines are intercepted by the syscall interface code.
+	This code (see sci.s) remaps to the syscall segment and calls the
+	routine. When the routine returns, the syscall interface code remaps
+	back to the program segment and returns to it. To the program it
+	appears that the call functions as it did before.
+
+	The syscall interface code is implemented in two sections, the first
+	is resident with the program segment and the second is at virtual
+	address 140000. The second segment is relocated from the program 
+	segment to 140000 by the startup code, see srt0.s.
+
+	The system call flow is as follows:
+
+	1.	The program segment calls one of the system call functions.
+
+	SEE sci.s
+
+	2.	The call is intercepted by the syscall interface code, which:
+
+		Sets the EMT code
+
+		Saves the return address
+
+		If the call is to _open, copies the file name string into a
+		buffer at 140000 after the syscall interface code.
+		The address of this buffer is passed to the actual open routine
+		instead of the string address in the program segment because
+		the program segment is mapped out while open is executing.
+
+		Jumps to the syscall entry point at 140000+.
+
+	3.	The syscall interface code remaps to the syscall segment.
+
+	4.	If the call is a read or write, sets the I/O segmentation flag
+		which tells the drivers where the I/O buffer really is, in
+		physical memory.
+
+	5.	The code calls the actual routine in the syscall segment
+		by executing an emulator trap (EMT).
+
+	SEE srt1.s
+
+	6.	On the first call to the syscall segment, the startup code
+		initializes the syscall segment.
+
+	7.	The EMT code is used to dispatch to the actual system call
+		routine.
+
+	8.	The called routine executes, then control is returned to the
+		syscall interface code via an RTT (return from trap).
+
+	SEE sci.s
+
+	9.	The syscall interface code remaps back to the program segment
+		and returns via the saved return address.
+
+	MODIFIED FILES
+
+	File		Previous Delta
+	----		--------------
+	SYS.c		1.0
+	bads.c		1.0
+	boot.c		1.1
+	conf.c		1.0
+	dskinit.c	1.0
+	hk.c		1.0
+	hp.c		1.0
+	prf.c		1.0
+	makefile	1.1
+	str0.s		1.0
+	srt1.s		new file
+	sci.s		new file
+	sizchk.c	new file
+	/sas/contents.*	not under SCCS control
+	/sas/td800.*	"
+	/sas/td1600.*	"

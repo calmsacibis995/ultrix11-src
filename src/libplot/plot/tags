@@ -1,0 +1,17 @@
+arc	arc.c	/^arc(xi,yi,x0,y0,x1,y1){$/
+box	box.c	/^box(x0, y0, x1, y1)$/
+circle	circle.c	/^circle(x,y,r){$/
+closepl	close.c	/^closepl(){$/
+closevt	close.c	/^closevt(){$/
+cont	cont.c	/^cont(xi,yi){$/
+dot	dot.c	/^dot(xi,yi,dx,n,pat)$/
+erase	erase.c	/^erase(){$/
+label	label.c	/^label(s)$/
+line	line.c	/^line(x0,y0,x1,y1){$/
+linemod	linmod.c	/^linemod(s)$/
+move	move.c	/^move(xi,yi){$/
+openpl	open.c	/^openpl(){$/
+openvt	open.c	/^openvt(){$/
+point	point.c	/^point(xi,yi){$/
+putsi	putsi.c	/^putsi(a){$/
+space	space.c	/^space(x0,y0,x1,y1){$/

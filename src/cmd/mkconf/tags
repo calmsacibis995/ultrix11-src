@@ -1,0 +1,14 @@
+Mmkconf	mkconf.c	/^main()$/
+checksizes	mkconf.c	/^checksizes(otp)$/
+equal	subr.c	/^equal(a, b)$/
+input	subr.c	/^input()$/
+loadup	mkconf.c	/^loadup(otp, pass)$/
+match	subr.c	/^match(a, b)$/
+ovload	subr.c	/^ovload(tp, ovn)$/
+pass1	mkconf.c	/^pass1()$/
+pass2	mkconf.c	/^pass2()$/
+pass2_3	mkconf.c	/^pass2_3()$/
+pass2_5	mkconf.c	/^pass2_5()$/
+pass3	mkconf.c	/^pass3()$/
+pass4	mkconf.c	/^pass4()$/
+puke	subr.c	/^puke(s)$/

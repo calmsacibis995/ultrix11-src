@@ -1,0 +1,227 @@
+ô	cmds/get.o	/^ôþõòêðÿÎeþ&Îeþfðÿ÷	Ôê–%&ß	$/
+ø	sccs/sccs	/^fÎeøýß	¤(ÖÀ'Î$/
+BLANK	cmds/val.c	/^# define	BLANK(l)	while (!(*l == ' ' || *l == '\\t'/
+DIRSIZ	hdr/ndir.h	/^#define DIRSIZ(dp) \\$/
+DO2	lib/date_ba.c	/^# define DO2(p,n,c)	*p++ = n\/10 + '0'; *p++ = n%10/
+INCR	cmds/vc.c	/^# define INCR(int) if (++int==NSLOTS) { \\$/
+Mcomb	cmds/comb.c	/^main(argc,argv)$/
+Mdelta	cmds/delta.c	/^main(argc,argv)$/
+Mget	cmds/get.c	/^main(argc,argv)$/
+Msccs	sccs/sccs.c	/^main(argc, argv)$/
+Mval	cmds/val.c	/^main(argc,argv)$/
+Mvc	cmds/vc.c	/^main(argc, argv)$/
+Mwhat	cmds/what.c	/^main(argc,argv)$/
+PROGPATH	sccs/sccs.c	/^# define PROGPATH(name)	"\/usr\/bin\/name"	\/* place t/
+__advance	libPW/regex.c	/^__advance(alp, aep)$/
+__cclass	libPW/regex.c	/^__cclass(aset, ac, af)$/
+__execute	libPW/regex.c	/^__execute(addrc,addrl)$/
+__getrnge	libPW/regex.c	/^__getrnge(i,j,k) int *i,*j; char *k;$/
+__rpop	libPW/regcmp.c	/^__rpop() {$/
+__rpush	libPW/regcmp.c	/^__rpush(ptr) char *ptr;$/
+__size	libPW/regcmp.c	/^__size(strg) char *strg;$/
+__xpop	libPW/regex.c	/^__xpop(i) int i;$/
+__xpush	libPW/regex.c	/^__xpush(i,p) int i; char *p;$/
+addq	cmds/val.c	/^addq(pkt,ser,keep,iord,user)$/
+after	cmds/delta.c	/^after(pkt,n)$/
+any	libPW/any.c	/^any(c,s)$/
+anystr	libPW/anystr.c	/^anystr(s1, s2)$/
+apply	cmds/val.c	/^# define apply(qp)	((qp->q_iord == INS && qp->q_ke/
+asgfunc	cmds/vc.c	/^asgfunc(aptr)$/
+auxf	lib/auxf.c	/^auxf(sfile,ch)$/
+before	cmds/delta.c	/^before(pkt,n)$/
+bitset	sccs/sccs.c	/^# define bitset(bit, word)	((bool) ((bit) & (word)/
+callprog	sccs/sccs.c	/^callprog(progpath, flags, argv, forkflag)$/
+can	cmds/unget.c	8
+cat	libPW/cat.c	/^char *cat(dest,source)$/
+chkid	lib/chkid.c	/^chkid(line)$/
+chkix	cmds/val.c	/^chkix(new,head)$/
+chksid	cmds/get.c	/^chksid(p,sp)$/
+chksize	cmds/vc.c	/^chksize(s)$/
+ck_lock	lib/permiss.c	/^ck_lock(p,pkt)$/
+clean	sccs/sccs.c	/^clean(mode, argv)$/
+clean_up	cmds/comb.c	/^clean_up(n)$/
+closedir	dir/closedir.c	/^closedir(dirp)$/
+comb	cmds/comb.c	/^comb(file)$/
+command	sccs/sccs.c	/^command(argv, forkflag, arg0)$/
+condset	lib/setup.c	/^condset(ap,code,reason)$/
+curdir	libPW/curdir.c	/^curdir(str)$/
+date_ba	lib/date_ba.c	/^date_ba(bdt,adt)$/
+dclfunc	cmds/vc.c	/^dclfunc(dptr)$/
+del_ab	lib/del_ab.c	/^del_ab(p,dt,pkt)$/
+del_ba	lib/del_ba.c	/^del_ba(dt,str)$/
+delete	cmds/delta.c	/^delete(pkt,linenum,n,ser)$/
+delta	cmds/delta.c	/^delta(file)$/
+dname	libPW/dname.c	/^char *dname(p)$/
+do_delt	cmds/val.c	/^do_delt(pkt,goods,d_sid)$/
+do_file	lib/dofile.c	/^do_file(p,func)$/
+doand	cmds/vc.c	/^doand()$/
+dodelt	lib/dodelt.c	/^dodelt(pkt,statp,sidp,type)$/
+dodiff	cmds/delta.c	/^dodiff(newf,oldf,difflim)$/
+dodotwhy	cmds/get.c	/^dodotwhy()$/
+doflags	lib/permiss.c	/^doflags(pkt)$/
+dohist	lib/dohist.c	/^dohist(file)$/
+doie	lib/doie.c	/^doie(pkt,ilist,elist,glist)$/
+doixg	lib/dodelt.c	/^doixg(p,ixgp)$/
+dolist	lib/dolist.c	/^dolist(pkt,list,ch)$/
+door	cmds/vc.c	/^door()$/
+dowhat	cmds/what.c	/^dowhat(iop)$/
+ecopy	cmds/vc.c	/^ecopy(s1,s2)$/
+editing	lib/comobj.a	/^&ß	$/
+endfunc	cmds/vc.c	/^endfunc()$/
+enter	cmds/comb.c	/^enter(pkt,ch,n,sidp)$/
+eqsid	lib/eqsid.c	/^eqsid(s1, s2)$/
+errfunc	cmds/vc.c	/^errfunc(eptr)$/
+error	cmds/get.o	/^$/
+escdodelt	cmds/comb.c	/^escdodelt()	\/* dummy for dodelt() *\/$/
+exp	cmds/vc.c	/^exp()$/
+failed	cmds/get.o	/^$/
+fdfopen	libPW/fdfopen.c	/^fdfopen(fd, mode)$/
+fgetchk	cmds/delta.c	/^fgetchk(file,pkt)$/
+file	libPW/xmsg.o	/^f$/
+findch	cmds/vc.c	/^findch(astr,match)$/
+findir	libPW/curdir.c	/^findir(flag)$/
+findstr	cmds/vc.c	/^findstr(astr,pat)$/
+finduser	lib/permiss.c	/^finduser(pkt)$/
+flushline	lib/putline.c	/^flushline(pkt,stats)$/
+flushto	lib/flushto.c	/^flushto(pkt,ch,put)$/
+fmterr	lib/fmterr.c	/^fmterr(pkt)$/
+gen_lfile	cmds/get.c	/^gen_lfile(pkt)$/
+get	cmds/get.c	/^get(file)$/
+get_line	cmds/val.c	/^char	*get_line(pkt)$/
+getadel	lib/dodelt.c	/^getadel(pkt,dt)$/
+getasid	lib/dolist.c	/^getasid(p,sp)$/
+getdel	cmds/val.c	/^getdel(delp,lp)$/
+getdiff	cmds/delta.c	/^getdiff(type,plinenum)$/
+getid	cmds/vc.c	/^getid(gptr)$/
+getline	lib/getline.c	/^getline(pkt)$/
+getpfent	sccs/sccs.c	/^getpfent(pfp)$/
+getpred	cmds/comb.c	/^getpred(idp, vec, i)$/
+getresp	lib/dohist.c	/^getresp(repstr,result)$/
+getser	cmds/get.c	/^getser(pkt)$/
+getstats	cmds/val.c	/^getstats(pkt)$/
+getval	cmds/val.c	/^char	*getval(sourcep,destp)$/
+giveup	libPW/giveup.c	/^giveup(dump)$/
+gstrbotch	sccs/sccs.c	/^gstrbotch(str1, str2)$/
+gstrcat	sccs/sccs.c	/^char *gstrcat(to, from, length)$/
+gstrcpy	sccs/sccs.c	/^char *gstrcpy(to, from, length)$/
+gstrncat	sccs/sccs.c	/^char *gstrncat(to, from, n, length)$/
+idsetup	cmds/get.c	/^idsetup(pkt)$/
+idsubst	cmds/get.c	/^idsubst(pkt,line)$/
+iffunc	cmds/vc.c	/^iffunc(iptr)$/
+imatch	libPW/imatch.c	/^imatch(prefix,string)$/
+in_pfile	cmds/get.c	/^in_pfile(sp,pkt)$/
+included	cmds/get.o	/^$/
+index	libPW/index.c	/^index(as1,as2)$/
+insert	cmds/delta.c	/^insert(pkt,linenum,n,ser)$/
+invalid	cmds/val.c	/^invalid(i_sid)$/
+isbranch	sccs/sccs.c	/^isbranch(sid)$/
+isdir	sccs/sccs.c	/^isdir(name)$/
+ixgsetup	lib/setup.c	/^ixgsetup(ap,ixgp)$/
+keyletter	lib/comobj.a	/^$/
+large	cmds/get.o	/^$/
+library	dir/README	/^which is a local library (with fixes) on$/
+linerange	cmds/delta.c	/^linerange(cp,low,high)$/
+lockit	libPW/lockit.c	/^lockit(lockfile,count,pid)$/
+logname	lib/logname.c	/^char	*logname()$/
+lookup	cmds/vc.c	/^lookup(lname)$/
+makefile	sccs/sccs.c	/^makefile(name)$/
+makgdate	cmds/get.c	/^makgdate(old,new)$/
+maxser	hdr/defines.h	/^# define maxser(pkt)	((pkt)->p_idel->i_pred)$/
+mk_qfile	cmds/get.c	/^mk_qfile(pkt)$/
+mkdelt	cmds/delta.c	/^mkdelt(pkt,sp,osp,diffloop,orig_nlines)$/
+mkixg	cmds/delta.c	/^mkixg(pkt,reason,ch)$/
+mov	libPW/alloca.s	/^	mov	(sp)+,r1	\/ return$/
+move	libPW/move.c	/^char *move(a,b,n)$/
+mrfixup	lib/dohist.c	/^mrfixup()$/
+msg	lib/rdmod.c	/^# define msg(s,help)	fprintf(pkt->p_stdout,msgstr,/
+msgfunc	cmds/vc.c	/^msgfunc(mptr)$/
+mylock	libPW/lockit.c	/^mylock(lockfile,pid)$/
+newsid	cmds/get.c	/^newsid(pkt,branch)$/
+newstats	lib/newstats.c	/^newstats(pkt,strp,ch)$/
+nextfield	sccs/sccs.c	/^nextfield(p)$/
+numck	cmds/vc.c	/^numck(nptr)$/
+numcomp	cmds/vc.c	/^numcomp(id1, id2)$/
+onelock	libPW/lockit.c	/^onelock(pid,tempfile,lockfile)$/
+opendir	dir/opendir.c	/^opendir(name)$/
+permiss	lib/permiss.c	/^permiss(pkt)$/
+pf_ab	lib/pf_ab.c	/^pf_ab(s,pp,all)$/
+pointer	libPW/fatal.c	34
+prfx	cmds/get.c	/^prfx(pkt)$/
+process	cmds/val.c	/^process(p_line)$/
+prtget	cmds/comb.c	/^prtget(idp, ser, iop, file)$/
+putin	cmds/vc.c	/^putin(pname, pvalue)$/
+putline	lib/putline.c	/^putline(pkt,newline)$/
+putmrs	cmds/delta.c	/^putmrs(pkt)$/
+putpfent	sccs/sccs.c	/^putpfent(pf, f)$/
+range	lib/comobj.a	/^ó'$/
+rddiff	cmds/delta.c	/^rddiff(s,n)$/
+rdpfile	cmds/delta.c	/^rdpfile(pkt,sp)$/
+read_mod	cmds/val.c	/^read_mod(pkt)$/
+read_to	cmds/val.c	/^read_to(ch,pkt)$/
+readdir	dir/readdir.c	/^readdir(dirp)$/
+readmod	lib/rdmod.c	/^readmod(pkt)$/
+regcmp	libPW/regcmp.c	/^regcmp(cs1,cs2,cs3,cs4,cs5,cs6,cs7,cs8,cs9,cs10) $/
+regex	libPW/regex.c	/^regex(addrc,addrl,a1,a2,a3,a4,a5) char *addrc, *ad/
+remq	cmds/val.c	/^remq(pkt,ser)$/
+rename	libPW/rename.c	/^rename(oldname,newname)$/
+repeat	libPW/repeat.c	/^char *repeat(result,str,repfac)$/
+repfunc	cmds/vc.c	/^repfunc(s)$/
+repl	libPW/repl.c	/^repl(str,old,new)$/
+replace	cmds/vc.c	/^replace(ptr)$/
+report	cmds/val.c	/^report(code,inp_line,file)$/
+returns	lib/date_ab.c	15
+rewinddir	hdr/ndir.h	/^#define rewinddir(dirp)	seekdir((dirp), 0)$/
+safepath	sccs/sccs.c	/^safepath(p)$/
+satoi	cmds/get.c	/^char *satoi(p,ip)$/
+savecmt	lib/dohist.c	/^char *savecmt(p)$/
+sccsfile	hdr/defines.h	/^# define sccsfile(f)	imatch("s.", sname(f))$/
+seekdir	dir/seekdir.c	/^seekdir(dirp, loc)$/
+setkeep	cmds/val.c	/^setkeep(pkt)$/
+setsig	libPW/setsig.c	/^setsig()$/
+setsig1	libPW/setsig.c	/^setsig1(sig)$/
+setup	lib/setup.c	/^setup(pkt,serial)$/
+sid	lib/chksid.o	/^$/
+sid_ab	lib/sid_ab.c	/^sid_ab(p,sp)$/
+sid_ba	lib/sid_ba.c	/^sid_ba(sp,p)$/
+sidtoser	lib/sidtoser.c	/^sidtoser(sp,pkt)$/
+sinit	cmds/val.c	/^sinit(pkt,file)$/
+skiplines	cmds/delta.c	/^skiplines(lp,num)$/
+sname	libPW/sname.c	/^char	*sname(s)$/
+stalloc	lib/dohist.c	/^stalloc(n)$/
+stats_ab	lib/stats_ab.c	/^stats_ab(pkt,statp)$/
+strend	libPW/strend.c	/^char *strend(p)$/
+substr	libPW/substr.c	/^char *substr(as, aresult, origin, len)$/
+syserr	sccs/sccs.c	/^syserr(f, p1, p2, p3)$/
+tail	sccs/sccs.c	/^tail(fn)$/
+telldir	dir/telldir.c	/^telldir(dirp)$/
+to	cmds/admin.c	8
+trans	cmds/get.c	/^trans(tp,str)$/
+trnslat	libPW/trnslat.c	/^char *trnslat(str,old,new,result)$/
+trypat	cmds/what.c	/^trypat(iop,pat)$/
+tst	libPW/alloca.s	/^tst	(r0)+		\/ returned value; will generate$/
+u	lib/fmterr.o	/^.o$/
+unedit	sccs/sccs.c	/^unedit(fn)$/
+unlockit	libPW/lockit.c	/^unlockit(lockfile,pid)$/
+unwritable	libPW/xopen.o	/^$/
+userdir	libPW/userdir.c	/^userdir(uid)$/
+userexit	libPW/userexit.c	/^userexit(code)$/
+username	libPW/username.c	/^username(uid)$/
+usrerr	sccs/sccs.c	/^usrerr(f, p1, p2, p3)$/
+validate	cmds/val.c	/^validate(c_path,c_sid,c_type,c_name)$/
+valmrs	lib/dohist.c	/^valmrs(pkt,pgm)$/
+verify	libPW/verify.c	/^verify(astr1,str2)$/
+will	cmds/bdiff.c	89
+wrtpfile	cmds/get.c	/^wrtpfile(pkt,inc,exc)$/
+xalloc	libPW/xalloc.c	/^xalloc(asize)$/
+xcreat	libPW/xcreat.c	/^xcreat(name,mode)$/
+xfree	libPW/xalloc.c	/^xfree(aptr)$/
+xfreeall	libPW/xalloc.c	/^xfreeall()$/
+xlink	libPW/xlink.c	/^xlink(f1,f2)$/
+xmsg	libPW/xmsg.c	/^xmsg(file,func)$/
+xopen	libPW/xopen.c	/^xopen(name,mode)$/
+xpipe	libPW/xpipe.c	/^xpipe(t)$/
+xrm	lib/putline.c	/^xrm(pkt)$/
+xunlink	libPW/xunlink.c	/^xunlink(f)$/
+xwrite	libPW/xwrite.c	/^xwrite(fildes,buffer,nbytes)$/
+zero	libPW/zero.c	/^char	*zero(p,n)$/
+zeropad	libPW/zeropad.c	/^char *zeropad(str)$/

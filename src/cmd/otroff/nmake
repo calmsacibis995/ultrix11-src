@@ -1,0 +1,49 @@
+# SCCSID: @(#)nmake	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+CFLAGS=-O -DNROFF
+
+NFILES=n1.o n2.o n3.o n4.o n5.o n6.o n7.o n8.o n9.o n10.o ni.o nii.o ntab.o hytab.o suftab.o
+CFILES = ntab.c n1.c n2.c n3.c n4.c n5.c n6.c n7.c \
+	n8.c n9.c n10.c ni.c nii.c
+HFILES = tdef.h d.h v.h tw.h ss.h
+SOURCES = ${CFILES} ${HFILES} suftab.c hytab.c
+
+nroff:	$(NFILES)
+	cc -o nroff -n $(CFLAGS) $(NFILES)
+
+sources: ${SOURCES} textscript
+
+${SOURCES} textscript:
+	sccs get $@
+
+hytab.o:	hytab.c textscript2
+	cc -S hytab.c
+	ed hytab.s <textscript2
+	as -o hytab.o hytab.s
+	rm hytab.s
+
+suftab.o:	suftab.c textscript
+	cc -S suftab.c
+	ed suftab.s <textscript
+	as -o suftab.o suftab.s
+	rm suftab.s
+
+clean:
+clobber:
+
+n1.o n2.o n3.o n4.o n7.o nii.o: tdef.h d.h v.h tw.h ss.h
+n5.o: tdef.h d.h v.h ss.h
+n6.o n9.o: tdef.h d.h v.h tw.h
+n8.o ni.o: tdef.h
+
+tags:	${SOURCES}
+	ctags ${SOURCES}
+
+sccsinfo:
+	sccs info

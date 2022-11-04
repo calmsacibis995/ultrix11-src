@@ -1,0 +1,260 @@
+Mbldtab	bldtab.c	/^main(argc, argv)$/
+Mcp	n1.c	/^Mcp(oldp, newp)		\/* copy file on oldp to file on n/
+Mn1	n1.c	/^main(argc, argv, envp)$/
+Msuftabmake	suftabmake.c	/^main()$/
+PAIR	ntab.c	/^#define PAIR(A,B) (A|(B<<BYTE))$/
+abc	n4.c	/^abc(i,f)$/
+abc0	n4.c	/^abc0(i,f)$/
+abs	n1.c	/^abs(i)$/
+acctg	n1.c	/^acctg() {$/
+alloc	n3.c	/^filep alloc()$/
+alph	n8.c	/^alph(i)$/
+aprstr	n1.c	/^aprstr(s)$/
+aprstrfl	n1.c	/^aprstrfl(s)$/
+atoi0	n4.c	/^long atoi0()$/
+atoi1	n4.c	/^long atoi1()$/
+btable	bldtab.c	/^btable()	\/* build the hash table *\/$/
+callsp	n7.c	/^callsp(){$/
+cargs	n1.c	/^cargs(rgc, rgv)$/
+caseab	n5.c	/^caseab(){$/
+casead	n5.c	/^casead(){$/
+caseaf	n4.c	/^caseaf(){$/
+caseam	n3.c	/^caseam(){$/
+caseas	n3.c	/^caseas(){$/
+casebd	n6.c	/^casebd()$/
+casebp	n5.c	/^casebp(){$/
+casec2	n5.c	/^casec2(){$/
+casecc	n5.c	/^casecc(){$/
+casece	n5.c	/^casece(){$/
+casech	n5.c	/^casech(){$/
+caseco	n1.c	/^caseco()		\/* perform .co request *\/$/
+casecs	n6.c	/^casecs(){}$/
+casecu	n5.c	/^casecu(){$/
+caseda	n3.c	/^caseda(){$/
+casede	n3.c	/^casede(){$/
+casedi	n3.c	/^casedi(){$/
+caseds	n3.c	/^caseds(){$/
+casedt	n3.c	/^casedt(){$/
+caseec	n5.c	/^caseec(){$/
+caseel	n5.c	/^caseel(){$/
+caseem	n5.c	/^caseem(){$/
+caseeo	n5.c	/^caseeo(){$/
+caseev	n5.c	/^caseev(){$/
+casefc	n9.c	/^casefc(){$/
+casefi	n5.c	/^casefi(){$/
+casefl	n5.c	/^casefl(){$/
+casefp	n6.c	/^casefp(){$/
+caseft	n6.c	/^caseft(){$/
+casehc	n5.c	/^casehc(){$/
+caseht	n8.c	/^caseht(){$/
+casehw	n8.c	/^casehw(){$/
+casehy	n5.c	/^casehy(){$/
+caseie	n5.c	/^caseie(){$/
+caseif	n5.c	/^caseif(x)$/
+caseig	n3.c	/^caseig(){$/
+casein	n5.c	/^casein(){$/
+caseit	n5.c	/^caseit(){$/
+caselc	n5.c	/^caselc(){$/
+caselg	n6.c	/^caselg(){}$/
+casell	n5.c	/^casell(){$/
+casels	n5.c	/^casels(){$/
+caselt	n5.c	/^caselt(){$/
+casemc	n5.c	/^casemc(){$/
+casemk	n5.c	/^casemk(){$/
+casena	n5.c	/^casena(){$/
+casene	n5.c	/^casene(){$/
+casenf	n5.c	/^casenf(){$/
+casenh	n5.c	/^casenh(){$/
+casenm	n5.c	/^casenm(){$/
+casenn	n5.c	/^casenn(){$/
+casenr	n4.c	/^casenr(){$/
+casens	n5.c	/^casens(){$/
+casenx	n1.c	/^casenx(){$/
+caseos	n5.c	/^caseos(){$/
+casepc	n3.c	/^casepc(){$/
+casepi	n2.c	/^casepi(){$/
+casepl	n5.c	/^casepl(){$/
+casepm	n3.c	/^casepm(){$/
+casepn	n5.c	/^casepn(){$/
+casepo	n5.c	/^casepo(){$/
+caseps	n6.c	/^caseps(){}$/
+caserd	n5.c	/^caserd(){$/
+caserm	n3.c	/^caserm(){$/
+casern	n3.c	/^casern(){$/
+caserr	n4.c	/^caserr(){$/
+casers	n5.c	/^casers(){$/
+casert	n5.c	/^casert(){$/
+caseso	n1.c	/^caseso()$/
+casesp	n5.c	/^casesp(a)$/
+casess	n6.c	/^casess(){}$/
+casesv	n5.c	/^casesv(){$/
+caseta	n5.c	/^caseta(){$/
+casetc	n5.c	/^casetc(){$/
+caseti	n5.c	/^caseti(){$/
+casetl	n3.c	/^casetl(){$/
+casetm	n5.c	/^casetm(x) int x;{$/
+casetr	n5.c	/^casetr(){$/
+caseuf	n5.c	/^caseuf(){$/
+caseul	n5.c	/^caseul(){$/
+caseunix	n1.c	/^caseunix()	\/* read output of command sent to unix/
+casevs	n6.c	/^casevs(){$/
+casewh	n5.c	/^casewh(){$/
+casps1	t6.c	/^casps1(i)$/
+catch	n1.c	/^catch(){$/
+chget	n5.c	/^chget(c)$/
+chkpn	n7.c	/^chkpn(){$/
+chkvow	n8.c	/^int *chkvow(w)$/
+ckph	n4.c	/^long ckph(){$/
+ckul	n7.c	/^ckul(){$/
+cmpstr	n5.c	/^cmpstr(delim)$/
+cnum	n1.c	/^cnum(a)$/
+collect	n3.c	/^collect()$/
+control	n1.c	/^control(a,b)$/
+copyb	n3.c	/^copyb()$/
+copys	n3.c	/^copys()$/
+cvtime	n1.c	/^cvtime(){$/
+decml	n4.c	/^decml(i,f)$/
+deftoc	suftabmake.c	/^#define deftoc(table, exists)	if (exists) {suftoc[/
+digram	n8.c	/^digram(){$/
+dilook	n8.c	/^dilook(a,b,t)$/
+done	n2.c	/^done(x) int x;{$/
+done1	n2.c	/^done1(x) int x; {$/
+done2	n2.c	/^done2(x) int x; {$/
+done3	n2.c	/^done3(x) int x;{$/
+donum	n7.c	/^donum(){$/
+dostop	n10.c	/^dostop(){$/
+drmname	n3.c	/^drmname(toff)	\/* remove name from request, macro t/
+eat	bldtab.c	/^eat(ptr)	\/* eat input matching string pointed to /
+eatblk	n5.c	/^eatblk(inblk)$/
+edone	n2.c	/^edone(x) int x;{$/
+eject	n7.c	/^eject(a)$/
+errbsa	n3.c	/^errbsa()$/
+errcos	n1.c	/^errcos()  {prstr("Cannot open suftab.\\n"); exit(-1/
+error	suftabmake.c	/^error(spt)$/
+ertoomp	n1.c	/^ertoomp() {prstr("Too many macro packages.\\n"); ex/
+exword	n8.c	/^exword(){$/
+ferrex	n1.c	/^ferrex()	{$/
+ffree	n3.c	/^ffree(i)$/
+find	n6.c	/^find(i,j)$/
+findn	n5.c	/^findn(i)$/
+findn1	n7.c	/^findn1(a)$/
+findps	t6.c	/^findps(i)$/
+findr	n4.c	/^findr(i)$/
+finds	n3.c	/^filep finds(mn)$/
+findt	n7.c	/^findt(a)$/
+findt1	n7.c	/^findt1(){$/
+flushi	n1.c	/^flushi(){$/
+flusho	n2.c	/^flusho(){$/
+fname	n1.c	/^char *fname(s)$/
+fnrname	n3.c	/^fnrname(name)		\/* find a name in the hashed number/
+fnumb	n4.c	/^fnumb(i,f)$/
+fpecatch	n1.c	/^fpecatch(){$/
+frmname	n3.c	/^frmname(name)$/
+getach	n1.c	/^getach(){$/
+getblk	bldtab.c	/^getblk()$/
+getch	bldtab.c	/^getch()$/
+getch0	n1.c	/^getch0(){$/
+getcw	t6.c	/^getcw(i)$/
+getfont	t6.c	/^getfont(pos,new)$/
+getfz	t6.c	/^getfz(x,y)$/
+getlg	t6.c	/^getlg(i)$/
+getname	n1.c	/^getname(){$/
+getnm	n5.c	/^getnm(p,min)$/
+getnum	bldtab.c	/^getnum()$/
+getpn	n1.c	/^getpn(a)$/
+getrq	n1.c	/^getrq(){$/
+getsn	n3.c	/^getsn(){$/
+getsuf	n8.c	/^char *getsuf(x)$/
+gettch	n7.c	/^gettch(){$/
+getword	n7.c	/^getword(x)$/
+gquotc	bldtab.c	/^gquotc()$/
+gstr	bldtab.c	/^gstr(ptr, len)$/
+hnumb	n4.c	/^hnumb(i)$/
+hseg	n3.c	/^hseg(f,p)$/
+hyphen	n8.c	/^hyphen(wp)$/
+init1	n1.c	/^init1(a)$/
+init2	n1.c	/^init2()$/
+inumb	n4.c	/^inumb(n)$/
+kcatch	n1.c	/^kcatch(){$/
+kvt	n3.c	/^char *kvt(k,p)$/
+makem	n6.c	/^makem(i)$/
+max	n5.c	/^max(aa,bb)$/
+mchbits	n6.c	/^mchbits(){$/
+mesg	n1.c	/^mesg(f)$/
+mot	n6.c	/^mot(){$/
+move	n10.c	/^move(){$/
+movword	n7.c	/^movword(){$/
+newline	bldtab.c	/^newline()$/
+nextf	bldtab.c	/^nextf()$/
+nextfile	n1.c	/^nextfile(nxtog)$/
+nofill	n7.c	/^nofill(){$/
+oput	n2.c	/^oput(i)$/
+oputs	n2.c	/^oputs(i)$/
+outable	bldtab.c	/^outable()	\/* output the hashed name table *\/$/
+pchar	n2.c	/^pchar(c)$/
+pchar1	n2.c	/^pchar1(c)$/
+plot	n10.c	/^char *plot(x)$/
+popf	n1.c	/^popf(){$/
+popi	n3.c	/^popi(){$/
+prstr	n1.c	/^prstr(s)$/
+prstrfl	n1.c	/^prstrfl(s)$/
+ptesc	t10.c	/^ptesc(){$/
+ptinit	n10.c	/^ptinit(){$/
+ptlead	n10.c	/^ptlead(){move();}$/
+ptout	n10.c	/^ptout(i)$/
+ptout0	t10.c	/^ptout0(i)$/
+ptout1	n10.c	/^ptout1()$/
+ptps	t10.c	/^ptps(){$/
+punct	n8.c	/^punct(i)$/
+pushi	n3.c	/^pushi(newip)$/
+put	bldtab.c	/^put(ptr)$/
+putccode	bldtab.c	/^putccode(ch)$/
+puttab	suftabmake.c	/^#define puttab(table)	if (!fwrite(table,sizeof(tab/
+quant	n4.c	/^quant(n,m)$/
+rbf	n3.c	/^rbf(){$/
+rbf0	n3.c	/^rbf0(fp)$/
+rdferr	bldtab.c	/^rdferr()$/
+rdsufb	n8.c	/^rdsufb(i)$/
+rdtty	n5.c	/^rdtty(){$/
+rdunix	n1.c	/^rdunix()$/
+readnames	bldtab.c	/^readnames()$/
+report	n2.c	/^report(){$/
+roman	n4.c	/^roman(i,f)$/
+roman0	n4.c	/^roman0(i,f,onesp,fivesp)$/
+setaf	n4.c	/^setaf()		\/* return the format of a number reg - in/
+setbra	n9.c	/^setbra(){$/
+setbrk	n3.c	/^char *setbrk(x)$/
+setch	n6.c	/^setch(){$/
+setfield	n9.c	/^setfield(x)$/
+setfont	n6.c	/^setfont(a)$/
+sethl	n6.c	/^sethl(k)$/
+setline	n9.c	/^setline(){$/
+setn	n4.c	/^setn()$/
+setn1	n4.c	/^setn1(i)$/
+setnel	n7.c	/^setnel(){$/
+setov	n9.c	/^setov(){$/
+setps	n6.c	/^setps(){$/
+setsignals	n1.c	/^setsignals()$/
+setstr	n3.c	/^setstr(){$/
+setvline	n9.c	/^setvline(){$/
+setwd	n6.c	/^setwd(){$/
+skip	bldtab.c	/^skip()		\/* skip white space in input *\/$/
+stat_dist	bldtab.c	/^stat_dist()	\/* hash travel distance statistics *\/$/
+stat_pileup	bldtab.c	/^stat_pileup()	\/* give static statistics *\/$/
+storeline	n7.c	/^storeline(c,w){$/
+storeword	n7.c	/^storeword(c,w)$/
+suffix	n8.c	/^suffix(){$/
+tbreak	n7.c	/^tbreak(){$/
+text	n7.c	/^text(){$/
+twdone	n10.c	/^twdone(){$/
+vnumb	n4.c	/^vnumb(i)$/
+vowel	n8.c	/^vowel(i)$/
+wbf	n3.c	/^wbf(i)$/
+wbfl	n3.c	/^wbfl(){$/
+wbt	n3.c	/^wbt(i)$/
+width	n6.c	/^width(c)$/
+wrc	n4.c	/^wrc(i)$/
+wrnum	bldtab.c	/^wrnum(n)$/
+wwrite	bldtab.c	/^wwrite(str)$/
+xbits	t6.c	/^xbits(i)$/
+xlss	n6.c	/^xlss(){$/

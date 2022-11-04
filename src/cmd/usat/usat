@@ -1,0 +1,213 @@
+:
+# SCCSID: @(#)usat	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+PATH=/usr/ucb:/bin:/usr/bin:
+U=USAT u=usat L=/usr/lib/usat
+
+# set M=time is used to time commands. (times are sent to stderr)
+M=
+
+# T is directory to use when creating tmp files, normally /tmp.
+T=/tmp
+
+# RT is directory to search when removing tmp files, normally /tmp
+# (T = RT to remove tmp files (normal case)
+# (T = /usr/users/yourname/tmp to save tmpfiles (for debugging)
+RT=/tmp
+
+sep="-----------------------------"
+if test -s $L/etimes
+then
+	/bin/echo -n "****** USAT test script started - " >> $T/et.$$.ti
+	date  >> $T/et.$$.ti
+fi
+
+ET="	 $RT/log.$$.err		$RT/log.$$.log  "
+
+tmps="	 $T/*.$$.err		$T/*.$$.out		$T/*.$$.log
+	 $T/f7?.$$.f		f77.$$.o
+	 $T/lx.$$.yy.c		lx.$$.yy.o
+	 $T/pcc.$$.c		pcc.$$.o
+	 $T/c0c.$$.c	 	$T/c4c.$$.c	
+	 $T/yin.$$.out		$T/ytb.$$.c		$T/yyx.$$.out
+	 $T/et.$$.ti		$T/pas?.$$.p		$T/pas.$$.exe
+	 $T/pas.$$.tmp	"
+
+# cleanup all tmp files on hup, ^C, or kill.  Use ^\ to leave tmp files.
+trap 'rm -f $tmps ; exit ' 1 2 15
+
+# Command search paths. Only looks in this one place.
+awkpath="/usr/bin/awk"
+ccpath="/bin/cc"
+nroffpath="/usr/bin/nroff"
+expath="/usr/bin/ex"
+spellpath="/usr/bin/spell"
+f77path="/usr/bin/f77"
+lintpath="/usr/bin/lint"
+pascalpath="/usr/bin/pi"
+pccpath="/usr/bin/pcc"
+learnpath="/usr/bin/learn"
+lexpath="/usr/bin/lex"
+yaccpath="/usr/bin/yacc"
+
+a="awk" b="bc, dc" c="cc, pcc" d="doc" f="f77"
+l="lint" m="misc" p="pascal" r="learn" s="sed"
+x="lex" y="yacc" z="system stats" h="help" test="test" t="test"
+
+all="a b c d f l p r s x y m z"
+
+case $# in 
+	0) . $L/help1
+	     exit ;;
+	1) case $* in
+		all) ch=$all ;;
+
+		h) . $L/help2
+	   	     exit ;;
+	     help)   echo
+		   . $L/help1
+		     exit ;;
+		?) ch=$* ;;
+		*) echo "Usage: usat [ option... ]"
+		   exit ;;
+	   esac ;;			
+	*) ch=$* ;;
+esac
+echo $sep
+for i in $ch
+do
+case $i in
+   h|help) i="h" ;;
+	m)
+	   me=`whoami`
+	   if [ ! Z$me = Zroot ]
+	   then
+	        echo "Must be superuser to run misc test!"
+		echo $sep
+	   else
+		here=`pwd`
+		if [ Z$here = Z/ ]
+		then
+		    echo "misc: cannot run misc in / directory."
+		    echo "Please \"cd\" to your own area to run the misc test."
+		    echo $sep
+		fi
+	   fi 
+	   i=$i ;;
+
+	?) i=$i	;;
+      all) i=$all ;;
+	*) i=$i ;;
+esac
+am="$am $i"
+done
+
+echo " '$u$am'"
+echo $sep
+
+echo "Selected:"
+for i in $am
+do
+case $i in
+	[a-d]|f|l|m|p|r|s|x|y)
+		/bin/echo -n "	"
+		eval echo "$`echo $i` $t" ;;
+	h|z)
+		/bin/echo -n "	"
+		eval echo "$`echo $i` " ;;
+
+	*)	echo "*** Illegal choice: $i"
+	   	i="" ;;
+esac
+fin="$fin $i"
+done
+
+echo $sep
+for i in $fin
+do
+case $i in
+	a|d|f|l|p|r|s|x|y)
+	     eval . " $L/$`echo $i`/$`echo $i`$`echo $t` "
+	     echo $sep ;;
+	b)
+	   . $L/bc/bctest
+	     echo
+	   . $L/dc/dctest
+	     echo $sep ;;
+	c)
+	   . $L/cc/cctest
+	     echo
+	   . $L/pcc/pcctest
+	     echo $sep ;;
+	h)
+	     echo 
+	   . $L/help1
+	     echo 
+	     echo 
+	   . $L/help2
+	     echo $sep ;;
+	m)
+	    me=`whoami`
+	    if [ ! Z$me = Zroot ]
+	    then
+	    	echo "misc: not superuser - test ignored."
+	    else
+		here=`pwd`
+		if [ Z$here = Z/ ]
+		then
+		    echo "misc: cannot run misc in / directory - test ignored."
+		else
+		    $L/misc/misctest $$ $T
+		fi
+	    fi
+	    echo $sep ;;
+
+	z)
+	   . $L/sys/systest
+	     echo $sep ;;
+
+	*) 		;;
+esac
+done
+if test -s $L/etimes
+then
+	/bin/echo -n "****** End of  USAT test script - " >> $T/et.$$.ti
+	date  >> $T/et.$$.ti
+fi
+if test -s $T/log.$$.log
+then
+	echo ""
+	echo "	***************** LOGFILE ******************"
+	echo ""
+	cat $T/log.$$.log
+	echo $sep
+fi
+if test -s $L/etimes
+then
+	if test -s $L/etime.sh
+	then
+		cat $T/et.$$.ti | $L/etime.sh
+		echo $sep
+	fi
+	rm -f $T/et.$$.ti
+fi
+if test -s $T/log.$$.err
+then
+	echo ""
+	echo "	************* ERRORS DETECTED **************"
+	echo ""
+	cat $T/log.$$.err
+	echo $sep
+	echo ""
+else
+	echo "NO ERRORS DETECTED"
+	echo $sep
+	echo ""
+fi
+rm -f $ET

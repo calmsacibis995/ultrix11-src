@@ -1,0 +1,38 @@
+:
+# SCCSID: @(#)cctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** cc test started - "
+date
+touch $T/cc.$$.err
+
+if [ -f "$ccpath" ]
+then
+for flags in "-n" "-B"
+do
+	cp $L/cc/cc.in.c $T/c0c.$$.c
+	$M cc $flags -s -O $T/c0c.$$.c -o $T/c1c.$$.out
+	$M $T/c1c.$$.out > $T/c3c.$$.out
+	cmp -s $T/c3c.$$.out $L/cc/cc.sout
+	if [ $? != 0 ]
+	then
+		echo "cc: Compare after execute failed (cc $flags)" >> $T/cc.$$.err
+		echo "Compare after execute failed (cc $flags)"
+	else
+		true
+	fi
+done
+
+else
+	echo "$ccpath: not installed" >> $T/cc.$$.err
+	echo "$ccpath: not tested (command not installed)"
+fi
+echo -n "****** End  of cc test - "
+date
+cat $T/cc.$$.err >> $T/log.$$.err
+rm -f $RT/c?c.$$.out $RT/cc.$$.err $RT/c0c.$$.c

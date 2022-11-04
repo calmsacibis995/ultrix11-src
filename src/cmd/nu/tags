@@ -1,0 +1,48 @@
+AddToPasswd	nu.c	/^AddToPasswd(buf)$/
+Additions	nu.c	/^Additions()$/
+CallSys	nu.c	/^CallSys(cmd)$/
+Catch	nu.c	/^Catch()$/
+CreateDir	nu.c	/^CreateDir(np, clobber)$/
+Del_Accounts	nu.c	/^Del_Accounts()$/
+DoCommand	nu.c	/^DoCommand(cmd, fatal, safe)$/
+GetDel	nu.c	/^GetDel(ent)$/
+GetEnv	nu.c	/^GetEnv(buf)$/
+GetGroupID	nu.c	/^GetGroupID(group)$/
+GetLogDir	nu.c	/^GetLogDir(np)$/
+GetLogName	nu.c	/^GetLogName(buf)$/
+GetLogSH	nu.c	/^GetLogSH(buf)$/
+GetMod	nu.c	/^GetMod(ent)$/
+GetPassword	nu.c	/^GetPassword(ascpw, cryptpw)$/
+GetRealName	nu.c	/^GetRealName(buf)$/
+GetUserID	nu.c	/^GetUserID()$/
+HasBadChars	nu.c	/^HasBadChars(b)$/
+InstallFiles	nu.c	/^InstallFiles(np)$/
+IntV	nu.c	/^IntV(name)$/
+KillUser	nu.c	/^KillUser()$/
+Linearize	nu.c	/^Linearize(p)$/
+LogAddition	nu.c	/^LogAddition(buf)$/
+LogRemoval	nu.c	/^LogRemoval(buf)$/
+MapLowerCase	nu.c	/^MapLowerCase(b)$/
+Mnu	nu.c	/^main(argc, argv)$/
+Modify	nu.c	/^Modify()$/
+PasswdLocked	nu.c	/^PasswdLocked () {$/
+PromptForID	nu.c	/^PromptForID()$/
+PwPrint	nu.c	/^PwPrint(cpw)$/
+ReadCf	nu.c	/^ReadCf()$/
+StrV	nu.c	/^StrV(name)$/
+SwapFiles	nu.c	/^SwapFiles(FromWhat)$/
+System	nu.c	/^System(cmdstring)$/
+UpdatePasswd	nu.c	/^UpdatePasswd(stk)$/
+UseDefault	nu.c	/^UseDefault(str, def)$/
+Verified	nu.c	/^Verified(np)$/
+Xfer	nu.c	/^Xfer(pwd, cpw)$/
+YesNo	nu.c	/^YesNo(def_ans)$/
+baddir	nu.c	/^baddir(p)$/
+domods	nu.c	/^domods(ent)$/
+getcmd	nu.c	/^getcmd()$/
+leave	nu.c	/^leave(status)$/
+notdef	nu.c	/^notdef(na)$/
+oktorm	nu.c	/^oktorm(p)$/
+oneofthem	nu.c	/^oneofthem(p)$/
+pr_them	nu.c	/^pr_them()$/
+usage	nu.c	/^usage()$/

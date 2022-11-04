@@ -1,0 +1,17 @@
+
+3.  When making kits for field test or SDC submission, the
+    system MUST be shutdown to single-user mode, as follows:
+
+      o  Login to the `operator' account, shutdown to single-user
+         mode, then escape to the shell by typing `!sh'.
+
+      o  Mount all file systems by typing `/etc/mount -a'.
+
+      o  Type `cd /usr/sys/distr', then `mkb' to begin the build.
+
+      o  When the build completes, exit from mkb and dismount all
+         file systems by typing `/etc/umount -a', then return to
+         operator services program by typing <CTRL/D>.
+
+      o  Type `r' to restart time-sharing, then <CTRL/D> to exit
+         from the operator services program.

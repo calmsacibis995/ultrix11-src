@@ -1,0 +1,35 @@
+:
+# SCCSID: @(#)Init.eqn	3.0	4/21/86
+a=`printenv | grep "^term"`
+if [ X$a = X ]
+then
+# term not set in environment...
+cat <<EOF
+**************************************************************
+To do the lessons on 'eqn', I need to know your terminal type.
+Your terminal must be a DASI or GSI or teletype terminal, or
+else these lessons will not display properly on your terminal.
+To set your terminal type, enter:
+
+	term=xxx; export term	(if you are using /bin/sh)
+
+	setenv term xxx			(if you are using /bin/csh)
+
+(replace xxx above with your terminal type)
+
+Some graphics terminal types include:
+
+	300 or 300s	DASI 300 or DASI 300s
+	450		DASI 450
+	4014		TEKTRONIX 4014
+	regis		for any REGIS output device
+	gigi		for GIGI terminal
+
+After you do this, type "learn eqn" again.
+EOF
+exit 1
+
+else
+    # $TERM is OK
+    exit 0
+fi

@@ -1,0 +1,99 @@
+ALLOC	defs	/^#define ALLOC(x) (struct x *) intalloc(sizeof(stru/
+GETC	gram.y	/^GETC()$/
+IS_OFF	defs	/^#define IS_OFF(a)	(!(IS_ON(a)))$/
+IS_ON	defs	/^#define IS_ON(a)	(Mflags&(a))$/
+Mmain	main.c	/^main(argc,argv)$/
+TURNOFF	defs	/^#define TURNOFF(a)	(Mflags &= (~(a)))$/
+TURNON	defs	/^#define TURNON(a)	(Mflags |= (a))$/
+addstars	misc.c	/^addstars(pfx)$/
+afilescan	files.c	/^afilescan(name)		\/* return date for named archive /
+amatch	files.c	/^amatch(s, p)$/
+any	defs	/^#define any(a,b)	strchr( (a), (b) )$/
+appendq	misc.c	/^appendq(head,tail)$/
+await	dosys.c	/^await()$/
+ballbat	doname.c	/^ballbat(np, reclevel)$/
+blprt	doname.c	/^blprt(n)$/
+callyacc	misc.c	/^callyacc(str)$/
+clarch	files.c	/^clarch()$/
+colontrans	misc.c	/^colontrans(b, vname)$/
+concat	misc.c	/^concat(a,b,c)   \/* c = concatenation of a and b *\//
+copstr	misc.c	/^copstr(s, t)$/
+copys	misc.c	/^copys(s)$/
+dbreplace	doname.c	/^dbreplace(np, odb, ndb)$/
+dftrans	misc.c	/^dftrans(b, vname)$/
+do_colon	misc.c	/^do_colon(to, from, trans)$/
+do_df	misc.c	/^do_df(b, str, type)$/
+doclose	dosys.c	/^doclose()	\/* Close open directory files before exe/
+docom	doname.c	/^docom(q)$/
+docom1	doname.c	/^docom1(comstring, nohalt, noprint)$/
+doexec	dosys.c	/^doexec(str)$/
+doname	doname.c	/^doname(p, reclevel, tval)$/
+doshell	dosys.c	/^doshell(comstring,nohalt)$/
+dosys	dosys.c	/^dosys(comstring, nohalt)$/
+dynamicdep	dyndep.c	/^dynamicdep(p)$/
+enbint	main.c	/^enbint(k)$/
+entryscan	files.c	/^entryscan(name)		\/* return date of member containi/
+eqsign	misc.c	/^eqsign(a)$/
+equal	defs	/^#define equal(a,b)	(a[0] == b[0] ? !strcmp((a),(b)/
+execat	misc.c	/^execat(s1, s2, si)$/
+execlp	misc.c	/^execlp(name, argv)$/
+execvp	misc.c	/^execvp(name, argv)$/
+exists	files.c	/^exists(pname)$/
+exit	misc.c	/^exit(arg)$/
+expand	doname.c	/^expand(p)$/
+fatal	misc.c	/^fatal(s)$/
+fatal1	misc.c	/^fatal1(s,t1,t2,t3)$/
+findfl	misc.c	/^findfl(name)$/
+fstack	gram.y	/^fstack(newname, oldfp, oldlno)$/
+get	misc.c	/^get(ssfile, cdflag, rlse)$/
+getmflgs	main.c	/^getmflgs()$/
+getword	misc.c	/^getword(from, buf)$/
+hashloc	misc.c	/^hashloc(s)$/
+intalloc	misc.c	/^intalloc(n)$/
+intrupt	main.c	/^intrupt()$/
+is_dyn	dyndep.c	/^#define is_dyn(a)		(any( (a), DOLLAR) )$/
+is_sccs	misc.c	/^is_sccs(filename)$/
+isdir	files.c	/^isdir(p)$/
+isprecious	main.c	/^isprecious(p)$/
+la	files.c	/^la(am,flag)$/
+lastslash	misc.c	/^#define lastslash(a)		strrchr( (a) , SLASH )$/
+lookarch	files.c	/^lookarch(filename)$/
+makename	misc.c	/^makename(s)$/
+max	defs	/^#define max(a,b)	((a)>(b)?(a):(b))$/
+metas	dosys.c	/^metas(s)   \/* Are there are any  Shell meta-charac/
+mkqlist	misc.c	/^mkqlist(p)$/
+nextlin	gram.y	/^nextlin()$/
+openarch	files.c	/^openarch(f)$/
+optswitch	main.c	/^optswitch(c)$/
+pdpentrys	files.c	/^pdpentrys(name)$/
+prestime	files.c	/^prestime()$/
+printdesc	main.c	/^printdesc(prntflag)$/
+prname	main.c	/^prname(p, prntflag)$/
+prtmem	prtmem.c	/^prtmem()$/
+rdd1	main.c	/^rdd1(k)$/
+rddescf	main.c	/^rddescf(descfile, flg)$/
+rdmakecomm	main.c	/^rdmakecomm()$/
+readenv	misc.c	/^readenv()$/
+retsh	gram.y	/^retsh(q)$/
+rm_gots	misc.c	/^rm_gots()$/
+runtime	dyndep.c	/^LINEBLOCK runtime(p, lp)$/
+sccstrip	misc.c	/^sccstrip(pstr)$/
+sdot	misc.c	/^sdot(p)$/
+setenv	misc.c	/^setenv()$/
+setflags	main.c	/^setflags(ac, av)$/
+setmflgs	main.c	/^setmflgs(c)$/
+setvar	misc.c	/^setvar(v,s)$/
+sindex	misc.c	/^sindex(s1,s2)$/
+srchdir	files.c	/^srchdir(pat, mkchain, nextdbl)$/
+srchname	misc.c	/^srchname(s)$/
+srchvar	misc.c	/^srchvar(vname)$/
+straightrans	misc.c	/^straightrans(b, vname)$/
+strshift	misc.c	/^strshift(pstr, count)$/
+subst	misc.c	/^subst(a,b)$/
+suffix	misc.c	/^suffix(a,b,p)  \/* is b the suffix of a?  if so, se/
+touch	dosys.c	/^touch(force, name)$/
+trysccs	misc.c	/^trysccs(str)$/
+umatch	files.c	/^umatch(s, p)$/
+varptr	misc.c	/^varptr(v)$/
+yyerror	misc.c	/^yyerror(s)$/
+yylex	gram.y	/^yylex()$/

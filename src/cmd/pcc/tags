@@ -1,0 +1,99 @@
+BITMASK	local2.c	/^# define BITMASK(n) ((1L<<n)-1)$/
+BITOOR	mac2defs	/^# define BITOOR(x) ((x)>>3)  \/* bit offset to oreg/
+BYTEOFF	mac2defs	/^# define BYTEOFF(x) ((x)&01)$/
+CCTRANS	macdefs	/^# define  CCTRANS(x) x$/
+ENUMSIZE	macdefs	/^# define ENUMSIZE(high,low) INT$/
+MYREADER	mac2defs	/^# define MYREADER(p) myreader(p)$/
+Mcode	code.c	/^main( argc, argv ) char *argv[]; {$/
+Mlocal2	local2.c	/^main( argc, argv ) char *argv[]; {$/
+STOARG	mac2defs	/^# define STOARG(p)     \/* just evaluate the argume/
+STOFARG	mac2defs	/^# define STOFARG(p)$/
+acon	local2.c	/^acon( p ) register NODE *p; { \/* print out a const/
+adrcon	local2.c	/^adrcon( val ) CONSZ val; {$/
+adrput	local2.c	/^adrput( p ) register NODE *p; {$/
+andable	local.c	/^andable( p ) NODE *p; {$/
+aobeg	code.c	/^aobeg(){$/
+aocode	code.c	/^aocode(p) struct symtab *p; {$/
+aoend	code.c	/^aoend(){$/
+argsize	order.c	/^argsize( p ) register NODE *p; {$/
+bccode	code.c	/^bccode(){ \/* called just before the first executab/
+bfcode	code.c	/^bfcode( a, n ) int a[]; {$/
+branch	code.c	/^branch( n ){$/
+bycode	code.c	/^bycode( t, i ){$/
+callreg	local2.c	/^callreg(p) NODE *p; {$/
+cast	local.c	/^cast( p, t ) register NODE *p; TWORD t; {$/
+cbgen	local2.c	/^cbgen( o, lab, mode ) { \/*   printf conditional an/
+cendarg	local.c	/^cendarg(){ \/* at the end of the arguments of a ftn/
+cinit	local.c	/^cinit( p, sz ) NODE *p; {$/
+cisreg	local.c	/^cisreg( t ) TWORD t; { \/* is an automatic variable/
+clocal	local.c	/^clocal(p) NODE *p; {$/
+commdec	local.c	/^commdec( id ){ \/* make a common declaration for id/
+conput	local2.c	/^conput( p ) register NODE *p; {$/
+ctype	local.c	/^ctype( type ) TWORD type; { \/* map types which are/
+defalign	code.c	/^defalign(n) {$/
+deflab	order.c	/^deflab( l ){$/
+defnam	code.c	/^defnam( p ) register struct symtab *p; {$/
+deltest	order.c	/^deltest( p ) register NODE *p; {$/
+dexit	code.c	/^dexit( v ) {$/
+ecode	local.c	/^ecode( p ) NODE *p; {$/
+efcode	code.c	/^efcode(){$/
+ejobcode	code.c	/^ejobcode( flag ){$/
+eobl2	local2.c	/^eobl2(){$/
+exname	local.c	/^exname( p ) register char *p; {$/
+fincode	local.c	/^fincode( d, sz ) double d; {$/
+fldal	code.c	/^fldal( t ) unsigned t; { \/* return the alignment o/
+fldty	code.c	/^fldty( p ) struct symtab *p; { \/* fix up type of f/
+flshape	local2.c	/^flshape( p ) register NODE *p; {$/
+genargs	order.c	/^genargs( p) register NODE *p; {$/
+gencall	local2.c	/^gencall( p, cookie ) register NODE *p; {$/
+genfcall	mac2defs	/^# define genfcall(a,b) gencall(a,b)$/
+genscall	local2.c	/^genscall( p, cookie ) register NODE *p; {$/
+genswitch	code.c	/^genswitch(p,n) register struct sw *p;{$/
+getlab	order.c	/^getlab(){$/
+hardops	local2.c	/^hardops(p)  register NODE *p; {$/
+hopcode	local2.c	/^hopcode( f, o ){$/
+incode	local.c	/^incode( p, sz ) register NODE *p; {$/
+insput	local2.c	/^insput( p ) NODE *p; {$/
+isitfloat	local.c	/^isitfloat( s ) char *s; {$/
+isitlong	local.c	/^isitlong( cb, ce ){ \/* is lastcon to be long or sh/
+lastchance	local2.c	/^lastchance( p, cook ) NODE *p; {$/
+lineid	local2.c	/^lineid( l, fn ) char *fn; {$/
+locctr	code.c	/^locctr( l ){$/
+makecc	macdefs	/^# define makecc(val,i)  lastcon = i ? (val<<8)|las/
+max	order.c	/^# define max(x,y) ((x)<(y)?(y):(x))$/
+min	order.c	/^# define min(x,y) ((x)<(y)?(x):(y))$/
+mkadrs	order.c	/^mkadrs(p) register NODE *p; {$/
+mkrall	order.c	/^mkrall( p, r ) register NODE *p; {$/
+myreader	local2.c	/^myreader(p) register NODE *p; {$/
+nextcook	local2.c	/^nextcook( p, cookie ) NODE *p; {$/
+niceuty	order.c	/^niceuty( p ) register NODE *p; {$/
+noinit	local.c	/^noinit() { \/* curid is a variable which is defined/
+notoff	order.c	/^notoff( t, r, off, cp) TWORD t; CONSZ off; char *c/
+offcon	local.c	/^offcon( off, t, d, s ) OFFSZ off; TWORD t; {$/
+offstar	order.c	/^offstar( p ) register NODE *p; {$/
+optim2	local2.c	/^optim2( p ) register NODE *p; {$/
+popargs	local2.c	/^popargs( size ) register size; {$/
+rallo	order.c	/^rallo( p, down ) register NODE *p; {$/
+rewfld	local2.c	/^rewfld( p ) NODE *p; {$/
+rmove	local2.c	/^rmove( rt, rs, t ) TWORD t; {$/
+setasg	order.c	/^setasg( p ) register NODE *p; {$/
+setasop	order.c	/^setasop( p ) register NODE *p; {$/
+setbin	order.c	/^setbin( p ) register NODE *p; {$/
+setincr	order.c	/^setincr( p ) NODE *p; {$/
+setregs	local2.c	/^setregs(){ \/* set up temporary registers *\/$/
+setstr	order.c	/^setstr( p ) register NODE *p; { \/* structure assig/
+shltype	local2.c	/^shltype( o, p ) NODE *p; {$/
+shtemp	local2.c	/^shtemp( p ) register NODE *p; {$/
+shumul	local2.c	/^shumul( p ) register NODE *p; {$/
+special	local2.c	/^special( p, shape ) register NODE *p; {$/
+spsz	local2.c	/^spsz( t, v ) TWORD t; CONSZ v; {$/
+stoasg	order.c	/^stoasg( p, o ) register NODE *p; {$/
+sucomp	order.c	/^sucomp( p ) register NODE *p; {$/
+szty	local2.c	/^szty(t) TWORD t; { \/* size, in words, needed to ho/
+upput	local2.c	/^upput( p ) register NODE *p; {$/
+vfdzero	local.c	/^vfdzero( n ){ \/* define n bits of zeros in a vfd */
+wdal	mac2defs	/^# define wdal(k) (BYTEOFF(k)==0)$/
+where	local2.c	/^where(c){ \/* print location of error  *\/$/
+zecode	code.c	/^zecode( n ){$/
+zum	order.c	/^zum( p, zap ) register NODE *p; {$/
+zzzcode	local2.c	/^zzzcode( p, c ) NODE *p; {$/

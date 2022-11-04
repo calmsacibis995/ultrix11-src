@@ -1,0 +1,55 @@
+CHECKF	readtape.c	/^CHECKF(longname, mode, howmuch)$/
+CHECKSUM	readtape.c	/^CHECKSUM()$/
+Mtar	tar.c	/^main(argc, argv)$/
+STRFIND	readtape.c	/^STRING_POINTER	STRFIND(text,substr)$/
+backtape	readtape.c	/^backtape()$/
+bcopy	writetape.c	/^bcopy(buffer, (char *)&tbuf[recno++], TBLOCK);$/
+bread	readtape.c	/^bread(fd, buf, size)$/
+bsrch	readtape.c	/^daddr_t bsrch(s, n, l, h)$/
+checkdir	readtape.c	/^checkdir(name)$/
+checkf	command.c	/^checkf(longname, mode, howmuch)$/
+checksum	writetape.c	/^checksum()$/
+checkw	readtape.c	/^checkw(c, name)$/
+cmp	readtape.c	/^cmp(b, s, n)$/
+done	command.c	/^done(n)$/
+dorep	writetape.c	/^dorep(argv)$/
+dostats	readtape.c	/^dostats()$/
+dotable	readtape.c	/^dotable()$/
+doxtract	readtape.c	/^doxtract(argv)$/
+endtape	readtape.c	/^endtape()$/
+fdlist	command.c	/^fdlist()$/
+flushtape	command.c	/^flushtape()$/
+for	readtape.c	/^for (count = 0; count < size; count += lastread) {/
+fork	writetape.c	/^if (!(i=fork())) {$/
+getcwd	writetape.c	/^char *getcwd(buf)$/
+getdir	readtape.c	/^getdir()$/
+if	tar.c	/^if (xflag)$/
+longt	readtape.c	/^longt(st)$/
+lookup	readtape.c	/^daddr_t lookup(s)$/
+lseek	readtape.c	/^lseek(mt, (SIZE_L) -TBLOCK * nblock, 1);$/
+onhup	tar.c	/^onhup()$/
+onintr	tar.c	/^onintr()$/
+onquit	tar.c	/^onquit()$/
+onterm	tar.c	/^onterm()$/
+parse	command.c	/^parse(argc,argv)$/
+passtape	readtape.c	/^passtape()$/
+pmode	readtape.c	/^pmode(st)$/
+prefix	readtape.c	/^prefix(s1, s2)$/
+putdir	writetape.c	/^putdir(longname,shortname)$/
+putempty	command.c	/^putempty()$/
+puteoa	command.c	/^puteoa()$/
+putfile	writetape.c	/^putfile(longname, shortname, parent)$/
+read	writetape.c	/^if ((read(pipdes[0],buf,MAXPATHLEN)) < 0) {$/
+readtape	readtape.c	/^readtape(buffer)$/
+response	command.c	/^response()$/
+select	readtape.c	/^select(pairp, st)$/
+set_size	command.c	/^set_size(size)$/
+strcmp	command.c	/^if (!strcmp(usefile, "-")) {$/
+strfind	command.c	/^STRING_POINTER	strfind(text,substr)$/
+strlen	writetape.c	/^if ((i=strlen(iobuf)) >= NAMSIZ) {$/
+switch	writetape.c	/^switch (stbuf.st_mode & S_IFMT) {$/
+tomodes	writetape.c	/^tomodes(sp,rblocks,name)$/
+update	readtape.c	/^update(arg,ftime)$/
+usage	command.c	/^usage()$/
+while	readtape.c	/^while (blocks-- > 0)$/
+writetape	writetape.c	/^writetape(buffer, blocks, total_blocks, shortname,/

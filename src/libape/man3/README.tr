@@ -1,0 +1,505 @@
+.EQ
+delim $$
+.EN
+.TL
+APE - Arbitrary Precision Arithmetic Routines
+.AU
+Mark E. Carson
+.AI
+Department of Mathematics,
+University of California, Berkeley
+.NH
+Introduction
+.PP
+The
+.I ape
+library is a set of routines for arbitrary precision integral
+arithmetic written in the C language.
+These routines can be called by either C or F77 programs (for
+the latter, see section 5 below).
+For C programs, the line
+.DS
+#include <ape.h>
+.DE
+should be included in the calling program to get the
+necessary typedefs and external declarations.
+In the case of F77, the calling program uses only \fBinteger\fRs
+(which are converted to structure pointers) and (with two exceptions)
+calls only \fBsubroutine\fRs, so no special declarations are required.
+For both C and F77, the flag
+.DS
+\-lape
+.DE
+should be used to tell the loader to access the library.
+.PP
+The basic structure used by the
+.I ape
+routines is called a
+.B MINT
+(standing for ``multiprecision integer'').
+It is defined by the \fBtypedef\fR
+.DS
+\fBtypedef struct\fR mint
+{       \fBint\fR len;
+        \fBshort\fR *val;
+} MINT, *PMINT;
+.DE
+which is in ape.h.
+Here the member 
+.I len
+is an \fBinteger\fR whose sign is the sign of the
+number represented, and whose magnitude is the number of words
+(\fBshort\fR \fBinteger\fRs) needed to store it.
+The (absolute value of the) number itself is stored
+as an array of \fBshort\fR \fBinteger\fRs pointed
+to by 
+.I val .
+The representation is essentially base
+2\u\s715\s0\d,
+with the 16th bit of a \fBshort\fR \fBinteger\fR used only to store
+intermediate results in calculations.
+Hence the largest number representable on a 16 bit
+computer like a PDP-11 is ${(2 sup 15 )} sup {2 sup 15}$
+which is about $3 times 10 sup 147962$, though of course in
+actuality the number would have to be much smaller to allow
+any room for calculations or overhead.
+To maximize the amount of data space available, it is
+advisible to use the \-i flag when loading the program.
+.PP
+For a comparison with some quantities from number theory,
+this means the largest Fermat number which is representable is F\d\s718\s0\u.
+For a 32 bit computer the limit would be F\d\s734\s0\u (assuming,
+that is, that it had 4 billion bytes of core!).
+In an actual test, the largest Fermat number which could be
+directly computed and output by the routines was F\d\s717\s0\u,
+a number of about 39,500 decimal digits.
+.PP
+Calculations are done much as they are by hand with
+numbers represented base 10.
+All the routines deal with stucture pointers (\fBPMINT\fRs),
+so it's better to declare and use these rather than
+the structures themselves.
+More space is allocated as needed (by calls to
+.I malloc )
+and (at least mostly) freed when unneeded (by calls to
+.I free ).
+.PP
+The following sections treat the various routines in some detail.
+.NH
+Initialization and Removal
+.PP
+Before a
+.B MINT
+or
+.B PMINT
+can be used by other routines, it must be initialized.
+Initialization comes in three varieties:
+.DS
+     new(pa)
+     \fBPMINT\fR *pa;
+.DE
+.IP
+Like the Pascal procedure, 
+.I new(&a)
+creates a zeroed
+.B MINT
+which
+.I a
+points to.
+.DS
+\fBPMINT\fR shtom(sn)         \fBshort\fR sn;
+\fBPMINT\fR itom(n)           \fBint\fR n;
+\fBPMINT\fR ltom(ln)          \fBlong\fR ln;
+\fBPMINT\fR stom(s)           \fBchar\fR *s;
+.DE
+.IP
+These functions return pointers to
+.B MINT s
+with values equal to their arguments (or to the numeric
+equivalent of its argument for
+.I stom ).
+.I stom
+can be used for initializing with numbers of arbitrary length.
+It follows the usual C conventions for determining input bases.
+.DS
+\fBPMINT\fR padd(a,b)         \fBPMINT\fR psub(a,b)
+\fBPMINT\fR pmult(a,b)        \fBPMINT\fR pdiv(a,b)
+\fBPMINT\fR pmod(a,b)         \fBPMINT\fR psdiv(a,n)
+\fBPMINT\fR psmod(a,n)        \fBPMINT\fR ppow(a,b,c)
+\fBPMINT\fR prpow(a,n)        \fBPMINT\fR psqrt(a)
+
+\fBPMINT\fR a,b,c;
+\fBint\fR n;
+.DE
+.IP
+These functions are simply versions of the corresponding arithmetic
+routines discussed below (with the ``p'' either deleted or replaced
+by an ``m'' except for
+.I pmod
+and
+.I psmod
+which return the remainders from
+.I mdiv
+and
+.I sdiv
+respectively) which return pointers to their results,
+rather than making their last arguments point to them.
+They should be used only for initialization,
+not further calculation, else storage space may be lost.
+.PP
+Two routines are provided for freeing unneeded space:
+.DS
+     xfree(a)
+     afree(a)
+
+     \fBPMINT\fR a;
+.DE
+.IP
+.I xfree
+frees what
+.I a\->val
+points to;
+.I afree
+also frees what
+.I a
+points to.
+.I xfree
+zeroes an already initialized
+.B PMINT
+while
+.I afree
+returns it to an uninitialized state.
+Obviously, these should only be used when the routines here
+have been used to initialize the pointers.
+Since
+.I xfree
+is used frequently by the
+.I ape
+routines to ``clear''
+.B MINT s
+prior to assignments, it is not advisable to initialize
+the 
+.I val
+field by methods other than those mentioned here.
+.NH
+Arithmetic
+.PP
+For the following conceptual descriptions, assume these
+type declarations:
+.DS
+\fBPMINT\fR a,b,c,d,q,r;
+\fBint\fR m,n;
+\fBlong\fR ln;
+\fBshort\fR *R;
+.DE
+.ID
+.B
+Routine                 Result
+
+.R
+madd(a,b,c)             c \(eq a + b
+msub(a,b,c)             c \(eq a - b
+mult(a,b,c)             c \(eq a * b
+sdiv(a,m,q,R)           q \(eq a / m;  R \(eq a mod m
+mdiv(a,b,q,r)           q \(eq a / b;  r \(eq a mod b
+gcd(a,b,c)              c \(eq gcd(a,b)
+reciprocal(a,n,b)       b \(eq 10\u\s7n\s0\d / a
+msqrt(a,b,r)            b \(eq $sqrt "a"$;  r \(eq a - b*b
+                (r's length is returned)
+pow(a,b,c,d)            d \(eq a\u\s7b\s0\d mod c
+rpow(a,n,b)             b \(eq a\u\s7n\s0\d
+lpow(n,ln,b)            b \(eq n\u\s7ln\s0\d
+.DE
+In all cases, calls like
+.I madd(a,b,a)
+are allowed and give the expected results.
+The routines dealing with
+.B int s
+will all work properly no matter what the relationship between 
+.B short
+and
+.B int
+except
+.I sdiv
+which needs the
+.B int
+.I m
+to be no larger than the largest 
+.B short .
+.I reciprocal
+is the closest thing provided to decimal fractions.
+.PP
+Note that before any of these routines can be used,
+all the pointers used must be initialized.
+As an example, this program segment will fail:
+.DS
+\fBPMINT\fR a,b,c;
+
+a \(eq itom(2);
+b \(eq itom(3);
+madd(a,b,c);
+.DE
+It should be changed to either
+.DS
+\fBPMINT\fR a,b,c;                    \fBPMINT\fR a,b,c;
+
+a \(eq itom(2);                    a \(eq itom(2);
+b \(eq itom(3);       or           b \(eq itom(3);
+new(&c);                        c \(eq padd(a,b);
+madd(a,b,c);
+.DE
+.PP
+Comparisons may be done with the integral function
+.I mcmp .
+.I mcmp(a,b)
+returns something positive if
+.I
+a > b,
+.R
+negative if
+.I
+a < b,
+.R
+and zero if
+.I
+a \(eq b.
+.R
+For seeing whether
+.I a
+is positive, negative or zero, it suffices to look at
+.I a\->len .
+.NH
+Input and Output
+.PP
+Input and output are allowed for any reasonable base,
+to and from both files and character strings.
+The prototypes are:
+.DS
+\fBPMINT\fR a;
+\fBint\fR n;  [must have n > 1]
+\fBFILE\fR *f;
+\fBchar\fR *s;
+
+m_in(a,n,f)
+        input a number base \fIn\fR from file \fIf\fR into \fIa\fR
+sm_in(a,n,s)
+        input a number base \fIn\fR from string \fIs\fR into \fIa\fR
+m_out(a,n,f)
+        output \fIa\fR base \fIn\fR onto file \fIf\fR
+sm_out(a,n,s)
+        output \fIa\fR base \fIn\fR onto string \fIs\fR
+.DE
+.PP
+Spaces are allowed in long input numbers for greater readability
+(and hence are
+.I not
+sufficient for separating numbers);
+newlines may be escaped with backslashes.
+.I m_in
+returns 0 on normal termination and EOF (-1) when the
+end of the input file is encountered.
+And again, the
+.B PMINT s
+must be initialized before the input routines can be used.
+.PP
+The letters a-z or A-Z may be used for the (base 10) numbers 10-35
+when the input base is greater than ten.
+Unfortunately, no provision is made for larger input ``digits.''
+On output, a-f are used for 10-15 for bases between 11 and 16;
+for larger bases the usual ``hybrid'' notation of space-separated
+base 10 numbers is used.
+Output numbers are
+.I not
+automatically terminated by newlines or broken at any width;
+an output formatting program such as
+.I prettyape
+can be used to do the latter.
+For
+.I sm_out ,
+the string is assumed to be large enough to hold the output number.
+The function
+.I outlength(a,b)
+can be used to get an (over) estimate of the length required.
+.PP
+Special versions of these routines are provided for bases 8 and 10.
+They are
+.DS
+\fBPMINT\fR a;
+\fBFILE\fR *f;
+.DE
+.DS
+        Base 8
+om_in(a,f)
+omin(a)         [f\(eqstdin]
+om_out(a,f)
+omout(a)        [f\(eqstdout]
+.DE
+.DS
+        Base 10
+fmin(a,f)
+minput(a)       [f\(eqstdin]
+fmout(a,f)
+mout(a)         [f\(eqstdout]
+.DE
+Because 2\u\s715\s0\d \(eq 8\u\s75\s0\d, conversion from the internal
+form to octal output is much easier and faster
+(about 30 times faster for a hundred-digit number)
+for base 8 as opposed to any other base.
+The names used here are a bit unfortunate;
+in particular,
+.I minput
+was chosen to avoid clashes with
+.I min
+minimum functions.
+.NH
+Usage with Fortran
+.PP
+F77 programs can make use of the
+.I ape
+routines through the ``frontend'' subroutines provided.
+Generally, these cast the
+.B integer s
+passed by the Fortran program into
+.B PMINT s,
+pass them to the
+.I ape
+routines, making the call by reference or value as required,
+and then (when appropriate) casting the resulting
+.B PMINT s
+back into 
+.B integer s.
+.PP
+.I Note :
+when writing these, I assumed throughout that 4 byte \fBinteger\fRs
+(\fBinteger\fR*4s) were used.
+In particular, programs compiled with the \-I2 flag may
+have difficulties with these routines!
+Versions that work with 2 byte \fBinteger\fRs
+are stored in the file ``~ape/shortran.c''.
+.PP
+The subroutines provided generally have the same names as their
+C counterparts.
+They are:
+.NH 2
+Initialization and Removal
+.DS
+.B
+F77 version             C version
+.R
+
+\fBinteger\fR n,a             \fBint\fR n;  \fBPMINT\fR a;
+\fBcharacter\fR*M s           \fBchar\fR s[M];
+
+call new(a)             new(&a);
+call itom(n,a)          a \(eq itom(n);
+call stom(s,a)          a \(eq stom(s);
+call xfree(a)           xfree(a);
+call afree(a)           afree(a);
+.DE
+.NH 2
+Arithmetic
+.PP
+Subroutines
+.I
+madd, msub, mult, mdiv, sdiv, gcd, pow
+.R
+and
+.I rpow
+are provided to call their C counterparts.
+The
+.B integer
+functions
+.I mcmp
+and
+.I msqrt
+likewise call the same-named C functions.
+.NH 2
+Input and Output
+.PP
+I/O is provided only from stdin/stdout, for bases 8 and 10.
+.DS
+.B
+F77 version             C version
+
+.R
+\fBinteger\fR i,a             \fBint\fR i; \fBPMINT\fR a;
+
+call minput(a,i)        i \(eq minput(a);
+call omin(a,i)          i \(eq omin(a);
+call mout(a)            mout(a);
+call omout(a)           omout(a);
+.DE
+.NH 2
+Conversions
+.PP
+Subroutines are also provided for converting from the
+.B MINT
+structure to the closest approximation in Fortran,
+the pair of an
+.B integer
+(representing the 
+.I len
+field) and a vector of
+\fBinteger\fR*2's
+(representing the array pointed to by the
+.I val
+field).
+.PP
+Usage is as follows:
+.ID
+\fBinteger\fR a, length       (a represents a \fBPMINT\fR)
+\fBinteger\fR*2 vector(N)     (must have abs(length) .le. N)
+
+call mtovec(a,length,vector)
+    results in:
+        length \(eq a\->len
+        vector(i) \(eq a\->val[i-1] for i \(eq 1 to abs(length)
+
+call vectom(length,vector,a)
+    results in:
+        a\->len \(eq length
+        a\->val[i-1] \(eq vector(i) for i \(eq 1 to abs(length)
+.DE
+The latter is actually a method of initialization.
+.NH
+Comparison with other arbitrary precision packages
+.PP
+The only other program I am aware of for arbitrary precision
+arithmetic on PDP-11 
+.UX "" "" 1
+is
+.I bc/dc .
+Since this is based on a
+.I (yacc/lex )
+interpreter, it is obviously much slower;
+see ``help bignumbers'' for contest results.
+.PP
+UCB
+.I lisp/liszt
+provides arbitrary precision \fBinteger\fRs, but I have no
+first-hand experience with its use.
+Since no working version of the
+.I ape
+routines has been put on a VAX yet,
+obviously no comparison has been done.
+.PP
+I have heard of multiprecision packages written in Fortran, Pascal,
+and assembly languages for various computers but have no
+details on their quality or their portability.
+The
+.I ape
+routines have been constructed to be easily transferable
+to any computer with a C compiler assuming that
+.IP
+a) 
+.I malloc
+and
+.I free
+are provided
+.br
+b)
+.B long
+\fBinteger\fRs are twice as long as  \fBshort\fR
+ones.
+.LP
+An amount of reworking would be needed if b) is not true.

@@ -1,0 +1,12 @@
+asctime	ctime.c	/^asctime(t)$/
+ct_numb	ctime.c	/^ct_numb(cp, n)$/
+ctime	ctime.c	/^ctime(t)$/
+dysize	ctime.c	/^#define	dysize(A) (((A)%4)? 365: 366)$/
+fprintf	fprintf.c	/^fprintf(iop, format, va_alist)$/
+gmtime	ctime.c	/^gmtime(tim)$/
+localtime	ctime.c	/^localtime(tim)$/
+printf	printf.c	/^printf(format, va_alist)$/
+sprintf	sprintf.c	/^sprintf(string, format, va_alist)$/
+sunday	ctime.c	/^sunday(t, d)$/
+ttyslot	ttyslot.c	/^ttyslot()$/
+tzset	ctime.c	/^tzset()$/

@@ -1,0 +1,5 @@
+eggs              10 /usr/lib/usat/misc/ctagspgm.c eggs()
+ham               12 /usr/lib/usat/misc/ctagspgm.c ham()
+main               4 /usr/lib/usat/misc/ctagspgm.c main()
+thing1             6 /usr/lib/usat/misc/ctagspgm.c thing1()
+thing2             8 /usr/lib/usat/misc/ctagspgm.c thing2()

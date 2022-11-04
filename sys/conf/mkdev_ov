@@ -1,0 +1,27 @@
+:
+# SCCSID: @(#)mkdev_ov	3.0	4/21/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+cd ../ovdev
+for i
+do
+	echo "cc -E -N -O -DK_OV -DKERNEL ../dev/$i.c | xstr -"
+	cc -E -N -O -DK_OV -DKERNEL ../dev/$i.c | xstr -
+	echo "cc -S xs.c"
+	cc -S xs.c
+	echo "ed - xs.s < asmfix1"
+	ed - xs.s < asmfix1
+	echo "cc -S -N -O -DK_OV -DKERNEL x.c"
+	cc -S -N -O -DK_OV -DKERNEL x.c
+	echo "ed - x.s < asmfix2"
+	ed - x.s < asmfix2
+	echo "as - -V -o $i.o x.s xs.s"
+	as - -V -o $i.o x.s xs.s
+	echo "rm -f x.c x.s xs.c xs.s"
+	rm -f x.c x.s xs.c xs.s
+done

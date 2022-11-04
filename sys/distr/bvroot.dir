@@ -1,0 +1,307 @@
+/bvroot
+/bvroot/bin
+/bvroot/bin/sid
+/bvroot/bin/nsid
+/bvroot/dev
+/bvroot/etc
+/bvroot/etc/log
+/bvroot/etc/nulib
+/bvroot/lib
+/bvroot/mdec
+/bvroot/mnt
+/bvroot/opr
+/bvroot/lost+found
+/bvroot/sas
+*/bvroot/.setup		(setup by distr/mkb and distr/makefile)
+/bvroot/tmp
+/bvroot/bin/sid/adb
+/bvroot/bin/sid/csh
+/bvroot/bin/sid/sh5
+/bvroot/bin/sid/diff
+/bvroot/bin/sid/icheck
+/bvroot/bin/sid/ltf
+/bvroot/bin/sid/make
+/bvroot/bin/sid/ncheck
+/bvroot/bin/sid/restor
+/bvroot/bin/sid/tar
+/bvroot/bin/nsid/adb
+/bvroot/bin/nsid/csh
+/bvroot/bin/nsid/sh5
+/bvroot/bin/nsid/diff
+/bvroot/bin/nsid/icheck
+/bvroot/bin/nsid/ltf
+/bvroot/bin/nsid/make
+/bvroot/bin/nsid/ncheck
+/bvroot/bin/nsid/restor
+/bvroot/bin/nsid/tar
+*/bvroot/bin/[		(linked to /bin/test)
+/bvroot/bin/write
+/bvroot/bin/cp
+/bvroot/bin/clear
+*/bvroot/bin/clr	(link to clear)
+/bvroot/bin/chmod
+/bvroot/bin/chown
+/bvroot/bin/ls
+/bvroot/bin/who
+/bvroot/bin/sh
+/bvroot/bin/csh
+*/bvroot/bin/rsh5	(link to sh5)
+/bvroot/bin/sh5
+/bvroot/bin/ed
+*/bvroot/bin/red	(restricted ed, linked to ed)
+/bvroot/bin/pwd
+/bvroot/bin/rm
+/bvroot/bin/cat
+/bvroot/bin/adb
+/bvroot/bin/v7tar
+/bvroot/bin/mv
+/bvroot/bin/as
+/bvroot/bin/ld
+/bvroot/bin/ltf
+/bvroot/bin/make
+/bvroot/bin/cc
+/bvroot/bin/kill
+/bvroot/bin/ar
+/bvroot/bin/cmp
+/bvroot/bin/basename
+/bvroot/bin/hostname
+/bvroot/bin/hostid
+/bvroot/bin/echo
+/bvroot/bin/yes
+/bvroot/bin/ac
+/bvroot/bin/cal
+/bvroot/bin/cb
+/bvroot/bin/chog
+/bvroot/bin/chgrp
+/bvroot/bin/clri
+/bvroot/bin/col
+/bvroot/bin/comm
+*/bvroot/bin/crypt	(crypt removed)
+/bvroot/bin/cpio
+/bvroot/bin/date
+/bvroot/bin/dcheck
+/bvroot/bin/dd
+/bvroot/bin/deroff
+/bvroot/bin/df
+/bvroot/bin/du
+/bvroot/bin/dump
+/bvroot/bin/fgrep
+/bvroot/bin/file
+/bvroot/bin/grep
+/bvroot/bin/help
+/bvroot/bin/help2
+/bvroot/bin/icheck
+/bvroot/bin/iostat
+/bvroot/bin/join
+/bvroot/bin/primes
+/bvroot/bin/ln
+/bvroot/bin/login
+/bvroot/bin/mail
+/bvroot/bin/mesg
+/bvroot/bin/mkdir
+/bvroot/bin/mt
+/bvroot/bin/ncheck
+/bvroot/bin/newgrp
+/bvroot/bin/nice
+/bvroot/bin/nm
+/bvroot/bin/od
+/bvroot/bin/passwd
+/bvroot/bin/pr
+/bvroot/bin/ps
+/bvroot/bin/pstat
+/bvroot/bin/ptx
+/bvroot/bin/quot
+/bvroot/bin/nohup
+/bvroot/bin/test
+/bvroot/bin/wc
+/bvroot/bin/uniq
+/bvroot/bin/tty
+/bvroot/bin/tsort
+/bvroot/bin/tr
+/bvroot/bin/time
+/bvroot/bin/tee
+/bvroot/bin/ted
+/bvroot/bin/tc
+/bvroot/bin/tar
+*/bvroot/bin/mdtar	(link to tar)
+/bvroot/bin/tail
+/bvroot/bin/tabs
+/bvroot/bin/sum
+/bvroot/bin/stty
+/bvroot/bin/strip
+/bvroot/bin/split
+/bvroot/bin/spline
+/bvroot/bin/sort
+/bvroot/bin/sleep
+/bvroot/bin/size
+/bvroot/bin/sa
+/bvroot/bin/rev
+/bvroot/bin/restor
+/bvroot/bin/512restor
+/bvroot/bin/su
+/bvroot/bin/rmdir
+*/bvroot/bin/.profile	(distr/makefile, profile.KIT is master)
+/bvroot/bin/factor
+/bvroot/bin/diff
+/bvroot/bin/diff3
+/bvroot/bin/memstat
+/bvroot/bin/prof
+/bvroot/bin/ccd
+/bvroot/bin/tp
+/bvroot/bin/at
+/bvroot/bin/true
+/bvroot/bin/man
+*/bvroot/bin/apropos	(linked to man)
+*/bvroot/bin/whatis	(linked to man)
+/bvroot/bin/bufstat
+/bvroot/bin/arcv
+/bvroot/bin/sed
+/bvroot/bin/sync
+/bvroot/bin/touch
+/bvroot/bin/false
+/bvroot/bin/look
+/bvroot/bin/egrep
+/bvroot/bin/expr
+/bvroot/bin/find
+/bvroot/bin/lorder
+/bvroot/bin/units
+/bvroot/bin/logins
+/bvroot/bin/nologins
+/bvroot/bin/calendar
+/bvroot/bin/dumpdir
+/bvroot/bin/512dumpdir
+/bvroot/bin/cda
+/bvroot/bin/prep
+/bvroot/bin/ranlib
+/bvroot/bin/rasize
+/bvroot/bin/fsck
+/bvroot/bin/badstat
+/bvroot/bin/elp
+*/bvroot/bin/rmail	(linked to mail)
+/bvroot/bin/wall
+/bvroot/etc/catman
+*/bvroot/etc/hosts	(distr/makefile, hosts.KIT is master)
+*/bvroot/etc/networks	(distr/makefile, networks.KIT is master)
+/bvroot/etc/protocols
+/bvroot/etc/services
+/bvroot/etc/inetd.conf
+*/bvroot/etc/hosts.equiv	(distr/makefile, hosts.equivKIT is master)
+/bvroot/etc/arp
+/bvroot/etc/ifconfig
+/bvroot/etc/rdate
+/bvroot/etc/dcopy
+/bvroot/etc/volcopy
+/bvroot/etc/labelit
+/bvroot/etc/lpdrestart
+/bvroot/etc/labelit
+/bvroot/etc/log/filesave.log
+*/bvroot/etc/printcap	(Created by lprsetup program during installation)
+/bvroot/etc/profile
+/bvroot/etc/cshprofile
+/bvroot/etc/mount
+/bvroot/etc/mknod
+/bvroot/etc/mkfs
+/bvroot/etc/mtab
+/bvroot/etc/getty
+/bvroot/etc/newfs
+/bvroot/etc/nu
+/bvroot/etc/nu.cf
+/bvroot/etc/nulib/nu1.sh
+/bvroot/etc/nulib/nu2.sh
+/bvroot/etc/nulib/nu3.sh
+/bvroot/etc/nulib/nu4.sh
+/bvroot/etc/syslog.conf
+/bvroot/etc/syslog.pid
+/bvroot/etc/dmesg
+/bvroot/etc/update
+/bvroot/etc/umount
+/bvroot/etc/accton
+*/bvroot/etc/ttys	(Created by setup program during installation)
+*/bvroot/etc/passwd	(distr/makefile, passwd.KIT is master)
+*/bvroot/etc/group	(distr/makefile, passwd.KIT is master)
+/bvroot/etc/cron
+*/bvroot/etc/rc		(distr/makefile, rc.KIT is master)
+*/bvroot/etc/remote	(distr/makefile, remote.KIT is master)
+/bvroot/etc/utmp
+/bvroot/etc/ddate
+/bvroot/etc/fpsim
+*/bvroot/etc/motd	(distr/makefile, motd.KIT is master)
+/bvroot/etc/eli
+/bvroot/etc/tss
+/bvroot/etc/ipatch
+/bvroot/etc/elc
+/bvroot/etc/msf
+/bvroot/etc/rawfs
+/bvroot/etc/termcap
+/bvroot/etc/tzname
+/bvroot/etc/init
+/bvroot/etc/lpset
+*/bvroot/etc/tree	(not supported on binary kits YET!)
+/bvroot/etc/gettytab
+/bvroot/etc/route
+/bvroot/etc/rx2fmt
+*/bvroot/etc/ttytype	(Created by setup program during installation)
+/bvroot/etc/fsdb
+/bvroot/etc/vipw
+*/bvroot/boot	(replaced later, see /usr/sys/distr/makefile)
+/bvroot/lib/malloc_debug.o
+/bvroot/lib/libc.a
+/bvroot/lib/libcV.a
+/bvroot/lib/c0
+/bvroot/lib/c1
+*/bvroot/lib/c2		(setup links c2 to c2_id or c2_ov)
+/bvroot/lib/cpp
+/bvroot/lib/as2
+/bvroot/lib/crt0.o
+/bvroot/lib/mcrt0.o
+/bvroot/lib/libln.a
+*/bvroot/lib/libl.a	(linked to libln.a)
+/bvroot/lib/libm.a
+/bvroot/lib/c2_id
+/bvroot/lib/fcrt0.o
+/bvroot/lib/fmcrt0.o
+/bvroot/lib/libfpsim.a
+/bvroot/lib/fc1
+/bvroot/lib/c2_ov
+/bvroot/lib/ovc0
+/bvroot/lib/v7csv.o
+*/bvroot/.cshrc		(distr/makefile, cshrc.KIT is master)
+*/bvroot/.login		(distr/makefile, login.KIT is master)
+*/bvroot/boot.bu	(replaced later, see /usr/sys/distr/makefile)
+/bvroot/sas/syscall
+/bvroot/sas/bads
+/bvroot/sas/rabads
+/bvroot/sas/copy
+/bvroot/sas/mkfs
+/bvroot/sas/restor
+/bvroot/sas/icheck
+/bvroot/sas/dskinit
+/bvroot/sas/scat
+*/bvroot/.setup/setup.info	(replaced later by sdload)
+*/bvroot/.setup/setup		(updated later, see /usr/sys/distr/makefile)
+*/bvroot/.setup/setup_osl	(updated later, see /usr/sys/distr/makefile)
+*/bvroot/.setup/setup_help	(updated later, see /usr/sys/distr/makefile)
+/bvroot/mdec/htboot
+/bvroot/mdec/mtboot
+/bvroot/mdec/tkboot
+/bvroot/mdec/hkuboot
+/bvroot/mdec/hpuboot
+/bvroot/mdec/rluboot
+/bvroot/mdec/rpuboot
+/bvroot/mdec/rkuboot
+/bvroot/mdec/rauboot
+/bvroot/mdec/mluboot
+*/bvroot/unix		(replaced later, see /usr/sys/distr/mkb_tape)
+/bvroot/opr/opser
+/bvroot/opr/restart
+/bvroot/opr/shutdown
+/bvroot/opr/daily.bak
+/bvroot/opr/monthly.bak
+/bvroot/opr/backup.doc
+/bvroot/opr/m11_day.bak
+/bvroot/opr/m11_week.bak
+/bvroot/opr/tk_daily.bak
+*/bvroot/.profile	(special case, handled by /sas/setup)
+*/bvroot/profile	(special case, handled by /sas/setup)
+*/bvroot/crt.profile	(special case, handled by /sas/setup)
+*/bvroot/prt.profile	(special case, handled by /sas/setup)

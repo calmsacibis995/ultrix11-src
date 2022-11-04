@@ -1,0 +1,51 @@
+Mdiff	diff.c	/^main(argc, argv)$/
+Mdiffh	diffh.c	/^main(argc,argv)$/
+ascii	diffdir.c	/^ascii(f)$/
+calldiff	diffdir.c	/^calldiff(wantpr)$/
+change	diffh.c	/^change(a,b,c,d,s)$/
+check	diffreg.c	/^check()$/
+clrl	diffh.c	/^clrl(f,n)$/
+cmp	diffh.c	/^cmp(s,t)$/
+compare	diffdir.c	/^compare(dp)$/
+copytemp	diffreg.c	/^copytemp()$/
+diffdir	diffdir.c	/^diffdir(argv)$/
+diffreg	diffreg.c	/^diffreg()$/
+done	diff.c	/^done()$/
+dopen	diffh.c	/^FILE *dopen(f1,f2)$/
+easysynch	diffh.c	/^easysynch()$/
+entcmp	diffdir.c	/^entcmp(d1, d2)$/
+equiv	diffreg.c	/^equiv(a,n,b,m,c)$/
+error	diffh.c	/^error(s,t)$/
+fetch	diffreg.c	/^fetch(f,a,b,lb,s,oldfile)$/
+getl	diffh.c	/^char *getl(f,n)$/
+hardsynch	diffh.c	/^hardsynch()$/
+high	diffreg.c	/^#define high(x)	(x>>HALFLONG)$/
+low	diffreg.c	/^#define low(x)	(x&((1L<<HALFLONG)-1))$/
+max	diff.c	/^max(a,b)$/
+min	diff.c	/^min(a,b)$/
+movstr	diffh.c	/^movstr(s,t)$/
+newcand	diffreg.c	/^newcand(x,y,pred)$/
+noroom	diff.c	/^noroom()$/
+only	diffdir.c	/^only(dp, which)$/
+output	diffh.c	/^output(a,b)$/
+prepare	diffreg.c	/^prepare(i, arg)$/
+prints	diffreg.c	/^#define	prints(s)	fputs(s,stdout)$/
+progerr	diffh.c	/^progerr(s)$/
+prune	diffreg.c	/^prune()$/
+ptname	diffdir.c	/^ptname(dp)$/
+ralloc	diff.c	/^ralloc(p,n)	\/*compacting reallocation *\/$/
+range	diffh.c	/^range(a,b)$/
+readhash	diffreg.c	/^readhash(f)$/
+savestr	diff.c	/^savestr(cp)$/
+scanpr	diffdir.c	/^scanpr(dp, test, title, file, efile)$/
+search	diffreg.c	/^search(c, k, y)$/
+setfile	diffdir.c	/^setfile(fpp, epp, file)$/
+setupdir	diffdir.c	/^setupdir(cp)$/
+skipline	diffreg.c	/^skipline(f)$/
+sort	diffreg.c	/^sort(a,n)	\/*shellsort CACM #201*\/$/
+splice	diffreg.c	/^splice(dir, file)$/
+stone	diffreg.c	/^stone(a,n,b,c)$/
+talloc	diff.c	/^talloc(n)$/
+unravel	diffreg.c	/^unravel(p)$/
+unsort	diffreg.c	/^unsort(f, l, b)$/
+useless	diffdir.c	/^useless(cp)$/

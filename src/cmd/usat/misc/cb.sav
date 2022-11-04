@@ -1,0 +1,20 @@
+/*
+ * 'cb' test - tests C program beautifier
+ */
+#include <time.h>
+char *asctime();
+main(){
+	struct tm *ls;
+	long tloc;
+	time(&tloc);
+	ls=localtime(&tloc);
+	ls->tm_min+=10;/*add 10 minutes*/
+	if(ls->tm_min>=60){
+		ls->tm_min-=60;
+		ls->tm_hour+=1;
+	}
+	if(ls->tm_hour>=24){
+		ls->tm_hour-=24;
+	}
+	printf("%02d%02d\n",ls->tm_hour,ls->tm_min);
+}

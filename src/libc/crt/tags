@@ -1,0 +1,9 @@
+Copyright	aldiv.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+From	auldiv.s	/^\/ From (System V)  auldiv.s  1.3$/
+clr	auldiv.s	/^clr	(r3)+$/
+com	aldiv.s	/^com	(sp)$/
+div	udiv.s	/^div	(sp)+,r0$/
+inc	aldiv.s	/^	inc	(sp)$/
+mov	aldiv.s	/^mov	(sp)+,r0$/
+on	almul.s	/^\/ Based on (System V)  almul.s  1.3$/
+tst	aldiv.s	/^	tst	(sp)+$/

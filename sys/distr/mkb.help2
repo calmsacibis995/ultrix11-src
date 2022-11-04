@@ -1,0 +1,17 @@
+
+General Kit Build Instructions
+------------------------------
+1.  Prior to making any magtape kits, the tape drive
+    (TE16 unit one) must be cleaned.
+
+2.  When making kits for UEG testing (NOT field test/SDC submission)
+    the system may remain in multi-user mode with logins enabled.
+    HOWEVER, all users should be instructed NOT to modify any of the
+    system binaries while the build is in progress.
+
+    Use the `/etc/wall' command to warn all logged in users. It
+    would be wise to edit a warning into the `/etc/motd' file to
+    warn any users who may log in during the build.
+
+    Inform the users when the kit build is complete.
+

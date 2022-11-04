@@ -1,0 +1,79 @@
+:
+# SCCSID: @(#)SHELL40	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+T=/tmp/$$ PATH=/bin:/usr/bin O="-DOLDCC" OTWO= S= N=yes OPT= ret=0 prof=
+L=/lib COPT=/lib/c2
+LC="$L/crt0.o" LIBS=" $L/libc.a" NAS=as LD=ld
+CCOMP1=/usr/lib/ccom1 CCOMP2=/usr/lib/ccom2
+ECHO=echo
+trap "rm -f $T.*; exit 1" 1 2 3 15
+trap 'rm -f $T.*; exit $ret' 0
+for A
+do	case $A in
+	*.c)	B=`basename $A .c`
+		$ECHO "$B.c"
+		case "$S$OPT" in
+		-S)	if /lib/cpp $O $A $T.i &&
+			   $CCOMP1 $prof <$T.i | $CCOMP2 $OTWO >$B.s; then
+				: OK
+			else
+				ret=$?
+			fi ;;
+		-Syes)	if /lib/cpp $O $A $T.i &&
+			   $CCOMP1 $prof <$T.i | $CCOMP2 $OTWO >$T.s &&
+			   $COPT $T.s $B.s; then
+				: OK
+			else
+				ret=$?
+			fi ;;
+		yes)	if /lib/cpp $O $A $T.i &&
+			    $CCOMP1 $prof <$T.i | $CCOMP2 $OTWO >$T.x &&
+			    $COPT $T.x  $T.s &&
+			    $NAS - -o $B.o $T.s ; then
+				ll="$ll $B.o"
+			else
+				N=no ret=$?
+			fi ;;
+		*)	if /lib/cpp $O $A $T.i &&
+			   $CCOMP1 $prof <$T.i | $CCOMP2 $OTWO >$T.s &&
+			    $NAS - -o $B.o $T.s ; then
+				ll="$ll $B.o"
+			else
+				N=no ret=$?
+			fi ;;
+		esac ;;
+
+	-S)	N=no S=-S OTWO=-l ;;
+
+	-O)	OPT=yes ;;
+
+	-[IDU]*)	O="$O $A" ;;
+
+	-c)	N=no ;;
+
+	-)	ECHO=: ;;
+
+	*.s)	B=`basename $A .s`
+		if echo "$B.s:" &&
+		$NAS - -o $B.o $A; then
+			ll="$ll $B.o"
+		else
+			N=no ret=$?
+		fi ;;
+
+	-p)	prof=-p  ;;
+
+	*)	ll="$ll $A"
+	esac
+done
+case $N in
+	no)	: ;;
+	*)	$LD $LC $ll $LIBS
+	ret=$?
+esac

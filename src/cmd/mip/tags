@@ -1,0 +1,188 @@
+BTYPE	manifest	/^# define BTYPE(x)  (x&BTMASK)   \/* basic type of x/
+CHARCAST	mfile1	/^# define CHARCAST(x) (char)(x)$/
+DECREF	manifest	/^# define DECREF(x) (((x>>TSHIFT)&~BTMASK)|(x&BTMAS/
+DEUNSIGN	manifest	/^# define DEUNSIGN(x) ((x)+(INT-UNSIGNED))$/
+ENUNSIGN	manifest	/^# define ENUNSIGN(x) ((x)+(UNSIGNED-INT))$/
+FIXDEF	mfile1	/^# define FIXDEF(p)$/
+INCREF	manifest	/^# define INCREF(x) (((x&~BTMASK)<<TSHIFT)|PTR|(x&B/
+ISARY	manifest	/^# define ISARY(x)   ((x&TMASK)==ARY)   \/* is x an /
+ISFTN	manifest	/^# define ISFTN(x)  ((x&TMASK)==FTN)  \/* is x a fun/
+ISPTR	manifest	/^# define ISPTR(x) ((x&TMASK)==PTR)$/
+ISUNSIGNED	manifest	/^# define ISUNSIGNED(x) ((x)<=ULONG&&(x)>=UCHAR)$/
+LCON	optim.c	/^# define LCON(p) (p->left->op==ICON)$/
+LO	optim.c	/^# define LO(p) p->left->op$/
+LV	optim.c	/^# define LV(p) p->left->lval$/
+MODTYPE	manifest	/^# define MODTYPE(x,y) x = (x&(~BTMASK))|y  \/* set /
+NOFIT	manifest	/^# define NOFIT(x,y,z)   ( (x%z + y) > z )$/
+PKFIELD	manifest	/^# define PKFIELD(s,o) ((o<<6)|s)$/
+PUTCHAR	mfile2	/^# define PUTCHAR(x) putchar(x)$/
+R2PACK	mfile2	/^# define R2PACK(x,y) (0200*((x)+1)+y)$/
+R2TEST	mfile2	/^# define R2TEST(x) ((x)>=0200)$/
+R2UPK1	mfile2	/^# define R2UPK1(x) (((x)>>7)-1)$/
+R2UPK2	mfile2	/^# define R2UPK2(x) ((x)&0177)$/
+RCON	optim.c	/^# define RCON(p) (p->right->op==ICON)$/
+REGLOOP	mfile2	/^# define REGLOOP(i) for(i=0;i<REGSZ;++i)$/
+RO	optim.c	/^# define RO(p) p->right->op$/
+RV	optim.c	/^# define RV(p) p->right->lval$/
+SETOFF	manifest	/^# define SETOFF(x,y)   if( x%y != 0 ) x = ( (x\/y +/
+SETSTO	mfile2	/^# define SETSTO(x,y) (stotree=(x),stocook=(y))$/
+SWAP	optim.c	/^# define SWAP(p,q) {sp=p; p=q; q=sp;}$/
+TNEXT	common	/^# define TNEXT(p) (p== &node[TREESZ-1]?node:p+1)$/
+UNSIGNABLE	manifest	/^# define UNSIGNABLE(x) ((x)<=LONG&&(x)>=CHAR)$/
+UPKFOFF	manifest	/^# define UPKFOFF(v) (v>>6)$/
+UPKFSZ	manifest	/^# define UPKFSZ(v)  (v&077)$/
+addcase	cgram.y	/^addcase(p) NODE *p; { \/* add case to switch *\/$/
+adddef	cgram.y	/^adddef(){ \/* add default case to switch *\/$/
+allchk	allo.c	/^allchk(){$/
+allo	allo.c	/^allo( p, q ) NODE *p; struct optab *q; {$/
+allo0	allo.c	/^allo0(){ \/* free everything *\/$/
+asgop	manifest	/^#define asgop(o) (dope[o]&ASGFLG)$/
+bcon	trees.c	/^bcon( i ){ \/* make a constant node with value i *\//
+bdty	cgram.y	/^bdty( op, p, v ) NODE *p; {$/
+beginit	pftn.c	/^beginit(curid){$/
+block	trees.c	/^block( o, l, r, t, d, s ) register NODE *l, *r; TW/
+bpsize	trees.c	/^bpsize(p) register NODE *p; {$/
+bstruct	pftn.c	/^bstruct( idn, soru ){ \/* begining of structure or /
+buildtree	trees.c	/^buildtree( o, l, r ) register NODE *l, *r; {$/
+callchk	mfile2	/^#define callchk(x) allchk()$/
+callop	manifest	/^#define callop(o) (dope[o]&CALLFLG)$/
+canon	reader.c	/^canon(p) NODE *p; {$/
+cbranch	reader.c	/^cbranch( p, true, false ) NODE *p; {$/
+cerror	common	/^cerror( s, a, b, c ) char *s; { \/* compiler error:/
+checkst	pftn.c	/^checkst(lev){$/
+chkpun	trees.c	/^chkpun(p) register NODE *p; {$/
+chkstr	trees.c	/^chkstr( i, j, type ) TWORD type; {$/
+clearst	pftn.c	/^clearst( lev ){ \/* clear entries of internal scope/
+codgen	reader.c	/^codgen( p, cookie ) NODE *p; {$/
+constore	reader.c	/^constore( p ) register NODE *p; {$/
+conval	trees.c	/^conval( p, o, q ) register NODE *p, *q; {$/
+convert	trees.c	/^convert( p, f )  register NODE *p; {$/
+dclargs	pftn.c	/^dclargs(){$/
+dclstruct	pftn.c	/^dclstruct( oparam ){$/
+defid	pftn.c	/^defid( q, class )  NODE *q; {$/
+delay	reader.c	/^delay( p ) register NODE *p; {$/
+delay1	reader.c	/^delay1( p ) register NODE *p; {  \/* look for COMOP/
+delay2	reader.c	/^delay2( p ) register NODE *p; {$/
+doinit	pftn.c	/^doinit( p ) register NODE *p; {$/
+doszof	trees.c	/^doszof( p )  register NODE *p; {$/
+dstash	cgram.y	/^dstash( n ){ \/* put n into the dimension table *\/$/
+ecomp	trees.c	/^ecomp( p ) register NODE *p; {$/
+econvert	trees.c	/^econvert( p ) register NODE *p; {$/
+endinit	pftn.c	/^endinit(){$/
+eprint	reader.c	/^eprint( p, down, a, b ) NODE *p; int *a, *b; {$/
+eread	reader.c	/^eread(){$/
+expand	match.c	/^expand( p, cookie, cp ) NODE *p;  register char *c/
+falloc	pftn.c	/^falloc( p, w, new, pty )  register struct symtab */
+ffld	reader.c	/^ffld( p, down, down1, down2 ) NODE *p; int *down1,/
+fixclass	pftn.c	/^fixclass( class, type ) TWORD type; {$/
+fixtype	pftn.c	/^fixtype( p, class ) register NODE *p; {$/
+fortarg	optim.c	/^fortarg( p ) NODE *p; {$/
+freereg	allo.c	/^freereg( p, n ) NODE *p; {$/
+freetemp	allo.c	/^freetemp( k ){ \/* allocate k integers worth of tem/
+ftnarg	pftn.c	/^ftnarg( idn ) {$/
+ftnend	pftn.c	/^ftnend(){ \/* end of function *\/$/
+fwalk	common	/^fwalk( t, f, down ) register NODE *t; int (*f)(); /
+getlr	match.c	/^getlr( p, c ) NODE *p; {$/
+getstr	pftn.c	/^getstr(){ \/* decide if the string is external or a/
+gotscal	pftn.c	/^gotscal(){$/
+hide	pftn.c	/^hide( p ) register struct symtab *p; {$/
+icons	trees.c	/^icons(p) register NODE *p; {$/
+ilbrace	pftn.c	/^ilbrace(){ \/* process an initializer's left brace /
+inforce	pftn.c	/^inforce( n ) OFFSZ n; {  \/* force inoff to have th/
+instk	pftn.c	/^instk( id, t, d, s, off ) OFFSZ off; TWORD t; {$/
+irbrace	pftn.c	/^irbrace(){$/
+isbreg	mfile2	/^# define isbreg(r) (rstatus[r]&SBREG)$/
+ispow2	optim.c	/^ispow2( c ) CONSZ c; {$/
+istnode	mfile2	/^# define istnode(p) (p->op==REG && istreg(p->rval)/
+istreg	mfile2	/^# define istreg(r) (rstatus[r]&(STBREG|STAREG))$/
+logop	manifest	/^#define logop(o) (dope[o]&LOGFLG)$/
+lookup	pftn.c	/^lookup( name, s) char *name; { $/
+lxcom	scan.c	/^lxcom(){$/
+lxenter	scan.c	/^lxenter( s, m ) register char *s; register short m/
+lxget	scan.c	/^# define lxget(c,m) (lxgcp=yytext,lxmore(c,m))$/
+lxinit	scan.c	/^lxinit(){$/
+lxmore	scan.c	/^lxmore( c, m )  register c, m; {$/
+lxres	scan.c	/^lxres() {$/
+lxstr	scan.c	/^lxstr(ct){$/
+lxtitle	scan.c	/^lxtitle(){$/
+mainp1	scan.c	/^mainp1( argc, argv ) int argc; char *argv[]; {  \/*/
+mainp2	reader.c	/^mainp2( argc, argv ) char *argv[]; {$/
+makety	trees.c	/^makety( p, t, d, s ) register NODE *p; TWORD t; {$/
+markcall	reader.c	/^markcall( p ) register NODE *p; {  \/* mark off cal/
+match	match.c	/^match( p, cookie ) NODE *p; {$/
+mkdope	common	/^mkdope(){$/
+mkty	cgram.y	/^mkty( t, d, s ) unsigned t; {$/
+moditype	trees.c	/^moditype( ty ) TWORD ty; {$/
+moedef	pftn.c	/^moedef( idn ){$/
+movestab	pftn.c	/^movestab( p, q ) register struct symtab *p, *q; {$/
+ncopy	allo.c	/^ncopy( q, p ) NODE *p, *q; {$/
+nidcl	pftn.c	/^nidcl( p ) NODE *p; { \/* handle unitialized declar/
+nncon	optim.c	/^nncon( p ) NODE *p; {$/
+notlval	trees.c	/^notlval(p) register NODE *p; {$/
+oalloc	pftn.c	/^oalloc( p, poff ) register struct symtab *p; regis/
+oconvert	trees.c	/^oconvert(p) register NODE *p; {$/
+opact	trees.c	/^opact( p )  NODE *p; {$/
+optim	optim.c	/^optim(p) register NODE *p; {$/
+optype	manifest	/^#define optype(o) (dope[o]&TYFLG)$/
+order	reader.c	/^order(p,cook) NODE *p; {$/
+oreg2	reader.c	/^oreg2( p ) register NODE *p; {$/
+p2bbeg	reader.c	/^p2bbeg( aoff, myreg ) {$/
+p2bend	reader.c	/^p2bend(){$/
+p2compile	reader.c	/^p2compile( p ) NODE *p; {$/
+p2init	reader.c	/^p2init( argc, argv ) char *argv[];{$/
+p2tree	trees.c	/^p2tree(p) register NODE *p; {$/
+pconvert	trees.c	/^pconvert( p ) register NODE *p; {$/
+prcook	reader.c	/^prcook( cookie ){$/
+prtdcon	trees.c	/^prtdcon( p ) register NODE *p; {$/
+prtree	trees.c	/^prtree(p) register NODE *p; {$/
+psave	pftn.c	/^psave( i ){$/
+psize	trees.c	/^psize( p ) NODE *p; {$/
+ptmatch	trees.c	/^ptmatch(p)  register NODE *p; {$/
+putbyte	pftn.c	/^putbyte( v ){ \/* simulate byte v appearing in a li/
+rbusy	allo.c	/^rbusy(r,t) TWORD t; {$/
+rcount	reader.c	/^rcount(){ \/* count recursions *\/$/
+rdin	reader.c	/^rdin( base ){$/
+recl2	allo.c	/^recl2( p ) register NODE *p; {$/
+reclaim	allo.c	/^reclaim( p, rw, cookie ) NODE *p; {$/
+relook	pftn.c	/^relook(p) register struct symtab *p; {  \/* look up/
+resetbc	cgram.y	/^resetbc(mask){$/
+rfree	allo.c	/^rfree( r, t ) TWORD t; {$/
+rstruct	pftn.c	/^rstruct( idn, soru ){ \/* reference to a structure /
+rwprint	allo.c	/^rwprint( rw ){ \/* print rewriting rule *\/$/
+savebc	cgram.y	/^savebc() {$/
+scnames	xdefs.c	/^char * scnames( c ) register c; {$/
+setrew	match.c	/^setrew(){$/
+shareit	allo.c	/^shareit( p, r, n ) NODE *p; {$/
+stoarg	reader.c	/^stoarg( p, calltype ) register NODE *p; {$/
+store	reader.c	/^store( p ) register NODE *p; {$/
+strargs	trees.c	/^strargs( p ) register NODE *p;  { \/* rewrite struc/
+stref	trees.c	/^stref( p ) register NODE *p; {$/
+swend	cgram.y	/^swend(){ \/* end a switch block *\/$/
+swstart	cgram.y	/^swstart(){$/
+talign	pftn.c	/^talign( ty, s) register unsigned ty; register s; {/
+talloc	common	/^talloc(){$/
+tcheck	common	/^tcheck(){ \/* ensure that all nodes have been freed/
+tcopy	allo.c	/^tcopy( p ) register NODE *p; {$/
+tfree	common	/^tfree( p )  NODE *p; {$/
+tfree1	common	/^tfree1(p)  NODE *p; {$/
+tinit	common	/^tinit(){ \/* initialize expression tree search *\/$/
+tprint	common	/^tprint( t )  TWORD t; { \/* output a nice descripti/
+tshape	match.c	/^tshape( p, shape ) NODE *p; {$/
+tsize	pftn.c	/^tsize( ty, d, s )  TWORD ty; {$/
+ttype	match.c	/^ttype( t, tword ) TWORD t; {$/
+tymatch	trees.c	/^tymatch(p)  register NODE *p; {$/
+tymerge	pftn.c	/^tymerge( typ, idp ) NODE *typ, *idp; {$/
+types	pftn.c	/^types( t1, t2, t3 ) TWORD t1, t2, t3; {$/
+tyreduce	pftn.c	/^tyreduce( p ) register NODE *p; {$/
+uclass	pftn.c	/^uclass( class ) register class; {$/
+uerror	common	/^uerror( s, a ) char *s; { \/* nonfatal error messag/
+unhide	pftn.c	/^unhide( p ) register struct symtab *p; {$/
+upoff	pftn.c	/^upoff( size, alignment, poff ) register alignment,/
+usable	allo.c	/^usable( p, n, r ) NODE *p; {$/
+ushare	allo.c	/^ushare( p, f, r ) NODE *p; {$/
+vfdalign	pftn.c	/^vfdalign( n ){ \/* make inoff have the offset the n/
+walkf	common	/^walkf( t, f ) register NODE *t;  int (*f)(); {$/
+werror	common	/^werror( s, a, b ) char *s; {  \/* warning *\/$/
+yyaccpt	pftn.c	/^yyaccpt(){$/
+yyerror	pftn.c	/^yyerror( s ) char *s; { \/* error printing routine /
+yylex	scan.c	/^yylex(){$/

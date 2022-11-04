@@ -1,0 +1,528 @@
+
+
+
+
+
+
+
+
+
+       APE - Arbitrary Precision Arithmetic Routines
+
+
+                       Mark E. Carson
+
+                 Department of Mathematics,
+             University of California, Berkeley
+
+
+
+
+
+_1.  _I_n_t_r_o_d_u_c_t_i_o_n
+
+     The _a_p_e library is a set of routines for arbitrary pre-
+cision integral arithmetic written in the C language.  These
+routines can be called by either C or f77 programs (for  the
+latter, see section 5 below).  For C programs, the line
+
+        #include <ape.h>
+
+should be included in the calling program to get the  neces-
+sary  typedefs  and  external  declarations.  In the case of
+f77, the calling program uses only integers (which are  con-
+verted  to  structure  pointers)  and  (with two exceptions)
+calls only  subroutines,  so  no  special  declarations  are
+required.  For both C and f77, the flag
+
+        -lape
+
+should be used to tell the loader to access the library.
+
+     The basic structure used by the _a_p_e routines is  called
+a  _M_I_N_T  (standing  for  ``multiprecision integer'').  It is
+defined by the typedef
+
+        typedef struct mint
+        {       int len;
+                short *val;
+        } MINT, *PMINT;
+
+which is in ape.h.  Here the field  ``len''  is  an  integer
+whose  sign is the sign of the number represented, and whose
+magnitude is the number of words (short integers) needed  to
+store  it.   The  (absolute  value  of the) number itself is
+stored as an array of short integers pointed to by  ``val.''
+The  representation  is essentially base 2^15, with the 16th
+bit of a short  integer  used  only  to  store  intermediate
+results   in   calculations.    Hence   the  largest  number
+representable  on  a  16  bit  computer  like  a  PDP-11  is
+(2^15)^(2^15)  which  is about 3e147962, though of course in
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 2 -
+
+
+actuality the number would have to be much smaller to  allow
+any  room  for  calculations  or  overhead.  To maximize the
+amount of data space available, it is advisible to  use  the
+-i flag when loading the program.
+
+     For a  comparison  with  some  quantities  from  number
+theory,  this  means  the  largest  Fermat  number  which is
+representable is F18.  For a 32 bit computer the limit would
+be  F34  (assuming,  that is, that it had 4 billion bytes of
+core!).  In an actual test, the largest Fermat number  which
+could  be  directly  computed and output by the routines was
+F17, a number of about 39,500 decimal digits.
+
+     Calculations are done much as they  are  by  hand  with
+numbers  represented  base  10.   All the routines deal with
+stucture pointers (_P_M_I_N_Ts), so it's better  to  declare  and
+use these rather than the structures themselves.  More space
+is allocated as needed (by calls to _m_a_l_l_o_c)  and  (at  least
+mostly) freed when unneeded (by calls to _f_r_e_e).
+
+     The following sections treat the  various  routines  in
+some detail.
+
+_2.  _I_n_i_t_i_a_l_i_z_a_t_i_o_n _a_n_d _R_e_m_o_v_a_l
+
+     Before a _M_I_N_T or _P_M_I_N_T can be used by  other  routines,
+it  must  be  initialized.   Initialization  comes  in three
+varieties:
+
+             new(pa)
+             PMINT *pa;
+
+
+     Like the Pascal procedure,  _n_e_w(&_a)  creates  a  zeroed
+     _M_I_N_T which _a points to.
+
+             PMINT shtom(sn)         short sn;
+             PMINT itom(n)           int n;
+             PMINT ltom(ln)          long ln;
+             PMINT stom(s)           char *s;
+
+
+     These functions return pointers to  _M_I_N_Ts  with  values
+     equal  to their arguments (or to the numeric equivalent
+     of its argument for _s_t_o_m).  _s_t_o_m can be used  for  ini-
+     tializing with numbers of arbitrary length.  It follows
+     the usual C conventions for determining input bases.
+
+
+
+
+
+
+
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 3 -
+
+
+
+             PMINT padd(a,b)         PMINT psub(a,b)
+             PMINT pmult(a,b)        PMINT pdiv(a,b)
+             PMINT pmod(a,b)         PMINT psdiv(a,n)
+             PMINT psmod(a,n)        PMINT ppow(a,b,c)
+             PMINT prpow(a,n)        PMINT psqrt(a)
+
+             PMINT a,b,c;
+             int n;
+
+
+     These functions are simply versions of the  correspond-
+     ing arithmetic routines discussed below (with the ``p''
+     either deleted or replaced by an ``m'' except for  _p_m_o_d
+     and  _p_s_m_o_d  which  return  the remainders from _m_d_i_v and
+     _s_d_i_v  respectively)  which  return  pointers  to  their
+     results,  rather than making their last arguments point
+     to them.  They should be used only for  initialization,
+     not  further  calculation,  else  storage  space may be
+     lost.
+
+     Two routines are provided for freeing unneeded space:
+
+             xfree(a)
+             afree(a)
+
+             PMINT a;
+
+
+     _x_f_r_e_e frees what _a->_v_a_l points  to;  _a_f_r_e_e  also  frees
+     what  _a points to.  _x_f_r_e_e zeroes an already initialized
+     _P_M_I_N_T while _a_f_r_e_e returns it to an uninitialized state.
+     Obviously,  these should only be used when the routines
+     here have been used to initialize the pointers.   Since
+     _x_f_r_e_e  is  used  frequently  by  the  _a_p_e  routines  to
+     ``clear'' _M_I_N_Ts prior to assignments, it is not  advis-
+     able  to  initialize the ``val'' field by methods other
+     than those mentioned here.
+
+_3.  _A_r_i_t_h_m_e_t_i_c
+
+     For the following conceptual descriptions, assume these
+type declarations:
+
+        PMINT a,b,c,d,q,r;
+        int m,n;
+        long ln;
+        short *R;
+
+
+        _R_o_u_t_i_n_e             _R_e_s_u_l_t
+
+        madd(a,b,c)         c = a + b
+        msub(a,b,c)         c = a - b
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 4 -
+
+
+        mult(a,b,c)         c = a * b
+        sdiv(a,m,q,R)       q = a / m;  R = a mod m
+        mdiv(a,b,q,r)       q = a / b;  r = a mod b
+        gcd(a,b,c)          c = gcd(a,b)
+        reciprocal(a,n,b)   b = 10^n / a
+        msqrt(a,b,r)        b = sqrt(a);  r = a - b*b
+                  (r's length is returned)
+        pow(a,b,c,d)        d = a^b mod c
+        rpow(a,n,b)         b = a^n
+        lpow(n,ln,b)        b = n^ln
+
+In all cases, calls like _m_a_d_d(_a,_b,_a) are  allowed  and  give
+the  expected  results.  The routines dealing with _i_n_ts will
+all work properly no matter what  the  relationship  between
+_s_h_o_r_t  and  _i_n_t  except  _s_d_i_v which needs the _i_n_t _m to be no
+larger than the largest _s_h_o_r_t.  _r_e_c_i_p_r_o_c_a_l  is  the  closest
+thing provided to decimal fractions.
+
+     Note that before any of these routines can be used, all
+the  pointers used must be initialized.  As an example, this
+program segment will fail:
+
+        PMINT a,b,c;
+
+        a = itom(2);
+        b = itom(3);
+        madd(a,b,c);
+
+It should be changed to either
+
+        PMINT a,b,c;                    PMINT a,b,c;
+
+        a = itom(2);                    a = itom(2);
+        b = itom(3);       or           b = itom(3);
+        new(&c);                        c = padd(a,b);
+        madd(a,b,c);
+
+
+     Comparisons may be  done  with  the  integral  function
+_m_c_m_p.   _m_c_m_p(_a,_b) returns something positive if _a > _b, nega-
+tive if _a < _b, and zero if _a = _b.  For seeing whether  _a  is
+positive, negative or zero, it suffices to look at _a->_l_e_n.
+
+_4.  _I_n_p_u_t _a_n_d _O_u_t_p_u_t
+
+     Input and output are allowed for any  reasonable  base,
+to  and  from  both files and character strings.  The proto-
+types are:
+
+
+
+
+
+
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 5 -
+
+
+
+        PMINT a;
+        int n;  [must have n > 1]
+        FILE *f;
+        char *s;
+
+        m_in(a,n,f)
+                input a number base ``n''
+                from file ``f'' into ``a''
+        sm_in(a,n,s)
+                input a number base ``n''
+                from string ``s'' into ``a''
+        m_out(a,n,f)
+                output ``a'' base ``n''
+                onto file ``f''
+        sm_out(a,n,s)
+                output ``a'' base ``n''
+                onto string ``s''
+
+
+     Spaces are allowed in long input  numbers  for  greater
+readability  (and  hence  are  _n_o_t sufficient for separating
+numbers); newlines may be escaped  with  backslashes.   _m__i_n
+returns 0 on normal termination and EOF (-1) when the end of
+the input file is encountered.  And again, the  _P_M_I_N_Ts  must
+be initialized before the input routines can be used.
+
+     The letters a-z or A-Z may be used for  the  (base  10)
+numbers  10-35  when  the  input  base  is greater than ten.
+Unfortunately,  no  provision  is  made  for  larger   input
+``digits.''  On  output,  a-f  are  used for 10-15 for bases
+between 11 and 16; for larger  bases  the  usual  ``hybrid''
+notation of space-separated base 10 numbers is used.  Output
+numbers are _n_o_t automatically terminated by newlines or bro-
+ken at any width; an output formatting program such as _p_r_e_t_-
+_t_y_a_p_e can be used to do the latter.  For _s_m__o_u_t, the  string
+is  assumed  to  be  large enough to hold the output number.
+The function _o_u_t_l_e_n_g_t_h(_a,_b) can be used  to  get  an  (over)
+estimate of the length required.
+
+     Special versions of these  routines  are  provided  for
+bases 8 and 10.  They are
+
+        PMINT a;
+        FILE *f;
+
+
+                Base 8
+        om_in(a,f)
+        omin(a)         [f=stdin]
+        om_out(a,f)
+        omout(a)        [f=stdout]
+
+
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 6 -
+
+
+
+                Base 10
+        fmin(a,f)
+        minput(a)       [f=stdin]
+        fmout(a,f)
+        mout(a)         [f=stdout]
+
+Because 2^15 = 8^5, conversion from  the  internal  form  to
+octal  output is much easier and faster (about 30 times fas-
+ter for a hundred-digit number) for base 8 as opposed to any
+other  base.   The names used here are a bit unfortunate; in
+particular, _m_i_n_p_u_t was chosen  to  avoid  clashes  with  _m_i_n
+minimum functions.
+
+_5.  _U_s_a_g_e _w_i_t_h _F_o_r_t_r_a_n
+
+     F77 programs can make use of the _a_p_e  routines  through
+the  ``frontend''  subroutines  provided.   Generally, these
+cast the _i_n_t_e_g_e_rs passed by the Fortran program into _P_M_I_N_Ts,
+pass  them to the _a_p_e routines, making the call by reference
+or value as required, and then  (when  appropriate)  casting
+the resulting _P_M_I_N_Ts back into _i_n_t_e_g_e_rs.
+
+     _N_o_t_e: when writing these, I assumed throughout  that  4
+byte  integers  (``integer*4'')  were  used.  In particular,
+programs compiled with the -I2 flag  may  have  difficulties
+with  these  routines!   Versions  that  work  with  2  byte
+integers are stored in the file ``~ape/shortran.c''.
+
+     The subroutines provided generally have the same  names
+as their C counterparts.  They are:
+
+_5._1.  _I_n_i_t_i_a_l_i_z_a_t_i_o_n _a_n_d _R_e_m_o_v_a_l
+
+        _f_7_7 _v_e_r_s_i_o_n             _C _v_e_r_s_i_o_n
+
+        integer n,a             int n;  PMINT a;
+        character*M s           char s[M];
+
+        call new(a)             new(&a);
+        call itom(n,a)          a = itom(n);
+        call stom(s,a)          a = stom(s);
+        call xfree(a)           xfree(a);
+        call afree(a)           afree(a);
+
+
+_5._2.  _A_r_i_t_h_m_e_t_i_c
+
+     Subroutines _m_a_d_d, _m_s_u_b, _m_u_l_t, _m_d_i_v, _s_d_i_v, _g_c_d, _p_o_w  and
+_r_p_o_w are provided to call their C counterparts.  The _i_n_t_e_g_e_r
+functions _m_c_m_p and _m_s_q_r_t  likewise  call  the  same-named  C
+functions.
+
+
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 7 -
+
+
+_5._3.  _I_n_p_u_t _a_n_d _O_u_t_p_u_t
+
+     I/O is provided only from stdin/stdout, for bases 8 and
+10.
+
+        _f_7_7 _v_e_r_s_i_o_n             _C _v_e_r_s_i_o_n
+
+        integer i,a             int i; PMINT a;
+
+        call minput(a,i)        i = minput(a);
+        call omin(a,i)          i = omin(a);
+        call mout(a)            mout(a);
+        call omout(a)           omout(a);
+
+
+_5._4.  _C_o_n_v_e_r_s_i_o_n_s
+
+     Subroutines are also provided for converting  from  the
+_M_I_N_T  structure to the closest approximation in Fortran, the
+pair of an _i_n_t_e_g_e_r (representing the ``len''  field)  and  a
+vector  of _i_n_t_e_g_e_r*_2's (representing the array pointed to by
+the ``val'' field).
+
+     Usage is as follows:
+
+        integer a, length   (a represents a PMINT)
+        integer*2 vector(N) (must have abs(length) .le. N)
+
+        call mtovec(a,length,vector)
+            results in:
+             length = a->len
+             vector(i) = a->val[i-1] for i = 1 to abs(length)
+
+        call vectom(length,vector,a)
+            results in:
+             a->len = length
+             a->val[i-1] = vector(i) for i = 1 to abs(length)
+
+The latter is actually a method of initialization.
+
+_6.  _C_o_m_p_a_r_i_s_o_n _w_i_t_h _o_t_h_e_r _a_r_b_i_t_r_a_r_y _p_r_e_c_i_s_i_o_n _p_a_c_k_a_g_e_s
+
+     The only other program I am aware of for arbitrary pre-
+cision arithmetic on PDP-11 UNIX* is _b_c/_d_c.  Since  this  is
+based  on  a  (_y_a_c_c/_l_e_x)  interpreter,  it is obviously much
+slower; see ``help bignumbers'' for contest results.
+
+     UCB _l_i_s_p/_l_i_s_z_t provides arbitrary  precision  integers,
+but  I have no first-hand experience with its use.  Since no
+working version of the _a_p_e routines has been put  on  a  VAX
+yet, obviously no comparison has been done.
+__________________________
+*UNIX is a Footnote of Bell Laboratories.
+
+
+
+
+                       July 16, 1982
+
+
+
+
+
+                           - 8 -
+
+
+     I have heard of multiprecision packages written in For-
+tran,  Pascal,  and assembly languages for various computers
+but have no details on their quality or  their  portability.
+The   _a_p_e  routines  have  been  constructed  to  be  easily
+transferable to any computer with a C compiler assuming that
+
+     a) _m_a_l_l_o_c and _f_r_e_e are provided
+     b) _l_o_n_g integers are twice as long as _s_h_o_r_t ones.
+
+An amount of reworking would be needed if b) is not true.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       July 16, 1982
+
+

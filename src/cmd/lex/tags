@@ -1,0 +1,84 @@
+Mlmain	lmain.c	/^main(argc,argv)$/
+Mmain	main.c	/^main(){$/
+YYU	ncform	/^# define YYU(x) x$/
+acompute	sub2.c	/^acompute(s)	\/* compute action list = set of poss. /
+add	sub2.c	/^add(array,n)$/
+allprint	sub1.c	/^allprint(c)$/
+alpha	sub1.c	/^alpha(c)$/
+bprint	sub2.c	/^bprint(a,s,n)$/
+buserr	lmain.c	/^buserr(){$/
+cclinter	sub1.c	/^cclinter(sw)$/
+cfoll	sub2.c	/^cfoll(v)$/
+cgoto	sub2.c	/^cgoto(){$/
+chd1	header.c	/^chd1(){$/
+chd2	header.c	/^chd2(){$/
+cpyact	sub1.c	/^cpyact(){ \/* copy C action to the next ; or closin/
+ctail	header.c	/^ctail(){$/
+ctrans	sub1.c	/^ctrans(ss)$/
+digit	sub1.c	/^digit(c)$/
+dupl	sub1.c	/^dupl(n)$/
+error	sub1.c	/^error(s,p,d)$/
+first	sub2.c	/^first(v)	\/* calculate set of positions with v as r/
+follow	sub2.c	/^follow(v)$/
+free1core	lmain.c	/^free1core(){$/
+free2core	lmain.c	/^free2core(){$/
+free3core	lmain.c	/^free3core(){$/
+freturn	ldefs.c	/^# define freturn(s) s$/
+gch	sub1.c	/^gch(){$/
+get1core	lmain.c	/^get1core(){$/
+get2core	lmain.c	/^get2core(){$/
+get3core	lmain.c	/^get3core(){$/
+getl	sub1.c	/^getl(p)	\/* return next line of input, throw away t/
+index	sub1.c	/^index(a,s)$/
+layout	sub2.c	/^layout(){$/
+lgate	sub1.c	/^lgate()$/
+lookup	sub1.c	/^lookup(s,t)$/
+member	sub2.c	/^member(d,t)$/
+mkmatch	sub2.c	/^mkmatch(){$/
+mn0	sub1.c	/^mn0(a)$/
+mn1	sub1.c	/^mn1(a,d)$/
+mn2	sub1.c	/^mn2(a,d,c)$/
+munput	sub1.c	/^munput(t,p)	\/* implementation dependent *\/$/
+myalloc	lmain.c	/^char *myalloc(a,b)$/
+nextstate	sub2.c	/^nextstate(s,c)$/
+notin	sub2.c	/^notin(n)$/
+packtrans	sub2.c	/^packtrans(st,tch,tst,cnt,tryit)$/
+padd	sub2.c	/^padd(array,n)$/
+pccl	sub2.c	/^pccl() {$/
+pfoll	sub2.c	/^pfoll()$/
+phead1	header.c	/^phead1(){$/
+phead2	header.c	/^phead2(){$/
+printable	sub1.c	/^printable(c)$/
+pstate	sub2.c	/^pstate(s)$/
+ptail	header.c	/^ptail(){$/
+rhd1	header.c	/^rhd1(){$/
+rprint	sub2.c	/^rprint(a,s,n)$/
+rtail	header.c	/^rtail(){$/
+scomp	sub1.c	/^scomp(x,y)$/
+scopy	sub1.c	/^scopy(s,t)$/
+sect1dump	sub1.c	/^sect1dump(){$/
+sect2dump	sub1.c	/^sect2dump(){$/
+segviol	lmain.c	/^segviol(){$/
+shiftr	sub2.c	/^shiftr(a, n)$/
+siconv	sub1.c	/^siconv(t)	\/* convert string t, return integer valu/
+slength	sub1.c	/^slength(s)$/
+space	sub1.c	/^space(ch)$/
+sprint	allprint.c	/^sprint(s)$/
+statistics	header.c	/^statistics(){$/
+stprt	sub2.c	/^stprt(i)$/
+strpt	sub1.c	/^strpt(s)$/
+treedump	sub1.c	/^treedump()$/
+upone	sub2.c	/^upone(a,n)$/
+usescape	sub1.c	/^usescape(c)$/
+warning	sub1.c	/^warning(s,p,d)$/
+yyback	ncform	/^yyback(p, m)$/
+yyerror	lmain.c	/^yyerror(s)$/
+yyinput	ncform	/^yyinput(){$/
+yyless	yyless.c	/^yyless(x)$/
+yylex	parser.y	/^yylex(){$/
+yylook	ncform	/^yylook(){$/
+yyoutput	ncform	/^yyoutput(c)$/
+yyracc	reject.c	/^yyracc(m)$/
+yyreject	reject.c	/^yyreject ()$/
+yyunput	ncform	/^yyunput(c)$/
+yywrap	yywrap.c	/^yywrap()$/

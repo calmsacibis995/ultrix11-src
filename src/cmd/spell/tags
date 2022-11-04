@@ -1,0 +1,32 @@
+CCe	spell.c	/^CCe(ep,d,a,lev)$/
+Mspell	spell.c	/^main(argc,argv)$/
+Mspellin	spellin.c	/^main(argc,argv)$/
+Mspellout	spellout.c	/^main(argc, argv)$/
+Tolower	spell.h	/^#define Tolower(c)	(isupper(c)?tolower(c):c) \/* ug/
+VCe	spell.c	/^VCe(ep,d,a,lev)$/
+an	spell.c	/^an(ep,d,a,lev)$/
+bility	spell.c	/^bility(ep,d,a,lev)$/
+dict	spell.c	/^dict(bp,ep)$/
+es	spell.c	/^es(ep,d,a,lev)$/
+get	spell.h	/^#define get(h)	(tab[h>>SHIFT]&(1<<((int)h&((1<<SHI/
+i_to_y	spell.c	/^i_to_y(ep,d,a,lev)$/
+ily	spell.c	/^ily(ep,d,a,lev)$/
+ise	spell.c	/^ise()$/
+ize	spell.c	/^ize(ep,d,a,lev)$/
+lookuppref	spell.c	/^char *lookuppref(wp,ep)$/
+metry	spell.c	/^metry(ep,d,a,lev)$/
+monosyl	spell.c	/^monosyl(bp,ep)$/
+ncy	spell.c	/^ncy(ep,d,a,lev)$/
+nop	spell.c	/^nop()$/
+prime	spell.h	/^prime(argc, argv) register char **argv;$/
+putsuf	spell.c	/^putsuf(ep,a,lev)$/
+putw	spell.c	/^putw(bp,ep,lev)$/
+s	spell.c	/^s(ep,d,a,lev)$/
+set	spell.h	/^#define set(h)	tab[h>>SHIFT] |= 1<<((int)h&((1<<SH/
+skipv	spell.c	/^skipv(s)$/
+strip	spell.c	/^strip(ep,d,a,lev)$/
+suffix	spell.c	/^suffix(ep,lev)$/
+tion	spell.c	/^tion(ep,d,a,lev)$/
+vowel	spell.c	/^vowel(c)$/
+y_to_e	spell.c	/^y_to_e(ep,d,a,lev)$/
+ztos	spell.c	/^ztos(s)$/

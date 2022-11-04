@@ -1,0 +1,1216 @@
+SCCSID="@(#)m11dist	3.2	10/13/87"
+# ULTRIX-11 m11dist    Fred Canter
+# Makes RX50 kits on BEDROCK (UEG's PDP-11/70)
+#
+# m11dist		make all diskettes
+# m11dist [name]	make only the named diskette
+#
+# Must be in directory /usr/sys/sas!
+# Needs ready command in /usr/sys/sas!
+# Needs these directories: /bvsas, /bvroot, /bvusr, & /bvos
+
+RX=rx2
+if test -r /usr/staff/fred/RX_BEDROCK
+then	RX=rx1
+fi
+if test $# = 2
+then	shift
+else
+	echo ""
+	echo "Make ULTRIX-11 Micro/pdp-11 distribution on RX50 diskettes."
+	echo ""
+	if test -r /usr/staff/fred/RX_BEDROCK
+	then	echo -n "Use RX50 drive ONE"
+	else	echo -n "Use RX50 drive TWO"
+	fi
+	echo " when making diskettes"
+	echo ""
+	echo "Mount the master RX50 ROOT and /USR pack in RL02 unit zero."
+	echo "Mount the master RX50 OPTIONAL SOFTWARE pack in RL02 unit one."
+	echo "Mount the RM03 binary master pack in RM03 unit one."
+	echo ""
+	echo "WRITE PROTECT RL02 units zero and one, and RM03 unit one."
+	ready
+	echo ""
+	if test $# = 0
+	then
+		echo -n "Check file systems <y or n> ? "
+		read YN
+		if test $YN = y
+		then
+			fsck -t /tmp/fred.fsck1234 /dev/rhp10 /dev/rhp11 /dev/rhp14
+			fsck -t /tmp/fred.fsck1234 /dev/rrl00 /dev/rrl01 /dev/rrl10 /dev/rrl11
+			if test $? != 0
+			then	exit
+			fi
+		fi
+	fi
+fi
+: x is a dummy argument, tells m11dist it called itself.
+: all x really does is inhibit the initial setup messages.
+if test $# = 0
+then	L=y
+	while test $L = y
+	do
+		m11dist x boot
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x root
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x usr
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x sysgen1
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x sysgen2
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x sysgen3
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x sysgen4
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x usep
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x uucp
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x tcpip
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x f77
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x pascal
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x sccs
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x plot
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x usat
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x docprep1
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x docprep2
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x docprep3
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x spell
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x dict
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x learn1
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x learn2
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x orphans
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x games
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x man1
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x man2
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x man3
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x man4
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	while test $L = y
+	do
+		m11dist x man5
+		if test $? = 0
+		then	break
+		else	echo ""
+			echo -n "FATAL ERROR: try again <y or n> ? "
+			read YN
+			if test $YN != y
+			then 	break
+			fi
+		fi
+	done
+	exit
+fi
+case $1 in
+	boot)	S=0
+		echo ""
+		echo "Mount the BOOT diskette."
+		echo ""
+		ready
+		echo ""
+		echo "Copying boot block and files to boot diskette"
+		# Boot file system size is 512 blocks, but we write the
+		# entire diskette to ensure it can be copied by the SDC.
+		dd if=/dev/rrl10 of=/dev/r$RX bs=10b count=80
+		if test $? != 0
+		then	S=1
+		fi
+		/etc/mount /dev/$RX /bvsas
+		if test $? != 0
+		then	S=1
+		fi
+		ls -l /bvsas
+		/etc/umount /dev/$RX
+		echo "fsck /dev/r$RX"
+		fsck /dev/r$RX
+		if test $? != 0
+		then	S=1
+		fi
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "BOOT diskette completed"
+		echo ""
+		;;
+	root)	echo ""
+		echo "Mount the first ROOT diskette."
+		echo ""
+		ready
+		echo ""
+		echo "dump 0ymf /dev/r$RX /dev/rrl00"
+		dump 0ymf /dev/r$RX /dev/rrl00
+		if test $? != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "ROOT diskettes completed"
+		;;
+	usr)	echo ""
+		echo "Mount the first USR diskette."
+		echo ""
+		ready
+		echo ""
+		echo "dump 0ymf /dev/r$RX /dev/rrl01"
+		dump 0ymf /dev/r$RX /dev/rrl01
+		if test $? != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "USR diskettes completed"
+		;;
+	sysgen1)	S=0
+		echo ""
+		echo "Mount SYSGEN #1 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/rl11 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./sys/conf \
+		./sys/sys/*.o
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/rl11
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "SYSGEN #1 diskette completed"
+		;;
+	sysgen2)	S=0
+		echo ""
+		echo "Mount SYSGEN #2 diskette."
+		echo ""
+		ready
+		echo "/etc/mkfs /dev/r$RX rx50.proto rx50 23 sysgn2 distr"
+		/etc/mkfs /dev/r$RX rx50.proto rx50 23 sysgn2 distr
+		if test $? != 0
+		then	S=1
+		fi
+		/etc/mount /dev/$RX /bvusr
+		/etc/mount /dev/rl11 /bvos -r
+		cd /bvos/sys/ovsys
+		ar r /bvusr/LIB1_ov *.o
+		cd /bvos/sys/ovnet
+		ar r /bvusr/LIB3_ov *.o
+		cd /bvusr
+		chog bin *
+		chmod 644 *
+		cd /
+		/etc/umount /dev/rl11
+		/etc/umount /dev/$RX
+		if test $S != 0
+		then	exit 1
+		fi
+		fsck -p /dev/r$RX
+		echo ""
+		echo "SYSGEN #2 diskette completed"
+		;;
+	sysgen3)	S=0
+		echo ""
+		echo "Mount SYSGEN #3 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/rl11 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./sys/sys/LIB1_id ./sys/dev/LIB2_id
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/rl11
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "SYSGEN #3 diskette completed"
+		;;
+	sysgen4)	S=0
+		echo ""
+		echo "Mount SYSGEN #4 diskette."
+		echo ""
+		ready
+		echo "/etc/mkfs /dev/r$RX rx50.proto rx50 23 sysgn4 distr"
+		/etc/mkfs /dev/r$RX rx50.proto rx50 23 sysgn4 distr
+		if test $? != 0
+		then	S=1
+		fi
+		/etc/mount /dev/$RX /bvusr
+		/etc/mount /dev/rl11 /bvos -r
+		cd /bvos/sys/ovdev
+		cp asmfix? /bvusr
+		chog sys /bvusr/asmfix?
+		chmod 644 /bvusr/asmfix?
+		ar r /bvusr/LIB2_ov *.o
+		cd /bvos/sys/net
+		ar r /bvusr/LIB3_id *.o
+		cd /bvusr
+		chog bin *
+		chmod 644 *
+		cd /
+		/etc/umount /dev/rl11
+		/etc/umount /dev/$RX
+		if test $S != 0
+		then	exit 1
+		fi
+		fsck -p /dev/r$RX
+		echo ""
+		echo "SYSGEN #4 diskette completed"
+		;;
+	usep)	S=0
+		echo ""
+		echo "Mount USEP diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX ./usep
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "USEP diskette completed"
+		;;
+	uucp)	S=0
+		echo ""
+		echo "Mount UUCP diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./lib/uucp
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "UUCP diskette completed"
+		;;
+	tcpip)	S=0
+		echo ""
+		echo "Mount TCP/IP diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./ucb/rlogin \
+		./ucb/rcp\
+		./ucb/rwho \
+		./ucb/ruptime \
+		./ucb/talk \
+		./ucb/telnet \
+		./ucb/rsh \
+		./ucb/netstat \
+		./ucb/ftp \
+		./ucb/tftp \
+		./etc/ftpd \
+		./etc/inetd \
+		./etc/miscd \
+		./etc/rexecd \
+		./etc/rlogind \
+		./etc/routed \
+		./etc/rshd \
+		./etc/syslog \
+		./etc/talkd \
+		./etc/tftpd
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "TCP/IP diskette completed"
+		;;
+	f77)	S=0
+		echo ""
+		echo "Mount F77 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/ratfor \
+		./bin/f77 \
+		./lib/f77_strings \
+		./lib/f77pass1id \
+		./lib/f77pass1ov \
+		./lib/libF77.a \
+		./lib/libI77.a \
+		./lib/libU77.a
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "F77 diskette completed"
+		;;
+	pascal)	S=0
+		echo ""
+		echo "Mount PASCAL diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/pi40 \
+		./bin/pi70 \
+		./bin/pix \
+		./bin/px40 \
+		./bin/px70 \
+		./bin/pxp \
+		./lib/how_pi \
+		./lib/how_pix \
+		./lib/how_pxp \
+		./lib/npx_header \
+		./lib/pi1.2strings \
+		./lib/libsa.a
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "PASCAL diskette completed"
+		;;
+	sccs)	S=0
+		echo ""
+		echo "Mount SCCS diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/dls \
+		./bin/dcat \
+		./bin/dcp \
+		./bin/dlogin \
+		./bin/drm \
+		./etc/telnetd \
+		./etc/rwhod \
+		./etc/dgated \
+		./bin/admin \
+		./bin/bdiff \
+		./bin/comb \
+		./bin/delta \
+		./bin/get \
+		./bin/sccshelp \
+		./bin/prs \
+		./bin/prt \
+		./bin/rmchg \
+		./bin/unget \
+		./bin/val \
+		./bin/vc \
+		./bin/what \
+		./bin/sccs \
+		./bin/sccsdiff \
+		./bin/cdc \
+		./bin/rmdel \
+		./bin/sact \
+		./lib/help/ad \
+		./lib/help/bd \
+		./lib/help/cb \
+		./lib/help/cm \
+		./lib/help/cmds \
+		./lib/help/co \
+		./lib/help/de \
+		./lib/help/default \
+		./lib/help/ge \
+		./lib/help/he \
+		./lib/help/prs \
+		./lib/help/rc \
+		./lib/help/un \
+		./lib/help/ut \
+		./lib/help/vc
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "SCCS diskette completed"
+		;;
+	plot)	S=0
+		echo ""
+		echo "Mount PLOT diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/uucp \
+		./bin/uulog \
+		./bin/uuname \
+		./bin/uupoll \
+		./bin/uustat \
+		./bin/uux \
+		./bin/plot \
+		./bin/tk \
+		./bin/tek \
+		./bin/tla50 \
+		./bin/tla100 \
+		./bin/tregis \
+		./bin/t300 \
+		./bin/t300s \
+		./bin/t450 \
+		./bin/vplot \
+		./lib/libtla50.a \
+		./lib/libtla100.a \
+		./lib/libtgigi.a \
+		./lib/libtregis.a \
+		./lib/libt300.a \
+		./lib/libt300s.a \
+		./lib/libt4014.a \
+		./lib/libt450.a  \
+		./lib/libplot.a
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "PLOT diskette completed"
+		;;
+	spell)	S=0
+		echo ""
+		echo "Mount SPELL diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/spell \
+		./lib/spell70 \
+		./lib/spell40 \
+		./lib/spellin70 \
+		./lib/spellin40 \
+		./lib/spellout70 \
+		./lib/spellout40 \
+		./dict/hlista70 \
+		./dict/hlista40 \
+		./dict/hlistb70 \
+		./dict/hlistb40 \
+		./dict/hstop70 \
+		./dict/hstop40
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "SPELL diskette completed"
+		;;
+	usat)	S=0
+		echo ""
+		echo "Mount USAT diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/usat \
+		./lib/usat \
+		./bin/struct \
+		./lib/struct/beautify \
+		./lib/struct/structure70 \
+		./lib/struct/structure40
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "USAT diskette completed"
+		;;
+	dict)	S=0
+		echo ""
+		echo "Mount DICTIONARY diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./dict/american \
+		./dict/british \
+		./dict/stop \
+		./dict/words \
+		./src/userdev
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "DICTIONARY diskette completed"
+		;;
+	learn1)	S=0
+		echo ""
+		echo "Mount LEARN #1 diskette."
+		echo ""
+		ready
+		echo "/etc/mkfs /dev/r$RX 400 rx50 23 learn1 distr"
+		/etc/mkfs /dev/r$RX 400 rx50 23 learn1 distr
+		if test $? != 0
+		then	S=1
+		fi
+		/etc/mount /dev/$RX /bvusr
+		cd /bvusr
+		/etc/mount /dev/hp14 /bvos -r
+		cp /bvos/bin/learn .
+		cp /bvos/lib/learn/Linfo .
+		cp /bvos/lib/learn/Xinfo .
+		cd /bvos/lib/learn/C
+		ar r /bvusr/C.a *
+		cd /bvos/lib/learn/editor
+		ar r /bvusr/editor.a *
+		cd /bvusr
+		chog bin *
+		chmod 644 *
+		chmod 755 learn
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		/etc/umount /dev/$RX
+		if test $S != 0
+		then	exit 1
+		fi
+		fsck /dev/r$RX
+		echo ""
+		echo "LEARN #1 diskette completed"
+		;;
+	learn2)	S=0
+		echo ""
+		echo "Mount LEARN #2 diskette."
+		echo ""
+		ready
+		echo "/etc/mkfs /dev/r$RX 400 rx50 23 learn2 distr"
+		/etc/mkfs /dev/r$RX 400 rx50 23 learn2 distr
+		if test $? != 0
+		then	S=1
+		fi
+		/etc/mount /dev/$RX /bvusr
+		cd /bvusr
+		/etc/mount /dev/hp14 /bvos -r
+		cp /bvos/lib/learn/lcount .
+		cp /bvos/lib/learn/tee .
+		cd /bvos/lib/learn/eqn
+		ar r /bvusr/eqn.a *
+		cd /bvos/lib/learn/vi
+		ar r /bvusr/vi.a *
+		cd /bvos/lib/learn/files
+		ar r /bvusr/files.a *
+		cd /bvos/lib/learn/macros
+		ar r /bvusr/macros.a *
+		cd /bvos/lib/learn/morefiles
+		ar r /bvusr/morefiles.a *
+		cd /bvusr
+		chog bin *
+		chmod 644 *
+		chmod 755 lcount tee
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		/etc/umount /dev/$RX
+		if test $S != 0
+		then	exit 1
+		fi
+		fsck /dev/r$RX
+		echo ""
+		echo "LEARN #2 diskette completed"
+		;;
+	docprep1)	S=0
+		echo ""
+		echo "Mount DOCPREP #1 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./bin/nroff \
+		./bin/roff \
+		./bin/troff \
+		./bin/tbl40 \
+		./bin/tbl70 \
+		./bin/eqn \
+		./bin/neqn \
+		./bin/checkeq \
+		./bin/refer70 \
+		./bin/refer40 \
+		./bin/checkmm \
+		./bin/mm \
+		./bin/mmt \
+		./bin/mvt \
+		./bin/osdd
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "DOCPREP #1 diskette completed"
+		;;
+	docprep2)	S=0
+		echo ""
+		echo "Mount DOCPREP #2 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX \
+		./lib/refer/hunt70 \
+		./lib/refer/hunt40 \
+		./lib/refer/inv \
+		./lib/refer/mkey \
+		./dict/papers \
+		./lib/help/term \
+		./lib/help/text \
+		./lib/suftab \
+		./lib/tmac \
+		./lib/font \
+		./lib/ms \
+		./lib/me \
+		./lib/term
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "DOCPREP #2 diskette completed"
+		;;
+	docprep3)	S=0
+		echo ""
+		echo "Mount DOCPREP #3 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX ./lib/macros
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "DOCPREP #3 diskette completed"
+		;;
+	games)	S=0
+		echo ""
+		echo "Mount GAMES diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX ./games
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "GAMES diskette completed"
+		;;
+	orphans)	S=0
+		echo ""
+		echo "Mount ORPHANS diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp14 /bvos -r
+		cd /bvos
+		tar cbf 10 /dev/r$RX ./orphan
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp14
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "ORPHANS diskette completed"
+		;;
+	man1)	S=0
+		echo ""
+		echo "Mount MANUALS #1 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp16 /bvproto -r
+		cd /bvproto
+		# 290 Kbytes
+		tar cbf 10 /dev/r$RX ./man/man1/[a-l]*
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp16
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "MANUALS #1 diskette completed"
+		;;
+	man2)	S=0
+		echo ""
+		echo "Mount MANUALS #2 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp16 /bvproto -r
+		cd /bvproto
+		# 270 Kbytes
+		tar cbf 10 /dev/r$RX ./man/man1/[m-z]* 
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp16
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "MANUALS #2 diskette completed"
+		;;
+	man3)	S=0
+		echo ""
+		echo "Mount MANUALS #3 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp16 /bvproto -r
+		cd /bvproto
+		# 290 Kbytes
+		tar cbf 10 /dev/r$RX ./man/man2 ./man/man4
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp16
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "MANUALS #3 diskette completed"
+		;;
+	man4)	S=0
+		echo ""
+		echo "Mount MANUALS #4 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp16 /bvproto -r
+		cd /bvproto
+		# 315 Kbytes
+		tar cbf 10 /dev/r$RX ./man/man3
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp16
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "MANUALS #4 diskette completed"
+		;;
+	man5)	S=0
+		echo ""
+		echo "Mount MANUALS #5 diskette."
+		echo ""
+		ready
+		/etc/mount /dev/hp16 /bvproto -r
+		cd /bvproto
+		# 290 Kbytes
+		tar cbf 10 /dev/r$RX ./man/man5 ./man/man6 ./man/man7 ./man/man8
+		if test $? != 0
+		then	S=1
+		fi
+		cd /
+		/etc/umount /dev/hp16
+		if test $S != 0
+		then	exit 1
+		fi
+		echo ""
+		echo "MANUALS #5 diskette completed"
+		;;
+	*)	exit 1 ;;
+esac

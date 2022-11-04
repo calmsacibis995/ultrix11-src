@@ -1,0 +1,98 @@
+Mmain	main.c	/^main(argc, argv)$/
+SYMTYPE	machine.h	/^#define SYMTYPE(symflg) (( symflg>=041 || (symflg>/
+access	access.c	/^access(mode,adr,space,value)$/
+bpwait	runpcs.c	/^bpwait()$/
+branch	opset.c	/^branch(s,ins)$/
+calcov	setup.c	/^long calcov(adr, wov)$/
+charpos	output.c	/^charpos()$/
+chkerr	main.c	/^chkerr()$/
+chkget	access.c	/^unsigned chkget(n, space)$/
+chkloc	expr.c	/^chkloc(frame)$/
+chkmap	access.c	/^chkmap(adr,space)$/
+command	command.c	/^command(buf,defcom)$/
+convdig	expr.c	/^convdig(c)$/
+convert	output.c	/^convert(cp)$/
+create	setup.c	/^create(f)$/
+ctob	pcs.c	/^unsigned 	corhdr[ctob(USIZE)];$/
+delbp	runpcs.c	/^delbp()$/
+digit	expr.c	/^digit(c) char c;	$/
+doexec	runpcs.c	/^doexec()$/
+done	main.c	/^done()$/
+doubl	opset.c	/^doubl(a,b)$/
+endline	output.c	/^endline()$/
+endpcs	runpcs.c	/^endpcs()$/
+eol	input.c	/^eol(c)$/
+eqstr	output.c	/^eqstr(s1, s2)$/
+eqsym	expr.c	/^eqsym(s1, s2, c)$/
+error	main.c	/^error(n)$/
+execbkpt	runpcs.c	/^execbkpt(bkptr)$/
+exform	format.c	/^char *exform(fcount,ifp,itype,ptype)$/
+expr	expr.c	/^expr(a)$/
+fault	main.c	/^fault(a)$/
+findroutine	findfn.c	/^findroutine(cframe)$/
+findsym	sym.c	/^unsigned findsym(svalue,type)$/
+flushbuf	output.c	/^flushbuf()$/
+get	access.c	/^unsigned get(adr, space)$/
+getfile	setup.c	/^getfile(filnam,cnt)$/
+getformat	input.c	/^getformat(deformat)$/
+getreg	print.c	/^getreg(regnam)$/
+getsig	runpcs.c	/^getsig(sig)$/
+hexdigit	expr.c	/^hexdigit(c)$/
+iclose	output.c	/^iclose()$/
+inkdot	format.c	/^long inkdot(incr)$/
+inov	access.c	/^inov(adr)$/
+item	expr.c	/^item(a)$/
+itol	defs.h	/^#define itol(a,b)	(itolws.I[0]=(a), itolws.I[1]=(b/
+leng	defs.h	/^#define leng(a)		((long)((unsigned)(a)))$/
+length	output.c	/^length(s)$/
+letter	expr.c	/^letter(c) char c;	$/
+localsym	sym.c	/^localsym(cframe)$/
+longseek	sym.c	/^longseek(f, a)$/
+lookupsym	expr.c	/^struct symtab *lookupsym(symstr)$/
+newline	output.c	/^newline()$/
+nextchar	input.c	/^nextchar()$/
+nextsym	sym.c	/^nextsym()$/
+oclose	output.c	/^oclose()$/
+paddr	opset.c	/^paddr(s, a)$/
+printbin	format.c	/^printbin(v, n)$/
+printc	output.c	/^printc(c)$/
+printdate	output.c	/^printdate(tvec)$/
+printdbl	output.c	/^printdbl(lx,ly,fmat,base)$/
+printesc	format.c	/^printesc(c)$/
+printf	output.c	/^printf(fmat,a1)$/
+printfregs	print.c	/^printfregs(longpr)$/
+printins	opset.c	/^printins(f,idsp,ins)$/
+printmap	print.c	/^printmap(s,amap)$/
+printnum	output.c	/^printnum(n,fmat,base)$/
+printoct	output.c	/^printoct(o,s)$/
+printpc	print.c	/^printpc()$/
+printregs	print.c	/^printregs()$/
+prints	output.c	/^prints(s)$/
+printtrace	print.c	/^printtrace(modif)$/
+psymoff	sym.c	/^psymoff(v,type,s)$/
+put	access.c	/^put(adr,space,value)$/
+quotchar	input.c	/^quotchar()$/
+rdc	input.c	/^rdc()$/
+readchar	input.c	/^readchar()$/
+readregs	runpcs.c	/^readregs()$/
+readsym	expr.c	/^readsym()$/
+round	main.c	/^long round(a,b)$/
+runpcs	runpcs.c	/^runpcs(runmode, execsig)$/
+scanbkpt	runpcs.c	/^struct bkpt *scanbkpt(adr)$/
+scanform	format.c	/^scanform(icount,ifp,itype,ptype)$/
+setbp	runpcs.c	/^setbp()$/
+setcor	setup.c	/^setcor()$/
+setsym	setup.c	/^setsym()$/
+setup	runpcs.c	/^setup()$/
+shorten	defs.h	/^#define shorten(a)	((int)(a))$/
+sigprint	print.c	/^sigprint()$/
+subpcs	pcs.c	/^subpcs(modif)$/
+symchar	expr.c	/^symchar(dig)$/
+symget	sym.c	/^struct symtab *symget()$/
+symread	sym.c	/^symread()$/
+symset	sym.c	/^symset()$/
+term	expr.c	/^term(a)$/
+unox	format.c	/^unox()$/
+valpr	sym.c	/^valpr(v,idsp)$/
+varchk	expr.c	/^varchk(name)$/
+within	access.c	/^within(adr,lbd,ubd)$/

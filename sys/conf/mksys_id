@@ -1,0 +1,26 @@
+:
+# SCCSID: @(#)mksys_id	3.0	4/21/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+cd ../sys
+touch junk.o
+rm *.o
+for i
+do
+if [ $i = fpsim ]
+then
+	echo as -o $i.o sepid.s $i.s
+	as - -o $i.o sepid.s $i.s
+else
+	echo cc -c -O -DSEP_ID -DKERNEL $i.c
+	cc -c -O -DSEP_ID -DKERNEL $i.c
+fi
+done
+echo ar rv LIB1_id *.o
+ar rv LIB1_id *.o
+rm *.o

@@ -1,0 +1,171 @@
+SCCSID="@(#)mkb_tk50	3.1	7/11/87"
+# Shell procedure to build ULTRIX-11 TK50 kits
+# Two step build (1600 BPI tape on bedrock, copy to TK50 on pebbles).
+# Called from mkb: mkb_tk50 qjn den users
+#	qnj	= QJ number, i.e., QJ087-H5
+#	den	= ignored
+#	users	= number of users, i.e., 8, 16, 32
+# Fred Canter 9/14/85
+
+ROOT=hp10
+USR=hp11
+OPTSW=hp14
+SAPROG=hp12
+TAPE=rht1
+PROTO=hp16
+case $3 in
+8)	UMAX=023041 ;;
+16)	UMAX=035056 ;;
+32)	UMAX=022045 ;;
+*)	echo ""; echo "mkb_tk50: bad # of users"; exit 1 ;;
+esac
+PRTC="Press <RETURN> to continue:"
+HOMEDIR=/usr/sys/distr
+echo ""
+echo "Mount a 2400 foot magtape on TE16 unit one (WRITE ENABLED)."
+echo ""
+echo -n $PRTC
+read YN
+echo ""
+echo "$1: ULTRIX-11 V3.1 up to $3 user binary TK50"
+echo ""
+set -x
+/etc/mount /dev/$ROOT /bvroot
+/etc/mount /dev/$USR /bvusr
+/etc/mount /dev/$PROTO /bvproto
+cp /bvproto/boot$3 /bvroot/boot; cp /bvproto/boot$3 /bvroot/boot.bu
+chmod 644 /bvroot/boot /bvroot/boot.bu
+cp /bvproto/machdep/md$3_id.o machdep.o
+ar rv /bvusr/sys/sys/LIB1_id machdep.o; rm -f machdep.o
+cp /bvproto/machdep/md$3_ov.o /bvusr/sys/ovsys/machdep.o
+cp /bvproto/unix$3 /bvroot/unix
+chmod 644 /bvroot/unix
+chown sys /bvusr/sys/conf/*
+/etc/umount /dev/$USR
+/etc/mkfs /dev/r$SAPROG 256 rm03 70 bvsas master
+/etc/mount /dev/$SAPROG /bvsas
+# NOTE: files removed due to 256 block file system.
+echo "TEMP: not all files in /bvsas (SAPROG) for now!"
+cp /bvproto/boot$3 /bvsas/boot
+cp /bvproto/sdload/mtload /bvsas/sdload
+cd /bvproto/sas
+#cp bads copy dskinit icheck mkfs rabads restor scat syscall /bvsas
+cp bads dskinit icheck mkfs rabads restor syscall /bvsas
+chmod 644 /bvsas/*
+cd $HOMEDIR
+/etc/umount /dev/$SAPROG
+fsck /dev/r$SAPROG
+/etc/umount /dev/$ROOT
+cp /bvproto/boot$3 /bvproto/sas/boot
+cd /bvproto/sas; maketape /dev/n$TAPE tdtk50.bv
+cd $HOMEDIR
+/etc/umount /dev/$PROTO
+# file system size is 512 blocks (little b's)
+dd if=/dev/r$SAPROG of=/dev/n$TAPE bs=4b count=128
+# NOTE: best guess for now
+/etc/mount /dev/$ROOT /bvroot
+cd /bvroot
+# ONLY sas in rcmds
+#tar cbf 20 /dev/n$TAPE ./bin/nsid ./bin/sid ./lib/c2* ./sas
+tar cbf 20 /dev/n$TAPE ./sas
+cd $HOMEDIR
+/etc/umount /dev/$ROOT
+# usr optional software
+/etc/mount /dev/$OPTSW /bvos
+cd /bvos
+# f77
+tar cbf 20 /dev/n$TAPE \
+./bin/f77 ./bin/ratfor ./bin/struct \
+./lib/f77_strings ./lib/f77pass1id ./lib/f77pass1ov \
+./lib/libF77.a ./lib/libI77.a ./lib/libU77.a \
+./lib/struct/beautify ./lib/struct/structure70 ./lib/struct/structure40
+# pascal
+tar cbf 20 /dev/n$TAPE \
+./bin/pix ./bin/pxp ./bin/pi70 ./bin/pi40 ./bin/px70 ./bin/px40 \
+./lib/how_pi ./lib/how_pix ./lib/how_pxp ./lib/npx_header ./lib/pi1.2strings
+# plot
+tar cbf 20 /dev/n$TAPE \
+./bin/plot ./bin/tk ./bin/tek ./bin/tla50 ./bin/tla100 \
+./bin/tregis ./bin/t300 ./bin/t300s ./bin/t450 ./bin/vplot \
+./lib/libtgigi.a \
+./lib/libtla50.a ./lib/libtla100.a ./lib/libtregis.a ./lib/libt300.a \
+./lib/libt300s.a ./lib/libt4014.a ./lib/libt450.a ./lib/libplot.a
+# sccs
+tar cbf 20 /dev/n$TAPE \
+./bin/admin ./bin/bdiff ./bin/cdc ./bin/comb ./bin/delta ./bin/get \
+./bin/sccshelp ./bin/prs ./bin/prt ./bin/rmchg ./bin/rmdel ./bin/unget \
+./bin/val ./bin/vc ./bin/what ./bin/sact ./bin/sccs ./bin/sccsdiff \
+./lib/help/ad ./lib/help/bd ./lib/help/cb ./lib/help/cm ./lib/help/cmds \
+./lib/help/co ./lib/help/de ./lib/help/default ./lib/help/ge \
+./lib/help/he ./lib/help/prs ./lib/help/rc \
+./lib/help/un ./lib/help/ut ./lib/help/vc
+# usat
+tar cbf 20 /dev/n$TAPE \
+./bin/usat ./lib/usat
+# usep
+tar cbf 20 /dev/n$TAPE \
+./usep
+# tcpip
+tar cbf 20 /dev/n$TAPE \
+./bin/dls ./bin/dcat ./bin/dcp ./bin/dlogin ./bin/drm \
+./ucb/rlogin ./ucb/rcp ./ucb/rwho ./ucb/ruptime ./ucb/talk \
+./ucb/telnet ./ucb/netstat ./ucb/ftp ./ucb/tftp ./ucb/rsh \
+./etc/ftpd ./etc/inetd ./etc/miscd ./etc/rexecd ./etc/rlogind \
+./etc/routed ./etc/talkd ./etc/rshd ./etc/syslog ./etc/tftpd \
+./etc/telnetd ./etc/rwhod ./etc/dgated
+# uucp
+tar cbf 20 /dev/n$TAPE \
+./bin/uucp ./bin/uulog ./bin/uuname ./bin/uupoll ./bin/uustat ./bin/uux \
+./lib/uucp
+# spell
+tar cbf 20 /dev/n$TAPE \
+./bin/spell \
+./lib/spell70 ./lib/spell40 \
+./lib/spellin70 ./lib/spellin40 \
+./lib/spellout70 ./lib/spellout40 \
+./dict/hlista70 ./dict/hlista40 \
+./dict/hlistb70 ./dict/hlistb40 \
+./dict/hstop70 ./dict/hstop40
+# userdev
+tar cbf 20 /dev/n$TAPE \
+./src/userdev
+# docprep
+tar cbf 20 /dev/n$TAPE \
+./bin/eqn ./bin/neqn ./bin/checkeq ./bin/roff ./bin/nroff ./bin/troff \
+./bin/checkmm ./bin/mm ./bin/mmt ./bin/mvt ./bin/osdd \
+./bin/tbl70 ./bin/tbl40 ./bin/refer70 ./bin/refer40 \
+./dict/papers ./lib/help/term ./lib/help/text \
+./lib/suftab ./lib/font ./lib/tmac ./lib/ms ./lib/me ./lib/term \
+./lib/macros \
+./lib/refer/inv ./lib/refer/mkey ./lib/refer/hunt70 ./lib/refer/hunt40
+# learn
+tar cbf 20 /dev/n$TAPE \
+./bin/learn ./lib/learn
+# libsa
+tar cbf 20 /dev/n$TAPE \
+./lib/libsa.a
+# dict
+tar cbf 20 /dev/n$TAPE \
+./dict/words ./dict/american ./dict/british ./dict/stop
+# orphans
+tar cbf 20 /dev/n$TAPE \
+./orphan
+# games
+tar cbf 20 /dev/n$TAPE \
+./games
+# manuals
+tar cbf 20 /dev/n$TAPE \
+./man
+cd $HOMEDIR
+/etc/umount /dev/$OPTSW
+# sysgen
+/etc/mount /dev/$USR /bvusr
+cd /bvusr
+tar cbf 20 /dev/n$TAPE ./sys
+cd $HOMEDIR
+/etc/umount /dev/$USR
+dump 0yf /dev/n$TAPE /dev/r$ROOT
+dump 0yf /dev/$TAPE /dev/r$USR
+echo "NOTE: man now optsw, doc gonzo!"
+# cd /usr; tar cbf 20 /dev/$TAPE ./man ./doc
+cd $HOMEDIR

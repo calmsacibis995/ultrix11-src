@@ -1,0 +1,57 @@
+access_	access_.c	/^ftnint access_(name, mode, namlen, modlen)$/
+alarm_	alarm_.c	/^ftnint alarm_(sec, proc)$/
+chdir_	chdir_.c	/^ftnint chdir_(dname, dnamlen)$/
+chmod_	chmod_.c	/^ftnint chmod_(name, mode, namlen, modlen)$/
+ctime_	ctime_.c	/^ctime_(str, len, clock)$/
+dtime_	dtime_.c	/^dtime_(dt) struct tb *dt;$/
+etime_	etime_.c	/^etime_(et) struct tb *et;$/
+fdate_	fdate_.c	/^fdate_(s, strlen)$/
+fgetc_	fgetc_.c	/^ftnint fgetc_(u, c, clen)$/
+fork_	fork_.c	/^ftnint fork_()$/
+fputc_	fputc_.c	/^ftnint fputc_(u, c, clen)$/
+fseek_	fseek_.c	/^ftnint fseek_(lu, off, from)$/
+fstat_	fstat_.c	/^ftnint fstat_(lunit, stbuf)$/
+ftell_	ftell_.c	/^off_t ftell_(lu)$/
+gerror_	gerror_.c	/^gerror_(s, len)$/
+getarg_	getarg_.c	/^getarg_(n, s, ls)$/
+getc_	getc_.c	/^ftnint getc_(c, clen)$/
+getcwd_	getcwd_.c	/^getcwd_(path, len)$/
+getenv_	getenv_.c	/^getenv_(fname, value, flen, vlen)$/
+getgid_	getgid_.c	/^ftnint getgid_()$/
+getlog_	getlog_.c	/^getlog_(name, len)$/
+getpid_	getpid_.c	/^ftnint getpid_()$/
+getuid_	getuid_.c	/^ftnint getuid_()$/
+gmtime_	gmtime_.c	/^gmtime_(clock, t)$/
+hostnm_	hostnm_.c	/^hostnm_ (name, len)$/
+iargc_	iargc_.c	/^ftnint iargc_()$/
+idate_	idate_.c	/^idate_(iar)$/
+ierrno_	ierrno_.c	/^ftnint ierrno_()$/
+isatty_	isatty_.c	/^ftnint isatty_(u)$/
+itime_	itime_.c	/^itime_(iar)$/
+kill_	kill_.c	/^ftnint kill_(pid, signum)$/
+link_	link_.c	/^ftnint link_(name1, name2, n1len, n2len)$/
+loc_	loc_.c	/^ftnint loc_(arg)$/
+lstat_	lstat_.c	/^ftnint lstat_(name, stbuf, namlen)$/
+ltime_	ltime_.c	/^ltime_(clock, t)$/
+perror_	perror_.c	/^perror_(s, len)$/
+putc_	putc_.c	/^ftnint putc_(c, clen)$/
+qsort_	qsort_.c	/^qsort_(array, len, isize, compar)$/
+sig_trap	signal_.c	/^sig_trap(sn)$/
+signal	signal_.c	/^int (*signal())();$/
+signal_	signal_.c	/^ftnint signal_(sigp, procp, flag)$/
+sleep_	sleep_.c	/^sleep_(sec)$/
+stat_	stat_.c	/^ftnint stat_(name, stbuf, namlen)$/
+symlnk_	symlnk_.c	/^ftnint symlnk_(name1, name2, n1len, n2len)$/
+system	system_.c	/^system(s)$/
+system_	system_.c	/^ftnint system_(s, n)$/
+tclose_	tapeio.c	/^tclose_(tlu)$/
+time_	time_.c	/^time_t time_()$/
+topen_	tapeio.c	/^topen_(tlu, name, labelled, len)$/
+tread_	tapeio.c	/^tread_(tlu, buffer, len)$/
+trewin_	tapeio.c	/^trewin_(tlu)$/
+tskipf_	tapeio.c	/^tskipf_(tlu, nfiles, nrecs)$/
+tstate_	tapeio.c	/^tstate_(tlu, fileno, recno, err, eof, eot, tcsr)$/
+ttynam_	ttynam_.c	/^ttynam_(name, strlen, lu)$/
+twrite_	tapeio.c	/^twrite_(tlu, buffer, len)$/
+unlink_	unlink_.c	/^unlink_(fname, namlen)$/
+wait_	wait_.c	/^ftnint wait_(status)$/

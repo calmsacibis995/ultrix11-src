@@ -1,0 +1,79 @@
+Copyright	bzero.s	/^\/   Copyright (c) Digital Equipment Corporation 19/
+abspath	rename.c	/^static abspath(path, buf, size)$/
+any	gethostent.c	/^any(cp, match)$/
+bcmp	bcmp.c	/^bcmp(s1, s2, n)$/
+bcopy	bcopy.c	/^bcopy(from, to, count)$/
+blkencrypt	ruserpass.c	/^blkencrypt(block, edflag)$/
+closelog	syslog.c	/^closelog()$/
+clr	bzero.s	/^2:      clr     (r0)+$/
+clrb	bzero.s	/^1:      clrb    (r0)+$/
+deblkclr	ruserpass.c	/^char *deblkclr(blk)$/
+deblknot	ruserpass.c	/^char *deblknot(blk)$/
+enblkclr	ruserpass.c	/^enblkclr(blk,str)		\/* ignores top bit of chars in /
+enblknot	ruserpass.c	/^enblknot(blk,crp)$/
+endhostent	gethostent.c	/^endhostent()$/
+endnetent	getnetent.c	/^endnetent()$/
+endprotoent	getprotoent.c	/^endprotoent()$/
+endservent	getservent.c	/^endservent()$/
+ffs	ffs.s	/^\/ ffs(bits)	return an index to the first bit that /
+gethostbyaddr	gethbyaddr.c	/^gethostbyaddr(addr, len, type)$/
+gethostbyname	gethbyname.c	/^gethostbyname(name)$/
+gethostent	gethostent.c	/^gethostent()$/
+getnetbyaddr	getnetbyaddr.c	/^getnetbyaddr(net, type)$/
+getnetbyname	getnetbyname.c	/^getnetbyname(name)$/
+getnetent	getnetent.c	/^getnetent()$/
+getprotobyname	getprotoname.c	/^getprotobyname(name)$/
+getprotobynumber	getproto.c	/^getprotobynumber(proto)$/
+getprotoent	getprotoent.c	/^getprotoent()$/
+getservbyname	getsbyname.c	/^getservbyname(name, proto)$/
+getservbyport	getsbyport.c	/^getservbyport(port, proto)$/
+getservent	getservent.c	/^getservent()$/
+getutmp	ruserpass.c	/^struct utmp *getutmp(sttyname)$/
+inet_addr	inet_addr.c	/^inet_addr(cp)$/
+inet_lnaof	inet_lnaof.c	/^inet_lnaof(in)$/
+inet_makeaddr	inet_mkaddr.c	/^inet_makeaddr(net, host)$/
+inet_mkaddr	inet_mkaddr.c	/^inet_mkaddr(net, host)$/
+inet_netof	inet_netof.c	/^inet_netof(in)$/
+inet_network	inet_network.c	/^inet_network(cp)$/
+inet_ntoa	inet_ntoa.c	/^inet_ntoa(in)$/
+is_parent_writeable	rename.c	/^static is_parent_writeable(file, statbuf)$/
+isempty	rename.c	/^static isempty(dir)$/
+isparent	rename.c	/^static isparent(from, to)$/
+mkdir	mkdir.c	/^mkdir(path, mode)$/
+mkenvkey	ruserpass.c	/^char *mkenvkey(mch)$/
+mkpwclear	ruserpass.c	/^mkpwclear(sencpasswd,mch,spasswd)$/
+mkpwunclear	ruserpass.c	/^mkpwunclear(spasswd,mch,sencpasswd)$/
+mvdir	rename.c	/^static mvdir(from, to)$/
+nbs8decrypt	ruserpass.c	/^char *nbs8decrypt(crp,key)$/
+nbs8encrypt	ruserpass.c	/^char *nbs8encrypt(str,key)$/
+nbsdecrypt	ruserpass.c	/^char *nbsdecrypt(cpt,key,result)$/
+nbsencrypt	ruserpass.c	/^char *nbsencrypt(str,key,result)$/
+nbssetkey	ruserpass.c	/^nbssetkey(key)$/
+openlog	syslog.c	/^openlog(ident, logstat)$/
+rcmd	rcmd.c	/^rcmd(ahost, rport, locuser, remuser, cmd, fd2p)$/
+recv	recv.c	/^recv(s, buf, len, flags)$/
+recvfrom	recv.c	/^recvfrom(s, buf, len, flags, from, fromlen)$/
+recvmsg	recv.c	/^recvmsg(s, msg, flags)$/
+rename	rename.c	/^rename(from_p, to_p)$/
+renv	ruserpass.c	/^renv(host, aname, apass)$/
+renvlook	ruserpass.c	/^renvlook(host)$/
+rexec	rexec.c	/^rexec(ahost, rport, name, pass, cmd, fd2p)$/
+rmdir	rmdir.c	/^rmdir(path)$/
+rnetrc	ruserpass.c	/^rnetrc(host, aname, apass)$/
+rresvport	rcmd.c	/^rresvport(alport)$/
+ruserok	rcmd.c	/^ruserok(rhost, superuser, ruser, luser)$/
+ruserpass	ruserpass.c	/^ruserpass(host, aname, apass)$/
+send	send.c	/^send(s, msg, len, flags)$/
+sendmsg	send.c	/^sendmsg(s, msg, flags)$/
+sendto	send.c	/^sendto(s, msg, len, flags, to, tolen)$/
+setegid	setegid.c	/^setegid(egid)$/
+seteuid	seteuid.c	/^seteuid(euid)$/
+sethostent	gethostent.c	/^sethostent(f)$/
+setnetent	getnetent.c	/^setnetent(f)$/
+setprotoent	getprotoent.c	/^setprotoent(f)$/
+setrgid	setrgid.c	/^setrgid(rgid)$/
+setruid	setruid.c	/^setruid(ruid)$/
+setservent	getservent.c	/^setservent(f)$/
+sreverse	ruserpass.c	/^sreverse(sto, sfrom)$/
+syslog	syslog.c	/^syslog(pri, fmt, p0, p1, p2, p3, p4)$/
+token	ruserpass.c	/^token()$/

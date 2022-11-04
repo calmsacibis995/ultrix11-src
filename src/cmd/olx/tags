@@ -1,0 +1,99 @@
+Mcmx1	cmx1.c	/^main(argc, argv)$/
+Mcmx2	cmx2.c	/^main(argc, argv)$/
+Mcpx	cpx.c	/^main(argc, argv)$/
+Mfpx	fpx.c	/^main(argc, argv)$/
+Mhkx1	hkx1.c	/^main(argc, argv)$/
+Mhkx2	hkx2.c	/^main(argc, argv)$/
+Mhpx1	hpx1.c	/^main(argc, argv)$/
+Mhpx2	hpx2.c	/^main(argc, argv)$/
+Mhxx1	hxx1.c	/^main(argc, argv)$/
+Mhxx2	hxx2.c	/^main(argc, argv)$/
+Mlpx	lpx.c	/^main(argc, argv)$/
+Mmemx1	memx1.c	/^main(argc, argv)$/
+Mmemx2	memx2.c	/^main(argc, argv)$/
+Mmtx1	mtx1.c	/^main(argc, argv)$/
+Mmtx2	mtx2.c	/^main(argc, argv)$/
+Mrax1	rax1.c	/^main(argc, argv)$/
+Mrax2	rax2.c	/^main(argc, argv)$/
+Mrkx1	rkx1.c	/^main(argc, argv)$/
+Mrkx2	rkx2.c	/^main(argc, argv)$/
+Mrlx1	rlx1.c	/^main(argc, argv)$/
+Mrlx2	rlx2.c	/^main(argc, argv)$/
+Mrpx1	rpx1.c	/^main(argc, argv)$/
+Mrpx2	rpx2.c	/^main(argc, argv)$/
+Msysx_c	sysx_c.c	/^main(argc, argv)$/
+Msysx_m	sysx_m.c	/^main()$/
+Msysx_r	sysx_r.c	/^main(argc, argv)$/
+Msysxstop	sysxstop.c	/^main()$/
+bnc	hkx2.c	/^bnc(bn,sz,nb)$/
+brcon	cmx1.c	/^brcon(brp)$/
+cf	cpx.c	/^char cf(c)$/
+cfs	hkx1.c	/^cfs(dev)$/
+checkflg	cmx2.c	/^checkflg()$/
+cpf	cpx.c	/^char *cpf(cp)$/
+df	cpx.c	/^double df(d)$/
+dohelp	sysx_m.c	/^dohelp(s)$/
+dskse	hkx2.c	/^dskse(et, drv, fs, blk, bc)$/
+elcheck	fpx.c	/^elcheck()$/
+em	cpx.c	/^em(tn, stn)$/
+fizz	memx2.c	/^fizz()$/
+fpxck	fpx.c	/^fpxck()$/
+fpxerr	fpx.c	/^fpxerr()$/
+fsok	hkx2.c	/^fsok(dn, filsys)$/
+fsopen	hkx2.c	/^fsopen(dn, fso)$/
+getline	sysx_m.c	/^getline(hlp)$/
+ifn	cpx.c	/^ifn(i)$/
+intr	cmx2.c	/^intr()$/
+intr1	memx1.c	/^intr1()$/
+iprint	cmx1.c	/^iprint(dn)$/
+itos	sysx_r.c	/^itos(num, str)$/
+lf	cpx.c	/^long lf(l)$/
+logmon	sysx_r.c	/^logmon()$/
+lptp	lpx.c	/^lptp(fd, lc)$/
+lpwrt	lpx.c	/^lpwrt(fd, flag)$/
+mderr	memx2.c	/^mderr(mode, addr, exp, act)$/
+mtname	mtx2.c	/^mtname(dn, den, mode)$/
+mtopen	mtx2.c	/^mtopen(rw)$/
+nostart	sysx_r.c	/^nostart(kfn)$/
+nostop	sysx_m.c	/^nostop(kfn)$/
+offset	hkx2.c	/^offset(nb)$/
+pgb	mtx2.c	/^pgb(word, good, bad)$/
+pios	hkx2.c	/^pios()$/
+rahlp	sysx_c.c	/^rahlp()$/
+rasetup	sysx_c.c	/^rasetup()$/
+rng	cmx2.c	/^rng()$/
+run	sysx_r.c	/^run(pis,appflg)$/
+rxfmt	hxx1.c	/^rxfmt(den)$/
+setext	sysx_m.c	/^setext()$/
+sname	sysx_m.c	/^sname()$/
+started	sysx_r.c	/^started(kfn)$/
+stop	cmx1.c	/^stop()$/
+stop1	memx1.c	/^stop1()$/
+stoped	sysx_m.c	/^stoped(kfn)$/
+swintr	sysx_m.c	/^swintr()$/
+t_ao	cpx.c	/^t_ao(tn)$/
+t_baox	cpx.c	/^t_baox(tn)$/
+t_cid	cpx.c	/^t_cid(tn)$/
+t_csds	cpx.c	/^t_csds(tn)$/
+t_dow_bc	cpx.c	/^t_dow_bc(tn)$/
+t_fap	cpx.c	/^t_fap(tn, cap, iap, uap, lap, fap, dap)$/
+t_far	cpx.c	/^t_far(tn)$/
+t_for_bc	cpx.c	/^t_for_bc(tn)$/
+t_if_gt	cpx.c	/^t_if_gt(tn)$/
+t_laoc	cpx.c	/^t_laoc(tn)$/
+t_ro_eo	cpx.c	/^t_ro_eo(tn)$/
+t_shft	cpx.c	/^t_shft(tn)$/
+t_sid	cpx.c	/^t_sid(tn)$/
+t_st	cpx.c	/^t_st(tn)$/
+t_sw_b	cpx.c	/^t_sw_b(tn)$/
+t_un	cpx.c	/^t_un(tn)$/
+t_wh_bc	cpx.c	/^t_wh_bc(tn)$/
+tall	sysx_m.c	/^tall(cc)$/
+tconv	hkx2.c	/^tconv(tim, timbuf)$/
+trwse	mtx2.c	/^trwse(rw, un, den, iom, rl, nr, rn)$/
+tuready	mtx2.c	/^tuready(fd)$/
+uf	cpx.c	/^unsigned uf(u)$/
+wmsg	sysx_m.c	/^wmsg()$/
+wmsg2	sysx_r.c	/^wmsg2()$/
+xrmon	memx1.c	/^xrmon()$/
+yes	sysx_m.c	/^yes(def, hlp)$/

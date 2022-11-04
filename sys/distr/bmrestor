@@ -1,0 +1,95 @@
+
+# Restor the RM03 binary kit master,
+# bvroot (hp10), bvusr (hp11), bvos (hp14), bvproto(hp16) from backup
+# tape created by bmdump.
+#
+# Fred Canter 2/28/85
+
+echo ""
+echo "Must be super-user!"
+echo ""
+echo "Mount binary master backup tape on TE16"
+echo "Write enable the RM03 binary master"
+ready
+echo "** Making File System on (hp10)..."
+echo ""
+echo "/etc/mkfs /dev/rhp10 4560 rm03 70 bvroot master"
+echo ""
+/etc/mkfs /dev/rhp10 4560 rm03 70 bvroot master
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Restoring BVROOT (hp10)..."
+echo ""
+restor rf /dev/rht1 /dev/rhp10 <<%
+
+%
+if test $? != 0
+then	exit
+fi
+echo "** Making File System on (hp11)..."
+echo ""
+echo "/etc/mkfs /dev/rhp11 bvusr.proto rm03 70 bvusr master"
+echo ""
+/etc/mkfs /dev/rhp11 bvusr.proto rm03 70 bvusr master
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Restoring BVUSR (hp11)..."
+echo ""
+dd if=/dev/nrht1 of=/dev/null bs=20b
+restor rf /dev/rht1 /dev/rhp11 <<%
+
+%
+if test $? != 0
+then	exit
+fi
+echo "** Making File System on (hp14)..."
+echo ""
+echo "/etc/mkfs /dev/rhp14 10000 rm03 70 bvos master"
+echo ""
+/etc/mkfs /dev/rhp14 10000 rm03 70 bvos master
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Restoring BVOS (hp14)..."
+echo ""
+dd if=/dev/nrht1 of=/dev/null bs=20b
+dd if=/dev/nrht1 of=/dev/null bs=20b
+restor rf /dev/rht1 /dev/rhp14 <<%
+
+%
+if test $? != 0
+then	exit
+fi
+echo "** Making File System on (hp16)..."
+echo ""
+echo "/etc/mkfs /dev/rhp16 10000 rm03 70 proto master"
+echo ""
+/etc/mkfs /dev/rhp16 10000 rm03 70 proto master
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Restoring BVPROTO (hp16)..."
+echo ""
+dd if=/dev/nrht1 of=/dev/null bs=20b
+dd if=/dev/nrht1 of=/dev/null bs=20b
+dd if=/dev/nrht1 of=/dev/null bs=20b
+restor rf /dev/rht1 /dev/rhp16 <<%
+
+%
+if test $? != 0
+then	exit
+fi
+echo "** Checking File Systems..."
+fsck /dev/rhp10 /dev/rhp11 /dev/rhp14 /dev/rhp16
+if test $? != 0
+then	echo ""
+	echo "FATAL ERROR: file system check failed!"
+	echo ""
+	exit
+fi

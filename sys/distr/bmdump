@@ -1,0 +1,45 @@
+
+# Dump the RM03 binary kit master,
+# bvroot (hp10), bvusr (hp11), bvos (hp14), bvproto (hp16) to a single tape.
+#
+# Fred Canter 2/28/85
+
+echo ""
+echo "Must be super-user!"
+echo ""
+echo "Mount write enabled 2400 foot tape on TE16"
+echo "Write protect the RM03 binary master"
+ready
+echo "** Checking File Systems..."
+fsck -t /tmp/bmdump.temp /dev/rhp10 /dev/rhp11 /dev/rhp14 /dev/rhp16
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Dumping BVROOT (hp10)..."
+echo ""
+dump 0yf /dev/nrht1 /dev/rhp10
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Dumping BVUSR (hp11)..."
+echo ""
+dump 0yf /dev/nrht1 /dev/rhp11
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Dumping BVOS (hp14)..."
+echo ""
+dump 0yf /dev/nrht1 /dev/rhp14
+if test $? != 0
+then	exit
+fi
+echo ""
+echo "** Dumping BVPROTO (hp16)..."
+echo ""
+dump 0yf /dev/rht1 /dev/rhp16
+if test $? != 0
+then	exit
+fi

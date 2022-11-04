@@ -1,0 +1,35 @@
+:
+# SCCSID: @(#)Init.vi	3.0	4/21/86
+a=`printenv | grep TERM`
+if [ X$a = X ]
+then
+# $TERM not set in environment...
+cat <<EOF
+**************************************************************
+To do the lessons on 'vi', I need to know your terminal type
+(your terminal must have an "addressable cursor").  Find out
+the terminal type for the terminal you are using (you may have 
+to ask someone) and then type:
+
+	TERM=xxx; export TERM	(if you are using /bin/sh)
+
+	setenv TERM xxx		(if you are using /bin/csh)
+
+(replace xxx above with your terminal type)
+
+Some common terminal types are:
+	vt100 		(DEC VT100)
+	vt52		(DEC VT52)
+	tvi920c		(Televideo 912/920C)
+	tvi925		(Televideo 925)
+	adm3a		(LSI adm3a)
+	h19		(Zenith/Heathkit H19)
+
+When you are done type "learn vi" again.
+EOF
+exit 1
+
+else
+    # $TERM is OK
+    exit 0
+fi

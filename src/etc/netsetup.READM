@@ -1,0 +1,19 @@
+netsetup.README:
+
+The netsetup program was modified to include a fix for
+the proper handling of subnet bits for the host and
+network addresses when they were setup in both the
+/etc/rc file and the /etc/networks file. 
+
+The original ULTRIX-11 V3.0 source for netsetup is in the
+file named netsetup.cV3.0, while the updated version with
+the subnet fix is in netsetup.c.
+
+The fix for subnet bits in the broadcast address (/etc/rc file)
+now correctly says "broadcast 128.45.40.0 netmask 255.255.255.0"
+instead of: "broadcast 128.45.0.0 netmask 255.255.255.0".
+
+Also, the fix for subnet and hostbits in the /etc/networks file
+now says, for example, "ethernet 128.45.40" instead of "ethernet 128.45".
+
+John Dustin  7-APR-86

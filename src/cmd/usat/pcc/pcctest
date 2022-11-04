@@ -1,0 +1,39 @@
+:
+# SCCSID: @(#)pcctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** pcc test started - "
+date
+touch $T/pcc.$$.err
+
+if test -f "$pccpath"
+then
+	cp $L/pcc/pcc.in.c $T/pcc.$$.c
+	$M pcc $T/pcc.$$.c -o $T/pcc.$$.out
+
+	$T/pcc.$$.out > $T/p1c.$$.out
+	cp $L/pcc/pcc.sout $T/p2c.$$.out
+	cmp $T/p1c.$$.out $T/p2c.$$.out
+
+	if test $? != 0
+	then
+		echo "pcc: Compare after execute failed" >> $T/pcc.$$.err
+		echo "Compare after execute failed"
+	fi
+else
+	echo "$pccpath: not installed" >> $T/pcc.$$.err
+	echo "$pccpath: not tested (command not installed)"
+fi
+
+echo -n "****** End  of pcc test - "
+date
+cat $T/pcc.$$.err >> $T/log.$$.err
+rm -f $RT/p?c.$$.out
+rm -f $RT/pcc.$$.c
+rm -f $RT/pcc.$$.err
+rm -f pcc.$$.o

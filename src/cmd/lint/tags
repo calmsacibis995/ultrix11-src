@@ -1,0 +1,289 @@
+CCTRANS	macdefs	/^# define  CCTRANS(x) x$/
+Mlint	lint.c	/^main( argc, argv ) char *argv[]; {$/
+Mlpass2	lpass2.c	/^main( argc, argv ) char *argv[]; {$/
+_assert	llib-lc	/^void	_assert(a, f, n) char *a, *f; { ; }$/
+_exit	llib-lc	/^void	_exit(s) { ; }$/
+_filbuf	llib-lc	/^int	_filbuf(f) FILE *f; { return(0); }$/
+_tolower	llib-port	/^int	_tolower(i) { return (i); }$/
+_toupper	llib-port	/^int	_toupper(i) { return (i); }$/
+abort	llib-lc	/^int	abort() { ; }$/
+abs	llib-lc	/^int	abs(i) { return(i); }$/
+access	llib-lc	/^int	access(f, m) char *f; { return(m); }$/
+acct	llib-lc	/^int	acct(f) char *f; { ; }$/
+acos	llib-lm	/^double acos(x)double x;{return x;}$/
+alarm	llib-lc	/^unsigned	alarm(s) unsigned s; { ; }$/
+andable	lint.c	/^andable( p ) NODE *p; {  \/* p is a NAME node; can /
+aobeg	macdefs	/^# define aobeg()$/
+aocode	lint.c	/^aocode(p) struct symtab *p; {$/
+asctime	llib-lc	/^char	*asctime(t) struct tm *t; { return(""); }$/
+asin	llib-lm	/^double asin(x)double x;{return x;}$/
+atan	llib-lm	/^double atan(x)double x;{return x;}$/
+atan2	llib-lm	/^double atan2(x,y)double x,y;{return x;}$/
+atof	llib-lc	/^double	atof(s) char *s; { return(0.0); }$/
+atoi	llib-lc	/^int	atoi(s) char *s; { return(0); }$/
+atol	llib-lc	/^long	atol(s) char *s; { return(0L); }$/
+bfcode	lint.c	/^bfcode( a, n ) int a[]; {$/
+branch	lint.c	/^branch(n){;}$/
+brk	llib-lc	/^int	brk(e) char *e; { return(0); }$/
+bycode	lint.c	/^bycode(t,i){;}$/
+calloc	llib-lc	/^char	*calloc(n, s) unsigned n, s; { static char c[/
+ceil	llib-lm	/^double ceil(x)double x;{return x;}$/
+cendarg	macdefs	/^# define cendarg()$/
+chdir	llib-lc	/^int	chdir(s) char *s; { return(0); }$/
+chkcompat	lpass2.c	/^chkcompat(){$/
+chktype	lpass2.c	/^chktype( pt1, pt2 ) register atype *pt1, *pt2; {$/
+chmod	llib-lc	/^int	chmod(s, m) char *s; { return(0); }$/
+chown	llib-lc	/^int	chown(s, u, g) char *s; { return(0); }$/
+chroot	llib-lc	/^int	chroot(p) char *p; { ; }$/
+cinit	lint.c	/^cinit( p, sz ) NODE *p; { \/* initialize p into siz/
+cisreg	lint.c	/^cisreg(t){return(1);}  \/* everyting is a register /
+cleanup	lpass2.c	/^cleanup(){ \/* call lastone and die gracefully *\/$/
+clearerr	llib-lc	/^void	clearerr(f) FILE *f; { ; }$/
+clocal	lint.c	/^clocal(p) NODE *p; {$/
+clock	llib-lc	/^long	clock() { return(0L); }$/
+close	llib-lc	/^int	close(f) { ; }$/
+commdec	lint.c	/^commdec( i ) {	\/* put out a common declaration *\/$/
+contx	lint.c	/^contx( p, down, pl, pr )$/
+cos	llib-lm	/^double cos(x)double x;{return x;}$/
+cosh	llib-lm	/^double cosh(x)double x;{return x;}$/
+creat	llib-lc	/^int	creat(s, m) char *s; { return(0); }$/
+ctargs	lint.c	/^ctargs( p ) NODE *p; {$/
+ctime	llib-lc	/^char	*ctime(c) time_t *c; { return(""); }$/
+ctype	lint.c	/^ctype(type) unsigned type; {	\/* are there any funn/
+defalign	lint.c	/^defalign(n){;}$/
+deflab	lint.c	/^deflab(n){;}$/
+defnam	lint.c	/^defnam( p ) register struct symtab *p; {$/
+drand48	llib-port	/^double	drand48() { return (0.0); }$/
+dup	llib-lc	/^int	dup(f) { return(f); }$/
+ecode	lint.c	/^ecode( p ) NODE *p; {$/
+ecvt	llib-lc	/^char	*ecvt(v, n, d, s) double v; int *d, *s; { ret/
+efcode	lint.c	/^efcode(){$/
+ejobcode	lint.c	/^ejobcode( flag ){$/
+endgrent	llib-lc	/^void	endgrent() { ; }$/
+endpwent	llib-lc	/^void	endpwent() { ; }$/
+erand48	llib-port	/^double	erand48(x) unsigned short x[3]; { return (0/
+erf	llib-lm	/^double erf(x)double x;{return x;}$/
+erfc	llib-lm	/^double erfc(x)double x;{return x;}$/
+error	lpass2.c	/^error( s, a ) char *s; {$/
+execl	llib-lc	/^int	execl(f, a) char *f, *a; { ; }$/
+execv	llib-lc	/^int	execv(s, v) char *s, *v[]; { ; }$/
+exit	llib-lc	/^void	exit(s) { ; }$/
+exname	lint.c	/^exname( p ) char *p; {$/
+exp	llib-lm	/^double exp(x)double x;{return x;}$/
+fabs	llib-lm	/^double fabs(x)double x;{return x;}$/
+fclose	llib-lc	/^int	fclose(f) FILE *f; { ; }$/
+fcvt	llib-lc	/^char	*fcvt(v, n, d, s) double v; int *d, *s; { ret/
+fdopen	llib-lc	/^FILE	*fdopen(fd, m) char *m; { return(stdin);}$/
+feof	llib-lc	/^int	feof(f) FILE *f; { return(0); }$/
+ferror	llib-lc	/^int	ferror(f) FILE *f; { return(0); }$/
+fflush	llib-lc	/^int	fflush(f) FILE *f; { ; }$/
+fgetc	llib-lc	/^int	fgetc(f) FILE *f; { return(0); }$/
+fgetgrent	llib-lc	/^struct group	*fgetgrent(f) FILE *f; { static struc/
+fgetpwent	llib-lc	/^struct passwd	*fgetpwent(f) FILE *f; { static stru/
+fgets	llib-lc	/^char	*fgets(s, n, f) char *s; FILE *f; { return(s)/
+fident	lint.c	/^fident( line ){ \/* like ident, but lineno = line */
+fileno	llib-lc	/^int	fileno(f) FILE *f; { return(0); }$/
+fincode	macdefs	/^# define fincode(a,s) (inoff += (s) )$/
+fldal	lint.c	/^fldal(t) unsigned t; { \/* field alignment... *\/$/
+fldcon	lint.c	/^fldcon( p ) register NODE *p; {$/
+fldty	lint.c	/^fldty(p) struct symtab *p; {$/
+floor	llib-lm	/^double floor(x)double x;{return x;}$/
+fmod	llib-lm	/^double fmod(x,y)double x,y;{return x;}$/
+fopen	llib-lc	/^FILE	*fopen(s, m) char *s, *m; { return(stdin); }$/
+fork	llib-lc	/^int	fork() { return(0); }$/
+fprintf	llib-lc	/^int	fprintf(f, s) FILE *f; char *s; { ; }$/
+fputc	llib-lc	/^int	fputc(c, f) FILE *f; { return(c); }$/
+fputs	llib-lc	/^int	fputs(s, f) char *s; FILE *f; { return(0); }$/
+fread	llib-lc	/^int	fread(b, s, n, f) char *b; FILE *f; { return(n/
+free	llib-lc	/^void	free(p) char *p; { ; }$/
+freopen	llib-lc	/^FILE	*freopen(s, m, f) char *s, *m; FILE *f; { ret/
+frexp	llib-lc	/^double	frexp(x, e) double x; int *e; { return(x); /
+fscanf	llib-lc	/^int	fscanf(f, s) FILE *f; char *s; { return(0); }$/
+fseek	llib-lc	/^int	fseek(f, o, p) FILE *f; long o; { return(p); }/
+fstat	llib-lc	/^int	fstat(f, b) struct stat *b; { return(0); }$/
+ftell	llib-lc	/^long	ftell(f) FILE *f; { return(0L); }$/
+fwrite	llib-lc	/^int	fwrite(b, s, n, f) char *b; FILE *f; { return(/
+gamma	llib-lm	/^double gamma(x)double x;{return x;}$/
+gcvt	llib-lc	/^char	*gcvt(v, n, b) double v; char *b; { return(""/
+genswitch	macdefs	/^# define genswitch( x,y)$/
+getc	llib-lc	/^int	getc(f) FILE *f; { return(0); }$/
+getchar	llib-lc	/^int	getchar() { return(0); }$/
+getcwd	llib-lc	/^char	*getcwd(b, s) char *b; { return(b); }$/
+getegid	llib-lc	/^int	getegid() { return(0); }$/
+getenv	llib-lc	/^char	*getenv(n) char *n; { return(n); }$/
+geteuid	llib-lc	/^int	geteuid() { return(0); }$/
+getgid	llib-lc	/^int	getgid() { return(0); }$/
+getgrent	llib-lc	/^struct group	*getgrent() { static struct group x; /
+getgrgid	llib-lc	/^struct group	*getgrgid(g) { static struct group x;/
+getgrnam	llib-lc	/^struct group	*getgrnam(n) char *n; { static struct/
+getlab	macdefs	/^# define getlab() 10$/
+getlogin	llib-lc	/^char	*getlogin() { return(""); }$/
+getnam	lpass2.c	/^getnam(p) char *p; {$/
+getpass	llib-lc	/^char	*getpass(s) char *s; { return(s); }$/
+getpgrp	llib-lc	/^int	getpgrp() { return(0); }$/
+getpid	llib-lc	/^int	getpid() { return(0); }$/
+getppid	llib-lc	/^int	getppid() { return(0); }$/
+getpw	llib-lc	/^int	getpw(u, b) char *b; { return(u); }$/
+getpwent	llib-lc	/^struct passwd	*getpwent() { static struct passwd x/
+getpwnam	llib-lc	/^struct passwd	*getpwnam(n) char *n; { static struc/
+getpwuid	llib-lc	/^struct passwd	*getpwuid(u) { static struct passwd /
+gets	llib-lc	/^char	*gets(s) char *s; { return(s); }$/
+getuid	llib-lc	/^int	getuid() { return(0); }$/
+getw	llib-lc	/^int	getw(f) FILE *f; { return(0); }$/
+gmtime	llib-lc	/^struct tm *gmtime(c) time_t *c; { static struct tm/
+gsignal	llib-lc	/^int	gsignal(s) { return(s); }$/
+gtty	llib-lc	/^int	gtty(f, b) struct sgttyb *b; { return(0); }$/
+hypot	llib-lm	/^double hypot(x,y)double x,y;{return x;}$/
+ident	lint.c	/^ident(){ \/* write out file and line identification/
+index	llib-lc	/^char	*index(s, c) char *s, c; { return(s); }$/
+ioctl	llib-lc	/^int	ioctl(f, r, a) { return(f); }$/
+isalnum	llib-lc	/^int	isalnum(c) { return (c); }$/
+isalpha	llib-lc	/^int	isalpha(c) { return (c); }$/
+isascii	llib-lc	/^int	isascii(c) { return (c); }$/
+isatty	llib-lc	/^int	isatty(f) { return(f); }$/
+iscntrl	llib-lc	/^int	iscntrl(c) { return (c); }$/
+isdigit	llib-lc	/^int	isdigit(c) { return (c); }$/
+isgraph	llib-lc	/^int	isgraph(c) { return (c); }$/
+isitfloat	lint.c	/^isitfloat ( s ) char *s; {$/
+islower	llib-lc	/^int	islower(c) { return (c); }$/
+isprint	llib-lc	/^int	isprint(c) { return (c); }$/
+ispunct	llib-lc	/^int	ispunct(c) { return (c); }$/
+isspace	llib-lc	/^int	isspace(c) { return (c); }$/
+isupper	llib-lc	/^int	isupper(c) { return (c); }$/
+isxdigit	llib-lc	/^int	isxdigit(c) { return (c); }$/
+j0	llib-lm	/^double j0(x)double x;{return x;}$/
+j1	llib-lm	/^double j1(x)double x;{return x;}$/
+jn	llib-lm	/^double jn(n,x)int n;double x;{return x;}$/
+jrand48	llib-port	/^long	jrand48(x) unsigned short x[3]; { return (0L)/
+kill	llib-lc	/^int	kill(p, s) { return(0); }$/
+l3tol	llib-lc	/^void	l3tol(l, c, n) long *l; char *c; { ; }$/
+lastone	lpass2.c	/^lastone(){$/
+lcong48	llib-port	/^void	lcong48(p) unsigned short p[7]; { ; }$/
+ldexp	llib-lc	/^double	ldexp(v, e) double v; { return(v); }$/
+link	llib-lc	/^int	link(a, b) char *a, *b; { return(0); }$/
+lmerge	lint.c	/^lmerge( np1, np2, flag ) struct lnm *np1, *np2; {$/
+localtime	llib-lc	/^struct tm *localtime(c) time_t *c; { static struct/
+locctr	macdefs	/^# define locctr(n) 0$/
+log	llib-lm	/^double log(x)double x;{return x;}$/
+log10	llib-lm	/^double log10(x)double x;{return x;}$/
+longjmp	llib-lc	/^void	longjmp(e, v) jmp_buf e; { ; }$/
+lprt	lint.c	/^lprt( p, down, uses )$/
+lpta	lint.c	/^lpta( p ) NODE *p; {$/
+lrand48	llib-port	/^long	lrand48() { return (0L); }$/
+lread	lpass2.c	/^lread(){ \/* read a line into pc *\/$/
+lseek	llib-lc	/^long	lseek(f, o, d) long o; { return(0L); }$/
+ltol3	llib-lc	/^void	ltol3(c, l, n) char *c; long *l; { ; }$/
+makecc	macdefs	/^# define makecc(val,i)  lastcon |= val<<(8*i);  \/*/
+malloc	llib-lc	/^char	*malloc(n) unsigned n; {static char c; return/
+matherr	llib-lm	/^int	matherr(p) struct exception *p; { return (0); /
+mknod	llib-lc	/^int	mknod(n, m, d) char *n; { return(0); }$/
+mktemp	llib-lc	/^char	*mktemp(t) char *t; { return(t); }$/
+modf	llib-lc	/^double	modf(v, i) double v, *i; { return(v); }$/
+mount	llib-lc	/^int	mount(s, d, r) char *s, *d; { return(0); }$/
+mrand48	llib-port	/^long	mrand48() { return (0L); }$/
+nice	llib-lc	/^int	nice(p) { return(0); }$/
+nlist	llib-lc	/^int	nlist(f, n) char *f; struct nlist *n; { return/
+noinit	lint.c	/^noinit(){$/
+nrand48	llib-port	/^long	nrand48(x) unsigned short x[3]; { return (0L)/
+offcon	lint.c	/^offcon( off, t, d, s ) OFFSZ off; TWORD t;{  \/* ma/
+open	llib-lc	/^int	open(f, o, m) char *f; { return(0); }$/
+pause	llib-lc	/^int	pause() { ; }$/
+pclose	llib-lc	/^int	pclose(f) FILE *f; { return(0); }$/
+perror	llib-lc	/^void	perror(s) char *s; { ; }$/
+pipe	llib-lc	/^int	pipe(f) int f[2]; { return(0); }$/
+plock	llib-lc	/^int	plock(o) { return(0); }$/
+popen	llib-lc	/^FILE	*popen(c, t) char *c, *t; { return(stdin); }$/
+pow	llib-lm	/^double pow(x,y)double x,y;{return x;}$/
+printf	llib-lc	/^int	printf(s) char *s; { ; }$/
+profil	llib-lc	/^void	profil(b, s, o, i) char *b; { ; }$/
+ptrace	llib-lc	/^int	ptrace(r, p, a, d) { return(0); }$/
+putc	llib-lc	/^int	putc(c, f) FILE *f; { return(c); }$/
+putchar	llib-lc	/^int	putchar(c) { return(c); }$/
+putpwent	llib-lc	/^int	putpwent(s, f) struct passwd *s; FILE *f; { re/
+puts	llib-lc	/^int	puts(s) char *s; { return(0); }$/
+putw	llib-lc	/^int	putw(w, f) FILE *f; { return(w); }$/
+qsort	llib-lc	/^void	qsort(b, n, w, c) char *b; unsigned n, w; int/
+rand	llib-lc	/^int	rand() { return(0); }$/
+rdin10	lpass2.c	/^rdin10(){$/
+rdinty	lpass2.c	/^rdinty( p ) atype *p; {$/
+read	llib-lc	/^int	read(f, b, n) char *b; unsigned n; { return(n)/
+realloc	llib-lc	/^char	*realloc(p, n) char *p; unsigned n; { static /
+rewind	llib-port	/^void	rewind(f) FILE *f; { ; }$/
+rindex	llib-lc	/^char	*rindex(s, c) char *s, c; { return(s); }$/
+sbrk	llib-lc	/^char	*sbrk(i) { return(""); }$/
+scanf	llib-lc	/^int	scanf(s) char *s; { return(0); }$/
+seed48	llib-port	/^unsigned short *	seed48(s) unsigned short s[3]; { /
+seek	llib-lc	/^int	seek(f, o, p) { return(0); }$/
+setbuf	llib-port	/^void	setbuf(f, b) FILE *f; char *b; { ; }$/
+setgid	llib-lc	/^int	setgid(g) { return(0); }$/
+setgrent	llib-lc	/^void	setgrent() { ; }$/
+setjmp	llib-lc	/^int	setjmp(e) jmp_buf e; { return(0); }$/
+setpgrp	llib-lc	/^int	setpgrp() { return(0); }$/
+setpwent	llib-lc	/^void	setpwent() { ; }$/
+setuid	llib-lc	/^int	setuid(u) { return(0); }$/
+setuse	lpass2.c	/^setuse(){ \/* check new type to ensure that it is u/
+signal	llib-lc	/^int (*  signal(c, f))() int (*f)(); { return(f); }/
+sin	llib-lm	/^double sin(x)double x;{return x;}$/
+sinh	llib-lm	/^double sinh(x)double x;{return x;}$/
+sleep	llib-lc	/^unsigned	sleep(n) unsigned n; { ; }$/
+sprintf	llib-lc	/^int	sprintf(p, s) char *p, *s; { ; }$/
+sqrt	llib-lm	/^double sqrt(x)double x;{return x;}$/
+srand	llib-lc	/^void	srand(s) unsigned s; { ; }$/
+srand48	llib-port	/^void	srand48(s) long s; { ; }$/
+sscanf	llib-lc	/^int	sscanf(p, s) char *p, *s; { return(0); }$/
+ssignal	llib-lc	/^int	(*ssignal(s, a))() int (*a)(); { return(a); }$/
+stat	llib-lc	/^int	stat(s, b) char *s; struct stat *b; { return(0/
+steq	lpass2.c	/^steq(p,q) char *p,*q; { \/* check that the p and q /
+stime	llib-lc	/^int	stime(t) long *t; { return (0); }$/
+strcat	llib-lc	/^char	*strcat(a, b) char *a, *b; { ; }$/
+strchr	llib-lc	/^char	*strchr(a, b) char *a, b; { return(a); }$/
+strcmp	llib-lc	/^int	strcmp(a, b) char *a, *b; { return(0); }$/
+strcpy	llib-lc	/^char	*strcpy(a, b) char *a, *b; { ; }$/
+strcspn	llib-lc	/^int	strcspn(a, b) char *a, *b; { return(0); }$/
+strlen	llib-lc	/^int	strlen(s) char *s; { return(0); }$/
+strncat	llib-lc	/^char	*strncat(a, b, n) char *a, *b; { ; }$/
+strncmp	llib-lc	/^int	strncmp(a, b, n) char *a, *b; { return(n); }$/
+strncpy	llib-lc	/^char	*strncpy(a, b, n) char *a, *b; { ; }$/
+strpbrk	llib-lc	/^char	*strpbrk(a, b) char *a, *b; { return(a); }$/
+strrchr	llib-lc	/^char	*strrchr(a, b) char *a, b; { return(a); }$/
+strspn	llib-lc	/^int	strspn(a, b) char *a, *b; { return(0); }$/
+strtod	llib-lc	/^double	strtod(s, t) char *s, **t; { return(0.0); }/
+strtok	llib-lc	/^char	*strtok(a, b) char *a, *b; { return(a); }$/
+strtol	llib-lc	/^long	strtol(s, t, b) char *s, **t; { return(0L); }/
+stty	llib-lc	/^int	stty(f, b) struct sgttyb *b; { return(0); }$/
+swab	llib-lc	/^void	swab(f, t, n) char *f, *t; { ; }$/
+sync	llib-lc	/^void	sync() { ; }$/
+system	llib-lc	/^int	system(s) char *s; { return(0); }$/
+tan	llib-lm	/^double tan(x)double x;{return x;}$/
+tanh	llib-lm	/^double tanh(x)double x;{return x;}$/
+tell	llib-lc	/^long	tell(f) { return(0L); }$/
+tempnam	llib-lc	/^char	*tempnam(d, s) char *d, *s; { return(d); }$/
+time	llib-lc	/^time_t	time(t) time_t *t; { return(0L);}$/
+times	llib-lc	/^long	times(b) struct tms *b; { return(0L); }$/
+tmpfile	llib-port	/^FILE *	tmpfile() { return (stdin); }$/
+tmpnam	llib-lc	/^char	*tmpnam(s) char *s; { return(s); }$/
+toascii	llib-port	/^int	toascii(i) { return (i); }$/
+tolower	llib-port	/^int	tolower(i) { return (i); }$/
+toupper	llib-port	/^int	toupper(i) { return (i); }$/
+ttyname	llib-lc	/^char	*ttyname(f) { return(""); }$/
+ttyslot	llib-lc	/^int	ttyslot() { return(0); }$/
+tzset	llib-port	/^void	tzset() { ; }$/
+umask	llib-lc	/^int	umask(c) { return(c); }$/
+umount	llib-lc	/^int	umount(s) char *s; { return(0); }$/
+uname	llib-lc	/^int	uname(n) struct utsname *n; { return(0); }$/
+ungetc	llib-lc	/^int	ungetc(c, f) FILE *f; { return(c); }$/
+unlink	llib-lc	/^int	unlink(s) char *s; { return(0); }$/
+ustat	llib-lc	/^int	ustat(d, b) struct ustat *b; { return(d); }$/
+utime	llib-lc	/^int	utime(f, t) char *f; struct { time_t x, y; } */
+vfdzero	macdefs	/^# define vfdzero(n) (inoff += (n))$/
+vfprintf	llib-lc	/^int	vfprintf(f, s, v) FILE *f; char *s; va_list v;/
+viceversa	lpass2.c	/^viceversa(){$/
+vprintf	llib-lc	/^int	vprintf(s, v) char *s; va_list v; { return(0);/
+vsprintf	llib-lc	/^int	vsprintf(p, s, v) char *p, *s; va_list v; { re/
+wait	llib-lc	/^int	wait(s) int *s; { return(0); }$/
+where	lint.c	/^where(f){ \/* print true location of error *\/$/
+write	llib-lc	/^int	write(f, b, n) char *b; { return(n); }$/
+y0	llib-lm	/^double y0(x)double x;{return x;}$/
+y1	llib-lm	/^double y1(x)double x;{return x;}$/
+yn	llib-lm	/^double yn(n,x)int n;double x;{return x;}$/
+zecode	lint.c	/^zecode( n ){$/

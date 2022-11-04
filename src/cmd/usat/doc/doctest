@@ -1,0 +1,104 @@
+:
+# SCCSID: @(#)doctest	3.0	4/22/86
+#
+######################################################################
+#   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    #
+#   All Rights Reserved. 					     #
+#   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      #
+######################################################################
+#
+echo -n "****** Doc Prep test started - "
+date
+touch $T/nro.$$.err
+
+echo "	copy"
+$M cp $L/doc/nro.file $T/nfi.$$.out
+cmp $L/doc/nro.file $T/nfi.$$.out
+if test $? != 0
+then
+	echo "doc: copy:   Compare after copy failed" >> $T/nro.$$.err
+	echo "Compare after copy failed"
+fi
+
+echo "	ed"
+$M ed - $T/nfi.$$.out <<%
+1,\$s/proc/newproc/g
+w
+q
+%
+
+echo "	diff"
+$M diff $L/doc/nro.file $T/nfi.$$.out > $T/ndf.$$.out
+cmp $L/doc/nro.dif.sout $T/ndf.$$.out 
+if test $? != 0
+then
+	echo "doc: ed:  Compare after ed/diff failed" >> $T/nro.$$.err
+	echo "Compare after ed/diff failed"
+fi
+
+echo "	spell"
+
+if test -f "$spellpath"
+then
+	$M spell $L/doc/nro.file > $T/nsp.$$.out
+	cmp $L/doc/nro.sp.sout $T/nsp.$$.out
+	if test $? != 0
+	then
+		echo "doc: spell: Spell output did not match" >> $T/nro.$$.err
+		echo "Spell output did not match"
+	fi
+
+else
+	echo "$spellpath: not installed" >> $T/nro.$$.err
+	echo "$spellpath: not tested (command not installed)"
+fi
+
+echo "	nroff"
+
+if test -f "$nroffpath"
+then
+	$M nroff -man $L/doc/nro.file >$T/nro.$$.out
+	echo "	grep"
+	$M grep -v "rinted" $T/nro.$$.out > $T/ngr.$$.out
+	cmp $T/ngr.$$.out $L/doc/nro.file.sout
+	if test $? != 0
+	then
+		echo "doc: nroff: Compare after nroff failed" >> $T/nro.$$.err
+		echo "Compare after nroff failed"
+	fi
+
+else
+	echo "$nroffpath: not installed" >> $T/nro.$$.err
+	echo "$nroffpath: not tested (command not installed)"
+fi
+
+echo "	ex"
+if test -f "$expath"
+then
+# do the edit...
+	cp $L/doc/nro.file $T/nfi.$$.out
+	$M ex - $T/nfi.$$.out <<%
+1,\$s/proc/newproc/g
+w
+q
+%
+
+	echo "	diff"
+	diff $L/doc/nro.file $T/nfi.$$.out > $T/ndf.$$.out
+	cmp $L/doc/nro.dif.sout $T/ndf.$$.out 
+	if test $? != 0
+	then
+		echo "doc: ex:  Compare after ex/diff failed" >> $T/nro.$$.err
+		echo "Compare after ex/diff failed"
+	fi
+# else the ex command is not installed...
+else
+	echo "$expath: not installed" >> $T/nro.$$.err
+	echo "$expath: not tested (command not installed)"
+fi
+
+echo -n "****** End of  Doc Prep test - "
+date
+cat $T/nro.$$.err >> $T/log.$$.err
+rm -f $RT/n*.$$.out
+rm -f $RT/nro.$$.err

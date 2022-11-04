@@ -1,0 +1,15 @@
+SOH	de	/^The ASCII character SOH (binary 001) is in the fir/
+be	ut	/^as a file can be (currently 1M bytes).$/
+character	ad	/^keyletter begins with the SCCS control character (/
+delta	de	/^Which delta (SID) do you want to make?$/
+file	cm	/^1) Someone else is updating the SCCS file (or the /
+files	cm	/^create any files (including the ``lock file'') in /
+flag	ad	/^You supplied a flag (on 'd' or 'f' keyletter)$/
+for	cm	/^No SCCS identification keywords were substituted f/
+get/ente	ge	/^You can't use both the -e and -m arguments on the /
+less	co	/^Don't type so much on a line.  Maximum is 512 char/
+login	cm	/^have a login (via a data link of some type).  SCCS/
+name	co	/^SCCS files may only have one name (link).$/
+release	co	/^is lower than the lowest allowable release (the fl/
+releases	co	/^Do a 'prs -d:LK: s.filename' to see a list of lock/
+user	ut	/^The effective user (probably you) doesn't have wri/

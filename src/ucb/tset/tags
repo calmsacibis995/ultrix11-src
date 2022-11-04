@@ -1,0 +1,28 @@
+CHK	tset.c	/^# define	CHK(val, dft)	(val<=0 ? dft : val)$/
+CTRL	tset.c	/^# define	CTRL(x)		(x ^ 0100)$/
+Mtset	tset.c	/^main(argc, argv)$/
+WHITE	tset.c	/^#define	WHITE(c)	(c == ' ' || c == '\\t')$/
+baudrate	tset.c	/^baudrate(p)$/
+bequal	tset.c	/^bequal(a, b, len)	\/* must be same thru len chars */
+bmove	tset.c	/^bmove(from, to, length)$/
+cancelled	tset.c	/^cancelled(cap)$/
+cat	tset.c	/^cat(file)$/
+fatal	tset.c	/^fatal (mesg, obj)$/
+flush	tset.c	/^flush()$/
+isalias	tset.c	/^isalias(ident)	\/* is ident same as one of the alia/
+isalnum	tset.c	/^# define	isalnum(c)	(c > ' ' && !(index("<@=>!:|\\1/
+isdigit	tset.c	/^# define	isdigit(c)	(c >= '0' && c <= '9')$/
+makealias	tset.c	/^makealias(buf)$/
+mapped	tset.c	/^mapped(type)$/
+nextarg	tset.c	/^nextarg(argc, argv)$/
+prc	tset.c	/^prc(c)$/
+prmap	tset.c	/^prmap()$/
+prs	tset.c	/^prs(s)$/
+putbuf	tset.c	/^putbuf(ptr, str)$/
+reportek	tset.c	/^reportek(name, new, old, def)$/
+sequal	tset.c	/^sequal(a, b)	\/* must be same thru NULL *\/$/
+setdelay	tset.c	/^setdelay(cap, dtab, bits, flags)$/
+setmode	tset.c	/^setmode(flag)$/
+settabs	tset.c	/^settabs()$/
+stypeof	tset.c	/^stypeof(ttyid)$/
+wrtermcap	tset.c	/^wrtermcap(bp)$/

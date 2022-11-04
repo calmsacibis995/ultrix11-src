@@ -1,0 +1,82 @@
+(cd ../dev; ar x LIB2_id tty.o dsort.o hp.o ra.o rl.o ht.o dhdm.o dh.o lp.o dz.o pty.o)
+ld -X -k -i -o unix_id l.o dump_id.o mch_id.o c.o dds.o tds.o nds.o dksizes.o \
+-Z \
+	../dev/tty.o \
+	../dev/dsort.o \
+	../dev/dhdm.o \
+	../sys/ipc.o \
+	../sys/shuffle.o \
+	../net/af.o \
+	../net/if_loop.o \
+	../net/in_proto.o \
+	../net/tcp_debug.o \
+-Z \
+	../dev/hp.o \
+	../dev/rl.o \
+	../net/if_to_proto.o \
+	../net/ip_if.o \
+	../net/in_cksum.o \
+	../net/raw_ip.o \
+-Z \
+	../dev/ra.o \
+	../dev/dh.o \
+	../sys/subr_net.o \
+-Z \
+	../dev/ht.o \
+	../dev/lp.o \
+	../dev/dz.o \
+	../sys/maus.o \
+	../net/raw_cb.o \
+	../sys/sys_socket.o \
+-Z \
+	../dev/pty.o \
+	../net/if_de.o \
+	../net/tcp_timer.o \
+-Z \
+	../sys/msg.o \
+	../sys/sem.o \
+	../net/if.o \
+	../net/ip_icmp.o \
+-Z \
+	../sys/flock.o \
+	../net/if_ether.o \
+	../net/in_pcb.o \
+-Z \
+	../net/in.o \
+	../net/ip_input.o \
+	../net/ip_output.o \
+	../net/raw_usrreq.o \
+-Z \
+	../net/tcp_input.o \
+	../net/tcp_output.o \
+	../sys/mbuf.o \
+-Z \
+	../net/route.o \
+	../net/tcp_subr.o \
+	../net/tcp_usrreq.o \
+	../net/udp_usrreq.o \
+	../sys/mbuf11.o \
+	../sys/uipc_domain.o \
+-Z \
+	../sys/uipc_socket.o \
+	../sys/uipc_socket2.o \
+-Z \
+	../sys/uipc_syscall.o \
+-L \
+	../sys/LIB1_id \
+	../dev/LIB2_id \
+	ec.o
+status=$?
+rm -f	../dev/tty.o \
+	../dev/dsort.o \
+	../dev/hp.o \
+	../dev/ra.o \
+	../dev/rl.o \
+	../dev/ht.o \
+	../dev/dhdm.o \
+	../dev/dh.o \
+	../dev/lp.o \
+	../dev/dz.o \
+	../dev/pty.o \
+
+exit ${status}

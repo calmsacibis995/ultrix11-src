@@ -1,0 +1,10 @@
+
+This library (libv7.a) contains the Version 7
+printf, scanf and related routines, used for
+backward compatibility with older programs.
+These routines are also useful for making large
+programs a little smaller.  You can save about
+320 bytes of text space for programs using both
+printf and scanf.
+
+John Dustin - 28-JUL-85

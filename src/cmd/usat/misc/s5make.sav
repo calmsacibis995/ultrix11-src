@@ -1,0 +1,4 @@
+	rm -f prog prog.o prog.c prog1.c prog2.c
+	touch prog1.c
+	touch prog.c
+	cp prog.c prog2.c

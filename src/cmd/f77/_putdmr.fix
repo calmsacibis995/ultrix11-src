@@ -1,0 +1,4 @@
+/globl[ 	]*_ops2$/d
+s/data/text/
+w
+q

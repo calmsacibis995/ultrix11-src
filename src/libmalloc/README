@@ -1,0 +1,8 @@
+The malloc in this directroy is the SYSTEM V "Fast Malloc",
+as documented in section 3x of the ULTRIX-11 Programer's Manual.
+The SYSTEM V specification lists this malloc as the default,
+however, the source code for SYSTEM V Rel. 2 for the PDP-11
+actually references the standard (smaller) malloc, while the
+larger version is found here, in libmalloc.a.
+
+John Dustin 26-JUN-85

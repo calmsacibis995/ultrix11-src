@@ -1,0 +1,12 @@
+Mopser	opser.c	/^main()$/
+backup	opser.c	/^backup()$/
+goodbye	opser.c	/^goodbye()$/
+haltsys	opser.c	/^haltsys()	\/* Big gun here. Halts Cpu *\/$/
+help	opser.c	/^help()$/
+menu	opser.c	/^menu()$/
+onintr	opser.c	/^onintr()$/
+restart	opser.c	/^restart()$/
+shutdown	opser.c	/^shutdown()$/
+sulog	opser.c	/^sulog(whofrom, whoto, password)$/
+to	shutdown.c	10
+users	opser.c	/^users()$/

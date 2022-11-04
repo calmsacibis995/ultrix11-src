@@ -1,0 +1,264 @@
+
+
+
+                                                        PSTAT(1M)
+
+
+
+NNNNAAAAMMMMEEEE
+     pstat - print system facts
+
+SSSSYYYYNNNNOOOOPPPPSSSSIIIISSSS
+     ppppssssttttaaaatttt [ ----aaaaiiiixxxxppppttttuuuuffff ] [ suboptions ] [ corefile ] [ namelist ]
+
+DDDDEEEESSSSCCCCRRRRIIIIPPPPTTTTIIIIOOOONNNN
+     _P_s_t_a_t interprets the contents of certain system tables.  If
+     _c_o_r_e_f_i_l_e is given, the tables are sought there, otherwise in
+     /_d_e_v/_m_e_m. The required namelist is taken from /_u_n_i_x , unless
+     the optional _n_a_m_e_l_i_s_t argument is given.  If the namelist is
+     specified then the corefile must also be specified.  Options
+     are
+
+     ----aaaa    Under ----pppp, describe all process slots rather than just
+           active ones.
+
+     ----iiii    Print the inode table with the these headings:
+
+     LLLLOOOOCCCC   The core location of this table entry.
+     FFFFLLLLAAAAGGGGSSSS Miscellaneous state variables encoded thus:
+           LLLL locked
+           UUUU update time _f_i_l_s_y_s(5)) must be corrected
+           AAAA access time must be corrected
+           MMMM file system is mounted here
+           WWWW wanted by another process (L flag is on)
+           TTTT contains a text file
+           CCCC changed time must be corrected
+     CCCCNNNNTTTT   Number of open file table entries for this inode.
+     DDDDEEEEVVVV   Major and minor device number of file system in which
+           this inode resides.
+     IIIINNNNOOOO   I-number within the device.
+     MMMMOOOODDDDEEEE  Mode bits, see _c_h_m_o_d(2).
+     NNNNLLLLKKKK   Number of links to this inode.
+     UUUUIIIIDDDD   User ID of owner.
+     SSSSIIIIZZZZ////DDDDEEEEVVVV
+           Number of bytes in an ordinary file, or major and
+           minor device of special file.
+
+     ----xxxx    Print the text table with these headings:
+
+     LLLLOOOOCCCC   The core location of this table entry.
+     FFFFLLLLAAAAGGGGSSSS Miscellaneous state variables encoded thus:
+           TTTT _p_t_r_a_c_e(2) in effect
+           WWWW text not yet written on swap device
+           LLLL loading in progress
+           KKKK locked
+           wwww wanted (L flag is on)
+
+     DDDDAAAADDDDDDDDRRRR Disk address in swap, measured in multiples of 512
+           bytes.
+
+
+
+
+                                                              0-1
+
+
+
+
+
+
+PSTAT(1M)
+
+
+
+     CCCCAAAADDDDDDDDRRRR Core address, measured in multiples of 64 bytes.
+
+     SSSSIIIIZZZZEEEE  Size of text segment, measured in multiples of 64
+           bytes.
+
+     IIIIPPPPTTTTRRRR  Core location of corresponding inode.
+
+     CCCCNNNNTTTT   Number of processes using this text segment.
+
+     CCCCCCCCNNNNTTTT  Number of processes in core using this text segment.
+
+     ----pppp    Print process table for active processes with these
+           headings:
+
+     LLLLOOOOCCCC   The core location of this table entry.
+     SSSS     Run state encoded thus:
+           0000 no process
+           1111 waiting for some event
+           3333 runnable
+           4444 being created
+           5555 being terminated
+           6666 stopped under trace
+     FFFF     Miscellaneous state variables, or-ed together:
+           00001111loaded
+           00002222the scheduler process
+           00004444locked
+           000011110000
+             swapped out
+           000022220000
+             traced
+           000044440000
+             used in tracing
+           0000111100000000
+             locked in by _l_o_c_k(2).
+     PPPPRRRRIIII   Scheduling priority, see _n_i_c_e(2).
+     SSSSIIIIGGGGNNNNAAAALLLL
+           Signals received (signals 1-16 coded in bits 0-15),
+     UUUUIIIIDDDD   Real user ID.
+     TTTTIIIIMMMM   Time resident in seconds; times over 127 coded as 127.
+     CCCCPPPPUUUU   Weighted integral of CPU time, for scheduler.
+     NNNNIIII    Nice level, see _n_i_c_e(2).
+     PPPPGGGGRRRRPPPP  Process number of root of process group (the opener of
+           the controlling terminal).
+     PPPPIIIIDDDD   The process ID number.
+     PPPPPPPPIIIIDDDD  The process ID of parent process.
+     AAAADDDDDDDDRRRR  If in core, the physical address of the 'u-area' of
+           the process measured in multiples of 64 bytes.  If
+           swapped out, the position in the swap area measured in
+           multiples of 512 bytes.
+     SSSSIIIIZZZZEEEE  Size of process image in multiples of 64 bytes.
+     WWWWCCCCHHHHAAAANNNN Wait channel number of a waiting process.
+     LLLLIIIINNNNKKKK  Link pointer in list of runnable processes.
+
+
+
+0-2
+
+
+
+
+
+
+                                                        PSTAT(1M)
+
+
+
+     TTTTEEEEXXXXTTTTPPPP If text is pure, pointer to location of text table
+           entry.
+     CCCCLLLLKKKKTTTT  Countdown for _a_l_a_r_m(2) measured in seconds.
+
+     ----tttt    Print table for terminals (DH, KL, DL, DZ, and DZV
+           handled) with these headings:
+
+     RRRRAAAAWWWW   Number of characters in raw input queue.
+     CCCCAAAANNNN   Number of characters in canonicalized input queue.
+     OOOOUUUUTTTT   Number of characters in output queue.
+     MMMMOOOODDDDEEEE  See _t_t_y(4).
+     AAAADDDDDDDDRRRR  Physical device address.
+     DDDDEEEELLLL   Number of delimiters (newlines) in canonicalized input
+           queue.
+     CCCCOOOOLLLL   Calculated column position of terminal.
+     SSSSTTTTAAAATTTTEEEE Miscellaneous state variables encoded thus:
+           WWWW waiting for open to complete
+           OOOO open
+           SSSS has special (output) start routine
+           CCCC carrier is on
+           BBBB busy doing output
+           AAAA process is awaiting output
+           XXXX open for exclusive use
+           HHHH hangup on close
+     PPPPGGGGRRRRPPPP  Process group for which this is controlling terminal.
+     EEEERRRRRRRRCCCCNNNNTTTT
+           Number of errors on the line, since the system was
+           last booted.
+     LLLLAAAASSSSTTTTEEEECCCC
+           Last error character, as received on the line.  Char-
+           acter in lo byte, error bits in hi byte.
+           Bit 15 - Combined error bit
+           Bit 14 - Overrun error
+           Bit 13 - Framing error
+           Bit 12 - Parity error
+           For DL and KL all three types of errors are counted.
+           For DH, DZ, and DZV, overruns are counted, framing
+           errors are not counted, and parity errors are counted
+           only if parity is enabled.
+
+     ----uuuu    print information about a user process; the next argu-
+           ment is its address as given by _p_s(1).  The process
+           must be in main memory, or the file used can be a core
+           image and the address 0.
+
+     ----ffff    Print the open file table with these headings:
+
+     LLLLOOOOCCCC   The core location of this table entry.
+     FFFFLLLLGGGG   Miscellaneous state variables encoded thus:
+           RRRR open for reading
+           WWWW open for writing
+           PPPP pipe
+
+
+
+                                                              0-3
+
+
+
+
+
+
+PSTAT(1M)
+
+
+
+     CCCCNNNNTTTT   Number of processes that know this open file.
+     IIIINNNNOOOO   The location of the inode table entry for this file.
+     OOOOFFFFFFFFSSSS  The file offset, see _l_s_e_e_k(2).
+
+FFFFIIIILLLLEEEESSSS
+     /unix     default namelist
+     /dev/mem  default source of tables
+
+SSSSEEEEEEEE AAAALLLLSSSSOOOO
+     ps(1), stat(2), filsys(5)
+     V7M-11 System Management Guide section 9.5
+     K. Thompson, _U_N_I_X _I_m_p_l_e_m_e_n_t_a_t_i_o_n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0-4
+
+
+

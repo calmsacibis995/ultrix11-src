@@ -1,0 +1,10 @@
+Micheck	icheck.c	/^main(argc, argv)$/
+alloc	icheck.c	/^alloc()$/
+bfree	icheck.c	/^bfree(bno)$/
+bread	icheck.c	/^bread(bno, buf, cnt)$/
+bwrite	icheck.c	/^bwrite(bno, buf)$/
+check	icheck.c	/^check(file)$/
+chk	icheck.c	/^chk(bno, s)$/
+duped	icheck.c	/^duped(bno)$/
+makefree	icheck.c	/^makefree()$/
+pass1	icheck.c	/^pass1(ip)$/

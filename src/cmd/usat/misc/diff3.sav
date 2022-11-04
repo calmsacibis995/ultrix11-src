@@ -1,0 +1,37 @@
+====
+1:2,3c
+  Blueberries
+  Bananas
+2:2,3c
+  Blueberries
+  Boysenberries
+3:2,3c
+  Bananas
+  Boysenberries
+====
+1:5,8c
+  Grapes
+  Grapefruits
+  Kiwi
+  Melons
+2:5c
+  Kiwi
+3:4a
+====
+1:10,12c
+  Oranges
+  Pears
+  Peaches
+2:7,8c
+  Melons
+  Peaches
+3:6c
+  Oranges
+====2
+1:13a
+2:10,13c
+  Raspberries
+  Raspberries
+  Strawberries
+  Strawberries
+3:7a

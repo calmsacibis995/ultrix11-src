@@ -1,0 +1,51 @@
+DO2	date_ba.c	/^# define DO2(p,n,c)	*p++ = n\/10 + '0'; *p++ = n%10/
+addq	rdmod.c	/^addq(pkt,ser,keep,iord,user)$/
+apply	rdmod.c	/^# define apply(qp)	((qp->q_iord == INS && qp->q_ke/
+auxf	auxf.c	/^auxf(sfile,ch)$/
+chkid	chkid.c	/^chkid(line)$/
+chkix	rdmod.c	/^chkix(new,head)$/
+chksid	chksid.c	/^chksid(p,sp)$/
+ck_lock	permiss.c	/^ck_lock(p,pkt)$/
+condset	setup.c	/^condset(ap,code,reason)$/
+date_ba	date_ba.c	/^date_ba(bdt,adt)$/
+del_ab	del_ab.c	/^del_ab(p,dt,pkt)$/
+del_ba	del_ba.c	/^del_ba(dt,str)$/
+do_file	dofile.c	/^do_file(p,func)$/
+dodelt	dodelt.c	/^dodelt(pkt,statp,sidp,type)$/
+doflags	permiss.c	/^doflags(pkt)$/
+dohist	dohist.c	/^dohist(file)$/
+doie	doie.c	/^doie(pkt,ilist,elist,glist)$/
+doixg	dodelt.c	/^doixg(p,ixgp)$/
+dolist	dolist.c	/^dolist(pkt,list,ch)$/
+eqsid	eqsid.c	/^eqsid(s1, s2)$/
+finduser	permiss.c	/^finduser(pkt)$/
+flushline	putline.c	/^flushline(pkt,stats)$/
+flushto	flushto.c	/^flushto(pkt,ch,put)$/
+fmterr	fmterr.c	/^fmterr(pkt)$/
+getadel	dodelt.c	/^getadel(pkt,dt)$/
+getasid	dolist.c	/^getasid(p,sp)$/
+getline	getline.c	/^getline(pkt)$/
+getresp	dohist.c	/^getresp(repstr,result)$/
+ixgsetup	setup.c	/^ixgsetup(ap,ixgp)$/
+logname	logname.c	/^char	*logname()$/
+mrfixup	dohist.c	/^mrfixup()$/
+msg	rdmod.c	/^# define msg(s,help)	fprintf(pkt->p_stdout,msgstr,/
+newstats	newstats.c	/^newstats(pkt,strp,ch)$/
+permiss	permiss.c	/^permiss(pkt)$/
+pf_ab	pf_ab.c	/^pf_ab(s,pp,all)$/
+putline	putline.c	/^putline(pkt,newline)$/
+readmod	rdmod.c	/^readmod(pkt)$/
+remq	rdmod.c	/^remq(pkt,ser)$/
+returns	date_ab.c	22
+savecmt	dohist.c	/^char *savecmt(p)$/
+setkeep	rdmod.c	/^setkeep(pkt)$/
+setup	setup.c	/^setup(pkt,serial)$/
+sid_ab	sid_ab.c	/^sid_ab(p,sp)$/
+sid_ba	sid_ba.c	/^sid_ba(sp,p)$/
+sidtoser	sidtoser.c	/^sidtoser(sp,pkt)$/
+sinit	sinit.c	/^sinit(pkt,file,openflag)$/
+stalloc	dohist.c	/^stalloc(n)$/
+stats_ab	stats_ab.c	/^stats_ab(pkt,statp)$/
+to	date_ab.c	14
+valmrs	dohist.c	/^valmrs(pkt,pgm)$/
+xrm	putline.c	/^xrm(pkt)$/

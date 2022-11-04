@@ -1,0 +1,37 @@
+g/Sccsid = @(#)_awk.lx.dif	3.0/
+/struct[ 	]*yysvf[	 ]*{/
+ka
+/};$/kb
+'a,'b w awk.dat2.c
+/^#[ 	]*define[ 	]*YYTYPE/W awk.dat2.c
+/yyvstop\[\]/
+ka
+/};$/kb
+'a,'b W awk.dat2.c
+'a,'b c
+extern int yyvstop[];
+.
+/yycrank\[\]/
+ka
+/};$/kb
+'a,'b W awk.dat2.c
+'a,'b c
+struct yywork { YYTYPE verify, advance; };
+extern struct yywork yycrank[];
+.
+/yysvec\[\]/
+ka
+/};$/kb
+'a,'b W awk.dat2.c
+'a,'b c
+extern struct yysvf yysvec[];
+.
+/yymatch\[\]/
+ka
+/};$/kb
+'a,'b W awk.dat2.c
+'a,'b c
+extern char yymatch[];
+.
+w
+q

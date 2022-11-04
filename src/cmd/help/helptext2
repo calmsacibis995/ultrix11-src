@@ -1,0 +1,1271 @@
+-512dumpdir
+
+DESCRIPTION	The 512dumpdir command displays the directory contents 
+		of a dump tape containing a pre-Version 3.0 file system
+		(512-byte block).
+
+DOCUMENTATION	dumpdir(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Mangement Guide
+-512restor
+
+DESCRIPTION	The 512restor command allows you to perform
+		incremental file restores from a pre-Version
+		3.0 file system (512-byte block).
+
+DOCUMENTATION   restor(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Mangement Guide
+-ac
+
+DESCRIPTION	The ac command displays login accounting information.
+
+SYNTAX	  	ac [ options ] [ user... ]
+
+		  user   Login name of each user that statistics are to be 
+			 generated for.  If not specified, generates statistics
+			 for all users.
+
+OPTIONS		-d   Displays daily report (midnight to midnight).
+		-p   Displays personal statistics for all users.  If not 
+		     specified, displays system totals only.
+		-w   Displays report from statistics in specified file (next 
+		     argument).  If not specified, uses /usr/adm/wtmp.
+
+DOCUMENTATION   ac(8) in the ULTRIX-11 Programmer's Manual
+-accton
+	
+DESCRIPTION	The accton command turns system process accounting on or off.
+
+SYNTAX		/etc/accton [ file ]
+
+		  file   Name of file into which accounting statistics are 
+			 to be written.  You can use any file, but, normally, 
+			 you specify /usr/adm/acct in /etc/rc. If a file is 
+			 not specified, turns off process accounting.
+
+DOCUMENTATION   sa(8) in the ULTRIX-11 Programmer's Manual
+-arcv
+
+DESCRIPTION	The arcv command converts each previously archived V6 file 
+		to Version 7 format.
+
+SYNTAX		arcv file...
+
+		  file   Name of each file to be converted.
+
+DOCUMENTATION	arcv(8) in the ULTRIX-11 Programmer's Manual
+-arp
+
+DESCRIPTION	The arp command allows you to display or modify
+		the Internet-to-Ethernet translation tables.
+
+SYNTAX	  	arp [ options ] [ host ]
+
+		  host   Name of the host system for which
+			 information is to be displayed or
+			 modified.
+
+OPTIONS		-a   Displays current Address Resolution Protocol
+		     (ARP) entries from the specified namelist and
+		     core files (next arguments).  If not specified,
+		     uses /unix and /dev/mem, respectively.
+		-d   Deletes the entry for the host specified by
+		     name (next argument).
+		-f   Reads information from the specified file
+		     (next argument) and modifies entries accordingly.
+		-s   Creates an entry for the host specified by name
+		     and Ethernet address (next arguments).  If the
+		     optional argument temp is not specified, a
+		     permanent entry is created.  If the optional
+		     argument pub also is not specified, the entry
+		     is not published.	
+		
+DOCUMENTATION   arp(8c) in the ULTRIX-11 Programmer's Manual
+-boot
+
+DESCRIPTION	The primary and secondary boot programs are used 
+		during a system boot.
+		
+DOCUMENTATION   boot(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-bufstat
+	
+DESCRIPTION	The bufstat command displays current I/O usage statistics.
+		
+
+SYNTAX		bufstat [ keys ]
+
+KEYS		i   Uses specified number (next argument) as interval for 
+		    display: every n seconds.
+		f   Uses specified file (next argument) in place of memory.
+		    If not specified, uses /dev/mem.
+		n   Uses specified file (next argument) in place of system 
+		    namelist.  If not specified, uses /unix.
+
+DOCUMENTATION	bufstat(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-catman
+
+DESCRIPTION	The catman command creates formatted manual pages
+		for the on-line documentation from the nroff
+		source files.
+
+SYNTAX	  	catman  [ options ] [ section... ]
+
+		  section   Section number of the Programmer's
+			    Manual for which the formatted pages
+			    are to be created.
+
+OPTIONS		-n   Creates the formatted pages but does not create
+		     the /usr/lib/whatis database.
+		-p   Displays information about what would be done
+		     but does not create the formatted pages.
+		-w   Does not create the formatted pages but does
+		     create the /usr/lib/whatis database.
+		
+DOCUMENTATION   catman(8) in the ULTRIX-11 Programmer's Manual
+-ccd
+	
+DESCRIPTION	The ccd command copies a kernel crash dump from the dump 
+		device to the /usr/crash directory.
+
+SYNTAX		ccd
+
+DOCUMENTATION	cda(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-cda
+
+DESCRIPTION	The cda command analyzes a kernel core dump.
+
+SYNTAX		cda [ options ] [ kernel ] [ core ]
+
+		  kernel   Name of kernel object file to be analyzed.  If not 
+			   specified, uses /unix.
+
+		  core     Name of core dump.  If not specified, uses 
+			   /usr/crash/core.
+
+OPTIONS		-b    Displays buffer statistics.
+		-e    Extracts unlogged error messages.
+		-g    Displays user blocks.
+		-h    Displays help information.
+		-k    Displays TMSCP tape statistics.
+		-m    Displays memory usage statistics.
+		-q    Displays block I/O buffer queues.
+		-r    Displays resource map usage (core and swap).
+		-t    Performs panic trap analysis.
+		-u    Displays MSCP disk statistics.
+		-pf   Displays open files (pstat -f).
+		-pi   Displays inode table entries (pstat -i).
+		-pp   Displays process table active slots (pstat -p).
+		-ps   Displays process status statistics (ps -lax).
+		-pt   Displays terminal status statistics (pstat -t).
+		-pu   Uses specified address (-pun) and dumps U block at 
+		      that address. 
+		-px   Displays text table (pstat -x).
+		-ppa  Displays all process table slots (pstat -pa).
+
+DOCUMENTATION	cda(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide 
+-clri
+
+DESCRIPTION	The clri command clears (zeroes out) each specified inode.
+
+SYNTAX		clri special inumber...
+
+		  special   Name of special file for file system on which 
+			    the inodes reside.
+
+		  inumber   Index number of each inode to be cleared.
+
+DOCUMENTATION	clri(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-crash
+
+DESCRIPTION	The system crash procedures are fully explained in the
+		ULTRIX-11 System Management Guide.
+		
+DOCUMENTATION   ULTRIX-11 System Management Guide
+-cron
+
+DESCRIPTION	The cron command is the system clock daemon that is
+		used for repetitively executing command sequences at 
+		a specified time.  Normally, this command is 
+		automatically executed from the /etc/rc file during
+		multiuser startup.
+
+DOCUMENTATION   cron(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-dcheck
+	
+DESCRIPTION	The dcheck command checks the directory consistency of the
+		specified file system.
+
+SYNTAX		dcheck [ -i ] special
+
+		  special   Name of special file for file system to be checked.
+
+OPTIONS		-i  Checks the directory consistency of the specified files. 
+		    Each file is specified by its inode index number 
+		    (-i number...).
+
+DOCUMENTATION	dcheck(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-dcopy
+
+DESCRIPTION	The dcopy command performs a disk-to-disk copy of the specified
+		file system.
+
+SYNTAX		/etc/dcopy [ options ] special1 special2
+
+		  special1   Name of special file for each file system: one
+		  special2   copied from and one copied to.
+
+OPTIONS		-a   Places all files not accessed in specified number of days 
+		     (-a#) after free block list on destination file system.
+		-d   Leaves all directory entries as is.  Normally, all 
+		     subdirectories are moved to beginning of directory.
+		-f   Uses specified information (-ffsize:isize) and overrides
+		     defined values for size of target file system (fsize) 
+		     and size of inode list (isize).
+		-n   Does not prompt for confirmation. Normally, prompts before
+		     copying. 
+		-s   Uses specified character (-sx[:s]) and reconstructs free 
+		     list with optimal interleaving (x:s spaces free blocks 
+		     s blocks apart in cylinder groups x blocks each).
+		-v   Reports number of files and size of free list on source
+		     and destination file system during copy.
+
+DOCUMENTATION	dcopy(8) in the ULTRIX-11 Programmer's Manual
+-df
+	
+DESCRIPTION	The df command reports the number of free blocks available 
+		on each specified file system.
+
+SYNTAX		df [ special... ]
+
+		  special  Name of special file for each file system to be 
+			   checked.  If not specified, reports on all file
+			   systems named in /etc/fstab.
+
+OPTIONS         -i   Shows free inodes in addition to free disk space.
+
+DOCUMENTATION	df(8) in the ULTRIX-11 Programmer's Manual
+-dmesg
+
+DESCRIPTION	The dmesg command copies messages from the system
+		message buffer and, unless redirected, writes them
+		to stdout.  Normally, this command is automatically
+		invoked every 10 minutes by the system clock daemon,
+		/etc/cron.
+
+DOCUMENTATION   dmesg(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-dump
+	
+DESCRIPTION	The dump command creates incremental file system dumps.
+
+SYNTAX		dump [ key ] [ special ]
+
+		  special   Name of special file for file system to be 
+			    dumped.
+
+KEYS		0-9  Sets dump level to specified number from range (0-9).  
+		     Level 0 indicates full file system dump.
+		d    Sets tape density (next argument) to n bytes/inch.
+		f    Uses special file (next argument) to which output is
+		     to be written.
+		k    Uses TK50 instead of tape.
+		m    Uses RX50 diskettes instead of tape.  The f key also is 
+		     required to indicate the special file name.
+		s    Sets size of dump tape (next argument) to specified
+		     feet.  If not specified, defaults to 2300 feet.
+		t    Prevents rewrite on error: exits with status 1
+		     instead of asking if volume is to be rewritten.
+		u    Updates /etc/ddate upon successful completion.
+		y    Suppresses normal start-up query.
+
+EXAMPLES	dump 0uf /dev/rht0 /dev/hp05
+
+DOCUMENTATION	dump(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-dumpdir
+	
+DESCRIPTION	The dumpdir command displays the directory contents of a
+		dump tape.
+
+SYNTAX		dumpdir [ key ]
+
+KEYS		d   Displays each entry in the /etc/ddate file.
+    		f   Name of special file (next argument) on which dump 
+		    tape is mounted.  If not specified, uses /dev/rht0.
+
+DOCUMENTATION	dumpdir(8) in the ULTRIX-11 Programmer's Manual
+-elc
+
+DESCRIPTION	The elc program runs in background and periodically 
+		copies error data from the system message buffer to
+		the error log file.
+
+DOCUMENTATION	ULTRIX-11 System Management Guide
+-eli
+
+DESCRIPTION	The eli command initializes and maintains the system error
+		logger.
+
+SYNTAX		eli [ option ]
+
+OPTIONS		-c  Copies system error log file to specified file (next
+		    argument).
+		-d  Disables error logging.
+		-e  Enables error logging.
+		-i  Initializes the system error log file.
+		-u  Displays the size of the system error log file.
+
+DOCUMENTATION	eli(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-elp
+
+DESCRIPTION	The elp command formats and prints system error messages.
+
+SYNTAX		elp [ options ] [ file ]
+
+		  file  Name of file from which error message data is to
+			be taken.
+
+OPTIONS		-b  Displays brief descriptions only.
+		-d  Displays messages within specified date and time (next
+		    two arguments).
+		-f  Displays detailed reports only.
+		-h  Displays on-line help.
+		-r  Displays recoverable errors (block devices only).
+		-s  Displays summary reports only.
+		-u  Displays unrecoverable errors (block devices only).
+		-xx Displays report for specified error type (xx) only.
+		    Error types are:
+
+			hj  rm02/3/5, rp04/5/6, ml11 disks on third rh11/rh70
+			    controller
+			hk  rk06/7 disks
+			hm  rm02/3/5, rp04/5/6, ml11 disks on second rh11/rh70
+			    controller
+			hp  rm02/3/5, rp04/5/6, ml11 disks on first rh11/rh70
+			    controller
+			hs  rs03/4 disks
+			ht  tm02/3 tape controller
+			hx  rx02 disks
+			mp  Memory parity
+			ra  ra60/80/81 disks
+			rc  rc25 disks
+			rd  rd51/52 disks
+			rk  rk05 disks
+			rl  rl01/2 disks
+			rp  rp02/3 disks
+			rx  rx50 disks
+			sd  Shutdown
+			si  Stray Interrupt
+			su  Startup
+			sv  Stray Vector
+			tc  Time Change
+			tk  TK50/TU81
+			tm  TM11
+			ts  TS11/TSV05/TSU05/TU80/TK25
+
+DOCUMENTATION	elp(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-fpsim
+	
+DESCRIPTION	The fpsim command displays or changes the status of the
+		floating point simulator.
+
+SYNTAX		/etc/fpsim [ mode ]
+
+		  mode   Mode can be set on or off.  If not specified, 
+			 displays the current status.
+
+DOCUMENTATION	fpsim(8) in the ULTRIX-11 Programmer's Manual
+-fsck
+	
+DESCRIPTION	The fsck command provides an interactive file system 
+		consistency check program.
+
+SYNTAX		fsck [ options ] [ special... ]
+
+		  special  Name of special file for each file system to be 
+			   checked.  If not specified, defaults to file systems
+			   listed in /etc/fstab.
+
+OPTIONS		-S  Builds new free list, using specified interleaving 
+		    factor (-Sx), if old free list contains no errors. 
+		-n  Assumes "no" response and issues no prompts.
+		-p  Conducts parallel passes in the order and on the 
+		    file systems specified in the /etc/fstab file.
+		-s  Builds new free list, using specified interleaving 
+		    factor (-sx), even if old free list contains errors.
+		-t  Uses specified file (next argument) as scratch file.
+		-y  Assumes "yes" response to all prompts.
+
+DOCUMENTATION	fsck(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-fsdb
+	
+DESCRIPTION	The fsdb command provides an interactive file system debugger
+		that has a full subset of symbols.
+
+SYNTAX		/etc/fsdb special [ - ] 
+
+		  special   Name of special file for file system to be patched.
+
+OPTIONS		-  Suppresses normal inode and block address checking routines.
+
+DOCUMENTATION	fsdb(8) in the ULTRIX-11 Programmer's Manual
+-ftpd
+
+DESCRIPTION	The ftpd command is the DARPA Internet File Transfer
+		Protocol daemon.  Normally, this command is executed
+		from the /etc/rc file during multiuser startup.
+		
+DOCUMENTATION   ftpd(8c) in the ULTRIX-11 Programmer's Manual
+-getty
+
+DESCRIPTION	The getty program is automatically invoked by the
+		init program during a system startup to initialize
+		the mode of each enabled terminal line.
+
+DOCUMENTATION   getty(8) in the ULTRIX-11 Programmer's Manual
+-icheck
+	
+DESCRIPTION	The icheck command checks the inode consistency of the
+		specified file system.
+
+SYNTAX		icheck [ options ] special
+ 
+		  special   Name of special file for file system to be checked.
+
+OPTIONS		-b   Checks each specified block number (next arguments).
+		-s   Reconstructs free list.
+
+DOCUMENTATION	icheck(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-ifconfig
+
+DESCRIPTION	The ifconfig command assigns network addresses or
+		configures network interface parameters.  Normally,
+		this command is executed from the /etc/rc file 
+		during multiuser startup.
+
+DOCUMENTATION   ifconfig(8c) in the ULTRIX-11 Programmer's Manual
+-inetd
+
+DESCRIPTION	The inetd command is the Internet service daemon.
+		Normally, this command is executed from the /etc/rc
+		file during multiuser startup.
+
+DOCUMENTATION   inetd(8c) in the ULTRIX-11 Programmer's Manual
+-init
+
+DESCRIPTION	The init command is automatically invoked as part
+		of a system startup.
+
+DOCUMENTATION   init(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-iostat
+	
+DESCRIPTION	The iostat command displays a report of system I/O activity.
+
+SYNTAX		iostat [ options ] [ drive... ] [ interval [ count ] ]
+
+		  drive     Name of special file for which I/O statistics 
+			    are to be reported.
+
+		  interval  Report generated every n seconds.
+
+		  count     Only n reports generated (used in conjunction 
+			    with interval argument).
+
+OPTIONS		-a   Displays total time (minutes) at end of report.
+		-b   Displays I/O buffer usage.
+		-d   Displays date and time at beginning of report.
+		-i   Displays percentage spent: controller active, disk active,
+		     I/O wait, and idle but with disk active, in addition to
+		     normal output categories.
+		-s   Displays raw timing information for each disk drive.
+		-t   Displays number of characters/second for terminal I/O.
+
+DOCUMENTATION	iostat(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-ipatch
+	
+DESCRIPTION	The ipatch command provides an interactive program that has
+		a full subset of commands for displaying or modifying the 
+		contents of a specified inode.
+
+SYNTAX		/etc/ipatch special inumber
+
+		   special   Name of special file for file system on which 
+			     specified inode resides.
+
+		   inumber   Index number of inode to be displayed or 
+			     patched.
+
+DOCUMENTATION	ipatch(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-labelit
+
+DESCRIPTION	The labelit command creates initial labels for the 
+		specified file system.
+
+SYNTAX	  	/etc/labelit special [ name ] [ vol ] [ -n ]
+
+		  special  Special file name of the device on which the
+			   file system resides.
+
+		  name     Name of the mounted file system (for example,
+			   root or usr).
+
+		  vol      Physical volume name.
+
+OPTIONS		-n   Creates initial label for new tape (destroys all
+		     previous data, if any).
+
+DOCUMENTATION   volcopy(8) in the ULTRIX-11 Programmer's Manual
+-logins
+	
+DESCRIPTION	The logins command allows you to re-enable logins on 
+		your ULTRIX-11 system.
+
+SYNTAX		logins
+
+DOCUMENTATION	logins(8) in the ULTRIX-11 Programmer's Manual
+-lpd
+
+DESCRIPTION	The lpd command is the line printer daemon.  Normally,
+		this command is executed from the /etc/rc file during
+		multiuser startup.
+
+DOCUMENTATION   lpd(8) in the ULTRIX-11 Programmer's Manual
+-lpdrestart
+
+DESCRIPTION	The lpdrestart command restarts the line printer daemon.
+		Normally, this command is automatically executed from 
+		the /etc/rc file during multiuser startup.
+
+DOCUMENTATION	lpd(8) in the ULTRIX-11 Programmer's Manual
+-lprsetup
+
+DESCRIPTION	The lprsetup command provides an interactive, 
+		easy-to-use program for setting up or administering
+		your line printers.
+
+SYNTAX	  	/usr/etc/lprsetup
+
+DOCUMENTATION   lprsetup(8) in the ULTRIX-11 Programmer's Manual
+-lpset
+	
+DESCRIPTION	The lpset command sets or resets the line printer parameters.
+
+SYNTAX		/etc/lpset flag indent line col   
+		/etc/lpset [ -r ]
+
+		  flag    Flag bits: 010 (FFCLOSE), causes page eject on 
+			  lpclose; and 020 (CAP), causes upper case only for
+			  64-character set printers.
+
+		  indent  Indentation level: n characters from left margin.
+
+		  line    Number of lines per printed page.
+
+		  col     Number of characters/line (column width).
+
+OPTIONS		-r   Resets all parameter to their default values: flag = 0,
+		     indent = 0, line = 66, and col = 132.  If not specified,
+		     displays current parameter settings.
+
+DOCUMENTATION	lpset(8) in the ULTRIX-11 Programmer's Manual
+-mailq
+
+DESCRIPTION	The mailq command lists the contents of the 
+		/usr/spool/mqueue directory.
+
+SYNTAX	  	mailq
+
+DOCUMENTATION   sendmail(8) in the ULTRIX-11 Programmer's Manual
+-makekey
+
+DESCRIPTION	The makekey command reads up to 10 bytes from stdin
+		and generates a new encryption key from this input.
+
+SYNTAX	  	/usr/lib/makekey
+
+DOCUMENTATION   makekey(8) in the ULTRIX-11 Programmer's Manual
+-memstat
+	
+DESCRIPTION	The memstat command displays a map of current memory usage.
+
+SYNTAX		memstat [ key ] 
+
+KEYS		i   Repeats display at specified interval (next argument), 
+		    every n seconds.
+		f   Uses specified corefile (next argument) in place of
+		    /dev/mem.
+		n   Uses specified namelist (next argument) in place of
+		    /unix.
+
+DOCUMENTATION	memstat(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-miscd
+
+DESCRIPTION	The miscd command is the miscellaneous services
+		daemon.  Normally, this command is executed from
+		the /etc/rc file during multiuser startup.
+
+DOCUMENTATION   miscd(8c) in the ULTRIX-11 Programmer's Manual
+-mkconf
+
+DESCRIPTION	The mkconf command is automatically invoked by the
+		sysgen program during a system generation to create
+		the system configuration tables.
+
+DOCUMENTATION   mkconf(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-mkfs
+
+DESCRIPTION	The mkfs command is automatically invoked by the
+		sysgen program during a system generation to construct
+		a file system structure on the specified disk devices.
+		
+DOCUMENTATION   mkfs(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-mknod
+	
+DESCRIPTION 	The mknod command builds a special file (node) for devices.
+
+SYNTAX		/etc/mknod name key major minor
+
+		  name    Name of special file name to be created.
+
+		  major   Number that indicates device type.
+
+		  minor   Device's unit, drive, or line number.
+
+KEYS		c   Creates special file for character-mode access.
+		b   Creates special file for block-mode access.
+		p   Creates special file for FIFOs (named pipes).
+
+DOCUMENTATION	mknod(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-mount
+
+DESCRIPTION	The mount command makes a removable file system available 
+		for use by mounting it on the file system's directory tree 
+		structure.
+
+SYNTAX		/etc/mount [ options ] [ special directory [ -r ] ]
+
+		  special    Name of special file for file system to be 
+			     mounted.
+
+		  directory  Name of directory on which file system is to be
+			     mounted.
+
+		If special and directory are not specified, lists file systems 
+		currently mounted.
+
+OPTIONS		-a   Mounts all default file systems (listed in /etc/fstab).
+		-d   Mounts specified file system without checking for block
+		     size compatibility.
+		-f   Updates /etc/mtab but does not mount the specified file 
+		     systems.
+		-r   Mounts specified file system read-only.
+		-v   Displays verbose information while mounting the specified
+		     file systems.
+
+EXAMPLES	/etc/mount -a
+		/etc/mount /dev/hp03 /usr/staff/project1 
+		/etc/mount
+
+DOCUMENTATION	mount(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-msf
+
+DESCRIPTION	The msf command allows you to make or remove a special
+		file for the specified device.
+
+SYNTAX	  	/etc/msf [ option ] [ device ] [ unit ] [ tty ]
+
+		  device   Generic name of the device for which the
+			   special file is to be created or removed.
+			   If no arguments are specified, invokes
+			   msf for interactive session.
+
+		  unit     Either the physical unit number or the
+			   number of lines (MAUS and terminals).
+
+		  tty      Starting tty number for that device.
+		  
+OPTIONS		-c   Uses the specified number (next argument) as the 
+		     MSCP or MASSBUS disk controller.
+		-f   Makes a special file for the specified disk
+		     partition (next argument).
+		-h   Display on-line help information.
+		-r   Removes the special file for the specified device.
+		-t   Display information table listing of all device 
+		     names.
+		
+DOCUMENTATION   msf(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-ncheck
+	
+DESCRIPTION	The ncheck command generates names from file system inumbers.
+
+SYNTAX		ncheck [ options ] special
+
+		  special   Name of special file for file system on which 
+			    inodes reside.
+
+OPTIONS		-a   Generates names for directory entries . and .. (normally
+		     suppressed).
+		-i   Generates names only for each specified inumber (next 
+		     arguments).
+		-s   Generates names only for special files and files with
+		     set-userID mode.
+
+DOCUMENTATION	ncheck(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-netsetup
+
+DESCRIPTION	The netsetup command provides an interactive, 
+		easy-to-use program for setting up or administering
+		your network.
+
+SYNTAX	  	/usr/etc/netsetup
+
+DOCUMENTATION   netsetup(8) in the ULTRIX-11 Programmer's Manual
+-newaliases
+
+DESCRIPTION	The newaliases command rebuilds the /usr/lib/aliases
+		data base.
+
+SYNTAX	  	newaliases
+
+DOCUMENTATION   sendmail(8) in the ULTRIX-11 Programmer's Manual
+-newfs
+
+DESCRIPTION	The newfs command provides an interactive, easy-to-use 
+		program that prompts for all the information needed for
+		constructing a new file system.
+
+SYNTAX	  	/etc/newfs
+
+DOCUMENTATION   newfs(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-nologins
+	
+DESCRIPTION	The nologins command allows you to disable logins on your 
+		ULTRIX-11 system.
+
+SYNTAX		nologins
+
+DOCUMENTATION	logins(8) in the ULTRIX-11 Programmer's Manual
+-nu
+
+DESCRIPTION	The nu command provides an interactive, easy-to-use
+		program for setting up or administering user login
+		accounts.
+
+SYNTAX	  	nu
+
+DOCUMENTATION   nu(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-opser
+
+DESCRIPTION	The opser command provides an interactive program with 
+		a full subset of commands that a system operator can use 
+		to perform normal system maintenance.
+
+SYNTAX		opser
+
+COMMANDS	backup    Creates file system backups.
+		fsck	  Checks file systems for inconsistencies.
+		halt	  Halts the processor.
+		help	  Displays on-line command summary.
+		restart   Restarts multiuser mode.
+		shutdown  Shuts down multiuser mode.
+		users	  Displays list of logged in users.
+		!sh	  Escapes to /bin/sh shell.
+		<CTRL/D>  Exits from opser program.
+
+DOCUMENTATION	opser(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-osload
+
+DESCRIPTION	The osload command loads and unloads optional
+		software from the distribution media.
+
+SYNTAX	  	osload
+
+DOCUMENTATION   osload(8) in the ULTRIX-11 Programmer's Manual
+-pstat
+	
+DESCRIPTION	The pstat command displays system status information.
+
+SYNTAX		pstat [ options ] [ core ] [ list ]
+
+		  core   Name of core file from which the information is 
+			 to be gathered.  If not specified, uses /dev/mem and
+			 gathers current system information.
+			 
+		  list   Name list that is to be used.  If not specified,
+			 uses /unix.
+
+OPTIONS		-T   Displays the number of used and free slots in the 
+		     system tables.
+		-U   Displays how long the system has been up. 
+		-a   Displays all process slots, not just those for 
+		     active processes.  Must be used with -p option.
+		-f   Displays open file table.
+		-i   Displays open inode table.
+		-p   Displays entries for active processes in process table.
+		-t   Displays terminal status.
+		-u   Uses specified address (next argument) and dumps U block
+		     at that address.
+		-x   Displays text table.
+
+DOCUMENTATION	pstat(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-quot
+	
+DESCRIPTION	The quot command displays the number of blocks owned by each 
+		user in the specified file system. 
+
+SYNTAX		quot [ options ] [ special ]
+
+		  special   Name of special file for file system to be
+			    checked.  If not specified, uses /etc/fstab
+			    and searches for the special file associated 
+			    with the /usr directory.
+
+OPTIONS		-c   Displays information in three columns: size in blocks,
+		     number of files of equal size, and block total for files
+		     of equal size or smaller.
+		-f   Displays number of files owned by user in addition to 
+		     blocks.
+		-n   Displays list of files and their respective owner names.
+
+DOCUMENTATION	quot(8) in the ULTRIX-11 Programmer's Manual
+-rasize
+	
+DESCRIPTION	The rasize command displays MSCP disk partition sizes.
+
+SYNTAX		rasize
+
+DOCUMENTATION	rasize(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-rawfs
+
+DESCRIPTION	The rawfs command lists files on or extracts files from
+		an pre-Version 3.0 file system (512-byte block).
+
+SYNTAX	  	/etc/rawfs [ options ] special file... [ directory ]
+
+		  special   Special file name for the device on which 
+			    the file system resides.
+
+		  file       Name of each file or directory to be 
+			     processed.
+
+		  directory  Name of the directory into which the
+			     extracted files are to be placed.
+
+OPTIONS		-R  Recursively lists files in all subdirectories 
+		    (list only).
+		-S  Lists files on or extracts files from VAX 4.1 file 
+		    system by swapping words to longs (extract and 
+		    list). If -S or -k options are not specified,
+		    assumes file system has 512-byte block size.
+		-c  Lists creation, not modification, time for each 
+		    file (list only).  Use with -l option.
+		-g  Lists group ID for each file (list only).  Use 
+		    with -l option.
+		-i  Lists inumber (inode index number) for each file 
+		    (list only).
+		-k  Lists files on or extracts files from file system 
+		    that has 1K-byte block size (extract and list).
+		    If -k or -S options are not specified, assumes file
+	 	    system has 512-byte block size.
+		-l  Lists file statistics for each file (list only).
+		-n  Extracts only those files that would not destroy an
+		    existing file (extract only).
+		-o  Lists files on or extracts files from file system 
+		    that begins at specified offset (next argument).
+		    The offset can be a block number, a disk name, or a
+		    a partition.  This option is useful only when the 
+		    required special argument is the entire disk.
+		-s  Extracts character or block special files (extract 
+		    only).
+		-t  Lists files on the specified file system.
+		-u  Lists access, not modification, time for each file 
+		    (list only).  Must be used with -l option.
+		-v  Extracts files and displays verbose information 
+		    (extract only).
+		-x  Extracts file from the specified file system.
+
+DOCUMENTATION	rawfs(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-rdate
+
+DESCRIPTION	The rdate command resets your system's date and time
+		to the current network date and time.  Normally, this
+		command is automatically invoked from the /etc/rc file
+		during multiuser startup.
+
+SYNTAX		/etc/rdate [ options ] [ network ]
+
+		  network   Name of the network on which the broadcast
+			    datagram is to be sent.  If not specified,
+			    broadcasts datagram on the system's default
+			    network.
+
+OPTIONS		-s   Sets the date and time to the median value.
+		-v   Displays the date and time of each responding host.
+
+DOCUMENTATION	rdate(8c) in the ULTRIX-11 Programmer's Manual
+-restor
+	
+DESCRIPTION	The restor command performs incremental file system restores.
+
+SYNTAX		restor key 
+
+KEYS		R  Uses specified special file (next argument) as target file
+		   system for complete (full) restore, but prompts for reel 
+		   to begin with.
+		f  Uses specified special file (next argument) as tape.
+		   May be used in conjunction with all other keys.  If not 
+		   specified, uses default tape drive (/dev/rht0).
+		m  Uses RX50 diskettes in place of tape (Micro/PDP-11).  Must
+		   be used with r key.
+		r  Uses specified special file (next argument) as target
+		   file system for complete (full) restore.
+		s  Uses the specified number (next argument) as the dump
+		   file from which the file system or each named file is
+		   to be restored.
+		t  Displays dates tape was written and file system
+		   was dumped to it.
+		x  Extracts named files (next arguments) from tape.
+
+EXAMPLES	restor xf /dev/rht1 /staff/bill/bin/program1 /staff/bill/notes
+		restor mrf /dev/rrx2 /dev/rrd0
+		restor r /dev/rhp03
+
+DOCUMENTATION	restor(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-rexecd
+
+DESCRIPTION	The rexecd command is the rexec daemon.  Normally, this
+		command is executed from the /etc/rc file during 
+		multiuser startup.
+
+DOCUMENTATION   rexecd(8c) in the ULTRIX-11 Programmer's Manual
+-rlogind
+
+DESCRIPTION	The rlogind command is the rlogin command daemon.  
+		Normally, this command is executed from the /etc/rc
+		file during multiuser startup.
+		
+DOCUMENTATION   rlogind(8c) in the ULTRIX-11 Programmer's Manual
+-route
+
+DESCRIPTION	The route command allows you to add, delete, or change
+		entries in the network routing tables.
+
+SYNTAX	  	/etc/route [ -f ] [ cmd... arg...]
+
+		  cmd   Each command to be processed.  The commands are:
+			add, delete, or change.
+
+		  arg   Each argument for the specified command.  The 
+			required arguments are: destination (host or 
+			network) and gateway (packets addressed to).
+			The optional arguments are: metric (number of
+			hops to destination).  If metric is not 
+			specified, uses 0.
+
+OPTIONS		-f   Flushes all gateway entries from the routing table.
+		
+DOCUMENTATION   route(8c) in the ULTRIX-11 Programmer's Manual
+-routed
+
+DESCRIPTION	The routed command is the network routing daemon.  
+		Normally, this command is automatically executed from
+		the /etc/rc file during multiuser startup.
+		
+DOCUMENTATION   routed(8c) in the ULTRIX-11 Programmer's Manual
+-rshd
+
+DESCRIPTION	The rshd command is the rsh command daemon.  Normally,
+		this command is automatically executed from the /etc/rc
+		file during multiuser startup.
+		
+DOCUMENTATION   rshd(8c) in the ULTRIX-11 Programmer's Manual
+-rwhod
+
+DESCRIPTION	The rwhod command is the rwho command daemon.  Normally,
+		this command is automatically executed from the /etc/rc 
+		file during multiuser startup.
+
+DOCUMENTATION   rwhod(8c) in the ULTRIX-11 Programmer's Manual
+-rx2fmt
+
+DESCRIPTION	The rx2fmt command formats RX02 floppy diskettes.
+
+SYNTAX	  	rx2fmt [ -s ] unit
+
+		  unit   Physical unit number of drive to be used.
+
+OPTIONS		-s   Uses single density.  If not specified, uses
+		     double density.
+		
+DOCUMENTATION   rx2fmt(8) in the ULTRIX-11 Programmer's Manual
+-sa
+	
+DESCRIPTION	The sa command displays system accounting information.
+
+SYNTAX		sa [ options ] [ file ]
+
+		  file  Name of file from which accounting information
+			is to be taken.  If not specified, uses /usr/adm/acct.
+
+OPTIONS		-a   Displays all command names containing nonprintable 
+		     characters and commands only executed once under heading
+		     ***other.
+		-b   Sorts all output by results of user plus system time
+		     divided by number of calls.  If not specified, sorts by 
+		     sum of user and system time only.
+		-c   Displays percentage of time for each command in addition
+		     to total user, system, and real time.
+		-j   Displays times in seconds, not minutes.
+		-l   Displays user and system time separately.  If not 
+		     specified, combines user and system time.
+		-m   Displays processes (total) and CPU minutes for each user.
+		-n   Sorts output by number of calls made, not CPU time.
+		-r   Sorts output in reverse (ascending) order.
+		-s   Displays information and merges accounting file into
+		     command history file (/usr/adm/savacct).
+		-t   Displays percentage of real time to user and system times.
+		-u   Displays user ID and command name.
+		-v   Displays only commands used no more than specified
+		     number of times (-v#) and prompts whether to add 
+		     them to **junk** group.
+
+DOCUMENTATION	sa(8) in the ULTRIX-11 Programmer's Manual
+-sendmail
+
+DESCRIPTION	The sendmail command is automatically executed by
+		the appropriate mail program, when necessary, to 
+		route mail over the network.
+
+DOCUMENTATION   sendmail(8) in the ULTRIX-11 Programmer's Manual
+-shutdown
+
+DESCRIPTION	The appropriate shutdown procedures are fully discussed
+		in the ULTRIX-11 System Management Guide.
+
+DOCUMENTATION   ULTRIX-11 System Management Guide
+-sync
+	
+DESCRIPTION	The sync command writes all in-memory file system information
+		(modified super blocks, modified inodes, and modified data 
+		blocks) out to disk.
+
+SYNTAX		sync
+
+DOCUMENTATION	sync(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-sysgen
+	
+DESCRIPTION     The sysgen command is an interactive program that has a
+		full subset of commands for generating a new ULTRIX-11
+		system kernel.
+
+SYNTAX	  	sysgen
+
+DOCUMENTATION   sysgen(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-syslog
+
+DESCRIPTION	The syslog command reads a datagram socket and writes
+		the output to the specified file.  Normally, this
+		command is automatically executed from the /etc/rc
+		file during multiuser startup.
+
+DOCUMENTATION   syslog(8) in the ULTRIX-11 Programmer's Manual
+-talkd
+
+DESCRIPTION	The talkd command is the talk inter-terminal 
+		communications daemon.  Normally, this command is
+		automatically executed for the /etc/rc file during
+		multiuser startup.
+
+DOCUMENTATION   talkd(8c) in the ULTRIX-11 Programmer's Manual
+-ted
+	
+DESCRIPTION	The ted command is an interactive program that has a 
+		full subset of commands for editing the /etc/ttys file.
+
+SYNTAX		ted
+
+DOCUMENTATION	ted(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-telnetd
+
+DESCRIPTION	The telnetd command is the DARPA standard TELNET
+		virtual terminal protocol daemon.  Normally, this
+		command is automatically executed from the /etc/rc 
+		file during multiuser startup.
+
+DOCUMENTATION   telnetd(8c) in the ULTRIX-11 Programmer's Manual
+-tftpd
+
+DESCRIPTION	The tftpd command is the DARPA Trivial File Transfer
+		Protocol daemon.  Normally, this command is 
+		automatically executed from the /etc/rc file during
+		multiuser startup.
+
+DOCUMENTATION   tftpd(8c) in the ULTRIX-11 Programmer's Manual
+-tss
+	
+DESCRIPTION	The tss command displays a list of assigned tty structures.
+
+SYNTAX		/etc/tss
+
+DOCUMENTATION	tss(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-ulf
+
+DESCRIPTION	The ulf command is automatically executed, when 
+		necessary, by the lpd daemon to provide a character 
+		filter for the appropriate printer.
+
+DOCUMENTATION   ulf(8) in the ULTRIX-11 Programmer's Manual
+-umount
+
+DESCRIPTION	The umount command makes a removable file system unavailable 
+		for use (unmounts it from file system's directory tree 
+		structure).
+
+SYNTAX		/etc/umount [ options ] special 
+
+		  special  Special file name of file system to be unmounted.
+
+OPTIONS		-a   Unmounts all default file systems (listed in /etc/fstab).
+		-v   Displays verbose information while unmounting the 
+		     specified file systems.
+
+EXAMPLES	/etc/umount -a
+		/etc/umount /dev/hp03
+
+DOCUMENTATION	mount(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-update
+
+DESCRIPTION	The update command is the system file system update
+		daemon.  Normally, this command is automatically invoked
+		from the /etc/rc file during multiuser startup.
+
+DOCUMENTATION	update(8) in the ULTRIX-11 Programmer's Guide
+		ULTRIX-11 System Management Guide
+-usat
+	
+DESCRIPTION	The usat command provides a full subset of commands for 
+		verifying and testing various ULTRIX-11 commands.
+
+SYNTAX		usat [ keys ]
+
+KEYS		a    Tests the awk command.
+		b    Tests bc and dc commands.
+		c    Tests the cc and pcc compilers.
+		d    Tests various documentation preparation commands.
+		f    Tests the f77 compiler.
+		h    Displays on-line help.
+		l    Tests the lint command.
+		m    Tests miscellaneous user commands.
+		p    Tests the Pascal compiler.
+		r    Tests the learn facility.
+		s    Tests the sed command.
+		x    Tests the lex command.
+		y    Tests the yacc compiler.
+		z    Generates various system statistics.
+		all  Tests all of the above.
+
+DOCUMENTATION	usat(8) in the ULTRIX-11 Programmer's Manual
+-usep
+
+DESCRIPTION	The sysx command provides a control program for the ULTRIX-11 
+		System Exerciser Package (USEP).   Using USEP and sysx, you 
+		can exercise your system's:
+
+			o  Communications interfaces
+			o  Disk drives 
+			o  Floating point arithmetic
+			o  Line printers
+			o  Main memory
+			o  Central Processor
+			o  Tape drives
+
+SYNTAX		 sysx
+
+DOCUMENTATION	usep(8) in the ULTRIX-11 Programmer's Manual
+		ULTRIX-11 System Management Guide
+-uucpsetup
+
+DESCRIPTION	The uucpsetup command provides an interactive, 
+		easy-to-use program for setting up uucp connections.
+
+SYNTAX	  	/usr/etc/uucpsetup
+
+DOCUMENTATION   uucpsetup(8) in the ULTRIX-11 Programmer's Manual
+-vipw
+
+DESCRIPTION	The vipw command locks the /etc/passwd file and invokes
+		the vi editor for editing on this file.
+
+SYNTAX	  	/etc/vipw
+
+DOCUMENTATION   vipw(8) in the ULTRIX-11 Programmer's Manual
+-volcopy
+
+DESCRIPTION	The volcopy command creates an image copy of the 
+		specified file system.
+
+SYNTAX	  	/etc/volcopy [ options ] name special vol special vol
+
+		  name     Name of the mounted file system to be 
+			   copied (for example, root or user).
+
+		  special  Special file names of the devices on which
+			   the file system to be copied and the file
+			   system to be copied to reside, respectively.
+
+		  vol      Respective volume name for each file system.
+
+OPTIONS		-a     Prompts for verification before copying (default
+		       option).
+		-bpi   Sets the tape density to the specified number 
+		       (-bpi#).
+		-buf   Uses double buffered I/O (tape only).
+		-feet  Uses the specified number (-feet#) as the size
+		       of the tape reel.
+		-n     Does not prompt before copying.
+		-reel  Uses the specified number (-reel#) as the 
+		       beginning reel number.
+
+DOCUMENTATION   volcopy(8) in the ULTRIX-11 Programmer's Manual
+-zaptty
+	
+DESCRIPTION	The zaptty command executes the specified command without
+		a controlling terminal.
+
+SYNTAX		zaptty cmd
+
+		  cmd   Command to be executed.
+
+DOCUMENTATION	zaptty(8) in the ULTRIX-11 Programmer's Manual

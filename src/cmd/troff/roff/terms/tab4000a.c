@@ -1,0 +1,44 @@
+
+/**********************************************************************
+ *   Copyright (c) Digital Equipment Corporation 1984, 1985, 1986.    *
+ *   All Rights Reserved. 					      *
+ *   Reference "/usr/src/COPYRIGHT" for applicable restrictions.      *
+ **********************************************************************/
+
+/*	SCCSID: @(#)tab4000a.c	3.0	4/22/86	*/
+/*	(SYSTEM 5.0)	tab4000a.c	1.1	*/
+#define INCH 240
+/*
+Trendata 4000a
+nroff driving tables
+width and code tables
+*/
+
+struct termtable t4000a = {
+/*bset*/	0,
+/*breset*/	054,
+/*Hor*/		INCH/60,
+/*Vert*/	INCH/48,
+/*Newline*/	INCH/6,
+/*Char*/	INCH/10,
+/*Em*/		INCH/10,
+/*Halfline*/	INCH/12,
+/*Adj*/		INCH/10,
+/*twinit*/	"\033H0",
+/*twrest*/	"\033H0",
+/*twnl*/	"\015\n",
+/*hlr*/		"\033H4\033-Y0004\033H0",
+/*hlf*/		"\033H4\033+Y0004\033H0",
+/*flr*/		"\0337\0337\0337\0337\033\033",
+/*bdon*/	"",
+/*bdoff*/	"",
+/*iton*/	"",
+/*itoff*/	"",
+/*ploton*/	"\033H4",
+/*plotoff*/	"\033H0",
+/*up*/		"\0337",
+/*down*/	"\n",
+/*right*/	" ",
+/*left*/	"\b",
+/*codetab*/
+#include "code.300"

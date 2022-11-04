@@ -1,0 +1,26 @@
+'	# Extra manual macros by dma
+'	# Revised slightly by ape
+'	# begin a display
+.de DS
+.sp
+.nf
+.RS
+..
+'	# end a display
+.de DE
+.fi
+.sp
+.RE
+..
+'	# a paragraph without a preceding blank line
+.de Pp
+.br
+.ns
+.PP
+..
+'	# a tagged paragraph without a preceding blank line
+.de Tp
+.br
+.ns
+.TP \\$1
+..
