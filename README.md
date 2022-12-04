@@ -1,2 +1,2 @@
 # ultrix11-src
-The UItrix-11 3.1 source code.
+The Ultrix-11 3.1 source code.
